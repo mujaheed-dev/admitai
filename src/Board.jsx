@@ -1,0 +1,429 @@
+// Tuition ranges are for international/non-resident students, annual, USD.
+// Living cost is an annual estimate for a single student (shared housing, moderate spending).
+// allInLow / allInHigh = tuitionLow + livingCost  /  tuitionHigh + livingCost
+// All figures are illustrative until verified: true.
+
+const COUNTRIES = [
+  {
+    id: 'malaysia',
+    country: 'Malaysia',
+    flag: '🇲🇾',
+    system: 'Public universities & branch campuses',
+    tuitionLow: 3000,
+    tuitionHigh: 8000,
+    livingCost: 6000,
+    allInLow: 8000,
+    allInHigh: 15000,
+    region: 'Asia',
+    scholarships: 'some',
+    effort: 'low',
+    sourceName: 'Education Malaysia (EMGS, official)',
+    sourceUrl: 'https://educationmalaysia.gov.my',
+    verified: true,
+  },
+  {
+    id: 'germany',
+    country: 'Germany',
+    flag: '🇩🇪',
+    // tuitionHigh covers ~$3,300/yr extra charged by a few states for non-EU students
+    system: 'Public universities',
+    tuitionLow: 0,
+    tuitionHigh: 700,
+    livingCost: 12900, // official visa requirement: €11,904 ≈ $12,900
+    allInLow: 13000,
+    allInHigh: 16000, // higher-cost cities e.g. Munich
+    region: 'Europe',
+    scholarships: 'strong',
+    effort: 'medium',
+    sourceName: 'Study in Germany (official, DAAD)',
+    sourceUrl: 'https://www.study-in-germany.de',
+    verified: true,
+  },
+  {
+    id: 'netherlands',
+    country: 'Netherlands',
+    flag: '🇳🇱',
+    system: 'Research universities',
+    tuitionLow: 8500,
+    tuitionHigh: 19500,
+    livingCost: 14000,
+    allInLow: 22000,
+    allInHigh: 34000,
+    region: 'Europe',
+    scholarships: 'some',
+    effort: 'medium',
+    sourceName: 'European Education Area (official EU)',
+    sourceUrl: 'https://education.ec.europa.eu/study-in-europe/countries/netherlands',
+    verified: true,
+  },
+  {
+    id: 'uae',
+    country: 'UAE (Dubai)',
+    flag: '🇦🇪',
+    system: 'International campuses',
+    tuitionLow: 8000,
+    tuitionHigh: 33000,
+    livingCost: 16000,
+    allInLow: 18000,
+    allInHigh: 45000,
+    region: 'Middle East',
+    scholarships: 'limited',
+    effort: 'low',
+    sourceName: 'UAE university fee pages (verify per institution)',
+    sourceUrl: 'https://www.moe.gov.ae',
+    verified: true,
+  },
+  {
+    id: 'ireland',
+    country: 'Ireland',
+    flag: '🇮🇪',
+    system: 'University system',
+    tuitionLow: 14000,
+    tuitionHigh: 22000,
+    livingCost: 12000,
+    allInLow: 26000,
+    allInHigh: 34000,
+    region: 'UK & Ireland',
+    scholarships: 'limited',
+    effort: 'medium',
+    sourceName: 'Education in Ireland (official)',
+    sourceUrl: '',
+    verified: false,
+  },
+  {
+    id: 'canada',
+    country: 'Canada',
+    flag: '🇨🇦',
+    system: 'Provincial universities',
+    tuitionLow: 14500,
+    tuitionHigh: 36500,
+    livingCost: 17000,
+    allInLow: 31000,
+    allInHigh: 50000,
+    region: 'North America',
+    scholarships: 'some',
+    effort: 'high',
+    sourceName: 'EduCanada / IRCC (official Government of Canada)',
+    sourceUrl: 'https://www.educanada.ca',
+    verified: true,
+  },
+  {
+    id: 'uk',
+    country: 'United Kingdom',
+    flag: '🇬🇧',
+    system: 'UCAS',
+    tuitionLow: 19000,
+    tuitionHigh: 38000,
+    livingCost: 16500,
+    allInLow: 34000,
+    allInHigh: 57000,
+    region: 'UK & Ireland',
+    scholarships: 'some',
+    effort: 'high',
+    sourceName: 'UCAS & UK Visas and Immigration (official)',
+    sourceUrl: 'https://www.ucas.com',
+    verified: true,
+  },
+]
+
+// ─── helpers ────────────────────────────────────────────────────────────────
+
+function getBudgetLabel(budget) {
+  if (budget === 10000) return 'under $10k'
+  if (budget === 20000) return '$10–20k'
+  if (budget === 35000) return '$20–35k'
+  return '$35k or more'
+}
+
+// Compare against allInLow — if even the cheapest scenario is within range, flag green.
+function getBudgetFlag(allInLow, budget) {
+  if (allInLow <= budget) {
+    return { label: 'Fits your budget', color: '#2D7A52', bg: '#E4F5EC', dot: '#4F8A6E' }
+  }
+  if (allInLow <= budget * 1.25) {
+    return { label: 'Close — try a scholarship', color: '#9A5010', bg: '#FDF0E6', dot: '#E07A2F' }
+  }
+  return { label: 'Above budget', color: '#9B2335', bg: '#FDECEA', dot: '#C0392B' }
+}
+
+function fmtK(n) {
+  if (n === 0) return '$0'
+  const k = n / 1000
+  return '$' + (Number.isInteger(k) ? k : k.toFixed(1)) + 'k'
+}
+
+function formatRange(low, high) {
+  return `~${fmtK(low)}–${fmtK(high)} / year`
+}
+
+function capitalize(s) {
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+function getEffortColor(e) {
+  if (e === 'low') return '#4F8A6E'
+  if (e === 'medium') return '#8B6914'
+  return '#9B2335'
+}
+
+function getScholarshipColor(s) {
+  if (s === 'strong') return '#4F8A6E'
+  if (s === 'some') return '#8B6914'
+  return '#16302B66'
+}
+
+// ─── page ───────────────────────────────────────────────────────────────────
+
+export default function Board({ answers, onStartOver }) {
+  const { budget, field, regions } = answers
+  const showAll = regions.includes('anywhere')
+
+  const results = COUNTRIES
+    .filter(c => showAll || regions.includes(c.region))
+    .sort((a, b) => a.allInLow - b.allInLow)
+
+  const budgetLabel = getBudgetLabel(budget)
+
+  return (
+    <div className="min-h-screen" style={{ background: '#F7F4EE' }}>
+      {/* Nav */}
+      <header
+        className="sticky top-0 z-50 border-b"
+        style={{ background: '#F7F4EEf5', borderColor: '#16302B20', backdropFilter: 'blur(8px)' }}
+      >
+        <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+          <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>
+            AdmitAI
+          </span>
+          <button
+            onClick={onStartOver}
+            style={{
+              background: 'none',
+              border: '1.5px solid #16302B30',
+              borderRadius: 100,
+              padding: '7px 18px',
+              cursor: 'pointer',
+              fontFamily: 'Hanken Grotesk, sans-serif',
+              color: '#16302B',
+              fontSize: '0.85rem',
+              fontWeight: 500,
+              transition: 'border-color 0.15s',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
+            onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B30')}
+          >
+            ← Start over
+          </button>
+        </div>
+      </header>
+
+      {/* Board header */}
+      <div className="max-w-3xl mx-auto px-6 pt-12 pb-8">
+        <div style={{ marginBottom: 6 }}>
+          <span style={{
+            fontFamily: 'Hanken Grotesk, sans-serif',
+            fontSize: '0.8rem',
+            fontWeight: 600,
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            color: '#4F8A6E',
+          }}>
+            Your board
+          </span>
+        </div>
+        <h1 style={{
+          fontFamily: 'Fraunces, Georgia, serif',
+          color: '#16302B',
+          fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',
+          fontWeight: 600,
+          lineHeight: 1.2,
+          margin: '0 0 12px 0',
+        }}>
+          {results.length > 0
+            ? `${results.length} realistic path${results.length === 1 ? '' : 's'} for you`
+            : 'No matches yet'}
+        </h1>
+        <p style={{
+          fontFamily: 'Hanken Grotesk, sans-serif',
+          color: '#16302B99',
+          fontSize: '0.975rem',
+          lineHeight: 1.6,
+          margin: 0,
+        }}>
+          Based on a budget {budgetLabel} for{' '}
+          <strong style={{ color: '#16302B', fontWeight: 600 }}>{field}</strong>,
+          here are realistic paths — cheapest first.
+        </p>
+      </div>
+
+      {/* Cards */}
+      <div className="max-w-3xl mx-auto px-6 pb-20">
+        {results.length === 0 ? (
+          <div style={{
+            background: '#fff',
+            borderRadius: 20,
+            padding: '48px 32px',
+            textAlign: 'center',
+            border: '1px solid #16302B10',
+          }}>
+            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66', fontSize: '0.95rem' }}>
+              No countries match your selected regions. Try{' '}
+              <button
+                onClick={onStartOver}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#E07A2F', fontWeight: 600, fontFamily: 'inherit', fontSize: 'inherit', padding: 0, textDecoration: 'underline' }}
+              >
+                starting over
+              </button>{' '}
+              and selecting more regions.
+            </p>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {results.map((c, i) => (
+              <CountryCard key={c.id} country={c} budget={budget} rank={i + 1} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// ─── card ────────────────────────────────────────────────────────────────────
+
+function CountryCard({ country, budget, rank }) {
+  const budgetFlag = getBudgetFlag(country.allInLow, budget)
+
+  return (
+    <div style={{
+      background: '#fff',
+      borderRadius: 20,
+      border: '1px solid #16302B0f',
+      padding: '24px 28px',
+      boxShadow: '0 1px 4px rgba(22,48,43,0.06)',
+    }}>
+      {/* Top row: identity left, cost right */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16, flexWrap: 'wrap' }}>
+
+        {/* Left */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+            <span style={{
+              width: 24, height: 24, borderRadius: '50%',
+              background: '#16302B0c', color: '#16302B99',
+              fontSize: '0.7rem', fontFamily: 'Hanken Grotesk, sans-serif', fontWeight: 700,
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+            }}>
+              {rank}
+            </span>
+            <span style={{ fontSize: '1.25rem', lineHeight: 1, flexShrink: 0 }}>{country.flag}</span>
+            <h2 style={{
+              fontFamily: 'Fraunces, Georgia, serif',
+              color: '#16302B', fontSize: '1.2rem', fontWeight: 600, margin: 0, lineHeight: 1.2,
+            }}>
+              {country.country}
+            </h2>
+          </div>
+          <p style={{
+            fontFamily: 'Hanken Grotesk, sans-serif',
+            color: '#16302B66', fontSize: '0.85rem', margin: 0, paddingLeft: 68,
+          }}>
+            {country.system}
+          </p>
+        </div>
+
+        {/* Right: range + budget flag */}
+        <div style={{ textAlign: 'right', flexShrink: 0 }}>
+          <div style={{
+            fontFamily: 'Fraunces, Georgia, serif',
+            color: '#16302B', fontSize: '1.25rem', fontWeight: 600, lineHeight: 1, marginBottom: 8,
+          }}>
+            {formatRange(country.allInLow, country.allInHigh)}
+          </div>
+          <BudgetBadge flag={budgetFlag} />
+        </div>
+      </div>
+
+      {/* Source / verification line */}
+      <SourceLine country={country} />
+
+      {/* Divider */}
+      <div style={{ height: 1, background: '#16302B08', margin: '16px 0' }} />
+
+      {/* Meta row */}
+      <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
+        <MetaItem label="Tuition range" value={`${fmtK(country.tuitionLow)}–${fmtK(country.tuitionHigh)}`} valueColor="#16302B" />
+        <MetaItem label="Living est." value={fmtK(country.livingCost)} valueColor="#16302B" />
+        <MetaItem label="Scholarships" value={capitalize(country.scholarships)} valueColor={getScholarshipColor(country.scholarships)} />
+        <MetaItem label="App. effort" value={capitalize(country.effort)} valueColor={getEffortColor(country.effort)} />
+      </div>
+    </div>
+  )
+}
+
+function BudgetBadge({ flag }) {
+  return (
+    <span style={{
+      display: 'inline-flex', alignItems: 'center', gap: 5,
+      background: flag.bg, color: flag.color,
+      borderRadius: 100, padding: '3px 10px',
+      fontSize: '0.75rem', fontFamily: 'Hanken Grotesk, sans-serif', fontWeight: 600,
+    }}>
+      <span style={{ width: 6, height: 6, borderRadius: '50%', background: flag.dot, display: 'inline-block', flexShrink: 0 }} />
+      {flag.label}
+    </span>
+  )
+}
+
+function SourceLine({ country }) {
+  const { verified, sourceName, sourceUrl } = country
+
+  if (verified && sourceName) {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 10 }}>
+        <span style={{ color: '#4F8A6E', fontSize: '0.8rem', lineHeight: 1 }}>✓</span>
+        <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem', color: '#4F8A6E' }}>
+          Verified ·{' '}
+          {sourceUrl
+            ? <a href={sourceUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#4F8A6E', textDecoration: 'underline', textUnderlineOffset: 2 }}>{sourceName}</a>
+            : sourceName
+          }
+        </span>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 10 }}>
+      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#E07A2F', display: 'inline-block', flexShrink: 0 }} />
+      <span style={{
+        fontFamily: 'Hanken Grotesk, sans-serif',
+        fontSize: '0.78rem',
+        color: '#16302B55',
+        fontStyle: 'italic',
+      }}>
+        Estimate — not yet verified
+      </span>
+    </div>
+  )
+}
+
+function MetaItem({ label, value, valueColor }) {
+  return (
+    <div>
+      <div style={{
+        fontFamily: 'Hanken Grotesk, sans-serif',
+        fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.07em',
+        textTransform: 'uppercase', color: '#16302B55', marginBottom: 2,
+      }}>
+        {label}
+      </div>
+      <div style={{
+        fontFamily: 'Hanken Grotesk, sans-serif',
+        fontSize: '0.875rem', fontWeight: 600, color: valueColor,
+      }}>
+        {value}
+      </div>
+    </div>
+  )
+}

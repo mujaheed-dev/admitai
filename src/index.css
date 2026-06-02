@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+
+  --color-ink: #16302B;
+  --color-paper: #F7F4EE;
+  --color-amber: #E07A2F;
+  --color-sage: #4F8A6E;
+  --color-amber-light: #FDF0E6;
+  --color-sage-light: #EAF3EE;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: #F7F4EE;
+  color: #16302B;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
