@@ -1,7 +1,7 @@
-export default function LandingPage({ onShowBoard }) {
+export default function LandingPage({ onShowBoard, onGoToScholarships }) {
   return (
     <div className="min-h-screen" style={{ background: '#F7F4EE', color: '#16302B' }}>
-      <Nav />
+      <Nav onGoToScholarships={onGoToScholarships} />
       <Hero onShowBoard={onShowBoard} />
       <Problem />
       <HowItWorks />
@@ -12,25 +12,40 @@ export default function LandingPage({ onShowBoard }) {
   )
 }
 
-function Nav() {
+function Nav({ onGoToScholarships }) {
   return (
     <header
       className="sticky top-0 z-50 border-b"
       style={{ background: '#F7F4EEf5', borderColor: '#16302B20', backdropFilter: 'blur(8px)' }}
     >
-      <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
         <span
           className="text-xl font-semibold tracking-tight"
           style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B' }}
         >
           AdmitAI
         </span>
-        <button
-          className="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-90 active:scale-95"
-          style={{ background: '#16302B', color: '#F7F4EE', fontFamily: 'Hanken Grotesk, sans-serif' }}
-        >
-          Join the waitlist
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <button
+            onClick={onGoToScholarships}
+            style={{
+              background: 'none', border: 'none', cursor: 'pointer',
+              fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B99',
+              fontSize: '0.9rem', fontWeight: 500, padding: '4px 2px',
+              transition: 'color 0.15s',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
+            onMouseLeave={e => (e.currentTarget.style.color = '#16302B99')}
+          >
+            Scholarships
+          </button>
+          <button
+            className="px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 hover:opacity-90 active:scale-95"
+            style={{ background: '#16302B', color: '#F7F4EE', fontFamily: 'Hanken Grotesk, sans-serif' }}
+          >
+            Join the waitlist
+          </button>
+        </div>
       </div>
     </header>
   )

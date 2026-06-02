@@ -174,7 +174,7 @@ function getScholarshipColor(s) {
 
 // ─── page ───────────────────────────────────────────────────────────────────
 
-export default function Board({ answers, onStartOver }) {
+export default function Board({ answers, onStartOver, onGoToScholarships }) {
   const { budget, field, regions } = answers
   const showAll = regions.includes('anywhere')
 
@@ -184,6 +184,16 @@ export default function Board({ answers, onStartOver }) {
 
   const budgetLabel = getBudgetLabel(budget)
 
+  const tabStyle = (isActive) => ({
+    background: isActive ? '#16302B' : 'none',
+    color: isActive ? '#F7F4EE' : '#16302B99',
+    border: 'none', borderRadius: 100, padding: '6px 14px',
+    fontSize: '0.85rem', fontFamily: 'Hanken Grotesk, sans-serif',
+    fontWeight: isActive ? 600 : 500,
+    cursor: isActive ? 'default' : 'pointer',
+    transition: 'all 0.15s',
+  })
+
   return (
     <div className="min-h-screen" style={{ background: '#F7F4EE' }}>
       {/* Nav */}
@@ -191,24 +201,38 @@ export default function Board({ answers, onStartOver }) {
         className="sticky top-0 z-50 border-b"
         style={{ background: '#F7F4EEf5', borderColor: '#16302B20', backdropFilter: 'blur(8px)' }}
       >
-        <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Mobile: two rows */}
+        <div className="sm:hidden max-w-3xl mx-auto px-6 pt-3.5 pb-3">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+            <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>
+              AdmitAI
+            </span>
+            <button
+              onClick={onStartOver}
+              style={{ background: 'none', border: '1.5px solid #16302B30', borderRadius: 100, padding: '6px 16px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.82rem', fontWeight: 500, whiteSpace: 'nowrap' }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B30')}
+            >
+              ← Start over
+            </button>
+          </div>
+          <div style={{ display: 'flex', gap: 2 }}>
+            <button style={tabStyle(true)}>Board</button>
+            <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>
+          </div>
+        </div>
+        {/* Desktop: single row */}
+        <div className="hidden sm:flex max-w-3xl mx-auto px-6 py-3.5 items-center justify-between gap-4">
           <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>
             AdmitAI
           </span>
+          <div style={{ display: 'flex', gap: 2 }}>
+            <button style={tabStyle(true)}>Board</button>
+            <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>
+          </div>
           <button
             onClick={onStartOver}
-            style={{
-              background: 'none',
-              border: '1.5px solid #16302B30',
-              borderRadius: 100,
-              padding: '7px 18px',
-              cursor: 'pointer',
-              fontFamily: 'Hanken Grotesk, sans-serif',
-              color: '#16302B',
-              fontSize: '0.85rem',
-              fontWeight: 500,
-              transition: 'border-color 0.15s',
-            }}
+            style={{ background: 'none', border: '1.5px solid #16302B30', borderRadius: 100, padding: '7px 18px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.85rem', fontWeight: 500, transition: 'border-color 0.15s' }}
             onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
             onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B30')}
           >
@@ -295,18 +319,20 @@ function CountryCard({ country, budget, rank }) {
   const budgetFlag = getBudgetFlag(country.allInLow, budget)
 
   return (
-    <div style={{
-      background: '#fff',
-      borderRadius: 20,
-      border: '1px solid #16302B0f',
-      padding: '24px 28px',
-      boxShadow: '0 1px 4px rgba(22,48,43,0.06)',
-    }}>
-      {/* Top row: identity left, cost right */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16, flexWrap: 'wrap' }}>
+    <div
+      className="px-5 py-5 sm:px-7 sm:py-6"
+      style={{
+        background: '#fff',
+        borderRadius: 20,
+        border: '1px solid #16302B0f',
+        boxShadow: '0 1px 4px rgba(22,48,43,0.06)',
+      }}
+    >
+      {/* Identity + cost: stacks vertically on mobile, side-by-side on sm+ */}
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-4">
 
-        {/* Left */}
-        <div style={{ flex: 1, minWidth: 0 }}>
+        {/* Identity */}
+        <div style={{ minWidth: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
             <span style={{
               width: 24, height: 24, borderRadius: '50%',
@@ -316,27 +342,27 @@ function CountryCard({ country, budget, rank }) {
             }}>
               {rank}
             </span>
-            <span style={{ fontSize: '1.25rem', lineHeight: 1, flexShrink: 0 }}>{country.flag}</span>
+            <span style={{ fontSize: '1.2rem', lineHeight: 1, flexShrink: 0 }}>{country.flag}</span>
             <h2 style={{
               fontFamily: 'Fraunces, Georgia, serif',
-              color: '#16302B', fontSize: '1.2rem', fontWeight: 600, margin: 0, lineHeight: 1.2,
+              color: '#16302B', fontSize: '1.15rem', fontWeight: 600, margin: 0, lineHeight: 1.2,
             }}>
               {country.country}
             </h2>
           </div>
           <p style={{
             fontFamily: 'Hanken Grotesk, sans-serif',
-            color: '#16302B66', fontSize: '0.85rem', margin: 0, paddingLeft: 68,
+            color: '#16302B66', fontSize: '0.82rem', margin: 0, paddingLeft: 66,
           }}>
             {country.system}
           </p>
         </div>
 
-        {/* Right: range + budget flag */}
-        <div style={{ textAlign: 'right', flexShrink: 0 }}>
+        {/* Cost range + budget badge — left-aligned on mobile, right-aligned on sm+ */}
+        <div className="sm:text-right" style={{ flexShrink: 0 }}>
           <div style={{
             fontFamily: 'Fraunces, Georgia, serif',
-            color: '#16302B', fontSize: '1.25rem', fontWeight: 600, lineHeight: 1, marginBottom: 8,
+            color: '#16302B', fontSize: '1.15rem', fontWeight: 600, lineHeight: 1, marginBottom: 7,
           }}>
             {formatRange(country.allInLow, country.allInHigh)}
           </div>
@@ -350,8 +376,8 @@ function CountryCard({ country, budget, rank }) {
       {/* Divider */}
       <div style={{ height: 1, background: '#16302B08', margin: '16px 0' }} />
 
-      {/* Meta row */}
-      <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
+      {/* Meta: 2-column grid on mobile, single row on sm+ */}
+      <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:flex sm:flex-row sm:gap-7">
         <MetaItem label="Tuition range" value={`${fmtK(country.tuitionLow)}–${fmtK(country.tuitionHigh)}`} valueColor="#16302B" />
         <MetaItem label="Living est." value={fmtK(country.livingCost)} valueColor="#16302B" />
         <MetaItem label="Scholarships" value={capitalize(country.scholarships)} valueColor={getScholarshipColor(country.scholarships)} />
