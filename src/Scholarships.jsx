@@ -1,16 +1,22 @@
 import { useState } from 'react'
 
 // All figures and deadlines are illustrative until verified from official sources.
+// level is a placeholder — correct each entry before publishing.
 const SCHOLARSHIPS = [
   {
     id: 'daad',
-    name: 'DAAD International Scholarship',
+    name: 'DAAD (German Academic Exchange Service)',
     country: 'Germany',
     flag: '🇩🇪',
-    fields: ['Engineering', 'Computer Science'],
-    amount: 'Full tuition + €1,000/mo',
-    eligibility: 'International STEM undergrads with strong academic record',
-    deadline: 'Oct 15',
+    fields: ['STEM', 'Most subjects (programme-dependent)'],
+    amount: 'Monthly stipend ~€992 (students); does NOT cover tuition',
+    eligibility: 'Mostly postgraduate & research scholarships',
+    deadline: 'Varies by programme',
+    level: 'Masters / PhD',
+    levelNote: 'Limited undergrad options — RISE summer research internships only, and you must already be enrolled at a US/UK/Canada/Ireland university (apply ~Dec 15)',
+    sourceName: 'DAAD (official)',
+    sourceUrl: 'https://www.daad.de/en/',
+    verified: true,
   },
   {
     id: 'deutschlandstipendium',
@@ -21,36 +27,38 @@ const SCHOLARSHIPS = [
     amount: '€3,600 / year',
     eligibility: 'High-achievers enrolled at participating German universities',
     deadline: 'Varies by university',
-  },
-  {
-    id: 'khazanah',
-    name: 'Yayasan Khazanah Award',
-    country: 'Malaysia',
-    flag: '🇲🇾',
-    fields: ['Business', 'Engineering', 'Computer Science'],
-    amount: 'Up to full tuition',
-    eligibility: 'Outstanding students with demonstrated leadership',
-    deadline: 'Dec 1',
+    level: 'Undergraduate',
+    levelNote: '',
   },
   {
     id: 'malaysia-merit',
-    name: 'Branch-Campus Merit Bursary',
+    name: 'University Merit Scholarships (Malaysia)',
     country: 'Malaysia',
     flag: '🇲🇾',
-    fields: ['All fields'],
-    amount: '20–40% off tuition',
-    eligibility: 'Strong academic record, priority for early applicants',
-    deadline: 'Rolling',
+    fields: ['Most subjects (varies by university)'],
+    amount: 'Merit-based tuition waivers, ranging up to 100% of tuition',
+    eligibility: "International undergraduates with strong academic results, applying directly to universities like Taylor's, UCSI, Asia Pacific, HELP",
+    deadline: 'Set by each university (often tied to intake dates)',
+    level: 'Undergraduate',
+    levelNote: "Tuition only — does NOT cover living costs, accommodation, or flights. The famous government 'MIS' scholarship is postgraduate-only.",
+    sourceName: 'Malaysian universities (apply directly) / EasyUni guide',
+    sourceUrl: 'https://educationmalaysia.gov.my',
+    verified: true,
   },
   {
     id: 'holland',
-    name: 'Holland Scholarship',
+    name: 'NL Scholarship (formerly Holland Scholarship)',
     country: 'Netherlands',
     flag: '🇳🇱',
     fields: ['All fields'],
-    amount: '€5,000 (first year)',
-    eligibility: 'Non-EU international students starting a Dutch degree',
-    deadline: 'Feb 1',
+    amount: '€5,000 one-time, first year only (not full tuition)',
+    eligibility: "Non-EEA international students doing a full-time bachelor's or master's at a participating Dutch university; must not have studied in NL before",
+    deadline: 'Set by each university, usually 1 Feb – 1 May 2026',
+    level: 'Both',
+    levelNote: 'Genuinely open to undergraduates — apply directly to your chosen university',
+    sourceName: 'Study in NL / Dutch Ministry of Education (official)',
+    sourceUrl: 'https://www.studyinnl.org/finances/nl-scholarship',
+    verified: true,
   },
   {
     id: 'ireland-bursary',
@@ -61,36 +69,53 @@ const SCHOLARSHIPS = [
     amount: '€10,000 + fee waiver',
     eligibility: 'High-merit international students',
     deadline: 'Mar 1',
+    level: 'Undergraduate',
+    levelNote: '',
   },
   {
-    id: 'russell-group',
-    name: 'Russell Group Merit Scholarship',
+    id: 'ucl-global-undergrad',
+    name: 'UCL Global Undergraduate Scholarship',
     country: 'United Kingdom',
     flag: '🇬🇧',
-    fields: ['All fields'],
-    amount: '£5,000–£10,000',
-    eligibility: 'Top-grade international applicants to Russell Group universities',
-    deadline: 'Jan 31',
+    fields: ['All undergraduate degrees'],
+    amount: 'Full tuition + maintenance (10 awards); full tuition only (23 awards)',
+    eligibility: 'International students (overseas fee status) from low-income backgrounds, selected on financial need, who have applied for a full-time UCL undergraduate degree',
+    deadline: '27 April 2026 (5pm BST)',
+    level: 'Undergraduate',
+    levelNote: 'A genuine need-based full-ride for undergrads — rare and competitive',
+    sourceName: 'UCL (official)',
+    sourceUrl: 'https://www.ucl.ac.uk/scholarships/ucl-global-undergraduate-scholarship',
+    verified: true,
   },
   {
-    id: 'canada-entrance',
-    name: 'Provincial International Entrance Award',
+    id: 'lester-pearson',
+    name: 'Lester B. Pearson International Scholarship',
     country: 'Canada',
     flag: '🇨🇦',
-    fields: ['All fields'],
-    amount: 'CA$5,000–$20,000',
-    eligibility: 'Entering international students, awarded by GPA',
-    deadline: 'Varies',
+    fields: ['All undergraduate programs (University of Toronto)'],
+    amount: 'Full ride — tuition, books, fees + 4 years residence (~CAD 350,000 total)',
+    eligibility: 'International students needing a study permit, in final year of secondary school (or graduated no earlier than June 2025), starting at U of T in Sept 2026',
+    deadline: 'School nomination ~Oct 10; admission ~Oct 17; scholarship ~Nov 7 (2025 for 2026 entry)',
+    level: 'Undergraduate',
+    levelNote: 'Requires school nomination first (your school can nominate one student/year), then U of T admission, then the scholarship application',
+    sourceName: 'University of Toronto (official)',
+    sourceUrl: 'https://future.utoronto.ca/pearson-scholarships',
+    verified: true,
   },
   {
-    id: 'emirates-talent',
-    name: 'Emirates Future Talent Grant',
+    id: 'uae-merit',
+    name: 'H.H. Sheikh Mohammed Bin Rashid Al Maktoum Scholarship (AUD) + UAE university merit awards',
     country: 'UAE (Dubai)',
     flag: '🇦🇪',
-    fields: ['Business', 'Computer Science', 'Engineering'],
-    amount: '25–50% off tuition',
-    eligibility: 'Merit-based, for incoming international students',
-    deadline: 'Rolling',
+    fields: ['Most subjects (varies by university)'],
+    amount: 'Named AUD award for top students; broader branch-campus merit discounts ~10–50% of tuition',
+    eligibility: 'International undergraduates with strong grades (AUD award: ~90%+ high school average); apply directly to the university',
+    deadline: 'Set by each university (e.g. AUS merit deadline ~Apr 17, 2026)',
+    level: 'Undergraduate',
+    levelNote: 'Mostly PARTIAL tuition discounts — do not cover housing, stipend, or flights. Fully-funded UAE awards (e.g. Khalifa, MBZUAI) are postgraduate.',
+    sourceName: 'University official scholarship pages (verify per institution)',
+    sourceUrl: 'https://www.moe.gov.ae',
+    verified: true,
   },
 ]
 
@@ -99,23 +124,36 @@ const COUNTRY_OPTIONS = ['All', ...SCHOLARSHIPS.reduce((acc, s) => {
   return acc
 }, [])]
 
-const FIELD_OPTIONS = ['All', 'Computer Science', 'Engineering', 'Business', 'Health Sciences', 'Arts & Humanities']
+const FIELD_OPTIONS  = ['All', 'Computer Science', 'Engineering', 'Business', 'Health Sciences', 'Arts & Humanities']
+const LEVEL_OPTIONS  = ['All', 'Undergraduate', 'Masters / PhD', 'Both']
+
+// level → badge colours
+const LEVEL_STYLE = {
+  'Undergraduate': { bg: '#E4F5EC', color: '#2D7A52', border: '#4F8A6E30' },
+  'Masters / PhD':  { bg: '#FDF0E6', color: '#9A5010', border: '#E07A2F30' },
+  'Both':           { bg: '#EEF2FB', color: '#3B5BA5', border: '#3B5BA530' },
+}
 
 // ─── page ────────────────────────────────────────────────────────────────────
 
-export default function Scholarships({ answers, onGoToBoard, onStartOver, onBack }) {
+export default function Scholarships({ answers, onGoToBoard, onStartOver, onBack, user, onOpenAuth, onSignOut, onGoToDashboard }) {
   const [countryFilter, setCountryFilter] = useState('All')
-  const [fieldFilter, setFieldFilter]   = useState('All')
+  const [fieldFilter,   setFieldFilter]   = useState('All')
+  const [levelFilter,   setLevelFilter]   = useState('All')
 
   const filtered = SCHOLARSHIPS.filter(s => {
     const countryOk = countryFilter === 'All' || s.country === countryFilter
     const fieldOk   = fieldFilter === 'All'
       || s.fields.includes(fieldFilter)
       || s.fields.includes('All fields')
-    return countryOk && fieldOk
+    const levelOk   = levelFilter === 'All' || s.level === levelFilter
+    return countryOk && fieldOk && levelOk
   })
 
   const hasBoard = answers && onGoToBoard
+  const backLabel = hasBoard ? '← Start over' : '← Back'
+  const onBackClick = hasBoard ? onStartOver : onBack
+  const email = user && (user.email.length > 22 ? user.email.slice(0, 22) + '…' : user.email)
 
   return (
     <div className="min-h-screen" style={{ background: '#F7F4EE' }}>
@@ -127,21 +165,44 @@ export default function Scholarships({ answers, onGoToBoard, onStartOver, onBack
       >
         {/* Mobile: two rows */}
         <div className="sm:hidden max-w-3xl mx-auto px-6 pt-3.5 pb-3">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-            <Logo />
-            <GhostBtn onClick={hasBoard ? onStartOver : onBack}>
-              {hasBoard ? '← Start over' : '← Back'}
-            </GhostBtn>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 9 }}>
+            <Logo onClick={onGoToDashboard} />
+            <GhostBtn onClick={onBackClick}>{backLabel}</GhostBtn>
           </div>
-          {hasBoard && <NavTabs active="scholarships" onGoToBoard={onGoToBoard} onGoToScholarships={() => {}} />}
+          {/* Row 2: tabs (if applicable) + log out */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', gap: 2 }}>
+              {hasBoard && <NavTabs active="scholarships" onGoToBoard={onGoToBoard} onGoToScholarships={() => {}} />}
+            </div>
+            <button
+              onClick={onSignOut}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66', fontSize: '0.8rem', fontWeight: 500, padding: '4px 2px' }}
+            >
+              Log out
+            </button>
+          </div>
         </div>
         {/* Desktop: single row */}
-        <div className="hidden sm:flex max-w-3xl mx-auto px-6 py-3.5 items-center justify-between gap-4">
+        <div className="hidden sm:flex max-w-3xl mx-auto px-6 py-3 items-center justify-between gap-3">
           <Logo />
           {hasBoard && <NavTabs active="scholarships" onGoToBoard={onGoToBoard} onGoToScholarships={() => {}} />}
-          <GhostBtn onClick={hasBoard ? onStartOver : onBack}>
-            {hasBoard ? '← Start over' : '← Back'}
-          </GhostBtn>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
+            <span className="hidden md:inline" style={{
+              fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66',
+              fontSize: '0.8rem', whiteSpace: 'nowrap',
+            }}>
+              {email}
+            </span>
+            <button
+              onClick={onSignOut}
+              style={{ background: 'none', border: '1.5px solid #16302B25', borderRadius: 100, padding: '5px 12px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.8rem', fontWeight: 500, whiteSpace: 'nowrap', flexShrink: 0 }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B25')}
+            >
+              Log out
+            </button>
+            <GhostBtn onClick={onBackClick}>{backLabel}</GhostBtn>
+          </div>
         </div>
       </header>
 
@@ -165,7 +226,7 @@ export default function Scholarships({ answers, onGoToBoard, onStartOver, onBack
           fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B99',
           fontSize: '0.975rem', lineHeight: 1.6, margin: 0,
         }}>
-          These scholarships are open to international students. Filter by country and field, then tap any card to see how we&apos;d guide you through applying.
+          These scholarships are open to international students. Filter by country, field, and study level, then tap any card to see how we&apos;d guide you through applying.
         </p>
       </div>
 
@@ -173,6 +234,7 @@ export default function Scholarships({ answers, onGoToBoard, onStartOver, onBack
       <div className="max-w-3xl mx-auto px-6 pb-2">
         <FilterRow label="Country" options={COUNTRY_OPTIONS} active={countryFilter} onChange={setCountryFilter} />
         <FilterRow label="Field"   options={FIELD_OPTIONS}   active={fieldFilter}   onChange={setFieldFilter} />
+        <FilterRow label="Level"   options={LEVEL_OPTIONS}   active={levelFilter}   onChange={setLevelFilter} />
         <p style={{
           fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B99',
           fontSize: '0.875rem', margin: '14px 0 20px',
@@ -194,9 +256,12 @@ export default function Scholarships({ answers, onGoToBoard, onStartOver, onBack
             </p>
           </div>
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-            {filtered.map(s => <ScholarshipCard key={s.id} scholarship={s} />)}
-          </div>
+          <>
+            {!user && <SavePrompt onOpenAuth={onOpenAuth} />}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {filtered.map(s => <ScholarshipCard key={s.id} scholarship={s} />)}
+            </div>
+          </>
         )}
       </div>
 
@@ -206,11 +271,19 @@ export default function Scholarships({ answers, onGoToBoard, onStartOver, onBack
 
 // ─── nav helpers ─────────────────────────────────────────────────────────────
 
-function Logo() {
+function Logo({ onClick }) {
   return (
-    <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>
+    <button
+      onClick={onClick}
+      style={{
+        background: 'none', border: 'none', padding: 0,
+        cursor: onClick ? 'pointer' : 'default',
+        fontFamily: 'Fraunces, Georgia, serif', color: '#16302B',
+        fontSize: '1.1rem', fontWeight: 600,
+      }}
+    >
       AdmitAI
-    </span>
+    </button>
   )
 }
 
@@ -218,11 +291,8 @@ function NavTabs({ active, onGoToBoard, onGoToScholarships }) {
   const tabStyle = (isActive) => ({
     background: isActive ? '#16302B' : 'none',
     color: isActive ? '#F7F4EE' : '#16302B99',
-    border: 'none',
-    borderRadius: 100,
-    padding: '6px 14px',
-    fontSize: '0.85rem',
-    fontFamily: 'Hanken Grotesk, sans-serif',
+    border: 'none', borderRadius: 100, padding: '6px 14px',
+    fontSize: '0.85rem', fontFamily: 'Hanken Grotesk, sans-serif',
     fontWeight: isActive ? 600 : 500,
     cursor: isActive ? 'default' : 'pointer',
     transition: 'all 0.15s',
@@ -230,7 +300,7 @@ function NavTabs({ active, onGoToBoard, onGoToScholarships }) {
   return (
     <div style={{ display: 'flex', gap: 2 }}>
       <button style={tabStyle(active === 'board')} onClick={active === 'board' ? undefined : onGoToBoard}>
-        Board
+        My Board
       </button>
       <button style={tabStyle(active === 'scholarships')} onClick={active === 'scholarships' ? undefined : onGoToScholarships}>
         Scholarships
@@ -279,13 +349,10 @@ function FilterRow({ label, options, active, onChange }) {
               background: active === opt ? '#16302B' : '#fff',
               color: active === opt ? '#F7F4EE' : '#16302B',
               border: `1.5px solid ${active === opt ? '#16302B' : '#16302B1a'}`,
-              borderRadius: 100,
-              padding: '5px 13px',
-              fontSize: '0.82rem',
-              fontFamily: 'Hanken Grotesk, sans-serif',
+              borderRadius: 100, padding: '5px 13px',
+              fontSize: '0.82rem', fontFamily: 'Hanken Grotesk, sans-serif',
               fontWeight: active === opt ? 600 : 400,
-              cursor: 'pointer',
-              transition: 'all 0.15s ease',
+              cursor: 'pointer', transition: 'all 0.15s ease',
             }}
           >
             {opt}
@@ -293,6 +360,24 @@ function FilterRow({ label, options, active, onChange }) {
         ))}
       </div>
     </div>
+  )
+}
+
+// ─── level badge ─────────────────────────────────────────────────────────────
+
+function LevelBadge({ level }) {
+  const s = LEVEL_STYLE[level] ?? LEVEL_STYLE['Both']
+  return (
+    <span style={{
+      display: 'inline-flex', alignItems: 'center', gap: 5,
+      background: s.bg, color: s.color,
+      border: `1px solid ${s.border}`,
+      borderRadius: 100, padding: '3px 10px',
+      fontSize: '0.75rem', fontFamily: 'Hanken Grotesk, sans-serif', fontWeight: 600,
+      whiteSpace: 'nowrap',
+    }}>
+      {level}
+    </span>
   )
 }
 
@@ -320,21 +405,25 @@ function ScholarshipCard({ scholarship: s }) {
     }}>
       <div className="px-5 py-5 sm:px-7 sm:py-6">
 
-        {/* Name + amount: stack on mobile, side-by-side on sm+ */}
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1.5 sm:gap-4"
+        {/* Name row + amount: stack on mobile, side-by-side on sm+ */}
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4"
           style={{ marginBottom: 10 }}>
           <div style={{ minWidth: 0 }}>
             <h2 style={{
               fontFamily: 'Fraunces, Georgia, serif', color: '#16302B',
-              fontSize: '1.1rem', fontWeight: 600, margin: '0 0 5px 0', lineHeight: 1.3,
+              fontSize: '1.1rem', fontWeight: 600, margin: '0 0 6px 0', lineHeight: 1.3,
             }}>
               {s.name}
             </h2>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span style={{ fontSize: '0.95rem', lineHeight: 1 }}>{s.flag}</span>
-              <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B77', fontSize: '0.85rem' }}>
-                {s.country}
-              </span>
+            {/* Country + level badge on same line */}
+            <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                <span style={{ fontSize: '0.95rem', lineHeight: 1 }}>{s.flag}</span>
+                <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B77', fontSize: '0.85rem' }}>
+                  {s.country}
+                </span>
+              </div>
+              <LevelBadge level={s.level} />
             </div>
           </div>
           <div className="sm:text-right" style={{ flexShrink: 0 }}>
@@ -363,7 +452,7 @@ function ScholarshipCard({ scholarship: s }) {
         </div>
 
         {/* Who it's for + deadline: 1-col on mobile, 2-col on sm+ */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-x-6" style={{ marginBottom: 14 }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-x-6" style={{ marginBottom: s.levelNote ? 8 : 14 }}>
           <div>
             <MetaLabel>Who it&apos;s for</MetaLabel>
             <div style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', color: '#16302B', lineHeight: 1.45 }}>
@@ -380,6 +469,16 @@ function ScholarshipCard({ scholarship: s }) {
             </div>
           </div>
         </div>
+
+        {/* Optional level note */}
+        {s.levelNote && (
+          <p style={{
+            fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.8rem',
+            color: '#16302B77', fontStyle: 'italic', margin: '0 0 14px 0', lineHeight: 1.5,
+          }}>
+            {s.levelNote}
+          </p>
+        )}
 
         {/* Disclaimer */}
         <p style={{
@@ -411,11 +510,7 @@ function ScholarshipCard({ scholarship: s }) {
       {expanded && (
         <div
           className="px-5 sm:px-7"
-          style={{
-            background: '#EAF3EE',
-            borderTop: '1px solid #4F8A6E1a',
-            paddingTop: 20, paddingBottom: 24,
-          }}
+          style={{ background: '#EAF3EE', borderTop: '1px solid #4F8A6E1a', paddingTop: 20, paddingBottom: 24 }}
         >
           <p style={{
             fontFamily: 'Fraunces, Georgia, serif', color: '#16302B',
@@ -462,6 +557,42 @@ function MetaLabel({ children }) {
       letterSpacing: '0.07em', textTransform: 'uppercase', color: '#16302B55', marginBottom: 3,
     }}>
       {children}
+    </div>
+  )
+}
+
+function SavePrompt({ onOpenAuth }) {
+  return (
+    <div style={{
+      background: '#FDF0E6',
+      border: '1px solid #E07A2F22',
+      borderRadius: 14,
+      padding: '13px 18px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: 12,
+      flexWrap: 'wrap',
+      marginBottom: 16,
+    }}>
+      <p style={{
+        fontFamily: 'Hanken Grotesk, sans-serif',
+        fontSize: '0.875rem', color: '#16302B',
+        margin: 0, lineHeight: 1.4,
+      }}>
+        Sign up to track scholarships and get deadline reminders.
+      </p>
+      <button
+        onClick={() => onOpenAuth('signup')}
+        style={{
+          background: '#E07A2F', color: '#fff', border: 'none',
+          borderRadius: 100, padding: '7px 16px',
+          fontSize: '0.82rem', fontFamily: 'Hanken Grotesk, sans-serif',
+          fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap',
+        }}
+      >
+        Sign up free →
+      </button>
     </div>
   )
 }

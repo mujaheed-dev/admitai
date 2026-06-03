@@ -174,7 +174,7 @@ function getScholarshipColor(s) {
 
 // ─── page ───────────────────────────────────────────────────────────────────
 
-export default function Board({ answers, onStartOver, onGoToScholarships }) {
+export default function Board({ answers, onStartOver, onGoToScholarships, user, onOpenAuth, onSignOut, onGoToDashboard }) {
   const { budget, field, regions } = answers
   const showAll = regions.includes('anywhere')
 
@@ -187,12 +187,14 @@ export default function Board({ answers, onStartOver, onGoToScholarships }) {
   const tabStyle = (isActive) => ({
     background: isActive ? '#16302B' : 'none',
     color: isActive ? '#F7F4EE' : '#16302B99',
-    border: 'none', borderRadius: 100, padding: '6px 14px',
+    border: 'none', borderRadius: 100, padding: '6px 13px',
     fontSize: '0.85rem', fontFamily: 'Hanken Grotesk, sans-serif',
     fontWeight: isActive ? 600 : 500,
     cursor: isActive ? 'default' : 'pointer',
-    transition: 'all 0.15s',
+    whiteSpace: 'nowrap',
   })
+
+  const email = user && (user.email.length > 22 ? user.email.slice(0, 22) + '…' : user.email)
 
   return (
     <div className="min-h-screen" style={{ background: '#F7F4EE' }}>
@@ -203,41 +205,66 @@ export default function Board({ answers, onStartOver, onGoToScholarships }) {
       >
         {/* Mobile: two rows */}
         <div className="sm:hidden max-w-3xl mx-auto px-6 pt-3.5 pb-3">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-            <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 9 }}>
+            <button onClick={onGoToDashboard} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>
               AdmitAI
-            </span>
+            </button>
             <button
               onClick={onStartOver}
-              style={{ background: 'none', border: '1.5px solid #16302B30', borderRadius: 100, padding: '6px 16px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.82rem', fontWeight: 500, whiteSpace: 'nowrap' }}
+              style={{ background: 'none', border: '1.5px solid #16302B30', borderRadius: 100, padding: '5px 14px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.8rem', fontWeight: 500, whiteSpace: 'nowrap' }}
               onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
               onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B30')}
             >
               ← Start over
             </button>
           </div>
-          <div style={{ display: 'flex', gap: 2 }}>
-            <button style={tabStyle(true)}>Board</button>
-            <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>
+          {/* Row 2: tabs left, log out right */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', gap: 2 }}>
+              <button style={tabStyle(true)}>My Board</button>
+              <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>
+            </div>
+            <button
+              onClick={onSignOut}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66', fontSize: '0.8rem', fontWeight: 500, padding: '4px 2px' }}
+            >
+              Log out
+            </button>
           </div>
         </div>
         {/* Desktop: single row */}
-        <div className="hidden sm:flex max-w-3xl mx-auto px-6 py-3.5 items-center justify-between gap-4">
-          <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>
+        <div className="hidden sm:flex max-w-3xl mx-auto px-6 py-3 items-center justify-between gap-3">
+          <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600, flexShrink: 0 }}>
             AdmitAI
           </span>
-          <div style={{ display: 'flex', gap: 2 }}>
-            <button style={tabStyle(true)}>Board</button>
+          <div style={{ display: 'flex', gap: 2, flexShrink: 0 }}>
+            <button style={tabStyle(true)}>My Board</button>
             <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>
           </div>
-          <button
-            onClick={onStartOver}
-            style={{ background: 'none', border: '1.5px solid #16302B30', borderRadius: 100, padding: '7px 18px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.85rem', fontWeight: 500, transition: 'border-color 0.15s' }}
-            onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
-            onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B30')}
-          >
-            ← Start over
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
+            <span className="hidden md:inline" style={{
+              fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66',
+              fontSize: '0.8rem', whiteSpace: 'nowrap',
+            }}>
+              {email}
+            </span>
+            <button
+              onClick={onSignOut}
+              style={{ background: 'none', border: '1.5px solid #16302B25', borderRadius: 100, padding: '5px 12px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.8rem', fontWeight: 500, whiteSpace: 'nowrap', flexShrink: 0 }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B25')}
+            >
+              Log out
+            </button>
+            <button
+              onClick={onStartOver}
+              style={{ background: 'none', border: '1.5px solid #16302B25', borderRadius: 100, padding: '5px 14px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.8rem', fontWeight: 500, whiteSpace: 'nowrap', flexShrink: 0 }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B25')}
+            >
+              ← Start over
+            </button>
+          </div>
         </div>
       </header>
 
@@ -282,6 +309,7 @@ export default function Board({ answers, onStartOver, onGoToScholarships }) {
 
       {/* Cards */}
       <div className="max-w-3xl mx-auto px-6 pb-20">
+        {!user && <SavePrompt onOpenAuth={onOpenAuth} />}
         {results.length === 0 ? (
           <div style={{
             background: '#fff',
@@ -450,6 +478,42 @@ function MetaItem({ label, value, valueColor }) {
       }}>
         {value}
       </div>
+    </div>
+  )
+}
+
+function SavePrompt({ onOpenAuth }) {
+  return (
+    <div style={{
+      background: '#FDF0E6',
+      border: '1px solid #E07A2F22',
+      borderRadius: 14,
+      padding: '13px 18px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: 12,
+      flexWrap: 'wrap',
+      marginBottom: 16,
+    }}>
+      <p style={{
+        fontFamily: 'Hanken Grotesk, sans-serif',
+        fontSize: '0.875rem', color: '#16302B',
+        margin: 0, lineHeight: 1.4,
+      }}>
+        Sign up to save this board and get scholarship deadline reminders.
+      </p>
+      <button
+        onClick={() => onOpenAuth('signup')}
+        style={{
+          background: '#E07A2F', color: '#fff', border: 'none',
+          borderRadius: 100, padding: '7px 16px',
+          fontSize: '0.82rem', fontFamily: 'Hanken Grotesk, sans-serif',
+          fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap',
+        }}
+      >
+        Sign up free →
+      </button>
     </div>
   )
 }
