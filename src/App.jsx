@@ -5,17 +5,30 @@ import IntakeFlow from './IntakeFlow.jsx'
 import Board from './Board.jsx'
 import Scholarships from './Scholarships.jsx'
 import Dashboard from './Dashboard.jsx'
+import Universities from './Universities.jsx'
+import Applications from './Applications.jsx'
 import AuthModal from './AuthModal.jsx'
 import WelcomeScreen from './WelcomeScreen.jsx'
+import PrivacyPolicy from './PrivacyPolicy.jsx'
+import TermsOfService from './TermsOfService.jsx'
+import AccountSettings from './AccountSettings.jsx'
 
 export default function App() {
   const [view, setView]               = useState('landing')
   const [answers, setAnswers]         = useState(null)
   const [user, setUser]               = useState(null)
   const [authLoaded, setAuthLoaded]   = useState(!supabase)
-  const [authModal, setAuthModal]     = useState(null)    // null | 'signin' | 'signup'
+  const [authModal, setAuthModal]     = useState(null)
   const [pendingView, setPendingView] = useState(null)
-  const [showWelcome, setShowWelcome] = useState(null)    // null | 'new' | 'returning'
+  const [showWelcome, setShowWelcome] = useState(null)
+  const [showAccountSettings, setShowAccountSettings] = useState(false)
+
+  // Handle hash-based routes so AuthModal consent links open the right page in a new tab
+  useEffect(() => {
+    const hash = window.location.hash
+    if (hash === '#privacy') setView('privacy')
+    else if (hash === '#terms') setView('terms')
+  }, [])
 
   useEffect(() => {
     if (!supabase) return
@@ -30,91 +43,137 @@ export default function App() {
     return () => subscription.unsubscribe()
   }, [])
 
-  // Redirect already-logged-in users straight to dashboard (e.g. direct site visit).
   useEffect(() => {
-    if (authLoaded && user && view === 'landing' && !showWelcome) {
-      setView('dashboard')
-    }
+    if (authLoaded && user && view === 'landing' && !showWelcome) setView('dashboard')
   }, [authLoaded, user, view, showWelcome])
 
-  // After login, honour any pending destination — but only once the welcome screen is done.
   useEffect(() => {
-    if (user && pendingView && !showWelcome) {
-      setView(pendingView)
-      setPendingView(null)
-    }
+    if (user && pendingView && !showWelcome) { setView(pendingView); setPendingView(null) }
   }, [user, pendingView, showWelcome])
 
-  // Logout guard: return to landing when a gated view is open.
   useEffect(() => {
-    if (authLoaded && !user && view !== 'landing') {
-      setView('landing')
-      setAnswers(null)
-      setShowWelcome(null)
+    // Privacy/Terms pages are accessible regardless of auth — don't redirect them
+    const publicViews = ['landing', 'privacy', 'terms']
+    if (authLoaded && !user && !publicViews.includes(view)) {
+      setView('landing'); setAnswers(null); setShowWelcome(null)
     }
   }, [user, authLoaded, view])
 
   function openAuth(mode = 'signup') { setAuthModal(mode) }
   async function handleSignOut() { if (supabase) await supabase.auth.signOut() }
-
-  // Called by AuthModal with 'new' or 'returning' when auth completes.
   function handleAuthComplete(type) { setShowWelcome(type) }
 
-  // Navigate to a gated view, opening auth first if not logged in.
   function gatedNav(targetView, mode = 'signup') {
     if (user) setView(targetView)
     else { setPendingView(targetView); openAuth(mode) }
   }
 
-  // Welcome screen "continue" always lands on the dashboard.
   function handleWelcomeContinue() {
-    setShowWelcome(null)
-    setPendingView(null)
-    setView('dashboard')
+    setShowWelcome(null); setPendingView(null); setView('dashboard')
+  }
+
+  async function handleGoToBoard() {
+    if (supabase && user) {
+      try {
+        const { data } = await supabase
+          .from('user_boards').select('budget, field, regions')
+          .eq('user_id', user.id).maybeSingle()
+        if (data) {
+          setAnswers({ budget: data.budget, field: data.field, regions: data.regions })
+          setView('board'); return
+        }
+      } catch { /* fall through to intake */ }
+    }
+    setView('intake')
+  }
+
+  async function handleIntakeComplete(a) {
+    setAnswers(a); setView('board')
+    if (supabase && user) {
+      try {
+        await supabase.from('user_boards').upsert(
+          { user_id: user.id, budget: a.budget, field: a.field, regions: a.regions },
+          { onConflict: 'user_id' }
+        )
+      } catch { /* silent */ }
+    }
+  }
+
+  function handleAccountDeleted() {
+    // User is already deleted on the server — just clear local state and sign out
+    setShowAccountSettings(false)
+    setUser(null)
+    setAnswers(null)
+    setView('landing')
+    if (supabase) supabase.auth.signOut().catch(() => {})
   }
 
   const firstName = user
     ? (user.user_metadata?.first_name || user.email.split('@')[0])
     : ''
 
-  // Shared props passed to every post-login page.
   const auth = {
-    user,
+    user, firstName,
     onOpenAuth: openAuth,
     onSignOut: handleSignOut,
     onGoToDashboard: () => setView('dashboard'),
+    onGoToPrivacy: () => setView('privacy'),
+    onGoToTerms:   () => setView('terms'),
   }
 
-  if (!authLoaded) {
-    return <div style={{ minHeight: '100vh', background: '#F7F4EE' }} />
-  }
+  if (!authLoaded) return <div style={{ minHeight: '100vh', background: '#F7F4EE' }} />
 
-  // Welcome screen has full priority while active.
   if (showWelcome && user) {
-    return (
-      <WelcomeScreen
-        mode={showWelcome}
-        firstName={firstName}
-        onContinue={handleWelcomeContinue}
-      />
-    )
+    return <WelcomeScreen mode={showWelcome} firstName={firstName} onContinue={handleWelcomeContinue} />
   }
+
+  // Back from Privacy/Terms goes to dashboard (if logged in) or landing
+  const onBackFromLegal = () => setView(user ? 'dashboard' : 'landing')
 
   let page
-  if (view === 'dashboard' && user) {
+  if (view === 'privacy') {
+    page = <PrivacyPolicy onBack={onBackFromLegal} />
+  } else if (view === 'terms') {
+    page = <TermsOfService onBack={onBackFromLegal} />
+  } else if (view === 'universities' && user) {
+    page = (
+      <Universities
+        answers={answers}
+        onGoToBoard={answers ? () => setView('board') : null}
+        onGoToScholarships={() => setView('scholarships')}
+        onBack={() => setView('dashboard')}
+        firstName={firstName} user={user}
+        onSignOut={handleSignOut}
+        onGoToDashboard={() => setView('dashboard')}
+      />
+    )
+  } else if (view === 'applications' && user) {
+    page = (
+      <Applications
+        firstName={firstName} user={user}
+        onSignOut={handleSignOut}
+        onGoToDashboard={() => setView('dashboard')}
+      />
+    )
+  } else if (view === 'dashboard' && user) {
     page = (
       <Dashboard
-        firstName={firstName}
-        user={user}
-        onGoToBoard={() => setView('intake')}
+        firstName={firstName} user={user}
+        onGoToBoard={handleGoToBoard}
         onGoToScholarships={() => setView('scholarships')}
+        onGoToUniversities={() => setView('universities')}
+        onGoToApplications={() => setView('applications')}
+        onOpenAccountSettings={() => setShowAccountSettings(true)}
         onSignOut={handleSignOut}
+        onGoToPrivacy={() => setView('privacy')}
+        onGoToTerms={() => setView('terms')}
       />
     )
   } else if (view === 'intake' && user) {
     page = (
       <IntakeFlow
-        onComplete={(a) => { setAnswers(a); setView('board') }}
+        firstName={firstName}
+        onComplete={handleIntakeComplete}
         onBack={() => setView('dashboard')}
       />
     )
@@ -142,6 +201,8 @@ export default function App() {
       <LandingPage
         onShowBoard={() => gatedNav('intake')}
         onGoToScholarships={() => gatedNav('scholarships')}
+        onGoToPrivacy={() => setView('privacy')}
+        onGoToTerms={() => setView('terms')}
         {...auth}
       />
     )
@@ -155,6 +216,13 @@ export default function App() {
           initialMode={authModal}
           onClose={() => setAuthModal(null)}
           onAuthComplete={handleAuthComplete}
+        />
+      )}
+      {showAccountSettings && user && (
+        <AccountSettings
+          user={user}
+          onClose={() => setShowAccountSettings(false)}
+          onDeleted={handleAccountDeleted}
         />
       )}
     </>

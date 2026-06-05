@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import CountryDetail from './CountryDetail.jsx'
+
 // Tuition ranges are for international/non-resident students, annual, USD.
 // Living cost is an annual estimate for a single student (shared housing, moderate spending).
 // allInLow / allInHigh = tuitionLow + livingCost  /  tuitionHigh + livingCost
@@ -135,14 +138,11 @@ function getBudgetLabel(budget) {
   return '$35k or more'
 }
 
-// Compare against allInLow — if even the cheapest scenario is within range, flag green.
 function getBudgetFlag(allInLow, budget) {
-  if (allInLow <= budget) {
+  if (allInLow <= budget)
     return { label: 'Fits your budget', color: '#2D7A52', bg: '#E4F5EC', dot: '#4F8A6E' }
-  }
-  if (allInLow <= budget * 1.25) {
+  if (allInLow <= budget * 1.25)
     return { label: 'Close — try a scholarship', color: '#9A5010', bg: '#FDF0E6', dot: '#E07A2F' }
-  }
   return { label: 'Above budget', color: '#9B2335', bg: '#FDECEA', dot: '#C0392B' }
 }
 
@@ -152,13 +152,8 @@ function fmtK(n) {
   return '$' + (Number.isInteger(k) ? k : k.toFixed(1)) + 'k'
 }
 
-function formatRange(low, high) {
-  return `~${fmtK(low)}–${fmtK(high)} / year`
-}
-
-function capitalize(s) {
-  return s.charAt(0).toUpperCase() + s.slice(1)
-}
+function formatRange(low, high) { return `~${fmtK(low)}–${fmtK(high)} / year` }
+function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1) }
 
 function getEffortColor(e) {
   if (e === 'low') return '#4F8A6E'
@@ -172,33 +167,71 @@ function getScholarshipColor(s) {
   return '#16302B66'
 }
 
+function fitScore(c, budget) {
+  const f = getBudgetFlag(c.allInLow, budget)
+  if (f.label === 'Fits your budget') return 0
+  if (f.label === 'Close — try a scholarship') return 1
+  return 2
+}
+
 // ─── page ───────────────────────────────────────────────────────────────────
 
-export default function Board({ answers, onStartOver, onGoToScholarships, user, onOpenAuth, onSignOut, onGoToDashboard }) {
+export default function Board({
+  answers, onStartOver, onGoToScholarships,
+  user, onOpenAuth, onSignOut, onGoToDashboard,
+  firstName,
+}) {
   const { budget, field, regions } = answers
   const showAll = regions.includes('anywhere')
 
-  const results = COUNTRIES
-    .filter(c => showAll || regions.includes(c.region))
-    .sort((a, b) => a.allInLow - b.allInLow)
+  const [selectedCountry, setSelectedCountry] = useState(null)
+  const [sortBy, setSortBy]       = useState('cheapest')  // 'cheapest' | 'best-fit'
+  const [filterFit, setFilterFit] = useState(false)
 
   const budgetLabel = getBudgetLabel(budget)
+  const email = user && (user.email.length > 22 ? user.email.slice(0, 22) + '…' : user.email)
+
+  // Build filtered + sorted results
+  let results = COUNTRIES.filter(c => showAll || regions.includes(c.region))
+  if (filterFit) results = results.filter(c => c.allInLow <= budget)
+  results = [...results].sort((a, b) =>
+    sortBy === 'cheapest'
+      ? a.allInLow - b.allInLow
+      : fitScore(a, budget) - fitScore(b, budget) || a.allInLow - b.allInLow
+  )
 
   const tabStyle = (isActive) => ({
     background: isActive ? '#16302B' : 'none',
     color: isActive ? '#F7F4EE' : '#16302B99',
     border: 'none', borderRadius: 100, padding: '6px 13px',
     fontSize: '0.85rem', fontFamily: 'Hanken Grotesk, sans-serif',
-    fontWeight: isActive ? 600 : 500,
-    cursor: isActive ? 'default' : 'pointer',
-    whiteSpace: 'nowrap',
+    fontWeight: isActive ? 600 : 500, cursor: isActive ? 'default' : 'pointer', whiteSpace: 'nowrap',
   })
 
-  const email = user && (user.email.length > 22 ? user.email.slice(0, 22) + '…' : user.email)
+  const logoBtn = (
+    <button
+      onClick={onGoToDashboard}
+      style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}
+    >
+      AdmitAI
+    </button>
+  )
+
+  const changeBtn = (
+    <button
+      onClick={onStartOver}
+      style={{ background: 'none', border: '1.5px solid #16302B25', borderRadius: 100, padding: '5px 14px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.8rem', fontWeight: 500, whiteSpace: 'nowrap' }}
+      onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
+      onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B25')}
+    >
+      Change answers
+    </button>
+  )
 
   return (
     <div className="min-h-screen" style={{ background: '#F7F4EE' }}>
-      {/* Nav */}
+
+      {/* ── Nav (always visible) ── */}
       <header
         className="sticky top-0 z-50 border-b"
         style={{ background: '#F7F4EEf5', borderColor: '#16302B20', backdropFilter: 'blur(8px)' }}
@@ -206,19 +239,9 @@ export default function Board({ answers, onStartOver, onGoToScholarships, user, 
         {/* Mobile: two rows */}
         <div className="sm:hidden max-w-3xl mx-auto px-6 pt-3.5 pb-3">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 9 }}>
-            <button onClick={onGoToDashboard} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>
-              AdmitAI
-            </button>
-            <button
-              onClick={onStartOver}
-              style={{ background: 'none', border: '1.5px solid #16302B30', borderRadius: 100, padding: '5px 14px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.8rem', fontWeight: 500, whiteSpace: 'nowrap' }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B30')}
-            >
-              ← Start over
-            </button>
+            {logoBtn}
+            {changeBtn}
           </div>
-          {/* Row 2: tabs left, log out right */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', gap: 2 }}>
               <button style={tabStyle(true)}>My Board</button>
@@ -234,18 +257,13 @@ export default function Board({ answers, onStartOver, onGoToScholarships, user, 
         </div>
         {/* Desktop: single row */}
         <div className="hidden sm:flex max-w-3xl mx-auto px-6 py-3 items-center justify-between gap-3">
-          <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600, flexShrink: 0 }}>
-            AdmitAI
-          </span>
+          {logoBtn}
           <div style={{ display: 'flex', gap: 2, flexShrink: 0 }}>
             <button style={tabStyle(true)}>My Board</button>
             <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
-            <span className="hidden md:inline" style={{
-              fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66',
-              fontSize: '0.8rem', whiteSpace: 'nowrap',
-            }}>
+            <span className="hidden md:inline" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66', fontSize: '0.8rem', whiteSpace: 'nowrap' }}>
               {email}
             </span>
             <button
@@ -256,110 +274,176 @@ export default function Board({ answers, onStartOver, onGoToScholarships, user, 
             >
               Log out
             </button>
-            <button
-              onClick={onStartOver}
-              style={{ background: 'none', border: '1.5px solid #16302B25', borderRadius: 100, padding: '5px 14px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.8rem', fontWeight: 500, whiteSpace: 'nowrap', flexShrink: 0 }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B25')}
-            >
-              ← Start over
-            </button>
+            {changeBtn}
           </div>
         </div>
       </header>
 
-      {/* Board header */}
-      <div className="max-w-3xl mx-auto px-6 pt-12 pb-8">
-        <div style={{ marginBottom: 6 }}>
-          <span style={{
-            fontFamily: 'Hanken Grotesk, sans-serif',
-            fontSize: '0.8rem',
-            fontWeight: 600,
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            color: '#4F8A6E',
-          }}>
-            Your board
-          </span>
-        </div>
-        <h1 style={{
-          fontFamily: 'Fraunces, Georgia, serif',
-          color: '#16302B',
-          fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',
-          fontWeight: 600,
-          lineHeight: 1.2,
-          margin: '0 0 12px 0',
-        }}>
-          {results.length > 0
-            ? `${results.length} realistic path${results.length === 1 ? '' : 's'} for you`
-            : 'No matches yet'}
-        </h1>
-        <p style={{
-          fontFamily: 'Hanken Grotesk, sans-serif',
-          color: '#16302B99',
-          fontSize: '0.975rem',
-          lineHeight: 1.6,
-          margin: 0,
-        }}>
-          Based on a budget {budgetLabel} for{' '}
-          <strong style={{ color: '#16302B', fontWeight: 600 }}>{field}</strong>,
-          here are realistic paths — cheapest first.
-        </p>
-      </div>
-
-      {/* Cards */}
-      <div className="max-w-3xl mx-auto px-6 pb-20">
-        {!user && <SavePrompt onOpenAuth={onOpenAuth} />}
-        {results.length === 0 ? (
-          <div style={{
-            background: '#fff',
-            borderRadius: 20,
-            padding: '48px 32px',
-            textAlign: 'center',
-            border: '1px solid #16302B10',
-          }}>
-            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66', fontSize: '0.95rem' }}>
-              No countries match your selected regions. Try{' '}
-              <button
-                onClick={onStartOver}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#E07A2F', fontWeight: 600, fontFamily: 'inherit', fontSize: 'inherit', padding: 0, textDecoration: 'underline' }}
-              >
-                starting over
-              </button>{' '}
-              and selecting more regions.
+      {/* ── Main content: detail OR results ── */}
+      {selectedCountry ? (
+        <CountryDetail
+          country={selectedCountry}
+          budget={budget}
+          firstName={firstName}
+          onBack={() => setSelectedCountry(null)}
+        />
+      ) : (
+        <>
+          {/* Board header */}
+          <div className="max-w-3xl mx-auto px-6 pt-10 pb-6">
+            <p style={{
+              fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.75rem', fontWeight: 700,
+              letterSpacing: '0.09em', textTransform: 'uppercase', color: '#4F8A6E', margin: '0 0 10px',
+            }}>
+              Your matches
+            </p>
+            <h1 style={{
+              fontFamily: 'Fraunces, Georgia, serif', color: '#16302B',
+              fontSize: 'clamp(1.5rem, 4vw, 2.1rem)', fontWeight: 600, lineHeight: 1.2, margin: '0 0 10px',
+            }}>
+              {results.length > 0
+                ? `${results.length} realistic path${results.length === 1 ? '' : 's'} found`
+                : 'No matches for those filters'}
+            </h1>
+            <p style={{
+              fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88',
+              fontSize: '0.975rem', lineHeight: 1.6, margin: 0,
+            }}>
+              Based on your <strong style={{ color: '#16302B' }}>{budgetLabel}</strong> budget for{' '}
+              <strong style={{ color: '#16302B' }}>{field}</strong>,
+              here's your honest picture{firstName ? `, ${firstName}` : ''}.
             </p>
           </div>
-        ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-            {results.map((c, i) => (
-              <CountryCard key={c.id} country={c} budget={budget} rank={i + 1} />
-            ))}
+
+          {/* Sort / filter bar */}
+          <div className="max-w-3xl mx-auto px-6 pb-5">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+              {/* Sort pills */}
+              <div style={{ display: 'flex', gap: 6 }}>
+                {[
+                  { key: 'cheapest', label: 'Cheapest first' },
+                  { key: 'best-fit', label: 'Best fit' },
+                ].map(opt => (
+                  <button
+                    key={opt.key}
+                    onClick={() => setSortBy(opt.key)}
+                    style={{
+                      background: sortBy === opt.key ? '#16302B' : '#fff',
+                      color: sortBy === opt.key ? '#F7F4EE' : '#16302B',
+                      border: `1.5px solid ${sortBy === opt.key ? '#16302B' : '#16302B18'}`,
+                      borderRadius: 100, padding: '6px 14px',
+                      fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.82rem',
+                      fontWeight: sortBy === opt.key ? 600 : 400, cursor: 'pointer',
+                      transition: 'all 0.15s',
+                    }}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+              {/* Separator */}
+              <div style={{ width: 1, height: 20, background: '#16302B18' }} className="hidden sm:block" />
+              {/* Fit filter */}
+              <button
+                onClick={() => setFilterFit(v => !v)}
+                style={{
+                  background: filterFit ? '#EAF3EE' : '#fff',
+                  color: filterFit ? '#2D7A52' : '#16302B88',
+                  border: `1.5px solid ${filterFit ? '#4F8A6E55' : '#16302B18'}`,
+                  borderRadius: 100, padding: '6px 14px',
+                  fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.82rem',
+                  fontWeight: filterFit ? 600 : 400, cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', gap: 7,
+                  transition: 'all 0.15s',
+                }}
+              >
+                <span style={{
+                  width: 14, height: 14, borderRadius: 3, flexShrink: 0,
+                  background: filterFit ? '#4F8A6E' : 'transparent',
+                  border: `1.5px solid ${filterFit ? '#4F8A6E' : '#16302B44'}`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  {filterFit && <span style={{ color: '#fff', fontSize: '0.55rem', lineHeight: 1, fontWeight: 900 }}>✓</span>}
+                </span>
+                Fits my budget only
+              </button>
+            </div>
           </div>
-        )}
-      </div>
+
+          {/* Cards */}
+          <div className="max-w-3xl mx-auto px-6 pb-20">
+            {!user && <SavePrompt onOpenAuth={onOpenAuth} />}
+            {results.length === 0 ? (
+              <div style={{
+                background: '#fff', borderRadius: 20, padding: '48px 32px',
+                textAlign: 'center', border: '1px solid #16302B10',
+              }}>
+                <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66', fontSize: '0.95rem', margin: 0 }}>
+                  No countries match your current filters.{' '}
+                  <button
+                    onClick={() => { setSortBy('cheapest'); setFilterFit(false) }}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#E07A2F', fontWeight: 600, fontFamily: 'inherit', fontSize: 'inherit', padding: 0, textDecoration: 'underline' }}
+                  >
+                    Clear filters
+                  </button>
+                  {' '}or{' '}
+                  <button
+                    onClick={onStartOver}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#E07A2F', fontWeight: 600, fontFamily: 'inherit', fontSize: 'inherit', padding: 0, textDecoration: 'underline' }}
+                  >
+                    change your answers
+                  </button>.
+                </p>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {results.map((c, i) => (
+                  <CountryCard
+                    key={c.id}
+                    country={c}
+                    budget={budget}
+                    rank={i + 1}
+                    onSelect={setSelectedCountry}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   )
 }
 
-// ─── card ────────────────────────────────────────────────────────────────────
+// ─── premium country card ─────────────────────────────────────────────────────
 
-function CountryCard({ country, budget, rank }) {
+function CountryCard({ country, budget, rank, onSelect }) {
+  const [hovered, setHovered] = useState(false)
   const budgetFlag = getBudgetFlag(country.allInLow, budget)
 
   return (
     <div
+      onClick={() => onSelect(country)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       className="px-5 py-5 sm:px-7 sm:py-6"
       style={{
         background: '#fff',
         borderRadius: 20,
-        border: '1px solid #16302B0f',
-        boxShadow: '0 1px 4px rgba(22,48,43,0.06)',
+        border: `1px solid ${hovered ? '#16302B1e' : '#16302B0f'}`,
+        boxShadow: hovered
+          ? '0 10px 36px rgba(22,48,43,0.10)'
+          : '0 2px 8px rgba(22,48,43,0.06)',
+        transform: hovered ? 'translateY(-3px)' : 'translateY(0)',
+        transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
+        cursor: 'pointer',
+        userSelect: 'none',
       }}
     >
-      {/* Identity + cost: stacks vertically on mobile, side-by-side on sm+ */}
+      {/* Identity + cost: stack on mobile, side-by-side on sm+ */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-4">
 
-        {/* Identity */}
+        {/* Left: identity */}
         <div style={{ minWidth: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
             <span style={{
@@ -386,7 +470,7 @@ function CountryCard({ country, budget, rank }) {
           </p>
         </div>
 
-        {/* Cost range + budget badge — left-aligned on mobile, right-aligned on sm+ */}
+        {/* Right: cost + badge */}
         <div className="sm:text-right" style={{ flexShrink: 0 }}>
           <div style={{
             fontFamily: 'Fraunces, Georgia, serif',
@@ -398,22 +482,34 @@ function CountryCard({ country, budget, rank }) {
         </div>
       </div>
 
-      {/* Source / verification line */}
+      {/* Source line */}
       <SourceLine country={country} />
 
       {/* Divider */}
-      <div style={{ height: 1, background: '#16302B08', margin: '16px 0' }} />
+      <div style={{ height: 1, background: '#16302B08', margin: '14px 0' }} />
 
-      {/* Meta: 2-column grid on mobile, single row on sm+ */}
-      <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:flex sm:flex-row sm:gap-7">
-        <MetaItem label="Tuition range" value={`${fmtK(country.tuitionLow)}–${fmtK(country.tuitionHigh)}`} valueColor="#16302B" />
-        <MetaItem label="Living est." value={fmtK(country.livingCost)} valueColor="#16302B" />
-        <MetaItem label="Scholarships" value={capitalize(country.scholarships)} valueColor={getScholarshipColor(country.scholarships)} />
-        <MetaItem label="App. effort" value={capitalize(country.effort)} valueColor={getEffortColor(country.effort)} />
+      {/* Meta + view details */}
+      <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:flex sm:flex-row sm:gap-6" style={{ flex: 1 }}>
+          <MetaItem label="Tuition range" value={`${fmtK(country.tuitionLow)}–${fmtK(country.tuitionHigh)}`} valueColor="#16302B" />
+          <MetaItem label="Living est." value={fmtK(country.livingCost)} valueColor="#16302B" />
+          <MetaItem label="Scholarships" value={capitalize(country.scholarships)} valueColor={getScholarshipColor(country.scholarships)} />
+          <MetaItem label="App. effort" value={capitalize(country.effort)} valueColor={getEffortColor(country.effort)} />
+        </div>
+        <span style={{
+          fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem',
+          color: hovered ? '#E07A2F' : '#16302B44',
+          whiteSpace: 'nowrap', flexShrink: 0,
+          transition: 'color 0.2s',
+        }}>
+          View details →
+        </span>
       </div>
     </div>
   )
 }
+
+// ─── sub-components ───────────────────────────────────────────────────────────
 
 function BudgetBadge({ flag }) {
   return (
@@ -431,7 +527,6 @@ function BudgetBadge({ flag }) {
 
 function SourceLine({ country }) {
   const { verified, sourceName, sourceUrl } = country
-
   if (verified && sourceName) {
     return (
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 10 }}>
@@ -440,22 +535,15 @@ function SourceLine({ country }) {
           Verified ·{' '}
           {sourceUrl
             ? <a href={sourceUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#4F8A6E', textDecoration: 'underline', textUnderlineOffset: 2 }}>{sourceName}</a>
-            : sourceName
-          }
+            : sourceName}
         </span>
       </div>
     )
   }
-
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 10 }}>
       <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#E07A2F', display: 'inline-block', flexShrink: 0 }} />
-      <span style={{
-        fontFamily: 'Hanken Grotesk, sans-serif',
-        fontSize: '0.78rem',
-        color: '#16302B55',
-        fontStyle: 'italic',
-      }}>
+      <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem', color: '#16302B55', fontStyle: 'italic' }}>
         Estimate — not yet verified
       </span>
     </div>
@@ -466,16 +554,12 @@ function MetaItem({ label, value, valueColor }) {
   return (
     <div>
       <div style={{
-        fontFamily: 'Hanken Grotesk, sans-serif',
-        fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.07em',
-        textTransform: 'uppercase', color: '#16302B55', marginBottom: 2,
+        fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.68rem', fontWeight: 600,
+        letterSpacing: '0.07em', textTransform: 'uppercase', color: '#16302B55', marginBottom: 2,
       }}>
         {label}
       </div>
-      <div style={{
-        fontFamily: 'Hanken Grotesk, sans-serif',
-        fontSize: '0.875rem', fontWeight: 600, color: valueColor,
-      }}>
+      <div style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, color: valueColor }}>
         {value}
       </div>
     </div>
@@ -485,30 +569,18 @@ function MetaItem({ label, value, valueColor }) {
 function SavePrompt({ onOpenAuth }) {
   return (
     <div style={{
-      background: '#FDF0E6',
-      border: '1px solid #E07A2F22',
-      borderRadius: 14,
-      padding: '13px 18px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      gap: 12,
-      flexWrap: 'wrap',
-      marginBottom: 16,
+      background: '#FDF0E6', border: '1px solid #E07A2F22', borderRadius: 14,
+      padding: '13px 18px', display: 'flex', alignItems: 'center',
+      justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', marginBottom: 16,
     }}>
-      <p style={{
-        fontFamily: 'Hanken Grotesk, sans-serif',
-        fontSize: '0.875rem', color: '#16302B',
-        margin: 0, lineHeight: 1.4,
-      }}>
+      <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', color: '#16302B', margin: 0, lineHeight: 1.4 }}>
         Sign up to save this board and get scholarship deadline reminders.
       </p>
       <button
         onClick={() => onOpenAuth('signup')}
         style={{
-          background: '#E07A2F', color: '#fff', border: 'none',
-          borderRadius: 100, padding: '7px 16px',
-          fontSize: '0.82rem', fontFamily: 'Hanken Grotesk, sans-serif',
+          background: '#E07A2F', color: '#fff', border: 'none', borderRadius: 100,
+          padding: '7px 16px', fontSize: '0.82rem', fontFamily: 'Hanken Grotesk, sans-serif',
           fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap',
         }}
       >

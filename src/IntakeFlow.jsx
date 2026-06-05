@@ -44,7 +44,7 @@ const QUESTIONS = [
 
 const TOTAL = QUESTIONS.length
 
-export default function IntakeFlow({ onComplete, onBack }) {
+export default function IntakeFlow({ onComplete, onBack, firstName }) {
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState({ budget: null, field: null, regions: [] })
 
@@ -83,43 +83,17 @@ export default function IntakeFlow({ onComplete, onBack }) {
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#F7F4EE' }}>
-      {/* Header with progress */}
-      <header className="border-b" style={{ borderColor: '#16302B20' }}>
-        <div className="max-w-xl mx-auto px-6 py-4 flex items-center justify-between">
-          <span
-            style={{
-              fontFamily: 'Fraunces, Georgia, serif',
-              color: '#16302B',
-              fontSize: '1.1rem',
-              fontWeight: 600,
-            }}
-          >
-            AdmitAI
-          </span>
-          <span
-            style={{
-              fontFamily: 'Hanken Grotesk, sans-serif',
-              color: '#16302B66',
-              fontSize: '0.8rem',
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-            }}
-          >
-            {step + 1} of {TOTAL}
-          </span>
-        </div>
-        {/* Progress bar */}
-        <div style={{ height: 3, background: '#16302B0f' }}>
-          <div
-            style={{
-              height: '100%',
-              width: `${progressPct}%`,
-              background: '#4F8A6E',
-              transition: 'width 0.35s ease',
-            }}
-          />
-        </div>
-      </header>
+      {/* Progress bar only — no logo or step counter */}
+      <div style={{ height: 3, background: '#16302B0f' }}>
+        <div
+          style={{
+            height: '100%',
+            width: `${progressPct}%`,
+            background: '#4F8A6E',
+            transition: 'width 0.35s ease',
+          }}
+        />
+      </div>
 
       {/* Content */}
       <div
@@ -144,6 +118,20 @@ export default function IntakeFlow({ onComplete, onBack }) {
         >
           ← Back
         </button>
+
+        {/* Warm intro on first question only */}
+        {step === 0 && firstName && (
+          <p style={{
+            fontFamily: 'Hanken Grotesk, sans-serif',
+            color: '#16302B77',
+            fontSize: '0.95rem',
+            lineHeight: 1.6,
+            margin: '0 0 22px',
+            fontStyle: 'italic',
+          }}>
+            Let's find where you can afford to study, {firstName}. Just a few quick questions.
+          </p>
+        )}
 
         <h2
           style={{

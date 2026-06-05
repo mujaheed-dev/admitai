@@ -7,6 +7,7 @@ export default function AuthModal({ initialMode = 'signin', onClose, onAuthCompl
   const [email, setEmail]         = useState('')
   const [password, setPassword]   = useState('')
   const [confirm, setConfirm]     = useState('')
+  const [agreed, setAgreed]       = useState(false)
   const [error, setError]         = useState('')
   const [loading, setLoading]     = useState(false)
   const [signedUp, setSignedUp]   = useState(false)
@@ -46,6 +47,10 @@ export default function AuthModal({ initialMode = 'signin', onClose, onAuthCompl
         setError("Passwords don't match — please try again.")
         return
       }
+      if (!agreed) {
+        setError('Please accept the Terms of Service and Privacy Policy to continue.')
+        return
+      }
     }
 
     setError('')
@@ -78,6 +83,7 @@ export default function AuthModal({ initialMode = 'signin', onClose, onAuthCompl
     setError('')
     setConfirm('')
     setFirstName('')
+    setAgreed(false)
     // Re-focus on switch
     setTimeout(() => {
       if (next === 'signup') firstNameRef.current?.focus()
@@ -234,15 +240,43 @@ export default function AuthModal({ initialMode = 'signin', onClose, onAuthCompl
                 </button>
 
                 {mode === 'signup' && (
-                  <p style={{
-                    fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.75rem',
-                    color: '#16302B55', textAlign: 'center', margin: '10px 0 0', lineHeight: 1.5,
-                  }}>
-                    By signing up you agree to our{' '}
-                    <a href="#" style={{ color: '#16302B77', textDecoration: 'underline', textUnderlineOffset: 2 }}>terms</a>
-                    {' '}and{' '}
-                    <a href="#" style={{ color: '#16302B77', textDecoration: 'underline', textUnderlineOffset: 2 }}>privacy policy</a>.
-                  </p>
+                  <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    {/* Required consent checkbox */}
+                    <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, cursor: 'pointer' }}>
+                      <input
+                        type="checkbox"
+                        checked={agreed}
+                        onChange={e => setAgreed(e.target.checked)}
+                        style={{ marginTop: 2, accentColor: '#4F8A6E', flexShrink: 0, width: 15, height: 15, cursor: 'pointer' }}
+                      />
+                      <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.80rem', color: '#16302B88', lineHeight: 1.5 }}>
+                        I agree to AdmitAI&apos;s{' '}
+                        <a
+                          href="/#terms"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={e => { e.preventDefault(); window.open('/#terms', '_blank') }}
+                          style={{ color: '#4F8A6E', textDecoration: 'underline', textUnderlineOffset: 2, fontWeight: 500 }}
+                        >
+                          Terms of Service
+                        </a>
+                        {' '}and{' '}
+                        <a
+                          href="/#privacy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={e => { e.preventDefault(); window.open('/#privacy', '_blank') }}
+                          style={{ color: '#4F8A6E', textDecoration: 'underline', textUnderlineOffset: 2, fontWeight: 500 }}
+                        >
+                          Privacy Policy
+                        </a>.
+                      </span>
+                    </label>
+                    {/* Under-18 note */}
+                    <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.76rem', color: '#16302B55', lineHeight: 1.5, margin: 0, paddingLeft: 25 }}>
+                      If you are under 18, please use AdmitAI with a parent or guardian&apos;s awareness.
+                    </p>
+                  </div>
                 )}
               </form>
 

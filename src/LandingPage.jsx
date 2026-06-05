@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function LandingPage({ onShowBoard, onGoToScholarships, user, onOpenAuth, onSignOut }) {
+export default function LandingPage({ onShowBoard, onGoToScholarships, user, onOpenAuth, onSignOut, onGoToPrivacy, onGoToTerms }) {
   const openSignup = () => onOpenAuth('signup')
   return (
     <div style={{ background: '#F7F4EE', color: '#16302B' }}>
@@ -17,7 +17,7 @@ export default function LandingPage({ onShowBoard, onGoToScholarships, user, onO
       <HowItWorks />
       <WhyDifferent />
       <CtaBand openSignup={openSignup} />
-      <Footer />
+      <Footer onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} />
     </div>
   )
 }
@@ -595,7 +595,7 @@ function CtaBand({ openSignup }) {
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 
-function Footer() {
+function Footer({ onGoToPrivacy, onGoToTerms }) {
   return (
     <footer className="border-t py-8 px-6" style={{ borderColor: '#16302B20', background: '#F7F4EE' }}>
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -606,11 +606,15 @@ function Footer() {
           &copy; {new Date().getFullYear()} AdmitAI. Made for students who deserve a real shot.
         </p>
         <nav className="flex gap-5">
-          {['Privacy', 'Contact'].map(link => (
-            <a key={link} href="#" className="text-sm hover:underline" style={{ color: '#16302B66', fontFamily: 'Hanken Grotesk, sans-serif' }}>
-              {link}
-            </a>
-          ))}
+          <button onClick={onGoToPrivacy} className="text-sm hover:underline" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#16302B66', fontFamily: 'Hanken Grotesk, sans-serif', padding: 0 }}>
+            Privacy
+          </button>
+          <button onClick={onGoToTerms} className="text-sm hover:underline" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#16302B66', fontFamily: 'Hanken Grotesk, sans-serif', padding: 0 }}>
+            Terms
+          </button>
+          <a href="mailto:[CONTACT EMAIL]" className="text-sm hover:underline" style={{ color: '#16302B66', fontFamily: 'Hanken Grotesk, sans-serif' }}>
+            Contact
+          </a>
         </nav>
       </div>
     </footer>
