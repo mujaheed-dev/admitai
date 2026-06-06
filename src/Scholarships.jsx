@@ -174,9 +174,12 @@ const LEVEL_STYLE = {
 
 // ─── page ─────────────────────────────────────────────────────────────────────
 
+import ProfileMenu from './ProfileMenu.jsx'
+
 export default function Scholarships({
   answers, onGoToBoard, onStartOver, onBack,
   user, firstName, onOpenAuth, onSignOut, onGoToDashboard,
+  onGoToPrivacy, onGoToTerms, onDeleted,
 }) {
   const [countryFilter, setCountryFilter] = useState('All')
   const [fieldFilter,   setFieldFilter]   = useState('All')
@@ -254,9 +257,7 @@ export default function Scholarships({
             <div style={{ display: 'flex', gap: 2 }}>
               {hasBoard && <NavTabs active="scholarships" onGoToBoard={onGoToBoard} />}
             </div>
-            <button onClick={onSignOut} style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66', fontSize: '0.8rem', fontWeight: 500, padding: '4px 2px' }}>
-              Log out
-            </button>
+            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
           </div>
         </div>
         {/* Desktop: single row */}
@@ -267,12 +268,7 @@ export default function Scholarships({
             <span className="hidden md:inline" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66', fontSize: '0.8rem', whiteSpace: 'nowrap' }}>
               {email}
             </span>
-            <button onClick={onSignOut} style={{ background: 'none', border: '1.5px solid #16302B25', borderRadius: 100, padding: '5px 12px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.8rem', fontWeight: 500, whiteSpace: 'nowrap' }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B25')}
-            >
-              Log out
-            </button>
+            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
             <GhostBtn onClick={selectedScholarship ? () => setSelectedScholarship(null) : onBackClick}>
               {selectedScholarship ? '← Scholarships' : backLabel}
             </GhostBtn>

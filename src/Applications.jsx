@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import {
-  Plus, Trash2, Check, X, Calendar, GraduationCap, Award,
-  ChevronDown, RotateCcw, ArrowLeft,
+  Plus, Trash2, Check, X,
+  ChevronDown, ArrowLeft, ExternalLink,
 } from 'lucide-react'
 import { supabase } from './supabase.js'
 
@@ -12,19 +12,28 @@ const DEFAULT_CHECKLIST = {
   scholarship: ['Check eligibility', 'Essay / motivation letter', 'References', 'Submitted'],
 }
 
+const APP_STATUS_OPTIONS = [
+  { value: 'not_applied',  label: 'Not yet applied', bg: '#16302B0a', color: '#16302B66', dot: '#16302B33' },
+  { value: 'applied',      label: 'Applied',         bg: '#EEF2FB',   color: '#3B5BA5',   dot: '#3B5BA5'   },
+  { value: 'interview',    label: 'Interview',       bg: '#FDF0E6',   color: '#9A5010',   dot: '#E07A2F'   },
+  { value: 'offer',        label: 'Offer received',  bg: '#EAF3EE',   color: '#2D7A52',   dot: '#4F8A6E'   },
+  { value: 'accepted',     label: 'Accepted',        bg: '#EAF3EE',   color: '#2D7A52',   dot: '#4F8A6E'   },
+  { value: 'not_selected', label: 'Not selected',    bg: '#F5F5F5',   color: '#888',      dot: '#BDBDBD'   },
+]
+
 const QUICK_PICKS = {
   university: [
-    { name: 'Technical University of Munich (TUM)', country: 'Germany' },
+    { name: 'Technical University of Munich (TUM)', country: 'Germany', applyUrl: 'https://www.tum.de/en/studies/applying' },
   ],
   scholarship: [
-    { name: 'DAAD (German Academic Exchange Service)',       country: 'Germany'        },
-    { name: 'TUM Merit & Need-based Tuition Waiver',         country: 'Germany'        },
-    { name: 'NL Scholarship (formerly Holland Scholarship)', country: 'Netherlands'    },
-    { name: 'Government of Ireland Bursary',                 country: 'Ireland'        },
-    { name: 'UCL Global Undergraduate Scholarship',          country: 'United Kingdom' },
-    { name: 'Lester B. Pearson International Scholarship',   country: 'Canada'         },
-    { name: 'University Merit Scholarships (Malaysia)',       country: 'Malaysia'       },
-    { name: 'UAE University Merit Awards',                   country: 'UAE (Dubai)'    },
+    { name: 'DAAD (German Academic Exchange Service)',       country: 'Germany',        applyUrl: 'https://www.daad.de/en/study-and-research-in-germany/scholarships/'              },
+    { name: 'TUM Merit & Need-based Tuition Waiver',         country: 'Germany',        applyUrl: 'https://www.tum.de/en/studies/fees-and-financial-aid/scholarships'              },
+    { name: 'NL Scholarship (formerly Holland Scholarship)', country: 'Netherlands',    applyUrl: 'https://www.studyinnl.org/finances/nl-scholarship'                              },
+    { name: 'Government of Ireland Bursary',                 country: 'Ireland',        applyUrl: null                                                                             },
+    { name: 'UCL Global Undergraduate Scholarship',          country: 'United Kingdom', applyUrl: 'https://www.ucl.ac.uk/scholarships/ucl-global-undergraduate-scholarship'        },
+    { name: 'Lester B. Pearson International Scholarship',   country: 'Canada',         applyUrl: 'https://future.utoronto.ca/pearson-scholarships'                               },
+    { name: 'University Merit Scholarships (Malaysia)',       country: 'Malaysia',       applyUrl: 'https://educationmalaysia.gov.my'                                              },
+    { name: 'UAE University Merit Awards',                   country: 'UAE (Dubai)',    applyUrl: 'https://www.moe.gov.ae'                                                         },
   ],
 }
 
@@ -48,15 +57,11 @@ function deadlineMeta(days) {
   return              { bg: '#EAF3EE', color: '#2D7A52', dot: '#4F8A6E', label: `Due in ${days} days` }
 }
 
-function computeStatus(checklist, current) {
-  if (current === 'submitted') return 'submitted'
-  const done = checklist.filter(i => i.done).length
-  return done === 0 ? 'not_started' : 'in_progress'
-}
-
 // ─── page ─────────────────────────────────────────────────────────────────────
 
-export default function Applications({ firstName, user, onSignOut, onGoToDashboard }) {
+import ProfileMenu from './ProfileMenu.jsx'
+
+export default function Applications({ firstName, user, onSignOut, onGoToDashboard, onGoToPrivacy, onGoToTerms, onDeleted }) {
   const [apps,     setApps]     = useState([])
   const [loading,  setLoading]  = useState(true)
   const [showAdd,  setShowAdd]  = useState(false)
@@ -66,7 +71,7 @@ export default function Applications({ firstName, user, onSignOut, onGoToDashboa
   useEffect(() => {
     if (!user || !supabase) { setLoading(false); return }
     supabase
-      .from('applications')
+      .from('user_applications')
       .select('*')
       .eq('user_id', user.id)
       .order('created_at', { ascending: true })
@@ -78,14 +83,14 @@ export default function Applications({ firstName, user, onSignOut, onGoToDashboa
   async function addApp(app) {
     if (!supabase || !user) return
     const row = { ...app, user_id: user.id }
-    const { data } = await supabase.from('applications').insert(row).select().single()
+    const { data } = await supabase.from('user_applications').insert(row).select().single()
     if (data) setApps(prev => [...prev, data])
   }
 
   async function patchApp(id, updates) {
     setApps(prev => prev.map(a => a.id === id ? { ...a, ...updates } : a))
     if (!supabase || !user) return
-    supabase.from('applications')
+    supabase.from('user_applications')
       .update({ ...updates, updated_at: new Date().toISOString() })
       .eq('id', id).eq('user_id', user.id).then()
   }
@@ -93,12 +98,12 @@ export default function Applications({ firstName, user, onSignOut, onGoToDashboa
   async function removeApp(id) {
     setApps(prev => prev.filter(a => a.id !== id))
     if (!supabase || !user) return
-    supabase.from('applications').delete().eq('id', id).eq('user_id', user.id).then()
+    supabase.from('user_applications').delete().eq('id', id).eq('user_id', user.id).then()
   }
 
   // ── Next deadline ─────────────────────────────────────────────────────────
   const upcoming = apps
-    .filter(a => a.deadline && a.status !== 'submitted' && daysUntil(a.deadline) !== null)
+    .filter(a => a.deadline && a.status !== 'accepted' && a.status !== 'not_selected' && daysUntil(a.deadline) !== null)
     .sort((a, b) => daysUntil(a.deadline) - daysUntil(b.deadline))
   const next = upcoming[0] ?? null
 
@@ -116,13 +121,7 @@ export default function Applications({ firstName, user, onSignOut, onGoToDashboa
             <span className="hidden sm:inline">Dashboard</span>
           </button>
           <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>My Applications</span>
-          <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-            <span className="hidden sm:inline" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B55', fontSize: '0.82rem' }}>{email}</span>
-            <button onClick={onSignOut} style={{ background: 'none', border: '1.5px solid #16302B25', borderRadius: 100, padding: '5px 12px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.8rem', fontWeight: 500 }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B25')}
-            >Log out</button>
-          </div>
+          <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
         </div>
       </header>
 
@@ -179,6 +178,14 @@ export default function Applications({ firstName, user, onSignOut, onGoToDashboa
           <EmptyState onAdd={() => setShowAdd(true)} />
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {apps.some(a => !a.status || a.status === 'not_applied') && (
+              <div style={{ background: '#fff', border: '1px solid #16302B0d', borderRadius: 14, padding: '13px 18px', display: 'flex', alignItems: 'center', gap: 12 }}>
+                <span style={{ fontSize: '0.95rem', flexShrink: 0 }}>📬</span>
+                <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.84rem', color: '#16302B88', margin: 0, lineHeight: 1.45 }}>
+                  Any updates on your applications? Tap a status pill on each card to update where you are.
+                </p>
+              </div>
+            )}
             {apps.map(app => (
               <AppCard key={app.id} app={app} onPatch={patchApp} onRemove={removeApp} />
             ))}
@@ -225,18 +232,14 @@ function AppCard({ app, onPatch, onRemove }) {
   const pct     = totalCt > 0 ? Math.round((doneCt / totalCt) * 100) : 0
   const days    = daysUntil(app.deadline)
   const dm      = deadlineMeta(days)
-  const allDone = totalCt > 0 && doneCt === totalCt
-  const submitted = app.status === 'submitted'
-
   function toggleItem(itemId) {
     const next = checklist.map(i => i.id === itemId ? { ...i, done: !i.done } : i)
-    const newStatus = computeStatus(next, app.status)
-    onPatch(app.id, { checklist: next, status: newStatus })
+    onPatch(app.id, { checklist: next })
   }
 
   function removeItem(itemId) {
     const next = checklist.filter(i => i.id !== itemId)
-    onPatch(app.id, { checklist: next, status: computeStatus(next, app.status) })
+    onPatch(app.id, { checklist: next })
   }
 
   function addStep() {
@@ -248,25 +251,16 @@ function AppCard({ app, onPatch, onRemove }) {
     setAddingStep(false)
   }
 
-  function markSubmitted() {
-    onPatch(app.id, { status: 'submitted' })
-  }
-
-  function unsubmit() {
-    onPatch(app.id, { status: computeStatus(checklist, 'in_progress') })
-  }
-
   const typeIcon = app.type === 'university' ? '🏫' : '💰'
   const typeLabel = app.type === 'university' ? 'University' : 'Scholarship'
 
   return (
     <div style={{
-      background: submitted ? '#F0FAF4' : '#fff',
+      background: '#fff',
       borderRadius: 20,
-      border: `1px solid ${submitted ? '#4F8A6E28' : '#16302B0d'}`,
+      border: '1px solid #16302B0d',
       boxShadow: '0 2px 10px rgba(22,48,43,0.06)',
       padding: '22px 24px',
-      transition: 'background 0.3s',
     }}>
 
       {/* Header row */}
@@ -335,7 +329,7 @@ function AppCard({ app, onPatch, onRemove }) {
             </span>
           </div>
           <div style={{ height: 5, background: '#16302B0d', borderRadius: 3, overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: `${pct}%`, background: submitted ? '#4F8A6E' : '#4F8A6E', borderRadius: 3, transition: 'width 0.35s ease' }} />
+            <div style={{ height: '100%', width: `${pct}%`, background: '#4F8A6E', borderRadius: 3, transition: 'width 0.35s ease' }} />
           </div>
         </div>
       )}
@@ -345,10 +339,10 @@ function AppCard({ app, onPatch, onRemove }) {
         {checklist.map(item => (
           <div key={item.id} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <button
-              onClick={() => !submitted && toggleItem(item.id)}
+              onClick={() => toggleItem(item.id)}
               style={{
                 width: 20, height: 20, borderRadius: 5, border: `1.5px solid ${item.done ? '#4F8A6E' : '#16302B30'}`,
-                background: item.done ? '#4F8A6E' : '#fff', flexShrink: 0, cursor: submitted ? 'default' : 'pointer',
+                background: item.done ? '#4F8A6E' : '#fff', flexShrink: 0, cursor: 'pointer',
                 display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.15s',
               }}
             >
@@ -357,20 +351,17 @@ function AppCard({ app, onPatch, onRemove }) {
             <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', color: item.done ? '#16302B66' : '#16302B', lineHeight: 1.4, flex: 1, textDecoration: item.done ? 'line-through' : 'none' }}>
               {item.text}
             </span>
-            {!submitted && (
-              <button onClick={() => removeItem(item.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#16302B22', padding: 2, flexShrink: 0, transition: 'color 0.15s' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#9B2335')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#16302B22')}
-              >
-                <X size={13} strokeWidth={2} />
-              </button>
-            )}
+            <button onClick={() => removeItem(item.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#16302B22', padding: 2, flexShrink: 0, transition: 'color 0.15s' }}
+              onMouseEnter={e => (e.currentTarget.style.color = '#9B2335')}
+              onMouseLeave={e => (e.currentTarget.style.color = '#16302B22')}
+            >
+              <X size={13} strokeWidth={2} />
+            </button>
           </div>
         ))}
 
         {/* Add step */}
-        {!submitted && (
-          addingStep ? (
+        {addingStep ? (
             <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 4 }}>
               <input
                 ref={addInputRef}
@@ -394,54 +385,142 @@ function AppCard({ app, onPatch, onRemove }) {
             >
               <Plus size={12} strokeWidth={2.5} /> Add step
             </button>
-          )
         )}
       </div>
 
-      {/* Footer: status + action */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10, paddingTop: 12, borderTop: '1px solid #16302B08' }}>
-        {submitted ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontSize: '1.1rem' }}>🎉</span>
-            <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#2D7A52', fontSize: '0.95rem', fontWeight: 600 }}>
-              Submitted!
-            </span>
-          </div>
-        ) : (
-          <StatusBadge status={app.status} />
-        )}
-
-        <div style={{ display: 'flex', gap: 8 }}>
-          {submitted ? (
-            <button onClick={unsubmit} style={{ background: 'none', border: '1px solid #16302B20', borderRadius: 100, padding: '5px 12px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.75rem', color: '#16302B77', display: 'flex', alignItems: 'center', gap: 4 }}>
-              <RotateCcw size={11} strokeWidth={2} /> Undo
-            </button>
-          ) : (
-            <button
-              onClick={markSubmitted}
-              style={{ background: allDone ? '#4F8A6E' : '#16302B0d', color: allDone ? '#fff' : '#16302B66', border: 'none', borderRadius: 100, padding: '6px 14px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem', fontWeight: 600, transition: 'all 0.2s', display: 'flex', alignItems: 'center', gap: 5 }}
-              title="Mark as submitted"
+      {/* Apply on official site */}
+      <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid #16302B06' }}>
+        {app.apply_url ? (
+          <>
+            <a
+              href={app.apply_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 5,
+                fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.82rem', fontWeight: 600,
+                color: '#16302B', background: '#F7F4EE',
+                border: '1px solid #16302B18', borderRadius: 100,
+                padding: '5px 13px', textDecoration: 'none', transition: 'border-color 0.15s',
+              }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B66')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B18')}
             >
-              <Check size={13} strokeWidth={2.5} />
-              Mark submitted
-            </button>
-          )}
-        </div>
+              <ExternalLink size={12} strokeWidth={2} />
+              Apply on official site →
+            </a>
+            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.74rem', color: '#16302B55', fontStyle: 'italic', lineHeight: 1.4, margin: '7px 0 0' }}>
+              You apply on the official site. AdmitAI guides you and tracks your progress here.
+            </p>
+          </>
+        ) : (
+          <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem', color: '#16302B55', fontStyle: 'italic', lineHeight: 1.4, margin: 0 }}>
+            Search for <strong style={{ fontWeight: 600, fontStyle: 'normal' }}>{app.name}</strong>'s official admissions page to apply directly.
+          </p>
+        )}
       </div>
+
+      {/* App status tracker */}
+      <AppStatusTracker
+        appStatus={app.status}
+        onChangeStatus={newStatus => onPatch(app.id, { status: newStatus })}
+      />
     </div>
   )
 }
 
-function StatusBadge({ status }) {
-  const s = {
-    not_started: { bg: '#16302B0a', color: '#16302B66', label: 'Not started' },
-    in_progress:  { bg: '#EEF2FB',   color: '#3B5BA5',   label: 'In progress' },
-    submitted:    { bg: '#EAF3EE',   color: '#2D7A52',   label: 'Submitted'   },
-  }[status] ?? { bg: '#16302B0a', color: '#16302B66', label: status }
+// ─── app status tracker ───────────────────────────────────────────────────────
+
+function AppStatusTracker({ appStatus, onChangeStatus }) {
+  const [open, setOpen] = useState(false)
+  const wrapRef = useRef(null)
+
+  const current = APP_STATUS_OPTIONS.find(o => o.value === (appStatus || 'not_applied')) ?? APP_STATUS_OPTIONS[0]
+
+  useEffect(() => {
+    if (!open) return
+    function handler(e) {
+      if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [open])
+
+  const isWin = appStatus === 'offer' || appStatus === 'accepted'
+  const isOut = appStatus === 'not_selected'
+
   return (
-    <span style={{ background: s.bg, color: s.color, borderRadius: 100, padding: '3px 10px', fontSize: '0.72rem', fontFamily: 'Hanken Grotesk, sans-serif', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-      {s.label}
-    </span>
+    <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid #16302B06' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+        <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#16302B44' }}>
+          Application status
+        </span>
+        <div ref={wrapRef} style={{ position: 'relative' }}>
+          <button
+            onClick={() => setOpen(v => !v)}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 6,
+              background: current.bg, color: current.color,
+              border: `1px solid ${current.color}28`,
+              borderRadius: 100, padding: '4px 12px',
+              fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.75rem', fontWeight: 600,
+              cursor: 'pointer', transition: 'opacity 0.12s',
+            }}
+          >
+            <span style={{ width: 5, height: 5, borderRadius: '50%', background: current.dot, display: 'inline-block', flexShrink: 0 }} />
+            {current.label}
+            <ChevronDown size={10} strokeWidth={2.5} style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.15s', flexShrink: 0 }} />
+          </button>
+          {open && (
+            <div style={{
+              position: 'absolute', left: 0, top: 'calc(100% + 6px)', zIndex: 100,
+              background: '#fff', border: '1px solid #16302B12', borderRadius: 12,
+              boxShadow: '0 8px 32px rgba(22,48,43,0.14)', padding: '5px',
+              minWidth: 182,
+            }}>
+              {APP_STATUS_OPTIONS.map(opt => (
+                <button
+                  key={opt.value}
+                  onClick={() => { setOpen(false); onChangeStatus(opt.value) }}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 8, width: '100%', textAlign: 'left',
+                    background: opt.value === (appStatus || 'not_applied') ? opt.bg : 'none',
+                    border: 'none', borderRadius: 8, padding: '8px 10px',
+                    fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.82rem',
+                    color: opt.color, fontWeight: opt.value === (appStatus || 'not_applied') ? 700 : 500,
+                    cursor: 'pointer',
+                  }}
+                  onMouseEnter={e => { if (opt.value !== (appStatus || 'not_applied')) e.currentTarget.style.background = '#F7F4EE' }}
+                  onMouseLeave={e => { if (opt.value !== (appStatus || 'not_applied')) e.currentTarget.style.background = 'none' }}
+                >
+                  <span style={{ width: 6, height: 6, borderRadius: '50%', background: opt.dot, flexShrink: 0 }} />
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {(isWin || isOut) && (
+        <div style={{
+          marginTop: 10,
+          background: isWin ? '#EAF3EE' : '#F7F4EE',
+          border: `1px solid ${isWin ? '#4F8A6E22' : '#16302B0a'}`,
+          borderRadius: 10, padding: '10px 14px',
+        }}>
+          <p style={{
+            fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.855rem',
+            color: isWin ? '#2D7A52' : '#16302B77',
+            lineHeight: 1.5, margin: 0,
+          }}>
+            {isWin
+              ? "🎉 Amazing! That's a real win."
+              : "That one didn't work out — it's part of the process, and it's not the end. On to the next."}
+          </p>
+        </div>
+      )}
+    </div>
   )
 }
 
@@ -453,6 +532,7 @@ function AddModal({ user, onSave, onClose }) {
   const [name,      setName]      = useState('')
   const [country,   setCountry]   = useState('')
   const [deadline,  setDeadline]  = useState('')
+  const [applyUrl,  setApplyUrl]  = useState('')
   const [checklist, setChecklist] = useState(DEFAULT_CHECKLIST.university.map(t => ({ id: uid(), text: t, done: false })))
   const [newStep,   setNewStep]   = useState('')
   const [saving,    setSaving]    = useState(false)
@@ -463,15 +543,16 @@ function AddModal({ user, onSave, onClose }) {
     setPickId('')
     setName('')
     setCountry('')
+    setApplyUrl('')
     setChecklist(DEFAULT_CHECKLIST[t].map(text => ({ id: uid(), text, done: false })))
   }
 
   // Prefill from quick-pick
   function applyPick(id) {
     setPickId(id)
-    if (id === '') { setName(''); setCountry(''); return }
+    if (id === '') { setName(''); setCountry(''); setApplyUrl(''); return }
     const item = QUICK_PICKS[type].find(p => p.name === id)
-    if (item) { setName(item.name); setCountry(item.country) }
+    if (item) { setName(item.name); setCountry(item.country); setApplyUrl(item.applyUrl || '') }
   }
 
   function addStep() {
@@ -494,8 +575,9 @@ function AddModal({ user, onSave, onClose }) {
       name: n,
       country: country.trim() || null,
       deadline: deadline || null,
+      apply_url: applyUrl.trim() || null,
       checklist,
-      status: 'not_started',
+      status: 'not_applied',
     })
     setSaving(false)
     onClose()
@@ -569,7 +651,7 @@ function AddModal({ user, onSave, onClose }) {
           </div>
 
           {/* Country + Deadline */}
-          <div className="grid grid-cols-2 gap-3" style={{ marginBottom: 18 }}>
+          <div className="grid grid-cols-2 gap-3" style={{ marginBottom: 12 }}>
             <div>
               <label style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: '#16302B55', display: 'block', marginBottom: 6 }}>Country</label>
               <input type="text" value={country} onChange={e => setCountry(e.target.value)} placeholder="e.g. Germany" style={inputStyle} />
@@ -578,6 +660,23 @@ function AddModal({ user, onSave, onClose }) {
               <label style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: '#16302B55', display: 'block', marginBottom: 6 }}>Deadline</label>
               <input type="date" value={deadline} onChange={e => setDeadline(e.target.value)} style={inputStyle} />
             </div>
+          </div>
+
+          {/* Official apply URL */}
+          <div style={{ marginBottom: 18 }}>
+            <label style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: '#16302B55', display: 'block', marginBottom: 6 }}>
+              Official apply URL <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0, color: '#16302B44' }}>(optional)</span>
+            </label>
+            <input
+              type="url"
+              value={applyUrl}
+              onChange={e => setApplyUrl(e.target.value)}
+              placeholder="https://…"
+              style={inputStyle}
+            />
+            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.71rem', color: '#16302B44', fontStyle: 'italic', margin: '5px 0 0', lineHeight: 1.4 }}>
+              Pre-filled from verified data when available. You apply on the official site — AdmitAI tracks your progress.
+            </p>
           </div>
 
           {/* Checklist */}

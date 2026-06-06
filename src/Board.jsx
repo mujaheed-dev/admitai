@@ -176,10 +176,12 @@ function fitScore(c, budget) {
 
 // ─── page ───────────────────────────────────────────────────────────────────
 
+import ProfileMenu from './ProfileMenu.jsx'
+
 export default function Board({
   answers, onStartOver, onGoToScholarships,
   user, onOpenAuth, onSignOut, onGoToDashboard,
-  firstName,
+  onGoToPrivacy, onGoToTerms, onDeleted, firstName,
 }) {
   const { budget, field, regions } = answers
   const showAll = regions.includes('anywhere')
@@ -247,12 +249,7 @@ export default function Board({
               <button style={tabStyle(true)}>My Board</button>
               <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>
             </div>
-            <button
-              onClick={onSignOut}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66', fontSize: '0.8rem', fontWeight: 500, padding: '4px 2px' }}
-            >
-              Log out
-            </button>
+            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
           </div>
         </div>
         {/* Desktop: single row */}
@@ -263,17 +260,7 @@ export default function Board({
             <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
-            <span className="hidden md:inline" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66', fontSize: '0.8rem', whiteSpace: 'nowrap' }}>
-              {email}
-            </span>
-            <button
-              onClick={onSignOut}
-              style={{ background: 'none', border: '1.5px solid #16302B25', borderRadius: 100, padding: '5px 12px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.8rem', fontWeight: 500, whiteSpace: 'nowrap', flexShrink: 0 }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B25')}
-            >
-              Log out
-            </button>
+            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
             {changeBtn}
           </div>
         </div>

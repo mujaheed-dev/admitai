@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { Target, Award, Building2, ClipboardList, Sparkles, Send, ArrowUpRight, X, RotateCcw } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { supabase } from './supabase.js'
+import ProfileMenu from './ProfileMenu.jsx'
 
 // ─── markdown component map ───────────────────────────────────────────────────
 
@@ -208,7 +209,7 @@ function InputBar({ input, setInput, loading, atLimit, hasMessages, inputFocused
 
 // ─── dashboard ────────────────────────────────────────────────────────────────
 
-export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholarships, onGoToUniversities, onGoToApplications, onOpenAccountSettings, onSignOut, onGoToPrivacy, onGoToTerms }) {
+export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholarships, onGoToUniversities, onGoToApplications, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
   const LIMIT = 2
 
   const [hovered,        setHovered]        = useState(null)
@@ -248,7 +249,6 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
       .then(({ data }) => {
         if (data?.length) {
           setMessages(data)
-          setIsChatOpen(true)   // auto-reopen chat when there's saved history
         }
       })
       .catch(() => {})
@@ -495,23 +495,13 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
         <header className="sticky top-0 z-50 border-b" style={{ background: '#F7F4EEf8', borderColor: '#16302B1a', backdropFilter: 'blur(8px)' }}>
           <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
             <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>AdmitAI</span>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <span className="hidden sm:inline" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B55', fontSize: '0.82rem', whiteSpace: 'nowrap' }}>{email}</span>
-              <button onClick={onOpenAccountSettings} title="Account settings"
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#16302B55', padding: '4px 6px', fontSize: '1rem', lineHeight: 1, borderRadius: 6, transition: 'color 0.15s' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#16302B55')}
-              >
-                ⚙
-              </button>
-              <button onClick={onSignOut}
-                style={{ background: 'none', border: '1.5px solid #16302B25', borderRadius: 100, padding: '6px 14px', cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.82rem', fontWeight: 500, transition: 'border-color 0.15s' }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B25')}
-              >
-                Log out
-              </button>
-            </div>
+            <ProfileMenu
+              user={user} firstName={firstName}
+              onSignOut={onSignOut}
+              onGoToPrivacy={onGoToPrivacy}
+              onGoToTerms={onGoToTerms}
+              onDeleted={onDeleted}
+            />
           </div>
         </header>
 

@@ -11,7 +11,7 @@ import AuthModal from './AuthModal.jsx'
 import WelcomeScreen from './WelcomeScreen.jsx'
 import PrivacyPolicy from './PrivacyPolicy.jsx'
 import TermsOfService from './TermsOfService.jsx'
-import AccountSettings from './AccountSettings.jsx'
+// AccountSettings replaced by ProfileMenu (drop-down on every page)
 
 export default function App() {
   const [view, setView]               = useState('landing')
@@ -21,7 +21,7 @@ export default function App() {
   const [authModal, setAuthModal]     = useState(null)
   const [pendingView, setPendingView] = useState(null)
   const [showWelcome, setShowWelcome] = useState(null)
-  const [showAccountSettings, setShowAccountSettings] = useState(false)
+  // showAccountSettings removed — ProfileMenu handles this inline now
 
   // Handle hash-based routes so AuthModal consent links open the right page in a new tab
   useEffect(() => {
@@ -100,8 +100,6 @@ export default function App() {
   }
 
   function handleAccountDeleted() {
-    // User is already deleted on the server — just clear local state and sign out
-    setShowAccountSettings(false)
     setUser(null)
     setAnswers(null)
     setView('landing')
@@ -117,8 +115,9 @@ export default function App() {
     onOpenAuth: openAuth,
     onSignOut: handleSignOut,
     onGoToDashboard: () => setView('dashboard'),
-    onGoToPrivacy: () => setView('privacy'),
-    onGoToTerms:   () => setView('terms'),
+    onGoToPrivacy:   () => setView('privacy'),
+    onGoToTerms:     () => setView('terms'),
+    onDeleted:       handleAccountDeleted,
   }
 
   if (!authLoaded) return <div style={{ minHeight: '100vh', background: '#F7F4EE' }} />
@@ -145,6 +144,9 @@ export default function App() {
         firstName={firstName} user={user}
         onSignOut={handleSignOut}
         onGoToDashboard={() => setView('dashboard')}
+        onGoToPrivacy={() => setView('privacy')}
+        onGoToTerms={() => setView('terms')}
+        onDeleted={handleAccountDeleted}
       />
     )
   } else if (view === 'applications' && user) {
@@ -153,6 +155,9 @@ export default function App() {
         firstName={firstName} user={user}
         onSignOut={handleSignOut}
         onGoToDashboard={() => setView('dashboard')}
+        onGoToPrivacy={() => setView('privacy')}
+        onGoToTerms={() => setView('terms')}
+        onDeleted={handleAccountDeleted}
       />
     )
   } else if (view === 'dashboard' && user) {
@@ -163,7 +168,6 @@ export default function App() {
         onGoToScholarships={() => setView('scholarships')}
         onGoToUniversities={() => setView('universities')}
         onGoToApplications={() => setView('applications')}
-        onOpenAccountSettings={() => setShowAccountSettings(true)}
         onSignOut={handleSignOut}
         onGoToPrivacy={() => setView('privacy')}
         onGoToTerms={() => setView('terms')}
@@ -218,13 +222,7 @@ export default function App() {
           onAuthComplete={handleAuthComplete}
         />
       )}
-      {showAccountSettings && user && (
-        <AccountSettings
-          user={user}
-          onClose={() => setShowAccountSettings(false)}
-          onDeleted={handleAccountDeleted}
-        />
-      )}
+      {/* AccountSettings removed — ProfileMenu handles account actions inline */}
     </>
   )
 }

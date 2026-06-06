@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowLeft, ExternalLink, CheckCircle, Lightbulb, Sparkles } from 'lucide-react'
+import { ArrowLeft, ExternalLink, CheckCircle, Lightbulb, Sparkles, Globe } from 'lucide-react'
 
 const LEVEL_STYLE = {
   'Undergraduate': { bg: '#E4F5EC', color: '#2D7A52', border: '#4F8A6E30' },
@@ -216,24 +216,57 @@ export default function ScholarshipDetail({ scholarship: s, onBack }) {
         </Card>
       </div>
 
-      {/* ── Help me apply ── */}
+      {/* ── Apply ── */}
       <div>
         <SectionLabel>Apply</SectionLabel>
+
+        {/* Official site link */}
+        <Card style={{ marginBottom: 12 }}>
+          {s.sourceUrl ? (
+            <>
+              <a
+                href={s.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  background: '#16302B', color: '#F7F4EE', border: 'none', borderRadius: 100,
+                  padding: '9px 18px', fontFamily: 'Hanken Grotesk, sans-serif',
+                  fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none', transition: 'opacity 0.15s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = '0.88')}
+                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+              >
+                <ExternalLink size={14} strokeWidth={2} />
+                Apply on official site →
+              </a>
+              <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.74rem', color: '#16302B55', fontStyle: 'italic', lineHeight: 1.4, margin: '8px 0 0' }}>
+                You apply on the official site. AdmitAI guides you and tracks your progress here.
+              </p>
+            </>
+          ) : (
+            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.82rem', color: '#16302B77', fontStyle: 'italic', margin: 0, lineHeight: 1.5 }}>
+              Search for <strong style={{ fontWeight: 600, fontStyle: 'normal' }}>{s.name}</strong>'s official application page to apply directly.
+            </p>
+          )}
+        </Card>
+
+        {/* AI help */}
         {!showAiPreview ? (
           <button
             onClick={() => setShowAiPreview(true)}
             style={{
-              width: '100%', background: '#16302B', color: '#F7F4EE', border: 'none',
-              borderRadius: 16, padding: '16px 24px', cursor: 'pointer',
-              fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.95rem', fontWeight: 600,
+              width: '100%', background: '#4F8A6E', color: '#fff', border: 'none',
+              borderRadius: 16, padding: '14px 24px', cursor: 'pointer',
+              fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.9rem', fontWeight: 600,
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
               transition: 'opacity 0.15s',
             }}
             onMouseEnter={e => (e.currentTarget.style.opacity = '0.88')}
             onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
           >
-            <Sparkles size={18} strokeWidth={2} />
-            Help me apply for this
+            <Sparkles size={17} strokeWidth={2} />
+            Help me prepare my application
           </button>
         ) : (
           <div style={{

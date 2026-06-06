@@ -1,6 +1,7 @@
 import {
   ArrowLeft, ExternalLink, CheckCircle, AlertCircle,
   BarChart2, Globe, DollarSign, GraduationCap, Calendar, Target, Link,
+  Heart, Plus,
 } from 'lucide-react'
 
 // ─── section block ────────────────────────────────────────────────────────────
@@ -62,7 +63,7 @@ function DetailRow({ label, value, last = false }) {
 
 // ─── main component ───────────────────────────────────────────────────────────
 
-export default function UniversityDetail({ university: u, onBack }) {
+export default function UniversityDetail({ university: u, onBack, isSaved, onToggleSave, onAddToApp, addedToApp }) {
   return (
     <div className="max-w-3xl mx-auto px-6 pt-6 pb-24">
 
@@ -83,12 +84,29 @@ export default function UniversityDetail({ university: u, onBack }) {
 
       {/* ── Hero header ── */}
       <div style={{ marginBottom: 32 }}>
-        {/* Location line */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 8 }}>
-          <span style={{ fontSize: '1.25rem', lineHeight: 1 }}>{u.flag}</span>
-          <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B77', fontSize: '0.875rem' }}>
-            {u.city}, {u.country}
-          </span>
+        {/* Location + save button row */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 8 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+            <span style={{ fontSize: '1.25rem', lineHeight: 1 }}>{u.flag}</span>
+            <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B77', fontSize: '0.875rem' }}>
+              {u.city}, {u.country}
+            </span>
+          </div>
+          {/* Save / heart button — only shown when the toggle is available */}
+          {onToggleSave && (
+            <button
+              onClick={onToggleSave}
+              title={isSaved ? 'Remove from saved' : 'Save this university'}
+              style={{ display: 'flex', alignItems: 'center', gap: 6, background: isSaved ? '#FDF0E6' : '#fff', border: `1.5px solid ${isSaved ? '#E07A2F44' : '#16302B18'}`, borderRadius: 100, padding: '6px 14px', cursor: 'pointer', transition: 'all 0.18s', flexShrink: 0 }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = isSaved ? '#E07A2F' : '#16302B' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = isSaved ? '#E07A2F44' : '#16302B18' }}
+            >
+              <Heart size={15} fill={isSaved ? '#E07A2F' : 'none'} color={isSaved ? '#E07A2F' : '#16302B77'} strokeWidth={2} />
+              <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.8rem', fontWeight: 600, color: isSaved ? '#C0601A' : '#16302B77' }}>
+                {isSaved ? 'Saved' : 'Save'}
+              </span>
+            </button>
+          )}
         </div>
 
         {/* Name */}
@@ -249,6 +267,65 @@ export default function UniversityDetail({ university: u, onBack }) {
           )}
         </Section>
 
+      </div>
+
+      {/* ── Apply + track ── */}
+      <div style={{ marginTop: 24, padding: '20px', background: '#fff', borderRadius: 16, border: '1px solid #16302B0d' }}>
+        {/* Apply on official site */}
+        <div style={{ marginBottom: 16 }}>
+          {u.sourceUrl ? (
+            <>
+              <a
+                href={u.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 6,
+                  background: '#16302B', color: '#F7F4EE', border: 'none', borderRadius: 100,
+                  padding: '9px 18px', fontFamily: 'Hanken Grotesk, sans-serif',
+                  fontSize: '0.875rem', fontWeight: 600, textDecoration: 'none', transition: 'opacity 0.15s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = '0.88')}
+                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+              >
+                <ExternalLink size={14} strokeWidth={2} />
+                Apply on official site →
+              </a>
+              <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.74rem', color: '#16302B55', fontStyle: 'italic', lineHeight: 1.4, margin: '8px 0 0' }}>
+                You apply on the official site. AdmitAI guides you and tracks your progress here.
+              </p>
+            </>
+          ) : (
+            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.82rem', color: '#16302B77', fontStyle: 'italic', margin: 0, lineHeight: 1.5 }}>
+              Search for <strong style={{ fontWeight: 600, fontStyle: 'normal' }}>{u.name}</strong>'s official admissions page to apply directly.
+            </p>
+          )}
+        </div>
+
+        {/* Add to My Applications */}
+        {onAddToApp && (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', paddingTop: 14, borderTop: '1px solid #16302B08' }}>
+            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B77', fontSize: '0.82rem', margin: 0 }}>
+              Track this application in My Applications.
+            </p>
+            <button
+              onClick={onAddToApp}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 7,
+                background: addedToApp ? '#EAF3EE' : '#4F8A6E',
+                color: addedToApp ? '#2D7A52' : '#fff',
+                border: 'none', borderRadius: 100, padding: '8px 16px',
+                fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.82rem', fontWeight: 600,
+                cursor: addedToApp ? 'default' : 'pointer', flexShrink: 0, transition: 'all 0.18s',
+              }}
+            >
+              {addedToApp
+                ? <><CheckCircle size={14} strokeWidth={2.5} /> Added</>
+                : <><Plus size={14} strokeWidth={2.5} /> Add to My Applications</>
+              }
+            </button>
+          </div>
+        )}
       </div>
 
       {/* ── Honest caveat ── */}
