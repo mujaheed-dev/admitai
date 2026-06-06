@@ -160,7 +160,6 @@ export default function CountryDetail({ country: c, budget, firstName, onBack })
           borderRadius: 100, padding: '4px 12px',
           fontSize: '0.8rem', fontFamily: 'Hanken Grotesk, sans-serif', fontWeight: 600,
         }}>
-          <span style={{ width: 7, height: 7, borderRadius: '50%', background: flag.dot, display: 'inline-block', flexShrink: 0 }} />
           {flag.label}
         </span>
       </div>

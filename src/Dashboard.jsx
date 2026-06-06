@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Target, Award, Building2, ClipboardList, Sparkles, Send, ArrowUpRight, X, RotateCcw } from 'lucide-react'
+import { Target, Award, Building2, ClipboardList, PenLine, Compass, FileText, Mic, Sparkles, Send, ArrowUpRight, X, RotateCcw, Clock, Trash2 } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { supabase } from './supabase.js'
 import ProfileMenu from './ProfileMenu.jsx'
@@ -36,6 +36,10 @@ const CARDS = [
   { id: 'scholarships', Icon: Award, iconColor: '#C0601A', iconBg: '#FDF0E6', title: 'Scholarships', description: 'Browse scholarships matched to your field and study level.', live: true },
   { id: 'universities', Icon: Building2, iconColor: '#4F8A6E', iconBg: '#EAF3EE', title: 'Universities', description: 'Explore specific schools, fees & entry requirements.', live: true },
   { id: 'applications', Icon: ClipboardList, iconColor: '#16302B', iconBg: '#16302B0d', title: 'My Applications', description: "Track where you've applied and what's next.", live: true },
+  { id: 'essay-review', Icon: PenLine,   iconColor: '#9A5010', iconBg: '#FDF0E6', title: 'Essay Review',  description: 'Get structured feedback on your personal statement — strengths, clarity, and what to fix next.', live: true },
+  { id: 'roadmap',      Icon: Compass,   iconColor: '#3B5BA5', iconBg: '#EEF2FB', title: 'My Roadmap',    description: 'Generate a personalised step-by-step plan: language tests, universities, timeline, visas.', live: true },
+  { id: 'cv-builder',     Icon: FileText,  iconColor: '#5C4B97', iconBg: '#EEEAF8', title: 'CV Builder',      description: 'Build a professional CV from your real information — formatted for universities, scholarships, or grad school.', live: true },
+  { id: 'interview-prep', Icon: Mic,       iconColor: '#2B7A8E', iconBg: '#E0F3F5', title: 'Interview Prep',  description: 'Practise a realistic mock interview — scholarship, admission, or visa — and get warm, constructive feedback.', live: true },
 ]
 
 // ─── shared message bubble renderer ──────────────────────────────────────────
@@ -209,7 +213,7 @@ function InputBar({ input, setInput, loading, atLimit, hasMessages, inputFocused
 
 // ─── dashboard ────────────────────────────────────────────────────────────────
 
-export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholarships, onGoToUniversities, onGoToApplications, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
+export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholarships, onGoToUniversities, onGoToApplications, onGoToEssayReview, onGoToRoadmap, onGoToCvBuilder, onGoToInterviewPrep, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
   const LIMIT = 2
 
   const [hovered,        setHovered]        = useState(null)
@@ -218,8 +222,12 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
   const [loading,        setLoading]        = useState(false)
   const [inputFocused,   setInputFocused]   = useState(false)
   const [searchesUsed,   setSearchesUsed]   = useState(0)
-  const [upgradeClicked, setUpgradeClicked] = useState(false)
-  const [isChatOpen,     setIsChatOpen]     = useState(false)
+  const [upgradeClicked,  setUpgradeClicked]  = useState(false)
+  const [isChatOpen,      setIsChatOpen]      = useState(false)
+  const [currentSessionId, setCurrentSessionId] = useState(null)
+  const [showHistory,     setShowHistory]     = useState(false)
+  const [historyLoading,  setHistoryLoading]  = useState(false)
+  const [historySessions, setHistorySessions] = useState([])
 
   const inputRef       = useRef(null)
   const messagesEndRef = useRef(null)
@@ -242,13 +250,16 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
     if (!user || !supabase) return
     supabase
       .from('chat_messages')
-      .select('id, role, content')
+      .select('id, role, content, session_id')
       .eq('user_id', user.id)
       .order('created_at', { ascending: true })
       .limit(100)
       .then(({ data }) => {
         if (data?.length) {
           setMessages(data)
+          // Restore the latest session_id so new sends continue the same conversation
+          const lastWithSession = [...data].reverse().find(m => m.session_id)
+          if (lastWithSession) setCurrentSessionId(lastWithSession.session_id)
         }
       })
       .catch(() => {})
@@ -273,6 +284,10 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
     else if (id === 'scholarships') onGoToScholarships()
     else if (id === 'universities') onGoToUniversities()
     else if (id === 'applications') onGoToApplications()
+    else if (id === 'essay-review') onGoToEssayReview()
+    else if (id === 'roadmap') onGoToRoadmap()
+    else if (id === 'cv-builder') onGoToCvBuilder()
+    else if (id === 'interview-prep') onGoToInterviewPrep()
   }
 
   async function handleSend(e) {
@@ -285,6 +300,13 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
     setInput('')
     setLoading(true)
     setIsChatOpen(true)
+
+    // Ensure a session_id exists for this conversation so it appears in history
+    let sid = currentSessionId
+    if (!sid) {
+      sid = crypto.randomUUID()
+      setCurrentSessionId(sid)
+    }
 
     try {
       // history = all real messages before this one
@@ -307,8 +329,8 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
         setMessages(prev => [...prev, { id: Date.now() + 1, role: 'assistant', content: reply }])
         if (supabase && user) {
           supabase.from('chat_messages').insert([
-            { user_id: user.id, role: 'user',      content: text  },
-            { user_id: user.id, role: 'assistant', content: reply },
+            { user_id: user.id, role: 'user',      content: text,  session_id: sid },
+            { user_id: user.id, role: 'assistant', content: reply, session_id: sid },
           ]).then()
         }
       }
@@ -352,8 +374,8 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
         setMessages(prev => [...prev, { id: Date.now(), role: 'assistant', content: reply }])
         if (supabase && user) {
           supabase.from('chat_messages').insert([
-            { user_id: user.id, role: 'user',      content: failedMsg.content },
-            { user_id: user.id, role: 'assistant', content: reply },
+            { user_id: user.id, role: 'user',      content: failedMsg.content, session_id: currentSessionId },
+            { user_id: user.id, role: 'assistant', content: reply,             session_id: currentSessionId },
           ]).then()
         }
       }
@@ -368,11 +390,63 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
   }
 
   function clearConversation() {
+    // If this was a legacy (no session_id) conversation, purge it from DB
+    // Modern sessions stay in DB so they appear in chat history
+    if (!currentSessionId && supabase && user) {
+      supabase.from('chat_messages').delete()
+        .eq('user_id', user.id).is('session_id', null).then()
+    }
     setMessages([])
+    setCurrentSessionId(null)
     setIsChatOpen(false)
     setUpgradeClicked(false)
-    if (supabase && user) {
-      supabase.from('chat_messages').delete().eq('user_id', user.id).then()
+    setShowHistory(false)
+  }
+
+  async function loadHistory() {
+    if (!supabase || !user) return
+    setHistoryLoading(true)
+    try {
+      const { data } = await supabase
+        .from('chat_messages')
+        .select('id, session_id, role, content, created_at')
+        .eq('user_id', user.id)
+        .not('session_id', 'is', null)
+        .order('created_at', { ascending: true })
+        .limit(500)
+
+      // Group by session_id
+      const map = {}
+      for (const msg of data || []) {
+        if (!map[msg.session_id]) {
+          map[msg.session_id] = { id: msg.session_id, messages: [], startedAt: msg.created_at }
+        }
+        map[msg.session_id].messages.push(msg)
+      }
+      // Newest session first
+      setHistorySessions(
+        Object.values(map).sort((a, b) => new Date(b.startedAt) - new Date(a.startedAt))
+      )
+    } finally {
+      setHistoryLoading(false)
+    }
+  }
+
+  function openSession(session) {
+    setMessages(session.messages)
+    setCurrentSessionId(session.id)
+    setShowHistory(false)
+    setIsChatOpen(true)
+  }
+
+  async function deleteSession(sessionId) {
+    if (!supabase || !user) return
+    await supabase.from('chat_messages').delete()
+      .eq('user_id', user.id).eq('session_id', sessionId)
+    setHistorySessions(prev => prev.filter(s => s.id !== sessionId))
+    if (sessionId === currentSessionId) {
+      setMessages([])
+      setCurrentSessionId(null)
     }
   }
 
@@ -419,43 +493,113 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
                 AdmitAI
               </span>
 
-              {/* New chat */}
-              <button
-                onClick={clearConversation}
-                title="Start a new conversation"
-                style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 5, fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.82rem', fontWeight: 500, padding: '4px 0', whiteSpace: 'nowrap' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#16302B88')}
-              >
-                <RotateCcw size={13} strokeWidth={2} />
-                <span className="hidden sm:inline">New chat</span>
-              </button>
+              {/* Right-side controls */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                {/* History */}
+                <button
+                  onClick={() => { loadHistory(); setShowHistory(true) }}
+                  title="Chat history"
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 5, fontFamily: 'Hanken Grotesk, sans-serif', color: showHistory ? '#16302B' : '#16302B88', fontSize: '0.82rem', fontWeight: 500, padding: '4px 0', whiteSpace: 'nowrap' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
+                  onMouseLeave={e => { if (!showHistory) e.currentTarget.style.color = '#16302B88' }}
+                >
+                  <Clock size={13} strokeWidth={2} />
+                  <span className="hidden sm:inline">History</span>
+                </button>
+                {/* New chat */}
+                <button
+                  onClick={clearConversation}
+                  title="Start a new conversation"
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 5, fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.82rem', fontWeight: 500, padding: '4px 0', whiteSpace: 'nowrap' }}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
+                  onMouseLeave={e => (e.currentTarget.style.color = '#16302B88')}
+                >
+                  <RotateCcw size={13} strokeWidth={2} />
+                  <span className="hidden sm:inline">New chat</span>
+                </button>
+              </div>
             </div>
           </header>
 
-          {/* ── Messages ── */}
+          {/* ── Messages / History panel ── */}
           <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 py-5" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              {messages.map(msg => (
-                <div key={msg.id} className="dash-msg">
-                  <MessageBubble msg={msg} LIMIT={LIMIT} upgradeClicked={upgradeClicked} setUpgradeClicked={setUpgradeClicked} handleRetry={handleRetry} loading={loading} />
-                </div>
-              ))}
-
-              {/* Typing indicator */}
-              {loading && (
-                <div className="dash-msg" style={{ display: 'flex', gap: 9, alignItems: 'flex-start' }}>
-                  <AiAvatar />
-                  <div style={{ background: '#fff', border: '1px solid rgba(22,48,43,0.08)', borderRadius: '4px 16px 16px 16px', padding: '14px 18px', display: 'flex', gap: 5 }}>
-                    <span className="dot1" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4F8A6E', display: 'inline-block' }} />
-                    <span className="dot2" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4F8A6E', display: 'inline-block' }} />
-                    <span className="dot3" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4F8A6E', display: 'inline-block' }} />
+            {showHistory ? (
+              /* ── History panel ── */
+              <div className="max-w-3xl mx-auto px-4 sm:px-6 py-5">
+                <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.09em', textTransform: 'uppercase', color: '#16302B55', margin: '0 0 16px' }}>
+                  Past conversations
+                </p>
+                {historyLoading ? (
+                  <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B55', fontSize: '0.875rem' }}>Loading…</p>
+                ) : historySessions.length === 0 ? (
+                  <div style={{ textAlign: 'center', padding: '40px 0' }}>
+                    <Clock size={28} color="#16302B22" strokeWidth={1.5} style={{ marginBottom: 10 }} />
+                    <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B55', fontSize: '0.875rem', margin: 0 }}>No past conversations yet.</p>
                   </div>
-                </div>
-              )}
+                ) : (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    {historySessions.map(session => {
+                      const firstUserMsg = session.messages.find(m => m.role === 'user')
+                      const raw = firstUserMsg?.content ?? ''
+                      const preview = raw.length > 80 ? raw.slice(0, 80) + '…' : raw
+                      const date = new Date(session.startedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+                      const isActive = session.id === currentSessionId
+                      return (
+                        <div key={session.id} style={{
+                          background: isActive ? '#EAF3EE' : '#fff',
+                          border: `1px solid ${isActive ? '#4F8A6E28' : '#16302B0d'}`,
+                          borderRadius: 14, padding: '14px 16px',
+                          display: 'flex', alignItems: 'center', gap: 12,
+                          transition: 'border-color 0.15s',
+                        }}>
+                          <button
+                            onClick={() => openSession(session)}
+                            style={{ flex: 1, textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', padding: 0, minWidth: 0 }}
+                          >
+                            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.68rem', color: '#16302B55', margin: '0 0 4px', fontWeight: 600 }}>{date}</p>
+                            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', color: '#16302B', margin: 0, lineHeight: 1.4, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                              {preview || 'Empty conversation'}
+                            </p>
+                          </button>
+                          <button
+                            onClick={() => deleteSession(session.id)}
+                            title="Delete this conversation"
+                            style={{ flexShrink: 0, background: 'none', border: 'none', cursor: 'pointer', padding: 6, borderRadius: 8, color: '#16302B44', transition: 'color 0.15s, background 0.15s' }}
+                            onMouseEnter={e => { e.currentTarget.style.color = '#9B2335'; e.currentTarget.style.background = '#9B233510' }}
+                            onMouseLeave={e => { e.currentTarget.style.color = '#16302B44'; e.currentTarget.style.background = 'none' }}
+                          >
+                            <Trash2 size={14} strokeWidth={2} />
+                          </button>
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* ── Messages ── */
+              <div className="max-w-3xl mx-auto px-4 sm:px-6 py-5" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                {messages.map(msg => (
+                  <div key={msg.id} className="dash-msg">
+                    <MessageBubble msg={msg} LIMIT={LIMIT} upgradeClicked={upgradeClicked} setUpgradeClicked={setUpgradeClicked} handleRetry={handleRetry} loading={loading} />
+                  </div>
+                ))}
 
-              <div ref={messagesEndRef} />
-            </div>
+                {/* Typing indicator */}
+                {loading && (
+                  <div className="dash-msg" style={{ display: 'flex', gap: 9, alignItems: 'flex-start' }}>
+                    <AiAvatar />
+                    <div style={{ background: '#fff', border: '1px solid rgba(22,48,43,0.08)', borderRadius: '4px 16px 16px 16px', padding: '14px 18px', display: 'flex', gap: 5 }}>
+                      <span className="dot1" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4F8A6E', display: 'inline-block' }} />
+                      <span className="dot2" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4F8A6E', display: 'inline-block' }} />
+                      <span className="dot3" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4F8A6E', display: 'inline-block' }} />
+                    </div>
+                  </div>
+                )}
+
+                <div ref={messagesEndRef} />
+              </div>
+            )}
           </div>
 
           {/* ── Input bar (fixed at bottom, above mobile keyboard) ── */}
@@ -609,9 +753,11 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
                     display: 'flex', flexDirection: 'column', gap: 16, opacity: card.live ? 1 : 0.65, userSelect: 'none', minHeight: 168,
                   }}
                 >
-                  <span style={{ position: 'absolute', top: 18, right: 18, background: card.live ? '#E4F5EC' : '#FDF0E6', color: card.live ? '#2D7A52' : '#9A5010', border: `1px solid ${card.live ? '#4F8A6E22' : '#E07A2F28'}`, borderRadius: 100, padding: '2px 9px', fontSize: '0.65rem', fontFamily: 'Hanken Grotesk, sans-serif', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
-                    {card.live ? 'Live' : 'Coming soon'}
-                  </span>
+                  {!card.live && (
+                    <span style={{ position: 'absolute', top: 18, right: 18, background: '#FDF0E6', color: '#9A5010', border: '1px solid #E07A2F28', borderRadius: 100, padding: '2px 9px', fontSize: '0.65rem', fontFamily: 'Hanken Grotesk, sans-serif', fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+                      Coming soon
+                    </span>
+                  )}
                   <div style={{ width: 50, height: 50, borderRadius: '50%', background: card.iconBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transform: isHovered && card.live ? 'scale(1.07)' : 'scale(1)', transition: 'transform 0.22s ease' }}>
                     <card.Icon size={24} color={card.iconColor} strokeWidth={1.8} />
                   </div>

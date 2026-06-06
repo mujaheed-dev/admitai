@@ -7,6 +7,10 @@ import Scholarships from './Scholarships.jsx'
 import Dashboard from './Dashboard.jsx'
 import Universities from './Universities.jsx'
 import Applications from './Applications.jsx'
+import EssayReview from './EssayReview.jsx'
+import Roadmap from './Roadmap.jsx'
+import CvBuilder from './CvBuilder.jsx'
+import InterviewPrep from './InterviewPrep.jsx'
 import AuthModal from './AuthModal.jsx'
 import WelcomeScreen from './WelcomeScreen.jsx'
 import PrivacyPolicy from './PrivacyPolicy.jsx'
@@ -61,7 +65,10 @@ export default function App() {
 
   function openAuth(mode = 'signup') { setAuthModal(mode) }
   async function handleSignOut() { if (supabase) await supabase.auth.signOut() }
-  function handleAuthComplete(type) { setShowWelcome(type) }
+  function handleAuthComplete(type) {
+    if (type === 'new') setShowWelcome('new')
+    // returning users skip the welcome screen — onAuthStateChange + useEffect redirect to dashboard
+  }
 
   function gatedNav(targetView, mode = 'signup') {
     if (user) setView(targetView)
@@ -160,6 +167,50 @@ export default function App() {
         onDeleted={handleAccountDeleted}
       />
     )
+  } else if (view === 'roadmap' && user) {
+    page = (
+      <Roadmap
+        firstName={firstName} user={user}
+        onGoToDashboard={() => setView('dashboard')}
+        onSignOut={handleSignOut}
+        onGoToPrivacy={() => setView('privacy')}
+        onGoToTerms={() => setView('terms')}
+        onDeleted={handleAccountDeleted}
+      />
+    )
+  } else if (view === 'interview-prep' && user) {
+    page = (
+      <InterviewPrep
+        firstName={firstName} user={user}
+        onGoToDashboard={() => setView('dashboard')}
+        onSignOut={handleSignOut}
+        onGoToPrivacy={() => setView('privacy')}
+        onGoToTerms={() => setView('terms')}
+        onDeleted={handleAccountDeleted}
+      />
+    )
+  } else if (view === 'cv-builder' && user) {
+    page = (
+      <CvBuilder
+        firstName={firstName} user={user}
+        onGoToDashboard={() => setView('dashboard')}
+        onSignOut={handleSignOut}
+        onGoToPrivacy={() => setView('privacy')}
+        onGoToTerms={() => setView('terms')}
+        onDeleted={handleAccountDeleted}
+      />
+    )
+  } else if (view === 'essay-review' && user) {
+    page = (
+      <EssayReview
+        firstName={firstName} user={user}
+        onGoToDashboard={() => setView('dashboard')}
+        onSignOut={handleSignOut}
+        onGoToPrivacy={() => setView('privacy')}
+        onGoToTerms={() => setView('terms')}
+        onDeleted={handleAccountDeleted}
+      />
+    )
   } else if (view === 'dashboard' && user) {
     page = (
       <Dashboard
@@ -168,6 +219,10 @@ export default function App() {
         onGoToScholarships={() => setView('scholarships')}
         onGoToUniversities={() => setView('universities')}
         onGoToApplications={() => setView('applications')}
+        onGoToEssayReview={() => setView('essay-review')}
+        onGoToRoadmap={() => setView('roadmap')}
+        onGoToCvBuilder={() => setView('cv-builder')}
+        onGoToInterviewPrep={() => setView('interview-prep')}
         onSignOut={handleSignOut}
         onGoToPrivacy={() => setView('privacy')}
         onGoToTerms={() => setView('terms')}

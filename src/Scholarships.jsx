@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { ChevronDown, Check } from 'lucide-react'
 import { supabase } from './supabase.js'
 import ScholarshipDetail from './ScholarshipDetail.jsx'
 import { getUniversityScholarshipsForPage } from './universitiesData.js'
@@ -322,10 +323,12 @@ export default function Scholarships({
                 </button>
               ))}
             </div>
-            {/* Filter rows */}
-            <FilterRow label="Country" options={COUNTRY_OPTIONS} active={countryFilter} onChange={setCountryFilter} />
-            <FilterRow label="Field"   options={FIELD_OPTIONS}   active={fieldFilter}   onChange={setFieldFilter} />
-            <FilterRow label="Level"   options={LEVEL_OPTIONS}   active={levelFilter}   onChange={setLevelFilter} />
+            {/* Filter dropdowns */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
+              <FilterDropdown label="Country" options={COUNTRY_OPTIONS} active={countryFilter} onChange={setCountryFilter} />
+              <FilterDropdown label="Field"   options={FIELD_OPTIONS}   active={fieldFilter}   onChange={setFieldFilter} />
+              <FilterDropdown label="Level"   options={LEVEL_OPTIONS}   active={levelFilter}   onChange={setLevelFilter} />
+            </div>
             {/* Live count */}
             <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B99', fontSize: '0.875rem', margin: '14px 0 20px' }}>
               <strong style={{ color: '#16302B', fontWeight: 600 }}>{filtered.length}</strong>{' '}
@@ -428,28 +431,68 @@ function GhostBtn({ onClick, children }) {
   )
 }
 
-// ─── filter row ───────────────────────────────────────────────────────────────
+// ─── filter dropdown ──────────────────────────────────────────────────────────
 
-function FilterRow({ label, options, active, onChange }) {
+function FilterDropdown({ label, options, active, onChange }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+  const isFiltered = active !== 'All'
+
+  useEffect(() => {
+    if (!open) return
+    function handler(e) {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [open])
+
   return (
-    <div style={{ marginBottom: 14 }}>
-      <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', color: '#16302B55', display: 'block', marginBottom: 8 }}>
-        {label}
-      </span>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-        {options.map(opt => (
-          <button key={opt} onClick={() => onChange(opt)} style={{
-            background: active === opt ? '#16302B' : '#fff',
-            color: active === opt ? '#F7F4EE' : '#16302B',
-            border: `1.5px solid ${active === opt ? '#16302B' : '#16302B1a'}`,
-            borderRadius: 100, padding: '5px 13px',
-            fontSize: '0.82rem', fontFamily: 'Hanken Grotesk, sans-serif',
-            fontWeight: active === opt ? 600 : 400, cursor: 'pointer', transition: 'all 0.15s ease',
-          }}>
-            {opt}
-          </button>
-        ))}
-      </div>
+    <div ref={ref} style={{ position: 'relative' }}>
+      <button
+        onClick={() => setOpen(v => !v)}
+        style={{
+          display: 'inline-flex', alignItems: 'center', gap: 5,
+          background: isFiltered ? '#16302B' : '#fff',
+          color: isFiltered ? '#F7F4EE' : '#16302B',
+          border: `1.5px solid ${isFiltered ? '#16302B' : '#16302B1a'}`,
+          borderRadius: 100, padding: '7px 14px',
+          fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.82rem',
+          fontWeight: isFiltered ? 600 : 400, cursor: 'pointer',
+          transition: 'all 0.15s',
+        }}
+      >
+        <span>{label}{isFiltered ? `: ${active}` : ''}</span>
+        <ChevronDown size={12} strokeWidth={2} style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.15s', flexShrink: 0 }} />
+      </button>
+      {open && (
+        <div style={{
+          position: 'absolute', left: 0, top: 'calc(100% + 6px)', zIndex: 50,
+          background: '#fff', border: '1px solid #16302B12', borderRadius: 14,
+          boxShadow: '0 8px 32px rgba(22,48,43,0.14)', padding: '6px',
+          minWidth: 190, maxHeight: 280, overflowY: 'auto',
+        }}>
+          {options.map(opt => (
+            <button
+              key={opt}
+              onClick={() => { onChange(opt); setOpen(false) }}
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                width: '100%', textAlign: 'left', padding: '8px 12px', borderRadius: 8,
+                border: 'none', background: active === opt ? '#16302B0a' : 'none',
+                fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.85rem',
+                color: '#16302B', fontWeight: active === opt ? 600 : 400,
+                cursor: 'pointer',
+              }}
+              onMouseEnter={e => { if (active !== opt) e.currentTarget.style.background = '#F7F4EE' }}
+              onMouseLeave={e => { if (active !== opt) e.currentTarget.style.background = 'none' }}
+            >
+              {opt}
+              {active === opt && <Check size={13} color="#4F8A6E" strokeWidth={2.5} />}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
@@ -478,12 +521,13 @@ function ScholarshipCard({ scholarship: s, onSelect, highlighted = false }) {
         transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
         cursor: 'pointer',
         userSelect: 'none',
+        overflow: 'hidden',
       }}
     >
       {/* Name + level + amount row */}
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4" style={{ marginBottom: 10 }}>
-        <div style={{ minWidth: 0 }}>
-          <h2 style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.08rem', fontWeight: 600, margin: '0 0 7px', lineHeight: 1.25 }}>
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4 min-w-0" style={{ marginBottom: 10 }}>
+        <div className="min-w-0" style={{ flex: 1 }}>
+          <h2 className="line-clamp-2" style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.08rem', fontWeight: 600, margin: '0 0 7px', lineHeight: 1.25 }}>
             {s.name}
           </h2>
           <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 7 }}>

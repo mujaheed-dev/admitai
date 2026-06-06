@@ -506,7 +506,6 @@ function BudgetBadge({ flag }) {
       borderRadius: 100, padding: '3px 10px',
       fontSize: '0.75rem', fontFamily: 'Hanken Grotesk, sans-serif', fontWeight: 600,
     }}>
-      <span style={{ width: 6, height: 6, borderRadius: '50%', background: flag.dot, display: 'inline-block', flexShrink: 0 }} />
       {flag.label}
     </span>
   )
