@@ -7,7 +7,6 @@ import ReactMarkdown from 'react-markdown'
 import { supabase } from './supabase.js'
 import ProfileMenu from './ProfileMenu.jsx'
 
-const LIMIT = 2
 const TOTAL_QUESTIONS = 5
 
 // ─── interview types ──────────────────────────────────────────────────────────
@@ -101,7 +100,7 @@ function AnswerInput({ value, onChange, onSubmit, loading, isComplete, inputFocu
               onSubmit(e)
             }
           }}
-          placeholder={isComplete ? 'Interview complete' : loading ? 'Waiting for response…' : 'Type your answer… (Enter to send, Shift+Enter for new line)'}
+          placeholder={isComplete ? 'Interview complete' : loading ? 'Thinking…' : 'Type your answer…'}
           disabled={loading || isComplete}
           style={{
             flex: 1, border: 'none', outline: 'none', background: 'transparent', resize: 'none',
@@ -141,12 +140,8 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
   const [messages,      setMessages]      = useState([])
   const [input,         setInput]         = useState('')
   const [loading,       setLoading]       = useState(false)
-  const [sessionId,     setSessionId]     = useState(null)
   const [isComplete,    setIsComplete]    = useState(false)
-  const [limitReached,  setLimitReached]  = useState(false)
   const [startError,    setStartError]    = useState(null)
-  const [searchesUsed,  setSearchesUsed]  = useState(0)
-  const [upgradeClicked, setUpgradeClicked] = useState(false)
   const [savedInterviews, setSavedInterviews] = useState([])
   const [saving,        setSaving]        = useState(false)
   const [savedCurrentId, setSavedCurrentId] = useState(null)
@@ -157,15 +152,16 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
 
   const typeConfig       = INTERVIEW_TYPES.find(t => t.id === interviewType)
   const questionsAnswered = messages.filter(m => m.role === 'user').length
-  const atLimit          = searchesUsed >= LIMIT
 
-  // ── Load usage + saved interviews ──────────────────────────────────────────
+  // Interview Prep is a paid-only feature — no free uses. No billing system
+  // exists yet, so every account is free and sees the upgrade wall below.
+  // Flip this to a real plan check once payments ship; the flow beneath
+  // reactivates as-is for paid users.
+  const isPaid = false
+
+  // ── Load saved interviews ──────────────────────────────────────────────────
   useEffect(() => {
     if (!user || !supabase) return
-    supabase.from('ai_usage').select('searches_used').eq('user_id', user.id).maybeSingle()
-      .then(({ data }) => { if (data?.searches_used != null) setSearchesUsed(data.searches_used) })
-      .catch(() => {})
-
     supabase.from('user_mock_interviews')
       .select('id, interview_type, messages, created_at')
       .eq('user_id', user.id)
@@ -189,7 +185,7 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
   }, [step, loading, isComplete])
 
   // ── API call helper ────────────────────────────────────────────────────────
-  async function callApi(type, history, sid) {
+  async function callApi(type, history) {
     const { data: { session } } = await supabase.auth.getSession()
     const token = session?.access_token
     if (!token) throw new Error('Not authenticated')
@@ -199,7 +195,7 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ interviewType: type, history, sessionId: sid }),
+        body: JSON.stringify({ interviewType: type, history }),
       }
     )
     return res.json()
@@ -209,9 +205,7 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
   async function startInterview(type) {
     setInterviewType(type)
     setMessages([])
-    setSessionId(null)
     setIsComplete(false)
-    setLimitReached(false)
     setSavedCurrentId(null)
     setInput('')
     setStartError(null)
@@ -219,15 +213,13 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
     setLoading(true)
 
     try {
-      const data = await callApi(type, [], null)
+      const data = await callApi(type, [])
 
-      if (data.limitReached) {
-        setSearchesUsed(data.searchesLimit ?? LIMIT)
-        setLimitReached(true)
+      if (data.paidOnly) {
+        setStep('select')
+        setStartError('Mock interviews are a paid feature — upgrade to start practising.')
       } else {
         setMessages([{ id: 1, role: 'assistant', content: data.reply }])
-        setSessionId(data.sessionId)
-        setSearchesUsed(data.searchesUsed ?? searchesUsed)
         setIsComplete(data.isComplete)
       }
     } catch (err) {
@@ -258,11 +250,10 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
         content: m.content.replace('[INTERVIEW COMPLETE]', '').trim(),
       }))
 
-      const data = await callApi(interviewType, history, sessionId)
+      const data = await callApi(interviewType, history)
 
       const aiMsg = { id: Date.now() + 1, role: 'assistant', content: data.reply }
       setMessages(prev => [...prev, aiMsg])
-      if (data.searchesUsed != null) setSearchesUsed(data.searchesUsed)
       if (data.isComplete) setIsComplete(true)
     } catch (err) {
       console.error('send answer error:', err)
@@ -297,11 +288,9 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
   function handleLoadSaved(saved) {
     setInterviewType(saved.interview_type)
     setMessages((saved.messages ?? []).map((m, i) => ({ ...m, id: i })))
-    setSessionId(null)
     setIsComplete(true)
     setSavedCurrentId(saved.id)
     setInput('')
-    setLimitReached(false)
     setStep('interview')
   }
 
@@ -316,9 +305,7 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
   // ── Reset ──────────────────────────────────────────────────────────────────
   function handleNewInterview() {
     setMessages([])
-    setSessionId(null)
     setIsComplete(false)
-    setLimitReached(false)
     setSavedCurrentId(null)
     setInput('')
     setStep('select')
@@ -401,18 +388,16 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
                 <span style={{ background: typeConfig.bg, color: typeConfig.color, borderRadius: 100, padding: '4px 12px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>
                   {typeConfig.label}
                 </span>
-                {!limitReached && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <div style={{ display: 'flex', gap: 5 }}>
-                      {Array.from({ length: TOTAL_QUESTIONS }).map((_, i) => (
-                        <span key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: i < questionsAnswered ? typeConfig.color : '#16302B18', display: 'inline-block', transition: 'background 0.3s' }} />
-                      ))}
-                    </div>
-                    <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', color: '#16302B55', whiteSpace: 'nowrap' }}>
-                      {isComplete ? 'Complete' : questionsAnswered === 0 ? 'Starting…' : `${questionsAnswered} of ${TOTAL_QUESTIONS} answered`}
-                    </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{ display: 'flex', gap: 5 }}>
+                    {Array.from({ length: TOTAL_QUESTIONS }).map((_, i) => (
+                      <span key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: i < questionsAnswered ? typeConfig.color : '#16302B18', display: 'inline-block', transition: 'background 0.3s' }} />
+                    ))}
                   </div>
-                )}
+                  <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', color: '#16302B55', whiteSpace: 'nowrap' }}>
+                    {isComplete ? 'Complete' : questionsAnswered === 0 ? 'Starting…' : `${questionsAnswered} of ${TOTAL_QUESTIONS} answered`}
+                  </span>
+                </div>
               </div>
             </div>
           )}
@@ -420,30 +405,6 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
           {/* ── Messages ── */}
           <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
             <div className="max-w-3xl mx-auto px-4 sm:px-6 py-5" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-
-              {/* Limit reached */}
-              {limitReached && (
-                <div className="iv-msg" style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                  <InterviewerAvatar />
-                  <div style={{ background: '#fff', border: '1px solid #E07A2F22', borderRadius: '4px 16px 16px 16px', padding: '18px 20px', maxWidth: '85%' }}>
-                    <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '0.975rem', fontWeight: 600, margin: '0 0 6px' }}>
-                      You&apos;ve used your {LIMIT} free AI sessions ✨
-                    </p>
-                    <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', lineHeight: 1.55, margin: '0 0 14px' }}>
-                      Upgrade to practise unlimited mock interviews, anytime.
-                    </p>
-                    {!upgradeClicked ? (
-                      <button onClick={() => setUpgradeClicked(true)} style={{ background: '#E07A2F', color: '#fff', border: 'none', borderRadius: 100, padding: '8px 20px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer' }}>
-                        Upgrade →
-                      </button>
-                    ) : (
-                      <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.8rem', color: '#4F8A6E', fontStyle: 'italic', margin: 0 }}>
-                        Payments are arriving soon — you&apos;ll be among the first to know. 🌱
-                      </p>
-                    )}
-                  </div>
-                </div>
-              )}
 
               {/* Loading initial question */}
               {loading && messages.length === 0 && (
@@ -539,31 +500,29 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
           </div>
 
           {/* ── Input area ── */}
-          {!limitReached && (
-            <div style={{
-              flexShrink: 0,
-              background: '#F7F4EE',
-              borderTop: '1px solid #16302B0e',
-              paddingTop: 12,
-              paddingBottom: 'max(12px, env(safe-area-inset-bottom, 12px))',
-            }}>
-              <div className="max-w-3xl mx-auto px-4 sm:px-6">
-                <AnswerInput
-                  value={input}
-                  onChange={setInput}
-                  onSubmit={handleSend}
-                  loading={loading}
-                  isComplete={isComplete}
-                  inputFocused={inputFocused}
-                  setInputFocused={setInputFocused}
-                  inputRef={inputRef}
-                />
-                <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.7rem', color: '#16302B44', textAlign: 'center', margin: '8px 0 0' }}>
-                  This is practice — take your time and answer honestly.
-                </p>
-              </div>
+          <div style={{
+            flexShrink: 0,
+            background: '#F7F4EE',
+            borderTop: '1px solid #16302B0e',
+            paddingTop: 12,
+            paddingBottom: 'max(12px, env(safe-area-inset-bottom, 12px))',
+          }}>
+            <div className="max-w-3xl mx-auto px-4 sm:px-6">
+              <AnswerInput
+                value={input}
+                onChange={setInput}
+                onSubmit={handleSend}
+                loading={loading}
+                isComplete={isComplete}
+                inputFocused={inputFocused}
+                setInputFocused={setInputFocused}
+                inputRef={inputRef}
+              />
+              <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.7rem', color: '#16302B44', textAlign: 'center', margin: '8px 0 0' }}>
+                This is practice — take your time and answer honestly.
+              </p>
             </div>
-          )}
+          </div>
         </div>
       </>
     )
@@ -607,11 +566,8 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
             <h1 style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 600, lineHeight: 1.2, margin: '0 0 8px' }}>
               Mock interview
             </h1>
-            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.95rem', lineHeight: 1.6, margin: '0 0 6px', maxWidth: 500 }}>
+            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.95rem', lineHeight: 1.6, margin: 0, maxWidth: 500 }}>
               Pick an interview type. The AI acts as a realistic interviewer — asking one question at a time and giving you specific, encouraging feedback on each answer.
-            </p>
-            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B55', fontSize: '0.8rem', margin: 0, lineHeight: 1.5 }}>
-              One mock interview session = 1 AI use. Each session has 5 questions.
             </p>
           </div>
 
@@ -622,74 +578,54 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
             </div>
           )}
 
-          {/* At-limit message */}
-          {atLimit && (
-            <div style={{ background: '#fff', border: '1px solid #E07A2F22', borderRadius: 20, padding: '22px 24px', marginBottom: 24 }}>
-              <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600, margin: '0 0 6px' }}>
-                You&apos;ve used your {LIMIT} free AI sessions ✨
-              </p>
-              <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', margin: '0 0 14px', lineHeight: 1.55 }}>
-                Upgrade to practise unlimited mock interviews, anytime.
-              </p>
-              {!upgradeClicked ? (
-                <button onClick={() => setUpgradeClicked(true)} style={{ background: '#E07A2F', color: '#fff', border: 'none', borderRadius: 100, padding: '8px 20px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer' }}>
-                  Upgrade →
-                </button>
-              ) : (
-                <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.8rem', color: '#4F8A6E', fontStyle: 'italic', margin: 0 }}>
-                  Payments are arriving soon — you&apos;ll be among the first to know. 🌱
-                </p>
-              )}
-            </div>
-          )}
-
-          {/* Type cards */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 36 }} className="iv-fade">
-            {INTERVIEW_TYPES.map(t => (
-              <button
-                key={t.id}
-                onClick={() => !atLimit && startInterview(t.id)}
-                disabled={atLimit}
-                style={{
-                  background: '#fff', borderRadius: 20, border: `1.5px solid ${t.border}`,
-                  padding: '22px 24px', cursor: atLimit ? 'not-allowed' : 'pointer',
-                  textAlign: 'left', display: 'flex', alignItems: 'flex-start', gap: 18,
-                  boxShadow: '0 2px 10px rgba(22,48,43,0.06)',
-                  transition: 'box-shadow 0.2s, transform 0.2s, border-color 0.2s',
-                  opacity: atLimit ? 0.55 : 1,
-                }}
-                onMouseEnter={e => { if (!atLimit) { e.currentTarget.style.boxShadow = '0 10px 36px rgba(22,48,43,0.11)'; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.borderColor = t.color + '44' } }}
-                onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 2px 10px rgba(22,48,43,0.06)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = t.border }}
-              >
-                <div style={{ width: 48, height: 48, borderRadius: '50%', background: t.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <t.Icon size={22} color={t.color} strokeWidth={1.8} />
-                </div>
-                <div style={{ flex: 1 }}>
-                  <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.07em', color: t.color, margin: '0 0 3px' }}>
-                    {t.tagline}
-                  </p>
-                  <h2 style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.08rem', fontWeight: 600, margin: '0 0 5px', lineHeight: 1.2 }}>
-                    {t.label}
-                  </h2>
-                  <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B80', fontSize: '0.875rem', margin: 0, lineHeight: 1.5 }}>
-                    {t.desc}
-                  </p>
-                </div>
-              </button>
-            ))}
-          </div>
-
-          {/* Usage indicator */}
-          {searchesUsed > 0 && !atLimit && (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 7, marginBottom: 28 }}>
-              <div style={{ display: 'flex', gap: 4 }}>
-                {Array.from({ length: LIMIT }).map((_, i) => (
-                  <span key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: i < searchesUsed ? '#4F8A6E' : '#16302B18', display: 'inline-block' }} />
-                ))}
+          {/* ── Paid-only: upgrade wall replaces type selection for free accounts ── */}
+          {!isPaid ? (
+            <div style={{ background: '#fff', borderRadius: 20, border: '1px solid #16302B0d', boxShadow: '0 2px 10px rgba(22,48,43,0.06)', padding: 'clamp(32px, 7vw, 48px) clamp(24px, 6vw, 40px)', textAlign: 'center' }} className="iv-fade">
+              <div style={{ width: 56, height: 56, borderRadius: '50%', background: '#FDF0E6', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+                <Sparkles size={26} color="#E07A2F" strokeWidth={1.8} />
               </div>
-              <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', color: '#16302B55' }}>
-                {searchesUsed} of {LIMIT} free AI sessions used · all features share this limit
-              </span>
+              <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: 'clamp(1.1rem, 3vw, 1.3rem)', fontWeight: 600, lineHeight: 1.4, margin: '0 auto 10px', maxWidth: 440 }}>
+                Find your options free — upgrade when you want the AI to help you get in.
+              </p>
+              <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.92rem', lineHeight: 1.6, margin: '0 auto 24px', maxWidth: 420 }}>
+                ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance.
+              </p>
+              <button disabled style={{ background: '#16302B12', color: '#16302B66', border: 'none', borderRadius: 100, padding: '11px 30px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.9rem', fontWeight: 600, cursor: 'default' }}>
+                Coming soon
+              </button>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 36 }} className="iv-fade">
+              {INTERVIEW_TYPES.map(t => (
+                <button
+                  key={t.id}
+                  onClick={() => startInterview(t.id)}
+                  style={{
+                    background: '#fff', borderRadius: 20, border: `1.5px solid ${t.border}`,
+                    padding: '22px 24px', cursor: 'pointer',
+                    textAlign: 'left', display: 'flex', alignItems: 'flex-start', gap: 18,
+                    boxShadow: '0 2px 10px rgba(22,48,43,0.06)',
+                    transition: 'box-shadow 0.2s, transform 0.2s, border-color 0.2s',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 10px 36px rgba(22,48,43,0.11)'; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.borderColor = t.color + '44' }}
+                  onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 2px 10px rgba(22,48,43,0.06)'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = t.border }}
+                >
+                  <div style={{ width: 48, height: 48, borderRadius: '50%', background: t.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <t.Icon size={22} color={t.color} strokeWidth={1.8} />
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.07em', color: t.color, margin: '0 0 3px' }}>
+                      {t.tagline}
+                    </p>
+                    <h2 style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.08rem', fontWeight: 600, margin: '0 0 5px', lineHeight: 1.2 }}>
+                      {t.label}
+                    </h2>
+                    <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B80', fontSize: '0.875rem', margin: 0, lineHeight: 1.5 }}>
+                      {t.desc}
+                    </p>
+                  </div>
+                </button>
+              ))}
             </div>
           )}
 

@@ -111,6 +111,47 @@ const COUNTRIES = [
     verified: true,
   },
   {
+    id: 'south-africa',
+    country: 'South Africa',
+    flag: '🇿🇦',
+    system: 'Public universities',
+    // Country cost is a GENERAL ESTIMATE. All-in $6k–12k/yr (incl. living) given by user;
+    // tuition floor anchored to Stellenbosch's real ~$2.3k, living derived to keep the
+    // documented invariant allIn = tuition + living. Varies widely by university/city.
+    tuitionLow: 2300,
+    tuitionHigh: 8300,
+    livingCost: 3700,
+    allInLow: 6000,
+    allInHigh: 12000,
+    region: 'Africa',
+    scholarships: 'some',
+    effort: 'medium',
+    sourceName: 'General estimate — varies by university/city',
+    sourceUrl: '',
+    verified: false,
+  },
+  {
+    id: 'egypt',
+    country: 'Egypt',
+    flag: '🇪🇬',
+    system: 'Public & private universities',
+    // GENERAL ESTIMATE. Tuition endpoints anchored to VERIFIED official figures:
+    // low ≈ BUE's cheapest intl programme (~£2.9k ≈ $3k); high ≈ AUC full-time load
+    // (~$22k, derived from the verified $735/credit rate). Living ~$3k is a rough
+    // estimate (Egypt is low-cost); confirm before relying on it.
+    tuitionLow: 3000,
+    tuitionHigh: 22000,
+    livingCost: 3000,
+    allInLow: 6000,
+    allInHigh: 25000,
+    region: 'Africa',
+    scholarships: 'some',
+    effort: 'medium',
+    sourceName: 'General estimate — varies widely by public/private university',
+    sourceUrl: '',
+    verified: false,
+  },
+  {
     id: 'uk',
     country: 'United Kingdom',
     flag: '🇬🇧',

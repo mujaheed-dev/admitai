@@ -4,10 +4,6 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 
-// ─── constants ────────────────────────────────────────────────────────────────
-
-const FREE_LIMIT = 2  // shared with ask-admitai — same ai_usage counter
-
 // ─── system prompt ────────────────────────────────────────────────────────────
 
 const SYSTEM_PROMPT = `You are an experienced and warm university admissions counsellor reviewing a student's personal statement or application essay. Your purpose is to give honest, structured, encouraging feedback that helps the student improve THEIR OWN writing.
@@ -75,17 +71,13 @@ Deno.serve(async (req: Request) => {
     const { data: { user }, error: userError } = await supabase.auth.getUser(token)
     if (userError || !user) return json({ error: 'Unauthorized' }, 401)
 
-    // ── 2. Check shared usage limit ─────────────────────────────────────────
-    const { data: usageRow } = await supabase
-      .from('ai_usage')
-      .select('searches_used')
-      .eq('user_id', user.id)
-      .maybeSingle()
-
-    const searchesUsed = usageRow?.searches_used ?? 0
-
-    if (searchesUsed >= FREE_LIMIT) {
-      return json({ limitReached: true, searchesUsed, searchesLimit: FREE_LIMIT })
+    // ── 2. Paid-only feature — zero free uses, enforced server-side ─────────
+    // No billing system exists yet, so every account is free and this always
+    // returns the upgrade signal. Swap `isPaid` for a real plan/subscription
+    // check once payments ship — the Claude call below will then run for paid users.
+    const isPaid = false
+    if (!isPaid) {
+      return json({ paidOnly: true })
     }
 
     // ── 3. Parse and validate request ───────────────────────────────────────
@@ -132,16 +124,7 @@ Deno.serve(async (req: Request) => {
     const anthropicData = await anthropicRes.json()
     const reply = anthropicData.content?.[0]?.text ?? "I couldn't generate feedback. Please try again."
 
-    // ── 6. Increment shared usage count ─────────────────────────────────────
-    const newCount = searchesUsed + 1
-    await supabase
-      .from('ai_usage')
-      .upsert(
-        { user_id: user.id, searches_used: newCount, updated_at: new Date().toISOString() },
-        { onConflict: 'user_id' },
-      )
-
-    return json({ reply, limitReached: false, searchesUsed: newCount, searchesLimit: FREE_LIMIT })
+    return json({ reply })
   } catch (err) {
     console.error('review-essay error:', err)
     return json({ reply: "Something went wrong on my end. Please try again in a moment." })

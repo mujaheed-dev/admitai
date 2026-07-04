@@ -2,8 +2,6 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 
-const FREE_LIMIT = 2
-
 // ─── interview configuration ─────────────────────────────────────────────────
 
 const TYPE_LABELS: Record<string, string> = {
@@ -96,17 +94,14 @@ Deno.serve(async (req: Request) => {
     const { data: { user }, error: userError } = await supabase.auth.getUser(token)
     if (userError || !user) return json({ error: 'Unauthorized' }, 401)
 
-    const { interviewType, history, sessionId: existingSessionId } = await req.json()
-    const isNewSession = !existingSessionId
+    // Paid-only feature — zero free uses, enforced server-side. No billing
+    // system exists yet, so every account is free and this always returns the
+    // upgrade signal. Swap `isPaid` for a real plan check once payments ship —
+    // the interview flow below will then run for paid users.
+    const isPaid = false
+    if (!isPaid) return json({ paidOnly: true })
 
-    // ── Check limit only at session start ──────────────────────────────────────
-    const { data: usageRow } = await supabase
-      .from('ai_usage').select('searches_used').eq('user_id', user.id).maybeSingle()
-    const searchesUsed = usageRow?.searches_used ?? 0
-
-    if (isNewSession && searchesUsed >= FREE_LIMIT) {
-      return json({ limitReached: true, searchesUsed, searchesLimit: FREE_LIMIT })
-    }
+    const { interviewType, history } = await req.json()
 
     if (!interviewType || !TYPE_LABELS[interviewType]) {
       return json({ error: 'Invalid interview type.' }, 400)
@@ -147,27 +142,7 @@ Deno.serve(async (req: Request) => {
     const reply = anthropicData.content?.[0]?.text ?? "Couldn't generate a response. Please try again."
     const isComplete = reply.includes('[INTERVIEW COMPLETE]')
 
-    // ── Deduct 1 use on new session ────────────────────────────────────────────
-    let finalSearchesUsed = searchesUsed
-    let newSessionId = existingSessionId
-
-    if (isNewSession) {
-      finalSearchesUsed = searchesUsed + 1
-      await supabase.from('ai_usage').upsert(
-        { user_id: user.id, searches_used: finalSearchesUsed, updated_at: new Date().toISOString() },
-        { onConflict: 'user_id' },
-      )
-      newSessionId = crypto.randomUUID()
-    }
-
-    return json({
-      reply,
-      sessionId: newSessionId,
-      isComplete,
-      searchesUsed: finalSearchesUsed,
-      searchesLimit: FREE_LIMIT,
-      limitReached: false,
-    })
+    return json({ reply, isComplete })
   } catch (err) {
     console.error('interview-prep error:', err)
     return json({ reply: "Something went wrong. Please try again in a moment." })

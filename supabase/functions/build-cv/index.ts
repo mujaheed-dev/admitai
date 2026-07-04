@@ -2,8 +2,6 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 
-const FREE_LIMIT = 2
-
 const TYPE_LABELS: Record<string, string> = {
   academic:   'Academic CV',
   scholarship: 'Scholarship Application CV',
@@ -102,10 +100,12 @@ Deno.serve(async (req: Request) => {
     const { data: { user }, error: userError } = await supabase.auth.getUser(token)
     if (userError || !user) return json({ error: 'Unauthorized' }, 401)
 
-    const { data: usageRow } = await supabase
-      .from('ai_usage').select('searches_used').eq('user_id', user.id).maybeSingle()
-    const searchesUsed = usageRow?.searches_used ?? 0
-    if (searchesUsed >= FREE_LIMIT) return json({ limitReached: true, searchesUsed, searchesLimit: FREE_LIMIT })
+    // Paid-only feature — zero free uses, enforced server-side. No billing
+    // system exists yet, so every account is free and this always returns the
+    // upgrade signal. Swap `isPaid` for a real plan check once payments ship —
+    // the Claude call below will then run for paid users.
+    const isPaid = false
+    if (!isPaid) return json({ paidOnly: true })
 
     const { cvType, form } = await req.json()
     if (!cvType || !form?.name?.trim()) return json({ error: 'CV type and name are required.' }, 400)
@@ -132,13 +132,7 @@ Deno.serve(async (req: Request) => {
     const anthropicData = await anthropicRes.json()
     const reply = anthropicData.content?.[0]?.text ?? "Couldn't generate the CV. Please try again."
 
-    const newCount = searchesUsed + 1
-    await supabase.from('ai_usage').upsert(
-      { user_id: user.id, searches_used: newCount, updated_at: new Date().toISOString() },
-      { onConflict: 'user_id' },
-    )
-
-    return json({ reply, limitReached: false, searchesUsed: newCount, searchesLimit: FREE_LIMIT })
+    return json({ reply })
   } catch (err) {
     console.error('build-cv error:', err)
     return json({ reply: "Something went wrong. Please try again in a moment." })

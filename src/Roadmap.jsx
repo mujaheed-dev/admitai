@@ -85,7 +85,6 @@ export default function Roadmap({ firstName, user, onGoToDashboard, onSignOut, o
   const [loading,       setLoading]       = useState(false)
   const [error,         setError]         = useState(null)
   const [searchesUsed,  setSearchesUsed]  = useState(0)
-  const [upgradeClicked, setUpgradeClicked] = useState(false)
   const [savedRoadmaps, setSavedRoadmaps] = useState([])
   const [saving,        setSaving]        = useState(false)
   const [savedCurrentId, setSavedCurrentId] = useState(null)
@@ -244,21 +243,15 @@ export default function Roadmap({ firstName, user, onGoToDashboard, onSignOut, o
           {/* ── Upgrade banner ── */}
           {atLimit && (
             <div style={{ background: '#FDF0E6', border: '1px solid #E07A2F22', borderRadius: 20, padding: '22px 24px', marginBottom: 28 }}>
-              <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600, margin: '0 0 6px', lineHeight: 1.3 }}>
-                You&apos;ve used your {LIMIT} free AI roadmaps ✨
+              <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600, margin: '0 0 6px', lineHeight: 1.35 }}>
+                Find your options free — upgrade when you want the AI to help you get in.
               </p>
               <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', lineHeight: 1.55, margin: '0 0 14px' }}>
-                Upgrade to generate unlimited roadmaps — new countries, different fields, updated plans.
+                ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance.
               </p>
-              {!upgradeClicked ? (
-                <button onClick={() => setUpgradeClicked(true)} style={{ background: '#E07A2F', color: '#fff', border: 'none', borderRadius: 100, padding: '8px 20px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer' }}>
-                  Upgrade →
-                </button>
-              ) : (
-                <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.8rem', color: '#4F8A6E', fontStyle: 'italic', margin: 0 }}>
-                  Payments are arriving soon — you&apos;ll be among the first to know. 🌱
-                </p>
-              )}
+              <button disabled style={{ background: '#16302B12', color: '#16302B66', border: 'none', borderRadius: 100, padding: '8px 20px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, cursor: 'default' }}>
+                Coming soon
+              </button>
             </div>
           )}
 
@@ -337,7 +330,7 @@ export default function Roadmap({ firstName, user, onGoToDashboard, onSignOut, o
                       ))}
                     </div>
                     <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', color: atLimit ? '#9A5010' : '#16302B55' }}>
-                      {searchesUsed} of {LIMIT} free roadmaps used
+                      {searchesUsed} of {LIMIT} free AI uses used · shared with AI chat
                     </span>
                   </div>
                 )}

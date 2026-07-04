@@ -1,10 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { ArrowLeft, CheckCircle2, AlignLeft, Eye, Zap, BookOpen, Lightbulb, Sparkles } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { supabase } from './supabase.js'
 import ProfileMenu from './ProfileMenu.jsx'
-
-const LIMIT = 2
 
 // ─── section config ───────────────────────────────────────────────────────────
 
@@ -76,21 +74,16 @@ export default function EssayReview({ firstName, user, onGoToDashboard, onSignOu
   const [feedback,       setFeedback]       = useState(null)
   const [loading,        setLoading]        = useState(false)
   const [error,          setError]          = useState(null)
-  const [searchesUsed,   setSearchesUsed]   = useState(0)
-  const [upgradeClicked, setUpgradeClicked] = useState(false)
   const feedbackRef = useRef(null)
 
-  const wc = wordCount(essay)
-  const atLimit = searchesUsed >= LIMIT
-  const canSubmit = wc >= 30 && !loading && !atLimit
+  // Essay Review is a paid-only feature — no free uses. No billing system
+  // exists yet, so every account is free and sees the upgrade wall below.
+  // Flip this to a real plan check once payments ship; the form beneath
+  // reactivates as-is for paid users.
+  const isPaid = false
 
-  // Load usage count on mount
-  useEffect(() => {
-    if (!user || !supabase) return
-    supabase.from('ai_usage').select('searches_used').eq('user_id', user.id).maybeSingle()
-      .then(({ data }) => { if (data?.searches_used != null) setSearchesUsed(data.searches_used) })
-      .catch(() => {})
-  }, [user])
+  const wc = wordCount(essay)
+  const canSubmit = wc >= 30 && !loading
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -107,14 +100,9 @@ export default function EssayReview({ firstName, user, onGoToDashboard, onSignOu
 
       if (fnError) throw fnError
 
-      if (data?.limitReached) {
-        setSearchesUsed(data.searchesLimit ?? LIMIT)
-      } else {
-        if (data?.searchesUsed != null) setSearchesUsed(data.searchesUsed)
-        setFeedback(data?.reply ?? 'Unable to generate feedback — please try again.')
-        // Scroll to feedback after a short delay
-        setTimeout(() => feedbackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100)
-      }
+      setFeedback(data?.reply ?? 'Unable to generate feedback — please try again.')
+      // Scroll to feedback after a short delay
+      setTimeout(() => feedbackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100)
     } catch {
       setError('Something went wrong. Please try again.')
     } finally {
@@ -178,31 +166,23 @@ export default function EssayReview({ firstName, user, onGoToDashboard, onSignOu
             </p>
           </div>
 
-          {/* ── Upgrade banner (at limit) ── */}
-          {atLimit && (
-            <div style={{ background: '#FDF0E6', border: '1px solid #E07A2F22', borderRadius: 20, padding: '22px 24px', marginBottom: 28 }}>
-              <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600, margin: '0 0 6px', lineHeight: 1.3 }}>
-                You&apos;ve used your {LIMIT} free AI reviews ✨
+          {/* ── Paid-only: upgrade wall replaces the form for free accounts ── */}
+          {!isPaid ? (
+            <div style={{ background: '#fff', borderRadius: 20, border: '1px solid #16302B0d', boxShadow: '0 2px 10px rgba(22,48,43,0.06)', padding: 'clamp(32px, 7vw, 48px) clamp(24px, 6vw, 40px)', textAlign: 'center', marginBottom: 24 }}>
+              <div style={{ width: 56, height: 56, borderRadius: '50%', background: '#FDF0E6', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+                <Sparkles size={26} color="#E07A2F" strokeWidth={1.8} />
+              </div>
+              <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: 'clamp(1.1rem, 3vw, 1.3rem)', fontWeight: 600, lineHeight: 1.4, margin: '0 auto 10px', maxWidth: 440 }}>
+                Find your options free — upgrade when you want the AI to help you get in.
               </p>
-              <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', lineHeight: 1.55, margin: '0 0 14px' }}>
-                Upgrade to keep getting feedback on your essays — unlimited reviews, anytime.
+              <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.92rem', lineHeight: 1.6, margin: '0 auto 24px', maxWidth: 420 }}>
+                ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance.
               </p>
-              {!upgradeClicked ? (
-                <button
-                  onClick={() => setUpgradeClicked(true)}
-                  style={{ background: '#E07A2F', color: '#fff', border: 'none', borderRadius: 100, padding: '8px 20px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer' }}
-                >
-                  Upgrade →
-                </button>
-              ) : (
-                <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.8rem', color: '#4F8A6E', fontStyle: 'italic', margin: 0 }}>
-                  Payments are arriving soon — you&apos;ll be among the first to know. 🌱
-                </p>
-              )}
+              <button disabled style={{ background: '#16302B12', color: '#16302B66', border: 'none', borderRadius: 100, padding: '11px 30px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.9rem', fontWeight: 600, cursor: 'default' }}>
+                Coming soon
+              </button>
             </div>
-          )}
-
-          {/* ── Input card ── */}
+          ) : (
           <div style={{ background: '#fff', borderRadius: 20, border: '1px solid #16302B0d', boxShadow: '0 2px 10px rgba(22,48,43,0.06)', padding: '24px', marginBottom: 24 }}>
 
             <form onSubmit={handleSubmit}>
@@ -253,23 +233,11 @@ export default function EssayReview({ firstName, user, onGoToDashboard, onSignOu
                 />
               </div>
 
-              {/* Word count + usage */}
+              {/* Word count */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
                 <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem', color: wc < 30 && wc > 0 ? '#9A5010' : '#16302B44' }}>
                   {wc} word{wc !== 1 ? 's' : ''}{wc > 0 && wc < 30 ? ' — paste at least 30 words to review' : ''}
                 </span>
-                {searchesUsed > 0 && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <div style={{ display: 'flex', gap: 4 }}>
-                      {Array.from({ length: LIMIT }).map((_, i) => (
-                        <span key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: i < searchesUsed ? (atLimit ? '#E07A2F' : '#4F8A6E') : '#16302B18', display: 'inline-block', transition: 'background 0.2s' }} />
-                      ))}
-                    </div>
-                    <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', color: atLimit ? '#9A5010' : '#16302B55' }}>
-                      {searchesUsed} of {LIMIT} free reviews used
-                    </span>
-                  </div>
-                )}
               </div>
 
               {/* Submit button */}
@@ -296,7 +264,7 @@ export default function EssayReview({ firstName, user, onGoToDashboard, onSignOu
                 ) : (
                   <>
                     <Sparkles size={16} strokeWidth={2} />
-                    {atLimit ? 'Upgrade to review' : 'Review my essay'}
+                    Review my essay
                   </>
                 )}
               </button>
@@ -307,6 +275,7 @@ export default function EssayReview({ firstName, user, onGoToDashboard, onSignOu
               AdmitAI gives feedback only — it won&apos;t write or rewrite your essay. Your words, your voice.
             </p>
           </div>
+          )}
 
           {/* ── Error ── */}
           {error && (

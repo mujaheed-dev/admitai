@@ -44,7 +44,7 @@ const CARDS = [
 
 // ─── shared message bubble renderer ──────────────────────────────────────────
 
-function MessageBubble({ msg, LIMIT, upgradeClicked, setUpgradeClicked, handleRetry, loading }) {
+function MessageBubble({ msg, handleRetry, loading }) {
   if (msg.role === 'user') {
     return (
       <div>
@@ -96,21 +96,15 @@ function MessageBubble({ msg, LIMIT, upgradeClicked, setUpgradeClicked, handleRe
       <div style={{ display: 'flex', gap: 9, alignItems: 'flex-start' }}>
         <AiAvatar color="#E07A2F" bgColor="rgba(224,122,47,0.15)" />
         <div style={{ background: '#fff', border: '1px solid #E07A2F22', borderRadius: '4px 16px 16px 16px', padding: '16px 18px', maxWidth: '85%' }}>
-          <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '0.975rem', fontWeight: 600, margin: '0 0 6px', lineHeight: 1.3 }}>
-            You&apos;ve used your {LIMIT} free AI chats ✨
+          <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '0.975rem', fontWeight: 600, margin: '0 0 6px', lineHeight: 1.35 }}>
+            Find your options free — upgrade when you want the AI to help you get in.
           </p>
           <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', lineHeight: 1.55, margin: '0 0 14px' }}>
-            Upgrade to keep getting personalised guidance — unlimited questions, anytime.
+            ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance.
           </p>
-          {!upgradeClicked ? (
-            <button onClick={() => setUpgradeClicked(true)} style={{ background: '#E07A2F', color: '#fff', border: 'none', borderRadius: 100, padding: '8px 20px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer' }}>
-              Upgrade →
-            </button>
-          ) : (
-            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.8rem', color: '#4F8A6E', fontStyle: 'italic', margin: 0 }}>
-              Payments are arriving soon — you&apos;ll be among the first to know. 🌱
-            </p>
-          )}
+          <button disabled style={{ background: '#16302B12', color: '#16302B66', border: 'none', borderRadius: 100, padding: '8px 20px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, cursor: 'default' }}>
+            Coming soon
+          </button>
         </div>
       </div>
     )
@@ -203,7 +197,7 @@ function InputBar({ input, setInput, loading, atLimit, hasMessages, inputFocused
             ))}
           </div>
           <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', color: searchesUsed >= LIMIT ? '#9A5010' : '#16302B55' }}>
-            {searchesUsed} of {LIMIT} free AI chats used{searchesUsed >= LIMIT && ' · Upgrade for unlimited'}
+            {searchesUsed} of {LIMIT} free AI uses used · shared with the roadmap generator{searchesUsed >= LIMIT && ' · Upgrade for unlimited'}
           </span>
         </div>
       )}
@@ -222,7 +216,6 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
   const [loading,        setLoading]        = useState(false)
   const [inputFocused,   setInputFocused]   = useState(false)
   const [searchesUsed,   setSearchesUsed]   = useState(0)
-  const [upgradeClicked,  setUpgradeClicked]  = useState(false)
   const [isChatOpen,      setIsChatOpen]      = useState(false)
   const [currentSessionId, setCurrentSessionId] = useState(null)
   const [showHistory,     setShowHistory]     = useState(false)
@@ -399,7 +392,6 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
     setMessages([])
     setCurrentSessionId(null)
     setIsChatOpen(false)
-    setUpgradeClicked(false)
     setShowHistory(false)
   }
 
@@ -581,7 +573,7 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
               <div className="max-w-3xl mx-auto px-4 sm:px-6 py-5" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 {messages.map(msg => (
                   <div key={msg.id} className="dash-msg">
-                    <MessageBubble msg={msg} LIMIT={LIMIT} upgradeClicked={upgradeClicked} setUpgradeClicked={setUpgradeClicked} handleRetry={handleRetry} loading={loading} />
+                    <MessageBubble msg={msg} handleRetry={handleRetry} loading={loading} />
                   </div>
                 ))}
 

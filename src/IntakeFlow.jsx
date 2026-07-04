@@ -37,6 +37,7 @@ const QUESTIONS = [
       { label: 'North America', value: 'North America' },
       { label: 'Asia', value: 'Asia' },
       { label: 'Middle East', value: 'Middle East' },
+      { label: 'Africa', value: 'Africa' },
       { label: 'Open to anywhere', value: 'anywhere' },
     ],
   },

@@ -8,8 +8,6 @@ import ReactMarkdown from 'react-markdown'
 import { supabase } from './supabase.js'
 import ProfileMenu from './ProfileMenu.jsx'
 
-const LIMIT = 2
-
 // ─── CV types ─────────────────────────────────────────────────────────────────
 
 const CV_TYPES = [
@@ -214,8 +212,6 @@ export default function CvBuilder({ firstName, user, onGoToDashboard, onSignOut,
   const [generatedCv,   setGeneratedCv]  = useState(null)
   const [loading,       setLoading]      = useState(false)
   const [error,         setError]        = useState(null)
-  const [searchesUsed,  setSearchesUsed] = useState(0)
-  const [upgradeClicked, setUpgradeClicked] = useState(false)
   const [savedCvs,      setSavedCvs]    = useState([])
   const [saving,        setSaving]      = useState(false)
   const [savedCurrentId, setSavedCurrentId] = useState(null)
@@ -224,16 +220,20 @@ export default function CvBuilder({ firstName, user, onGoToDashboard, onSignOut,
 
   const topRef = useRef(null)
 
-  const atLimit    = searchesUsed >= LIMIT
+  // CV Builder is a paid-only feature — no free uses. No billing system exists
+  // yet, so every account is free and sees the upgrade wall below. Flip this to
+  // a real plan check once payments ship; the flow beneath reactivates as-is.
+  const isPaid = false
+
   const typeConfig = CV_TYPES.find(t => t.id === cvType)
 
-  // ── Load usage + saved CVs ───────────────────────────────────────────────────
+  // shellProps is passed to the module-level PageShell (defined outside this component
+  // so its identity stays stable across re-renders — prevents focus loss on input)
+  const shellProps = { topRef, onGoToDashboard, user, firstName, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }
+
+  // ── Load saved CVs ───────────────────────────────────────────────────────────
   useEffect(() => {
     if (!user || !supabase) return
-    supabase.from('ai_usage').select('searches_used').eq('user_id', user.id).maybeSingle()
-      .then(({ data }) => { if (data?.searches_used != null) setSearchesUsed(data.searches_used) })
-      .catch(() => {})
-
     supabase.from('user_cvs').select('id, cv_type, cv_name, cv_text, form_data, created_at')
       .eq('user_id', user.id).order('created_at', { ascending: false })
       .then(({ data }) => { if (data) setSavedCvs(data) })
@@ -255,7 +255,7 @@ export default function CvBuilder({ firstName, user, onGoToDashboard, onSignOut,
   // ── Generate ─────────────────────────────────────────────────────────────────
   async function handleGenerate(e) {
     e.preventDefault()
-    if (loading || atLimit) return
+    if (loading) return
     if (!form.name.trim()) { setFormError('Please enter your full name.'); return }
     if (!form.education.trim() && !form.experience.trim() && !form.achievements.trim()) {
       setFormError('Please fill in at least your Education or Experience before generating.'); return
@@ -280,11 +280,9 @@ export default function CvBuilder({ firstName, user, onGoToDashboard, onSignOut,
       )
       const data = await res.json()
 
-      if (data.limitReached) {
-        setSearchesUsed(data.searchesLimit ?? LIMIT)
-        setError('limit')
+      if (data.paidOnly) {
+        setError('Upgrade to generate a CV with AI.')
       } else {
-        if (data.searchesUsed != null) setSearchesUsed(data.searchesUsed)
         setGeneratedCv(data.reply)
         setStep(3)
         setTimeout(() => topRef.current?.scrollIntoView({ behavior: 'smooth' }), 100)
@@ -362,9 +360,36 @@ export default function CvBuilder({ firstName, user, onGoToDashboard, onSignOut,
     if (savedCurrentId === id) setSavedCurrentId(null)
   }
 
-  // shellProps is passed to the module-level PageShell (defined outside this component
-  // so its identity stays stable across re-renders — prevents focus loss on input)
-  const shellProps = { topRef, onGoToDashboard, user, firstName, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }
+  // ─────────────────────────────────────────────────────────────────────────────
+  // PAID-ONLY UPGRADE WALL — shown immediately, before any form or generation
+  // ─────────────────────────────────────────────────────────────────────────────
+  if (!isPaid) return (
+    <PageShell {...shellProps}>
+      <div style={{ marginBottom: 32 }}>
+        <h1 style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 600, lineHeight: 1.2, margin: '0 0 8px' }}>
+          Build your CV
+        </h1>
+        <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.95rem', lineHeight: 1.6, margin: 0, maxWidth: 500 }}>
+          Choose the type of CV you need. The AI will structure and phrase your real information professionally — nothing is invented.
+        </p>
+      </div>
+
+      <div style={{ background: '#fff', borderRadius: 20, border: '1px solid #16302B0d', boxShadow: '0 2px 10px rgba(22,48,43,0.06)', padding: 'clamp(32px, 7vw, 48px) clamp(24px, 6vw, 40px)', textAlign: 'center' }}>
+        <div style={{ width: 56, height: 56, borderRadius: '50%', background: '#FDF0E6', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+          <Sparkles size={26} color="#E07A2F" strokeWidth={1.8} />
+        </div>
+        <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: 'clamp(1.1rem, 3vw, 1.3rem)', fontWeight: 600, lineHeight: 1.4, margin: '0 auto 10px', maxWidth: 440 }}>
+          Find your options free — upgrade when you want the AI to help you get in.
+        </p>
+        <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.92rem', lineHeight: 1.6, margin: '0 auto 24px', maxWidth: 420 }}>
+          ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance.
+        </p>
+        <button disabled style={{ background: '#16302B12', color: '#16302B66', border: 'none', borderRadius: 100, padding: '11px 30px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.9rem', fontWeight: 600, cursor: 'default' }}>
+          Coming soon
+        </button>
+      </div>
+    </PageShell>
+  )
 
   // ─────────────────────────────────────────────────────────────────────────────
   // STEP 1 — Type selection
@@ -554,42 +579,23 @@ export default function CvBuilder({ firstName, user, onGoToDashboard, onSignOut,
             {formError}
           </p>
         )}
-        {error && error !== 'limit' && (
+        {error && (
           <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.85rem', color: '#9B2335', margin: '0 0 16px', background: '#FDF2F4', borderRadius: 10, padding: '10px 14px' }}>
             {error}
           </p>
-        )}
-        {error === 'limit' && (
-          <div style={{ background: '#fff', border: '1px solid #E07A2F22', borderRadius: 16, padding: '20px 22px', marginBottom: 16 }}>
-            <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600, margin: '0 0 6px' }}>
-              You&apos;ve used your {LIMIT} free AI uses ✨
-            </p>
-            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', margin: '0 0 14px' }}>
-              Upgrade to keep generating — unlimited, anytime.
-            </p>
-            {!upgradeClicked ? (
-              <button type="button" onClick={() => setUpgradeClicked(true)} style={{ background: '#E07A2F', color: '#fff', border: 'none', borderRadius: 100, padding: '8px 20px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer' }}>
-                Upgrade →
-              </button>
-            ) : (
-              <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.8rem', color: '#4F8A6E', fontStyle: 'italic', margin: 0 }}>
-                Payments are arriving soon — you&apos;ll be among the first to know. 🌱
-              </p>
-            )}
-          </div>
         )}
 
         {/* Submit */}
         <button
           type="submit"
-          disabled={loading || atLimit}
+          disabled={loading}
           style={{
-            width: '100%', padding: '14px 24px', background: (loading || atLimit) ? '#16302B44' : '#16302B',
-            color: '#F7F4EE', border: 'none', borderRadius: 100, cursor: (loading || atLimit) ? 'default' : 'pointer',
+            width: '100%', padding: '14px 24px', background: loading ? '#16302B44' : '#16302B',
+            color: '#F7F4EE', border: 'none', borderRadius: 100, cursor: loading ? 'default' : 'pointer',
             fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.975rem', fontWeight: 600,
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9, transition: 'opacity 0.15s',
           }}
-          onMouseEnter={e => { if (!loading && !atLimit) e.currentTarget.style.opacity = '0.88' }}
+          onMouseEnter={e => { if (!loading) e.currentTarget.style.opacity = '0.88' }}
           onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
         >
           {loading ? (
@@ -604,20 +610,6 @@ export default function CvBuilder({ firstName, user, onGoToDashboard, onSignOut,
             </>
           )}
         </button>
-
-        {/* Usage pips */}
-        {searchesUsed > 0 && (
-          <div style={{ marginTop: 12, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 6 }}>
-            <div style={{ display: 'flex', gap: 4 }}>
-              {Array.from({ length: LIMIT }).map((_, i) => (
-                <span key={i} style={{ width: 7, height: 7, borderRadius: '50%', background: i < searchesUsed ? (searchesUsed >= LIMIT ? '#E07A2F' : '#4F8A6E') : '#16302B18', display: 'inline-block', transition: 'background 0.2s' }} />
-              ))}
-            </div>
-            <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', color: searchesUsed >= LIMIT ? '#9A5010' : '#16302B55' }}>
-              {searchesUsed} of {LIMIT} free AI uses · all features share this limit
-            </span>
-          </div>
-        )}
       </form>
     </PageShell>
   )
@@ -682,9 +674,9 @@ export default function CvBuilder({ firstName, user, onGoToDashboard, onSignOut,
       <div style={{ marginBottom: 14, display: 'flex', justifyContent: 'flex-end' }}>
         <button
           onClick={handleGenerate}
-          disabled={loading || atLimit}
-          style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'none', border: '1.5px solid #16302B1a', borderRadius: 100, padding: '6px 14px', cursor: (loading || atLimit) ? 'default' : 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem', fontWeight: 500, color: '#16302B88', transition: 'all 0.15s' }}
-          onMouseEnter={e => { if (!loading && !atLimit) { e.currentTarget.style.borderColor = '#16302B44'; e.currentTarget.style.color = '#16302B' } }}
+          disabled={loading}
+          style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'none', border: '1.5px solid #16302B1a', borderRadius: 100, padding: '6px 14px', cursor: loading ? 'default' : 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem', fontWeight: 500, color: '#16302B88', transition: 'all 0.15s' }}
+          onMouseEnter={e => { if (!loading) { e.currentTarget.style.borderColor = '#16302B44'; e.currentTarget.style.color = '#16302B' } }}
           onMouseLeave={e => { e.currentTarget.style.borderColor = '#16302B1a'; e.currentTarget.style.color = '#16302B88' }}
         >
           <RotateCcw size={12} strokeWidth={2.5} />
