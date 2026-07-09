@@ -2,7 +2,7 @@
 // Runs in Supabase's Deno runtime.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
-import { ADMITAI_VERIFIED_DATA } from '../_shared/admitai-data.ts'
+import { buildAdmitaiContext } from '../_shared/admitai-data.ts'
 
 const FREE_LIMIT = 2  // shared with ask-admitai — same ai_usage counter
 
@@ -14,7 +14,7 @@ const SYSTEM_PROMPT = `You are AdmitAI, a warm, knowledgeable, and encouraging u
 
 1. VERIFIED DATA FIRST: You have AdmitAI's verified reference data at the bottom of this prompt. When the student's target country appears in that data, USE IT and clearly label it as verified (e.g. "AdmitAI verified data shows…" or "[VERIFIED]").
 
-2. HONEST ABOUT GAPS: For any country, university, or specific detail NOT in the verified data, give helpful general guidance but make it CLEARLY obvious this is general information — not AdmitAI-verified. Example: "We don't have verified data for Iran yet — here's general guidance, but please confirm everything with official sources before acting on it."
+2. HONEST ABOUT GAPS: The data below is an extract for the student's target country; a coverage index lists the other countries AdmitAI holds. For any country, university, or specific detail NOT in the verified data, give helpful general guidance but make it CLEARLY obvious this is general information — not AdmitAI-verified. Example: "We don't have verified data for Brazil yet — here's general guidance, but please confirm everything with official sources before acting on it."
 
 3. NEVER INVENT: Do NOT state specific tuition figures, exact application deadlines, specific scholarship amounts, or acceptance rates for anything not in the verified data. Use "typically", "generally", "varies widely" and direct the student to official sources.
 
@@ -45,10 +45,7 @@ General student visa process for this country: key steps, typical documents, est
 If verified data includes scholarships for this country: list them with key details (amount, eligibility, deadline, how to apply). If not: describe 3–4 types of funding commonly available (government, university merit, bilateral, external) and name the best search resources.
 
 ## Your first 3 steps
-Three specific, concrete, achievable actions the student can take within the next 2 weeks. Start each with a strong verb (Research, Register, Contact, Book, Download, etc.). Make them specific — not generic advice.
-
-━━━ ADMITAI VERIFIED REFERENCE DATA ━━━
-${ADMITAI_VERIFIED_DATA}`
+Three specific, concrete, achievable actions the student can take within the next 2 weeks. Start each with a strong verb (Research, Register, Contact, Book, Download, etc.). Make them specific — not generic advice.`
 
 // ─── handler ──────────────────────────────────────────────────────────────────
 
@@ -103,12 +100,18 @@ Deno.serve(async (req: Request) => {
       return json({ reply: "The AI isn't configured yet — please contact support." })
     }
 
-    // ── 4. Build user message ────────────────────────────────────────────────
+    // ── 4. Build user message + relevant data extract ───────────────────────
     const userMessage =
       `Generate a personalised study-abroad roadmap for a student with the following details:\n` +
       `- Field of study: ${field.trim()}\n` +
       `- Target country: ${country.trim()}\n` +
       `- Study level: ${level.trim()}`
+
+    // Retrieval: inject only the target country's verified data (plus the
+    // coverage index) rather than the whole ~50k-token dataset.
+    const system =
+      SYSTEM_PROMPT + '\n\n━━━ ADMITAI VERIFIED REFERENCE DATA (RELEVANT EXTRACT) ━━━\n' +
+      buildAdmitaiContext(`${country.trim()} ${field.trim()} ${level.trim()}`)
 
     // ── 5. Call Claude Haiku ─────────────────────────────────────────────────
     const anthropicRes = await fetch('https://api.anthropic.com/v1/messages', {
@@ -121,7 +124,7 @@ Deno.serve(async (req: Request) => {
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
         max_tokens: 2000,
-        system: SYSTEM_PROMPT,
+        system,
         messages: [{ role: 'user', content: userMessage }],
       }),
     })

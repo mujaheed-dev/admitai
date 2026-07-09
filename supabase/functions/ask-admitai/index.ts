@@ -3,7 +3,7 @@
 // for Deno globals (Deno.serve, Deno.env) — these are valid at runtime.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
-import { ADMITAI_VERIFIED_DATA } from '../_shared/admitai-data.ts'
+import { buildAdmitaiContext } from '../_shared/admitai-data.ts'
 
 // ─── constants ────────────────────────────────────────────────────────────────
 
@@ -37,12 +37,15 @@ Entries marked [VERIFIED] come from official government or university sources. U
 they are not yet confirmed.
 
 RULE 2 — HONESTY ABOUT GAPS:
-If asked about a country, scholarship, or university that is NOT in the AdmitAI Verified Data below,
-say something like: "I don't have AdmitAI-verified data on [X] yet — here's what I know from general
-knowledge, but please confirm with the official source."
-Then give helpful general guidance — but NEVER invent or state specific tuition figures, scholarship
-amounts, acceptance rates, or deadlines for entries not in our data. Say "typically" or "generally"
-and steer the student to the official source.
+The data below is an EXTRACT selected as relevant to this conversation; a COVERAGE INDEX at the end
+lists what else AdmitAI holds. If asked about something in the coverage index but not in this extract,
+say AdmitAI has verified data on it and invite the student to name the country/university directly so
+you can pull the details next turn. If asked about something NOT in the extract OR the index, say:
+"I don't have AdmitAI-verified data on [X] yet — here's what I know from general knowledge, but please
+confirm with the official source."
+Either way, NEVER invent or state specific tuition figures, scholarship amounts, acceptance rates, or
+deadlines that are not written in the extract below. Say "typically" or "generally" and steer the
+student to the official source.
 
 RULE 3 — ACCURACY OVER COMPLETENESS:
 Always note that even verified figures can change year to year, and the student should confirm before
@@ -71,10 +74,7 @@ HARD GUARDRAILS (never break these):
 - NEVER write application essays from scratch. You can discuss what makes a strong essay, give
   feedback on a draft the student shares, or help structure ideas — but never produce a complete essay.
 - ALWAYS admit when unsure. "I don't have reliable data on that" is far better than guessing.
-- When discussing costs, always note they change yearly and the student must verify before applying.
-
-━━━ ADMITAI VERIFIED REFERENCE DATA ━━━
-${ADMITAI_VERIFIED_DATA}`
+- When discussing costs, always note they change yearly and the student must verify before applying.`
 
 // ─── handler ──────────────────────────────────────────────────────────────────
 
@@ -146,6 +146,19 @@ Deno.serve(async (req: Request) => {
       { role: 'user', content: message.trim() },
     ]
 
+    // Retrieval: select only the verified-data entries relevant to what the
+    // student has been talking about (current message + recent user turns),
+    // instead of injecting the whole ~50k-token dataset on every request.
+    const retrievalQuery = trimmedHistory
+      .filter((m) => m.role === 'user')
+      .slice(-3)
+      .map((m) => m.content)
+      .concat(message.trim())
+      .join('\n')
+    const system =
+      SYSTEM_PROMPT + '\n\n━━━ ADMITAI VERIFIED REFERENCE DATA (RELEVANT EXTRACT) ━━━\n' +
+      buildAdmitaiContext(retrievalQuery)
+
     const anthropicRes = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -156,7 +169,7 @@ Deno.serve(async (req: Request) => {
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
         max_tokens: 1024,
-        system: SYSTEM_PROMPT,
+        system,
         messages,
       }),
     })

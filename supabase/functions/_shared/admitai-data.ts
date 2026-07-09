@@ -2,10 +2,13 @@
 // AdmitAI verified reference data — injected into the AI's system prompt.
 //
 // NOTE ON SCALE:
-//   The dataset now covers ~20 countries, ~60 scholarships, ~249 detailed
-//   universities in one context block — roughly 40,000–54,000 tokens per request.
-//   ⚠ The retrieval strategy below is now overdue — build it before adding
-//   more countries.
+//   The dataset covers ~20 countries, ~60 scholarships, ~249 detailed
+//   universities (~40,000–54,000 tokens if injected whole).
+//
+//   RETRIEVAL: use buildAdmitaiContext(query) (bottom of this file) instead of
+//   injecting ADMITAI_VERIFIED_DATA directly. It selects only the country
+//   blocks, scholarships and university entries relevant to the query
+//   (plus a coverage index of everything else), keeping requests small.
 //   (The frontend also lists ~40 extra Malaysian universities as light entries —
 //   those are deliberately NOT included here to keep token costs down.)
 //
@@ -2218,3 +2221,233 @@ University of South Africa (UNISA) — Pretoria (DISTANCE learning), South Afric
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
 `
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Retrieval layer
+//
+// buildAdmitaiContext(query) returns a trimmed extract of the verified data:
+//   • the destination blocks, scholarships and university entries whose
+//     country (or name) is mentioned in the query,
+//   • a compact coverage index of everything else (so the model knows what
+//     data exists and never wrongly claims "we have no data on X"),
+//   • or, when the query names nothing we cover, all destination blocks as a
+//     general overview (still far smaller than the full dataset).
+// Pure string processing — no dependencies, safe in the Deno edge runtime.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const COUNTRY_ALIASES: Record<string, string[]> = {
+  'Malaysia': ['malaysia', 'malaysian', 'kuala lumpur', 'penang'],
+  'Germany': ['germany', 'german', 'deutschland', 'munich', 'berlin', 'aachen', 'heidelberg'],
+  'Netherlands': ['netherlands', 'dutch', 'holland', 'amsterdam', 'delft', 'maastricht', 'studielink'],
+  'UAE': ['uae', 'emirates', 'emirati', 'dubai', 'abu dhabi', 'sharjah', 'ajman'],
+  'Ireland': ['ireland', 'irish', 'dublin'],
+  'Canada': ['canada', 'canadian', 'toronto', 'vancouver', 'montreal', 'ontario', 'quebec'],
+  'UK': ['uk', 'united kingdom', 'britain', 'british', 'england', 'scotland', 'scottish', 'wales', 'welsh', 'london', 'oxford', 'cambridge', 'ucas'],
+  'South Africa': ['south africa', 'south african', 'sadc', 'johannesburg', 'cape town', 'pretoria'],
+  'Egypt': ['egypt', 'egyptian', 'cairo'],
+  'Qatar': ['qatar', 'qatari', 'doha', 'education city'],
+  'Saudi Arabia': ['saudi', 'ksa', 'riyadh', 'jeddah', 'makkah', 'mecca', 'madinah', 'medina'],
+  'Turkey': ['turkey', 'turkish', 'turkiye', 'istanbul', 'ankara', 'izmir', 'bogazici'],
+  'Iran': ['iran', 'iranian', 'persian', 'tehran', 'persia'],
+  'Estonia': ['estonia', 'estonian', 'tallinn', 'tartu'],
+  'India': ['india', 'indian', 'delhi', 'mumbai', 'bangalore', 'bengaluru', 'chennai'],
+  'New Zealand': ['new zealand', 'nz', 'kiwi', 'auckland', 'wellington', 'otago', 'christchurch'],
+  'China': ['china', 'chinese', 'beijing', 'shanghai', 'tsinghua', 'peking', 'hsk'],
+  'USA': ['usa', 'u.s.', 'united states', 'america', 'american', 'ivy league', 'harvard', 'stanford'],
+  'Australia': ['australia', 'australian', 'aussie', 'sydney', 'melbourne', 'brisbane', 'perth', 'canberra'],
+}
+
+// Words too generic to identify a university by name.
+const GENERIC_NAME_WORDS: Record<string, true> = {
+  university: true, universiti: true, universitat: true, college: true,
+  institute: true, institution: true, school: true, academy: true,
+  international: true, national: true, technical: true, technology: true,
+  technological: true, science: true, sciences: true, medical: true,
+  medicine: true, state: true, city: true, campus: true, higher: true,
+  education: true, united: true, free: true,
+}
+
+interface Chunk {
+  text: string
+  country: string | null
+  nameTokens: string[]   // distinctive name tokens (universities only)
+}
+
+interface ParsedData {
+  destinations: Chunk[]
+  scholarships: Chunk[]
+  universities: Chunk[]
+  scholarshipIndex: string[]  // first lines, for the coverage index
+}
+
+function canonicalCountry(raw: string): string | null {
+  const s = raw.toLowerCase()
+  if (s.indexOf('united kingdom') >= 0) return 'UK'
+  if (s.indexOf('united states') >= 0) return 'USA'
+  for (const canon of Object.keys(COUNTRY_ALIASES)) {
+    if (s.indexOf(canon.toLowerCase()) >= 0) return canon
+    for (const a of COUNTRY_ALIASES[canon]) {
+      if (a.length >= 4 && s.indexOf(a) >= 0) return canon
+    }
+  }
+  return null
+}
+
+function parseData(): ParsedData {
+  const destStart = ADMITAI_VERIFIED_DATA.indexOf('━━━ STUDY DESTINATIONS')
+  const scholStart = ADMITAI_VERIFIED_DATA.indexOf('━━━ SCHOLARSHIPS ━━━')
+  const uniStart = ADMITAI_VERIFIED_DATA.indexOf('━━━ UNIVERSITIES ━━━')
+  const endStart = ADMITAI_VERIFIED_DATA.lastIndexOf('═══')
+
+  const splitBlocks = (from: number, to: number): string[] =>
+    ADMITAI_VERIFIED_DATA
+      .slice(from, to)
+      .split(/\n\s*\n/)
+      .map(function (b) { return b.trim() })
+      // drop section headers and "━━ ..." sub-headers
+      .filter(function (b) { return b.length > 40 && b.charAt(0) !== '━' })
+
+  const destinations: Chunk[] = splitBlocks(destStart, scholStart).map(function (text) {
+    return { text: text, country: canonicalCountry(text.split('\n')[0]), nameTokens: [] }
+  })
+
+  const scholarships: Chunk[] = splitBlocks(scholStart, uniStart).map(function (text) {
+    const m = text.match(/Country:\s*([^|\n]+)/)
+    const country = canonicalCountry(m ? m[1] : text.split('\n').slice(0, 3).join(' '))
+    return { text: text, country: country, nameTokens: [] }
+  })
+
+  const universities: Chunk[] = splitBlocks(uniStart, endStart).map(function (text) {
+    const firstLine = text.split('\n')[0]
+    const bracket = firstLine.indexOf('[')
+    const head = bracket > 0 ? firstLine.slice(0, bracket) : firstLine
+    const country =
+      canonicalCountry(head.slice(head.lastIndexOf(',') + 1)) || canonicalCountry(head)
+    const namePart = head.split('—')[0]
+    const nameTokens = namePart
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/gi, ' ')
+      .split(/\s+/)
+      .filter(function (t) { return t.length >= 4 && !GENERIC_NAME_WORDS[t] })
+    return { text: text, country: country, nameTokens: nameTokens }
+  })
+
+  const scholarshipIndex = scholarships.map(function (s) {
+    return s.text.split('\n')[0].trim()
+  })
+
+  return {
+    destinations: destinations,
+    scholarships: scholarships,
+    universities: universities,
+    scholarshipIndex: scholarshipIndex,
+  }
+}
+
+let _parsed: ParsedData | null = null
+function getParsed(): ParsedData {
+  if (!_parsed) _parsed = parseData()
+  return _parsed
+}
+
+function escapeRe(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function detectCountries(query: string): { [c: string]: true } {
+  const q = ' ' + query.toLowerCase() + ' '
+  const found: { [c: string]: true } = {}
+  for (const canon of Object.keys(COUNTRY_ALIASES)) {
+    for (const a of COUNTRY_ALIASES[canon]) {
+      if (new RegExp('(^|[^a-z])' + escapeRe(a) + '($|[^a-z])', 'i').test(q)) {
+        found[canon] = true
+        break
+      }
+    }
+  }
+  return found
+}
+
+function detectUniversities(query: string, universities: Chunk[]): Chunk[] {
+  const q = query.toLowerCase()
+  return universities.filter(function (u) {
+    return u.nameTokens.some(function (t) {
+      return new RegExp('(^|[^a-z])' + escapeRe(t) + '($|[^a-z])', 'i').test(q)
+    })
+  })
+}
+
+function coverageIndex(parsed: ParsedData, included: { [c: string]: true }): string {
+  const others = Object.keys(COUNTRY_ALIASES).filter(function (c) { return !included[c] })
+  const lines: string[] = []
+  lines.push('━━━ COVERAGE INDEX (data AdmitAI holds beyond this extract) ━━━')
+  if (others.length > 0) {
+    lines.push(
+      'Verified data also exists for: ' + others.join(', ') +
+      '. If the student asks about one of these, you DO have AdmitAI data on it — the detailed entries will be supplied once the country is named in the conversation.',
+    )
+  }
+  lines.push('All scholarships in the dataset (details supplied when relevant):')
+  for (const title of parsed.scholarshipIndex) lines.push('  • ' + title)
+  return lines.join('\n')
+}
+
+/**
+ * Build a query-relevant extract of the AdmitAI verified data.
+ *
+ * @param query        Free text to match against (user message(s), or
+ *                     "country field level" for the roadmap function).
+ * @param budgetChars  Soft cap on output size (default 60,000 chars ~ 15k tokens).
+ */
+export function buildAdmitaiContext(query: string, budgetChars = 60000): string {
+  const parsed = getParsed()
+  const countries = detectCountries(query)
+  const namedUnis = detectUniversities(query, parsed.universities)
+  for (const u of namedUnis) if (u.country) countries[u.country] = true
+
+  const header =
+    '═══════════════════════════════════════════════════\n' +
+    'ADMITAI VERIFIED REFERENCE DATA (extract relevant to this conversation)\n' +
+    'Use this as your primary source when answering questions about countries, costs, scholarships, or universities.\n' +
+    'VERIFIED = confirmed from official sources. ESTIMATE / NOT VERIFIED = treat as approximate and say so.\n' +
+    '═══════════════════════════════════════════════════'
+
+  const footer =
+    '═══════════════════════════════════════════════════\n' +
+    'END OF ADMITAI VERIFIED DATA EXTRACT\n' +
+    '═══════════════════════════════════════════════════'
+
+  const parts: string[] = [header]
+  let used = header.length + footer.length + 2500 // reserve room for the index
+
+  const push = function (label: string | null, chunks: Chunk[]): void {
+    const usable = chunks.filter(function (c) { return used + c.text.length + 2 <= budgetChars })
+    if (usable.length === 0) return
+    if (label) parts.push(label)
+    for (const c of usable) {
+      parts.push(c.text)
+      used += c.text.length + 2
+    }
+  }
+
+  const hasCountries = Object.keys(countries).length > 0
+
+  if (!hasCountries) {
+    // Generic query: give the full destinations overview only.
+    push('━━━ STUDY DESTINATIONS (all-in annual costs, tuition + living, USD) ━━━', parsed.destinations)
+  } else {
+    const inCountry = function (c: Chunk): boolean {
+      return c.country !== null && countries[c.country] === true
+    }
+    push('━━━ STUDY DESTINATIONS (all-in annual costs, tuition + living, USD) ━━━', parsed.destinations.filter(inCountry))
+    push('━━━ SCHOLARSHIPS ━━━', parsed.scholarships.filter(inCountry))
+    // Named universities first (guaranteed in), then the rest of the country lists.
+    push('━━━ UNIVERSITIES ━━━', namedUnis.filter(inCountry).concat(
+      parsed.universities.filter(function (u) { return inCountry(u) && namedUnis.indexOf(u) < 0 }),
+    ))
+  }
+
+  parts.push(coverageIndex(parsed, countries))
+  parts.push(footer)
+  return parts.join('\n\n')
+}
