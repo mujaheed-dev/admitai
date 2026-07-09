@@ -2,8 +2,8 @@
 // AdmitAI verified reference data — injected into the AI's system prompt.
 //
 // NOTE ON SCALE:
-//   The dataset covers ~20 countries, ~60 scholarships, ~249 detailed
-//   universities (~40,000–54,000 tokens if injected whole).
+//   The dataset covers ~20 countries, ~60 scholarships, ~257 detailed
+//   universities (~41,000–55,000 tokens if injected whole).
 //
 //   RETRIEVAL: use buildAdmitaiContext(query) (bottom of this file) instead of
 //   injecting ADMITAI_VERIFIED_DATA directly. It selects only the country
@@ -58,10 +58,13 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   Scholarships: Limited | Application effort: Low
   Notes: Country figures are broad averages. Standouts sit outside them: NYU Abu Dhabi's sticker tuition is ~$68,600 but its need-based aid is exceptional; Khalifa University offers up to 100% tuition waivers; MBZUAI (grad AI) fully funds every admitted MSc/PhD student. See the university entries.
 
-🇮🇪 IRELAND [ESTIMATE — not yet verified from official source]
-  Tuition: ~$14,000–$22,000/yr | Living: ~$12,000/yr
-  All-in range: ~$26,000–$34,000/yr (illustrative)
-  Scholarships: Limited | Application effort: Medium
+🇮🇪 IRELAND [VERIFIED — irishimmigration.ie, hea.ie, university fee schedules]
+  System: 7 traditional universities + technological universities; undergrad applications via the CAO (~1 Feb deadline, late applications possible); postgrad direct
+  Tuition (verified ranges): non-EU undergraduate ~€12,000–€30,000/yr (TU Dublin at the value end ~€11,650–€12,500; Trinity €21,570–€29,570 for 2026/27); medicine/dentistry €35,000–€60,000
+  Living: ~€12,000/yr — the amount the student visa requires you to show ON TOP of first-year tuition (verified; at least ~€6,000 of tuition must be paid before the visa)
+  All-in range: ~$26,000–$45,000/yr
+  Scholarships: Some (GOI-IES is the flagship — see #4) | Application effort: Medium
+  Post-study (verified): Stamp 1G stay-back — 12 months after an honours bachelor's (Level 8), up to 24 months after a master's/PhD (Level 9/10); full-time work with NO employment permit needed; apply within 6 months of results. Dublin hosts EU headquarters of Google, Meta, Pfizer etc — a genuine graduate job market.
 
 🇨🇦 CANADA [VERIFIED — source: EduCanada / IRCC, educanada.ca]
   System: Provincial universities
@@ -196,10 +199,12 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    Deadline: Set by each university, usually Feb 1–May 1 2026
    Apply: Directly to your chosen Dutch university
 
-4. Government of Ireland Bursary [ESTIMATE — not yet verified]
-   Country: Ireland | Level: Undergraduate
-   Amount: ~€10,000 + fee waiver (illustrative)
-   Deadline: ~Mar 1
+4. Government of Ireland International Education Scholarships (GOI-IES) [VERIFIED — hea.ie]
+   Country: Ireland | Level: MASTER'S & PhD ONLY (NFQ levels 9–10) — NOT undergraduate (our earlier estimate wrongly said undergrad; corrected)
+   Amount: €10,000 stipend for one year PLUS a full fee waiver from the host institution — 60 awards/yr
+   Eligibility (verified): domiciled outside the EU/EEA/Switzerland/UK; must hold a conditional or final offer from an eligible Irish institution when applying
+   Deadline: 12 March 2026, 5pm Irish time, for 2026/27 — annual cycle, confirm on hea.ie
+   ⚠ Highly competitive (60 awards nationally). Undergraduates should look at university merit awards instead (e.g. Trinity Global Excellence, UCD Global Scholarships — confirm on university sites).
 
 5. UCL Global Undergraduate Scholarship [VERIFIED — ucl.ac.uk/scholarships]
    Country: United Kingdom | Level: Undergraduate
@@ -2216,6 +2221,62 @@ University of South Africa (UNISA) — Pretoria (DISTANCE learning), South Afric
   Language: English-medium instruction
   Fees/deadline: NOT verified — famously low per-module fees; no visa needed since you study from home; two registration periods yearly. Confirm on unisa.ac.za.
   ⚠ Check professional-body recognition of distance degrees in your home country before enrolling.
+
+━━ Irish universities (undergrad via the CAO ~1 Feb; Stamp 1G stay-back 12–24 months; visa needs €12,000/yr + tuition — see Ireland country block) ━━
+
+Trinity College Dublin (TCD) — Dublin, Ireland [VERIFIED — tcd.ie 2026/27 fee range]
+  Type: Ireland's most famous and highest-ranked university (founded 1592)
+  Known for: Law, English Literature, Computer Science, Medicine, Business
+  Language: English-medium instruction
+  Non-EU tuition (2026/27, verified): €21,570–€29,570/yr by course (medicine higher)
+  Deadline: CAO by ~1 February (some courses accept later non-EU direct applications — confirm on tcd.ie)
+  Scholarship here: Trinity Global Excellence Scholarships (partial merit — confirm terms); GOI-IES for master's/PhD (see #4)
+
+University College Dublin (UCD) — Dublin, Ireland [PARTIALLY VERIFIED — fees per programme on official pages]
+  Type: Ireland's largest university — global outlook, huge international cohort
+  Known for: Business (Smurfit/Quinn), Engineering, Agriculture & Food Science, Medicine, Computer Science
+  Language: English-medium instruction
+  Non-EU tuition: Set per programme (~€20,000–€29,000/yr for most non-medical UG) — confirm on ucd.ie/students/fees
+  Deadline: CAO ~1 Feb; postgrad rolling — confirm
+  Scholarship here: UCD Global Scholarships (partial merit); GOI-IES for postgrad (see #4)
+
+University College Cork (UCC) — Cork, Ireland [NOT VERIFIED fees — confirm on ucc.ie]
+  Type: Research university in Ireland's second city — cheaper living than Dublin
+  Known for: Food Science, Pharmacy, Law, Medicine, Microbiology
+  Language: English-medium instruction
+  Fees/deadline: NOT verified — confirm on ucc.ie; CAO for undergrad
+
+University of Galway — Galway, Ireland [NOT VERIFIED fees — confirm on universityofgalway.ie]
+  Type: West-coast university in Ireland's most student-centric small city; medtech industry hub
+  Known for: Biomedical Engineering, Medicine, Law (human rights), Marine Science
+  Language: English-medium instruction
+  Fees/deadline: NOT verified — confirm on universityofgalway.ie; CAO for undergrad
+
+University of Limerick (UL) — Limerick, Ireland [NOT VERIFIED fees — confirm on ul.ie]
+  Type: Modern campus university famous for co-op — most programmes include an 8-month paid work placement
+  Known for: Engineering, Sports Science, Music (Irish World Academy), Business
+  Language: English-medium instruction
+  Fees/deadline: NOT verified — confirm on ul.ie; CAO for undergrad
+
+Dublin City University (DCU) — Dublin, Ireland [NOT VERIFIED fees — confirm on dcu.ie]
+  Type: Young, enterprise-focused Dublin university with strong INTRA work placements
+  Known for: Communications/Journalism, Business, Computing, Education
+  Language: English-medium instruction
+  Fees/deadline: NOT verified — confirm on dcu.ie; CAO for undergrad
+
+Maynooth University — Maynooth (near Dublin), Ireland [NOT VERIFIED fees — confirm on maynoothuniversity.ie]
+  Type: Ireland's fastest-growing university — a university town 25 minutes from Dublin with lower living costs
+  Known for: Computer Science, Education, Humanities, Geography
+  Language: English-medium instruction
+  Fees/deadline: NOT verified — confirm on maynoothuniversity.ie; CAO for undergrad
+
+Technological University Dublin (TU Dublin) — Dublin, Ireland [PARTIALLY VERIFIED — value-tier fees per official-derived listings]
+  Type: Ireland's first technological university — practice-oriented, the VALUE option in Dublin
+  Known for: Engineering, Computing, Hospitality & Culinary Arts, Media, Architecture
+  Language: English-medium instruction
+  Non-EU tuition: ~€11,650–€12,500/yr UG per official-derived listings (the cheapest Dublin university tier — confirm on tudublin.ie)
+  Deadline: CAO ~1 Feb — confirm
+  ⚠ Same Stamp 1G stay-back and Dublin job market as the pricier universities — strong value pick.
 
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA

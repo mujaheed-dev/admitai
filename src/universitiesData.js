@@ -3220,6 +3220,83 @@ export const UNIVERSITIES = [
     verified: false,
   })),
 
+  {
+    id: 'trinity',
+    name: 'Trinity College Dublin (TCD)',
+    country: 'Ireland',
+    city: 'Dublin',
+    flag: '🇮🇪',
+    ranking: "Ireland's most famous and highest-ranked university (founded 1592)",
+    knownFor: ['Law', 'English Literature', 'Computer Science', 'Medicine', 'Business'],
+    language: 'English-medium instruction',
+    entryGrades: 'Competitive — CAO points or equivalent international qualifications; confirm per course.',
+    tests: 'IELTS 6.5+ typically — confirm on tcd.ie.',
+    acceptance: 'Competitive — varies by course',
+    tuitionIntl: 'Non-EU tuition €21,570–€29,570/yr by course for 2026/27 (verified, tcd.ie); medicine higher. The visa additionally requires showing €12,000/yr living funds (verified).',
+    living: 'Dublin is expensive — the €12,000 visa benchmark is a floor; budget more realistically.',
+    deadline: 'CAO by ~1 February for undergrad (some non-EU direct routes accept later) — confirm on tcd.ie.',
+    scholarshipsHere: 'Trinity Global Excellence Scholarships (partial merit — confirm terms); Government of Ireland IES for master\'s/PhD (€10,000 + full fee waiver, deadline ~12 March). Stamp 1G stay-back: 12 months (bachelor\'s) / 24 months (master\'s+).',
+    scholarships: [],
+    sourceName: 'Trinity College Dublin (official)',
+    sourceUrl: 'https://www.tcd.ie/courses/undergraduate/fees/',
+    verified: true,
+  },
+  {
+    id: 'tu-dublin',
+    name: 'Technological University Dublin (TU Dublin)',
+    country: 'Ireland',
+    city: 'Dublin',
+    flag: '🇮🇪',
+    ranking: "Ireland's first technological university — the VALUE option in Dublin",
+    knownFor: ['Engineering', 'Computing', 'Hospitality & Culinary Arts', 'Media', 'Architecture'],
+    language: 'English-medium instruction',
+    entryGrades: 'More accessible than the traditional universities; varies by course — confirm on tudublin.ie.',
+    tests: 'IELTS 6.0+ typically — confirm on tudublin.ie.',
+    acceptance: 'Accessible — varies by course',
+    tuitionIntl: 'Non-EU undergraduate ~€11,650–€12,500/yr per official-derived listings — the cheapest Dublin university tier (confirm on tudublin.ie). Same €12,000/yr visa living requirement as everywhere.',
+    living: 'Dublin costs apply — the fee savings vs Trinity/UCD (~€10,000+/yr) are the draw.',
+    deadline: 'CAO by ~1 February — confirm on tudublin.ie.',
+    scholarshipsHere: 'Same Stamp 1G stay-back (12–24 months) and Dublin job market as the pricier universities — a strong value pick. GOI-IES applies for postgrad.',
+    scholarships: [],
+    sourceName: 'TU Dublin (official)',
+    sourceUrl: 'https://www.tudublin.ie/study/international-students/',
+    verified: false,
+  },
+
+  // ── LIGHT ENTRIES (Ireland) ──────────────────────────────────────────────
+  // Fees NOT individually verified (non-EU UG typically €12,000–€30,000/yr).
+  // Shared verified facts: CAO undergrad deadline ~1 Feb; €12,000/yr visa
+  // living funds; Stamp 1G stay-back 12 months (L8) / 24 months (L9-10);
+  // GOI-IES: €10,000 + full fee waiver for master's/PhD, ~12 March deadline.
+  ...[
+    ['ucd', 'University College Dublin (UCD)', 'Dublin', "Ireland's largest university — huge international cohort", ['Business (Smurfit)', 'Engineering', 'Agriculture & Food Science', 'Medicine'], 'https://www.ucd.ie/global/'],
+    ['ucc', 'University College Cork (UCC)', 'Cork', "Research university in Ireland's second city — cheaper living than Dublin", ['Food Science', 'Pharmacy', 'Law', 'Medicine'], 'https://www.ucc.ie/en/international/'],
+    ['galway', 'University of Galway', 'Galway', "West-coast university in Ireland's most student-friendly small city — medtech hub", ['Biomedical Engineering', 'Medicine', 'Human Rights Law', 'Marine Science'], 'https://www.universityofgalway.ie/international-students/'],
+    ['ul', 'University of Limerick (UL)', 'Limerick', 'Famous for co-op — most programmes include an 8-month paid work placement', ['Engineering', 'Sports Science', 'Music', 'Business'], 'https://www.ul.ie/international'],
+    ['dcu', 'Dublin City University (DCU)', 'Dublin', 'Young, enterprise-focused university with strong INTRA work placements', ['Communications & Journalism', 'Business', 'Computing', 'Education'], 'https://www.dcu.ie/international'],
+    ['maynooth', 'Maynooth University', 'Maynooth (near Dublin)', "Ireland's fastest-growing university — a university town with lower living costs, 25 min from Dublin", ['Computer Science', 'Education', 'Humanities', 'Geography'], 'https://www.maynoothuniversity.ie/international'],
+  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'Ireland',
+    city,
+    flag: '🇮🇪',
+    ranking,
+    knownFor,
+    language: 'English-medium instruction',
+    entryGrades: 'CAO points or equivalent international qualifications — confirm per course on the official site.',
+    tests: 'IELTS / TOEFL required; the minimum varies by course — confirm on the official site.',
+    acceptance: 'Varies by course',
+    tuitionIntl: 'Not verified — Irish non-EU undergraduate fees typically run €12,000–€30,000/yr by course (medicine far higher); confirm on the official site. The visa requires €12,000/yr living funds on top of tuition (verified).',
+    living: 'Dublin is the priciest; Cork, Galway, Limerick and Maynooth run noticeably cheaper.',
+    deadline: 'Undergrad via the CAO by ~1 February; postgraduate applications are direct and often rolling — confirm on the official site.',
+    scholarshipsHere: 'Government of Ireland IES for master\'s/PhD (€10,000 + full fee waiver, ~12 March deadline, 60 awards); university merit awards vary. Stamp 1G stay-back: 12 months (bachelor\'s) / 24 months (master\'s+), full work rights.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
   // ── LIGHT ENTRIES (Malaysia) ─────────────────────────────────────────────
   // Real institutions with name/city/official link only — fees, entry
   // requirements and deadlines NOT yet researched (verified: false).
