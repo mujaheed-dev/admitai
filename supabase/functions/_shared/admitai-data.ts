@@ -2,8 +2,8 @@
 // AdmitAI verified reference data — injected into the AI's system prompt.
 //
 // NOTE ON SCALE:
-//   The dataset covers ~29 countries, ~69 scholarships, ~333 detailed
-//   universities (~53,000–69,000 tokens if injected whole).
+//   The dataset covers ~30 countries, ~70 scholarships, ~338 detailed
+//   universities (~54,000–70,000 tokens if injected whole).
 //
 //   RETRIEVAL: use buildAdmitaiContext(query) (bottom of this file) instead of
 //   injecting ADMITAI_VERIFIED_DATA directly. It selects only the country
@@ -118,6 +118,14 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   Cost: English MBBS ~$5,000–$6,500/yr at YSMU + hostels ~$600/yr — among the cheapest credible MD routes anywhere; living ~$300–500/month
   ⚠ Same rules as Georgia: verify YOUR medical council's recognition and graduate licensing pass rates first; Indian students still need NEET qualification for home recognition. No IELTS needed is marketing, not a quality signal.
   Scholarships: None meaningful for internationals | Application effort: Low | Post-study: degree-only.
+
+🇸🇬 SINGAPORE [LARGELY VERIFIED — moe.gov.sg, university fee pages]
+  System: Small, elite — NUS and NTU are Asia's top-2 in most rankings; SMU, SUTD, SIT round out the publics. English-medium throughout.
+  Tuition (verified): WITHOUT the grant S$30,000–S$60,000+/yr (medicine S$150,000+). WITH the MOE Tuition Grant (see #70): S$17,000–S$30,000/yr — e.g. NUS Engineering S$38,000 → S$17,550; NTU Business S$36,000 → S$17,100.
+  Living: HIGH — ~S$1,500–2,500/month (~$14,000–22,000/yr); hall places soften it
+  ★ MOE TUITION GRANT (verified): the defining deal — the government pays 40–60% of your fees, you sign a contract to work at a Singapore entity for 3 YEARS after graduating. It is a BOND, not a scholarship — breaking it means repaying with interest. For most students it's a good trade: guaranteed right to work in one of the world's strongest job markets.
+  Scholarships: Beyond the grant, university/ASEAN scholarships exist for top admits (some cover everything + stipend) | Application effort: High — NUS/NTU admission is extremely competitive
+  Post-study: the bond IS the post-study plan; non-grant graduates compete for Employment Passes.
 
 🇳🇱 NETHERLANDS [VERIFIED — source: European Education Area / official EU; system facts below verified 2026]
   System: 13 research universities + universities of applied sciences (HBO); applications via Studielink
@@ -710,6 +718,13 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    Eligibility (verified): citizens of ~36 Polish Aid partner countries across Eastern Europe/Partnership, Central Asia, the Western Balkans, Africa and Latin America — check the current call's country list
    Deadline: 8 May 2026, 3pm CEST for the 2026/27 cycle (or until country-group quotas fill — apply EARLY)
    ⚠ Joint Ministry of Foreign Affairs + NAWA development programme — motivation tied to your country's growth strengthens the application. Poland's low living costs make the PLN 2,500 stipend genuinely livable outside Warsaw.
+
+70. MOE Tuition Grant — Singapore [VERIFIED — moe.gov.sg]
+   Country: Singapore | Level: Undergraduate (and some postgraduate) at the public universities
+   Amount: The government pays 40–60% of tuition — international fees drop to ~S$17,000–S$30,000/yr (e.g. NUS Engineering S$38,000 → S$17,550)
+   The catch (verified): you sign a Tuition Grant Agreement obliging you to work FULL-TIME at a Singapore entity for 3 YEARS after graduation — with sureties, and repayment with interest if broken
+   Apply: Offered alongside your university admission — you accept or decline it with your place (decision deadline ~mid-July)
+   ⚠ Frame it correctly for students: it is a subsidy-for-bond TRADE, not a scholarship — but the bond doubles as a guaranteed start in Singapore's job market, which many graduates want anyway. Read the agreement before signing; sureties are personally liable.
 
 
 ━━━ UNIVERSITIES ━━━
@@ -2870,6 +2885,39 @@ Yerevan State University (YSU) — Yerevan, Armenia [NOT VERIFIED fees]
   Known for: Sciences, Oriental Studies, Economics, IT
   Fees/deadline: NOT verified — cheap; confirm on ysu.am.
 
+━━ Singaporean universities (MOE Tuition Grant cuts fees 40–60% for a 3-year work bond — see Singapore country block & scholarship #70) ━━
+
+National University of Singapore (NUS) — Singapore [VERIFIED fee example]
+  Type: Asia's #1 university in most rankings
+  Known for: Computer Science, Engineering, Business, Medicine, Law
+  Language: English-medium instruction
+  Tuition (verified example): Engineering S$38,000/yr without grant → S$17,550 with the MOE Tuition Grant (+3-year bond). Medicine/dentistry far higher and grant rules differ.
+  Deadline: International applications ~Oct–Feb for August entry — confirm on nus.edu.sg
+  ⚠ Extremely competitive — top grades plus strong profiles.
+
+Nanyang Technological University (NTU) — Singapore [VERIFIED fee example]
+  Type: Asia's top-2 with NUS — young, research-intense, famous campus
+  Known for: Engineering, Computer Science/AI, Business, Materials Science
+  Language: English-medium instruction
+  Tuition (verified example): Business S$36,000/yr → S$17,100 with the grant (+bond)
+  Deadline: ~Oct–Feb for August entry — confirm on ntu.edu.sg
+  ⚠ Similarly competitive to NUS.
+
+Singapore Management University (SMU) — Singapore [NOT individually verified]
+  Type: City-campus specialist in business/social sciences — US-style seminar teaching
+  Known for: Business, Economics, Law, Information Systems
+  Fees: Higher sticker than NUS/NTU; grant applies — confirm on smu.edu.sg.
+
+Singapore University of Technology and Design (SUTD) — Singapore [NOT individually verified]
+  Type: Small design-and-tech university built with MIT collaboration
+  Known for: Engineering Product Development, Architecture, Computer Science & Design
+  Fees: Grant applies — confirm on sutd.edu.sg.
+
+Singapore Institute of Technology (SIT) — Singapore [NOT individually verified]
+  Type: Applied pathway university — industry-embedded degrees
+  Known for: Applied Engineering, InfoComm, Health Sciences, Hospitality
+  Fees: Grant applies; note SIT admits fewer internationals — confirm on singaporetech.edu.sg.
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -2917,6 +2965,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'Cyprus': ['cyprus', 'cypriot', 'nicosia', 'famagusta', 'trnc', 'limassol', 'larnaca'],
   'Georgia': ['georgia', 'georgian', 'tbilisi', 'tsmu', 'caucasus'],
   'Armenia': ['armenia', 'armenian', 'yerevan', 'ysmu'],
+  'Singapore': ['singapore', 'singaporean', 'nus', 'ntu', 'tuition grant'],
 }
 
 // Words too generic to identify a university by name.

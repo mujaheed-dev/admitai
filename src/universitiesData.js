@@ -3846,6 +3846,39 @@ export const UNIVERSITIES = [
     verified: false,
   })),
 
+  // ── LIGHT ENTRIES (Singapore) ────────────────────────────────────────────
+  // Verified: MOE Tuition Grant pays 40–60% of fees for a BINDING 3-year work
+  // bond at a Singapore entity (repay with interest if broken; decision ~mid-
+  // July). Verified examples: NUS Engineering S$38,000 → S$17,550; NTU
+  // Business S$36,000 → S$17,100. Living is high (~S$1,500–2,500/month).
+  ...[
+    ['nus', 'National University of Singapore (NUS)', "Asia's #1 university in most rankings — extremely competitive", ['Computer Science', 'Engineering', 'Business', 'Medicine', 'Law'], 'https://www.nus.edu.sg/admissions'],
+    ['ntu', 'Nanyang Technological University (NTU)', "Asia's top-2 with NUS — research-intense, famous campus", ['Engineering', 'Computer Science & AI', 'Business', 'Materials Science'], 'https://www.ntu.edu.sg/admissions'],
+    ['smu', 'Singapore Management University (SMU)', 'City-campus business/social-science specialist — US-style seminars', ['Business', 'Economics', 'Law', 'Information Systems'], 'https://admissions.smu.edu.sg/'],
+    ['sutd', 'Singapore University of Technology and Design (SUTD)', 'Small design-and-tech university built with MIT collaboration', ['Engineering Product Development', 'Architecture', 'Computer Science & Design'], 'https://www.sutd.edu.sg/Admissions'],
+    ['sit', 'Singapore Institute of Technology (SIT)', 'Applied, industry-embedded degrees — fewer international places', ['Applied Engineering', 'InfoComm', 'Health Sciences', 'Hospitality'], 'https://www.singaporetech.edu.sg/admissions'],
+  ].map(([id, name, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'Singapore',
+    city: 'Singapore',
+    flag: '🇸🇬',
+    ranking,
+    knownFor,
+    language: 'English-medium instruction',
+    entryGrades: 'Extremely competitive at NUS/NTU (top grades + strong profiles); SMU/SUTD/SIT vary — confirm per programme.',
+    tests: 'SAT/A-Levels/IB or national equivalents + English proficiency — confirm on the official site.',
+    acceptance: 'Highly competitive',
+    tuitionIntl: 'Without the grant: S$30,000–S$60,000+/yr (medicine S$150,000+). WITH the MOE Tuition Grant: ~S$17,000–S$30,000/yr — in exchange for a binding 3-year work bond at a Singapore entity (verified). Confirm per programme.',
+    living: 'High: ~S$1,500–2,500/month; university halls soften it.',
+    deadline: 'International applications ~October–February for August entry; Tuition Grant decision ~mid-July — confirm on the official site.',
+    scholarshipsHere: 'MOE Tuition Grant (subsidy-for-bond trade — read the agreement, sureties are personally liable; the bond doubles as a guaranteed start in Singapore\'s job market). Top admits may also get full university/ASEAN scholarships.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
   // ── LIGHT ENTRIES (Malaysia) ─────────────────────────────────────────────
   // Real institutions with name/city/official link only — fees, entry
   // requirements and deadlines NOT yet researched (verified: false).
