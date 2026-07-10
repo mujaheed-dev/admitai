@@ -3811,6 +3811,41 @@ export const UNIVERSITIES = [
     verified: false,
   })),
 
+  // ── LIGHT ENTRIES (Georgia & Armenia) ────────────────────────────────────
+  // Agent-driven MBBS markets: fees are agent-quoted (NOT verified). Golden
+  // rules recorded in the data: verify home medical-council recognition and
+  // graduate licensing pass rates FIRST; admission is exam-free and direct —
+  // never pay agents for it. No meaningful scholarships or post-study paths.
+  ...[
+    ['tsmu', 'Tbilisi State Medical University (TSMU)', 'Tbilisi', 'Georgia', '🇬🇪', "Georgia's main state medical university — the credible option in a crowded market (~$8,000/yr English MD, agent-quoted)", ['Medicine (English MD)', 'Dentistry', 'Pharmacy'], 'https://tsmu.edu/en/'],
+    ['tsu-georgia', 'Tbilisi State University (TSU)', 'Tbilisi', 'Georgia', '🇬🇪', "Georgia's oldest and largest general university (1918)", ['Law', 'Economics', 'Social Sciences'], 'https://www.tsu.ge/en'],
+    ['iliauni', 'Ilia State University', 'Tbilisi', 'Georgia', '🇬🇪', 'Reform-minded public university — sciences and liberal arts', ['Natural Sciences', 'Business', 'Liberal Arts'], 'https://iliauni.edu.ge/en'],
+    ['dtmu', 'David Tvildiani Medical University (DTMU)', 'Tbilisi', 'Georgia', '🇬🇪', 'The strongest USMLE-prep reputation in Georgia (English MD ~$8,000/yr, agent-quoted)', ['Medicine (USMLE-oriented English MD)'], 'https://dtmu.edu.ge/'],
+    ['gtu', 'Georgian Technical University (GTU)', 'Tbilisi', 'Georgia', '🇬🇪', "Georgia's main technical university — very cheap ($2,500–4,500/yr per listings)", ['Engineering', 'IT', 'Architecture'], 'https://gtu.ge/Eng/'],
+    ['ysmu', 'Yerevan State Medical University (YSMU)', 'Yerevan', 'Armenia', '🇦🇲', "Armenia's flagship medical university — ~$5,000–6,500/yr English MD (agent-quoted), among the cheapest credible MD routes", ['Medicine (English MD)', 'Dentistry', 'Pharmacy'], 'https://ysmu.am/en/'],
+    ['ysu-armenia', 'Yerevan State University (YSU)', 'Yerevan', 'Armenia', '🇦🇲', "Armenia's main comprehensive university (1919)", ['Sciences', 'Oriental Studies', 'Economics', 'IT'], 'https://www.ysu.am/en'],
+  ].map(([id, name, city, country, flag, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country,
+    city,
+    flag,
+    ranking,
+    knownFor,
+    language: 'English-taught programmes marketed internationally (medicine especially); local-language tracks exist — confirm per programme.',
+    entryGrades: 'Document-based direct admission — typically NO entrance exam (that is the marketing hook, not a quality signal).',
+    tests: 'Usually no IELTS required — confirm on the official site.',
+    acceptance: 'Accessible',
+    tuitionIntl: 'Agent-quoted, NOT verified — see the ranking note for typical figures; confirm directly with the university (admission is free and direct — never pay agents for it).',
+    living: 'Very cheap: ~$300–500/month.',
+    deadline: 'Rolling — autumn (and often spring) intakes; confirm on the official site.',
+    scholarshipsHere: '⚠ Golden rules for this market: (1) verify YOUR country\'s medical council recognises the school, (2) check its graduates\' licensing-exam pass rates, (3) apply directly — no agent needed. No meaningful scholarships or post-study migration path; plan as degree-only.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
   // ── LIGHT ENTRIES (Malaysia) ─────────────────────────────────────────────
   // Real institutions with name/city/official link only — fees, entry
   // requirements and deadlines NOT yet researched (verified: false).

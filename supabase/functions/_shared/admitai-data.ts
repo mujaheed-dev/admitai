@@ -2,8 +2,8 @@
 // AdmitAI verified reference data — injected into the AI's system prompt.
 //
 // NOTE ON SCALE:
-//   The dataset covers ~27 countries, ~69 scholarships, ~326 detailed
-//   universities (~52,000–67,000 tokens if injected whole).
+//   The dataset covers ~29 countries, ~69 scholarships, ~333 detailed
+//   universities (~53,000–69,000 tokens if injected whole).
 //
 //   RETRIEVAL: use buildAdmitaiContext(query) (bottom of this file) instead of
 //   injecting ADMITAI_VERIFIED_DATA directly. It selects only the country
@@ -105,6 +105,19 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   ⚠ RECOGNITION WARNING (North): because the TRNC is unrecognised, degree recognition VARIES BY COUNTRY — degrees are Turkish-accredited (fine for Turkey and many states; EMU/NEU hold real international programme accreditations like ABET) but some countries and professional bodies do not accept them. VERIFY with your home country's credential authority BEFORE enrolling — agents will not volunteer this.
   Scholarships: "Automatic" discounts are the norm (treat advertised scholarships as list-price marketing) | Application effort: Low
   Post-study: Republic = EU rules; North Cyprus offers no meaningful post-study migration path — plan it as degree-only.
+
+🇬🇪 GEORGIA [MIXED — an agent-driven MBBS market; figures below are agent/consultancy-quoted, treat as approximate]
+  System: Post-Soviet Caucasus country (NOT the US state) — 25+ medical programmes marketed worldwide, plus general universities
+  The pitch (and it's partly true): English-taught 6-year medicine ~$5,000–$8,000/yr (TSMU ~$8,000/yr, total ~$48,000), no entrance exam, no IELTS, low living costs (~$300–500/month), WHO/WFME-listed schools
+  ⚠ THE HONEST VERSION: quality varies ENORMOUSLY across Georgia's medical schools — a handful (TSMU, David Tvildiani) have real reputations; many others are diploma businesses feeding agent commissions. Before paying anyone: (1) verify the school is recognised by YOUR country's medical council, (2) check your country's licensing-exam pass rates for that school's graduates, (3) never pay "agents" for admission that is free and test-free anyway.
+  Scholarships: Essentially none for internationals — this is a self-funded market | Application effort: Low
+  Post-study: no meaningful migration path — plan Georgia as degree-only and licensing-exam prep back home.
+
+🇦🇲 ARMENIA [MIXED — same agent-driven MBBS pattern as Georgia; figures agent-quoted]
+  System: Small Caucasus country; Yerevan State Medical University (YSMU) is the credible flagship marketed abroad
+  Cost: English MBBS ~$5,000–$6,500/yr at YSMU + hostels ~$600/yr — among the cheapest credible MD routes anywhere; living ~$300–500/month
+  ⚠ Same rules as Georgia: verify YOUR medical council's recognition and graduate licensing pass rates first; Indian students still need NEET qualification for home recognition. No IELTS needed is marketing, not a quality signal.
+  Scholarships: None meaningful for internationals | Application effort: Low | Post-study: degree-only.
 
 🇳🇱 NETHERLANDS [VERIFIED — source: European Education Area / official EU; system facts below verified 2026]
   System: 13 research universities + universities of applied sciences (HBO); applications via Studielink
@@ -2816,6 +2829,47 @@ Cyprus International University (CIU) — Nicosia (NORTH Cyprus), Cyprus [PARTIA
   Fees (official-derived): EVERY admitted international automatically gets "50% scholarship" — the real prices are ~€3,099/yr most bachelor's, €7,400 medicine, €6,800 dentistry. Treat the "scholarship" as list pricing.
   ⚠ Same TRNC recognition warning applies.
 
+━━ Georgian & Armenian universities (agent-driven MBBS markets — see both country blocks' warnings; figures agent-quoted, not verified) ━━
+
+Tbilisi State Medical University (TSMU) — Tbilisi, Georgia [PARTIALLY VERIFIED — the credible flagship]
+  Type: Georgia's main state medical university — the serious option in a crowded market
+  Known for: Medicine (English MD), Dentistry, Pharmacy
+  Language: English MD programme (also Georgian/Russian tracks)
+  Fees (agent-quoted): ~$8,000/yr English MD, ~$48,000 total for 6 years — confirm directly with tsmu.edu
+  ⚠ Verify your home medical council recognises TSMU AND check its graduates' licensing pass rates; apply DIRECTLY — admission has no entrance exam, so paid "agents" add nothing.
+
+Ivane Javakhishvili Tbilisi State University (TSU) — Tbilisi, Georgia [NOT VERIFIED fees]
+  Type: Georgia's oldest and largest general university (1918)
+  Known for: Law, Economics, Social Sciences, some English medicine
+  Fees/deadline: NOT verified — English programmes typically $3,000–5,000/yr per agent listings; confirm on tsu.ge.
+
+Ilia State University — Tbilisi, Georgia [NOT VERIFIED fees]
+  Type: Reform-minded public university — sciences and liberal arts
+  Known for: Natural Sciences, Business, Liberal Arts
+  Fees/deadline: NOT verified — confirm on iliauni.edu.ge.
+
+David Tvildiani Medical University (DTMU) — Tbilisi, Georgia [NOT VERIFIED fees]
+  Type: Private medical school with the strongest USMLE-prep reputation in Georgia
+  Known for: Medicine (AIETI English MD, USMLE-oriented)
+  Fees/deadline: NOT verified — ~$8,000/yr per agent listings; confirm on dtmu.edu.ge
+  ⚠ Same recognition/pass-rate checks apply — DTMU's US-exam orientation is its differentiator.
+
+Georgian Technical University (GTU) — Tbilisi, Georgia [NOT VERIFIED fees]
+  Type: Georgia's main technical university
+  Known for: Engineering, IT, Architecture
+  Fees/deadline: NOT verified — cheap ($2,500–4,500/yr per listings); confirm on gtu.ge.
+
+Yerevan State Medical University (YSMU) — Yerevan, Armenia [PARTIALLY VERIFIED — agent-quoted fees consistent]
+  Type: Armenia's flagship medical university — the credible marketed option
+  Known for: Medicine (English MD, 6 years incl. internship), Dentistry, Pharmacy
+  Fees (agent-quoted): ~$5,000–6,500/yr + ~$600/yr hostel — among the cheapest credible MD routes; confirm on ysmu.am
+  ⚠ Verify home medical-council recognition first; Indian applicants need NEET for home licensing.
+
+Yerevan State University (YSU) — Yerevan, Armenia [NOT VERIFIED fees]
+  Type: Armenia's main comprehensive university (1919)
+  Known for: Sciences, Oriental Studies, Economics, IT
+  Fees/deadline: NOT verified — cheap; confirm on ysu.am.
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -2861,6 +2915,8 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'South Korea': ['korea', 'korean', 'seoul', 'kaist', 'yonsei', 'topik', 'gks', 'postech'],
   'Poland': ['poland', 'polish', 'warsaw', 'krakow', 'wroclaw', 'gdansk', 'nawa', 'banach', 'jagiellonian'],
   'Cyprus': ['cyprus', 'cypriot', 'nicosia', 'famagusta', 'trnc', 'limassol', 'larnaca'],
+  'Georgia': ['georgia', 'georgian', 'tbilisi', 'tsmu', 'caucasus'],
+  'Armenia': ['armenia', 'armenian', 'yerevan', 'ysmu'],
 }
 
 // Words too generic to identify a university by name.
