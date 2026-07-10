@@ -2,8 +2,8 @@
 // AdmitAI verified reference data — injected into the AI's system prompt.
 //
 // NOTE ON SCALE:
-//   The dataset covers ~22 countries, ~65 scholarships, ~281 detailed
-//   universities (~45,000–59,000 tokens if injected whole).
+//   The dataset covers ~23 countries, ~66 scholarships, ~288 detailed
+//   universities (~46,000–60,000 tokens if injected whole).
 //
 //   RETRIEVAL: use buildAdmitaiContext(query) (bottom of this file) instead of
 //   injecting ADMITAI_VERIFIED_DATA directly. It selects only the country
@@ -60,6 +60,14 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   Post-study (verified): the RECE permit ("job search/business creation", ex-APS) — 12 months after a master's-level degree, work allowed; NOT renewable for most nationalities (Indian citizens: 12+12 months under the bilateral agreement).
   Scholarships: Strong at postgrad (Eiffel #64, Boutmy #65) | Application effort: Medium-High (Campus France procedure + interviews)
   Language: most bachelor's are French-taught (B2 needed); English-taught master's are plentiful, especially at grandes écoles and in engineering/business.
+
+🇭🇺 HUNGARY [LARGELY VERIFIED — stipendiumhungaricum.hu, university fee pages]
+  System: EU/Schengen member; 900+ English-taught programmes at 30+ universities; famous for EU-recognised English-taught MEDICINE
+  ★ STIPENDIUM HUNGARICUM (verified): the headline — thousands of FULL scholarships/yr for citizens of 100+ partner countries: 100% tuition + monthly stipend HUF 43,700 (~€110; PhD HUF 140,000–180,000) + free dormitory OR HUF 40,000/month housing allowance + health insurance. Deadline 15 JANUARY, 2pm CET (see #66).
+  Self-funded tuition: non-medical English programmes roughly €1,500–€8,000/yr; MEDICINE ~$16,000–$18,200/yr at the big four (Semmelweis, Debrecen, Szeged, Pécs) — EU-recognised degrees at half UK/US prices
+  Living: LOW — ~€400–€700/month (Budapest at the top; Debrecen/Szeged/Pécs cheaper)
+  Scholarships: Exceptional relative to country size | Application effort: Low-Medium (one SH portal application covers up to 2 programmes)
+  ⚠ The SH stipend (~€110/month) does NOT cover living costs by itself — treat it as tuition-free study with pocket money, and budget family support of ~€200–400/month, especially in Budapest.
 
 🇳🇱 NETHERLANDS [VERIFIED — source: European Education Area / official EU; system facts below verified 2026]
   System: 13 research universities + universities of applied sciences (HBO); applications via Studielink
@@ -624,6 +632,13 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    Eligibility (verified): first-time non-EU applicants whose household pays taxes outside the EU; excludes some dual degrees, 1-year master's and PhD
    Deadline (2026 cycle): UG from foreign school systems ~20 January; master's committees ~19 October / 30 November
    ⚠ Tick the scholarship box in the "Financial information" section of the Sciences Po application — there is no separate form.
+
+66. Stipendium Hungaricum [VERIFIED — stipendiumhungaricum.hu]
+   Country: Hungary | Level: Bachelor's, Master's, One-tier Master's, PhD, non-degree
+   Amount: FULL — 100% tuition + monthly stipend HUF 43,700 (~€110) for BA/MA (PhD: HUF 140,000 rising to 180,000) + free dormitory place OR HUF 40,000/month housing allowance + health insurance
+   Eligibility (verified): citizens of 100+ partner countries (large quotas across Africa, the Middle East, Asia, Latin America — including Egypt, Jordan, Nigeria, Pakistan, India and many more)
+   Deadline: 15 January, 2pm CET each year — one online application covers up to two programme choices
+   ⚠ One of the world's highest-volume full scholarships — genuinely winnable for solid students. The stipend alone won't cover living costs (~€400–700/month); plan a family top-up. Medicine seats via SH exist but are the most competitive.
 
 
 ━━━ UNIVERSITIES ━━━
@@ -2472,6 +2487,56 @@ INSA Lyon — Lyon, France [NOT individually verified — public fees]
   Language: Mostly French (international sections ease the first years); some English master's
   Fees: Public-scale (~€600–4,000/yr by status — confirm on insa-lyon.fr) — the value route to a French engineering diploma. Eiffel partner.
 
+━━ Hungarian universities (Stipendium Hungaricum full scholarships across all of them — deadline 15 Jan; see Hungary country block & scholarship #66) ━━
+
+Semmelweis University — Budapest, Hungary [PARTIALLY VERIFIED — medicine fees via official-derived sources]
+  Type: Hungary's dedicated medical university (1769) — Europe's top-tier for medicine, huge international cohort
+  Known for: Medicine, Dentistry, Pharmacy, Health Sciences
+  Language: Full English (and German) tracks
+  Tuition: Medicine ~$18,200/yr (~$109,000 for 6 years) — half of UK/US medical costs for an EU-recognised MD. Entrance exam required.
+  Deadline: Direct applications ~spring for autumn; SH route closes 15 Jan
+  Scholarship here: Stipendium Hungaricum places (very competitive for medicine) — see #66
+
+University of Debrecen — Debrecen, Hungary [PARTIALLY VERIFIED — medicine ~$16,500/yr]
+  Type: Hungary's biggest university cohort of international students — full English ecosystem
+  Known for: Medicine (fully English), Engineering, Agriculture, Business
+  Language: Everything from foundation year up available in English
+  Tuition: Medicine ~$16,500/yr; non-medical programmes far less (~€2,000–6,000/yr) — confirm on edu.unideb.hu
+  Deadline: Rolling direct admissions; SH route 15 Jan
+  Note: Debrecen living costs are well below Budapest.
+
+University of Szeged — Szeged, Hungary [PARTIALLY VERIFIED — medicine ~$16,300–16,500/yr]
+  Type: Consistently Hungary's top-ranked university — Katalin Karikó's (Nobel 2023, mRNA) alma mater
+  Known for: Medicine, Pharmacy, Biology, Computer Science
+  Language: English medicine + many English programmes (some German tracks)
+  Tuition: Medicine ~$16,300–16,500/yr (application €35, medical entrance ~€250–300); others much less — confirm on u-szeged.hu
+  Deadline: Direct ~spring; SH 15 Jan
+
+University of Pécs — Pécs, Hungary [PARTIALLY VERIFIED — medicine ~$16,750/yr]
+  Type: Hungary's OLDEST university (1367) in a charming, cheap student city
+  Known for: Medicine, Dentistry, Business, Psychology
+  Language: English medical + general programmes
+  Tuition: Medicine ~$16,750/yr; others less — confirm on pte.hu
+  Deadline: Direct ~spring; SH 15 Jan
+
+Eötvös Loránd University (ELTE) — Budapest, Hungary [NOT VERIFIED fees — confirm on elte.hu]
+  Type: Hungary's leading comprehensive/research university
+  Known for: Computer Science, Psychology, Law, Physics, Teacher Training
+  Language: Growing English-taught catalogue
+  Fees/deadline: NOT verified — non-medical English programmes typically €2,000–€6,000/yr; SH covers ELTE fully. Confirm on elte.hu.
+
+Budapest University of Technology and Economics (BME) — Budapest, Hungary [NOT VERIFIED fees — confirm on bme.hu]
+  Type: Hungary's historic technical university (1782) — the engineering flagship
+  Known for: Engineering (all branches), Computer Science, Architecture, Transport
+  Language: English engineering programmes at all levels
+  Fees/deadline: NOT verified — typically €3,000–€8,000/yr; SH covers BME fully. Confirm on bme.hu.
+
+Corvinus University of Budapest — Budapest, Hungary [NOT VERIFIED fees — confirm on uni-corvinus.hu]
+  Type: Hungary's business & social-science flagship on the Danube
+  Known for: Business, Economics, International Relations, Data Science
+  Language: Wide English-taught selection
+  Fees/deadline: NOT verified — typically €3,000–€7,000/yr; Corvinus left the SH programme in favour of its OWN scholarship scheme in recent years — check which applies before planning. Confirm on uni-corvinus.hu.
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -2512,6 +2577,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'Australia': ['australia', 'australian', 'aussie', 'sydney', 'melbourne', 'brisbane', 'perth', 'canberra'],
   'Italy': ['italy', 'italian', 'rome', 'milan', 'bologna', 'turin', 'naples', 'imat', 'bocconi', 'polimi'],
   'France': ['france', 'french', 'paris', 'lyon', 'grenoble', 'sorbonne', 'campus france', 'eiffel', 'sciences po'],
+  'Hungary': ['hungary', 'hungarian', 'budapest', 'stipendium', 'semmelweis', 'debrecen', 'szeged'],
 }
 
 // Words too generic to identify a university by name.
