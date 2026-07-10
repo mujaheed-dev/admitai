@@ -2,8 +2,8 @@
 // AdmitAI verified reference data — injected into the AI's system prompt.
 //
 // NOTE ON SCALE:
-//   The dataset covers ~25 countries, ~68 scholarships, ~309 detailed
-//   universities (~49,000–64,000 tokens if injected whole).
+//   The dataset covers ~26 countries, ~69 scholarships, ~319 detailed
+//   universities (~51,000–66,000 tokens if injected whole).
 //
 //   RETRIEVAL: use buildAdmitaiContext(query) (bottom of this file) instead of
 //   injecting ADMITAI_VERIFIED_DATA directly. It selects only the country
@@ -87,6 +87,15 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   Post-study (verified): D-10 job-seeker visa — fresh Korean-university graduates are EXEMPT from its points system; extendable up to 2 years total from a D-2 student visa; part-time work allowed with TOPIK 4+
   Scholarships: Very strong | Application effort: Medium (embassy or university track paperwork)
   Language: Korean-taught dominates undergrad (TOPIK 3–4 entry, 4+ to graduate at many); genuine English tracks exist at KAIST/POSTECH/UNIST (fully English) and Yonsei UIC, Korea U, SKKU. GKS includes the Korean year — treat learning Korean as part of the deal.
+
+🇵🇱 POLAND [LARGELY VERIFIED — study.gov.pl, nawa.gov.pl, gov.pl migration pages]
+  System: EU/Schengen member — the budget workhorse of European study; large English-taught catalogue
+  Tuition (verified ranges): English-taught programmes typically €2,000–€6,000/yr; English-taught MEDICINE €10,000–€16,000/yr (e.g. Wrocław Medical ~€13,400, Łódź ~€15,470) — total 6-year MD ~€66,000–96,000, well under Western costs
+  Living: LOW — ~€400–€700/month (Warsaw/Kraków at the top)
+  Scholarships: Banach NAWA is the flagship for developing countries (see #69); universities add merit awards
+  Post-study (verified): a one-time 9-MONTH graduate residence permit for job-seeking (apply immediately after graduating, before your student stay expires) — and graduates of FULL-TIME Polish studies can work WITHOUT a work permit
+  Application effort: Low-Medium — universities admit directly, document-based; October intake with some February starts
+  Language: Polish-taught study exists but internationals overwhelmingly use the English-taught catalogue; no Polish needed for those (the Banach scholarship adds a funded preparatory year).
 
 🇳🇱 NETHERLANDS [VERIFIED — source: European Education Area / official EU; system facts below verified 2026]
   System: 13 research universities + universities of applied sciences (HBO); applications via Studielink
@@ -672,6 +681,13 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    Routes (verified): EMBASSY track — apply via the Korean embassy in your country, choose up to 3 universities; UNIVERSITY track — apply directly to 1 university. Universities split into Type A (27 top/Seoul institutions, most competitive) and Type B (31 regional, meaningfully better odds) — mixing types is smart strategy.
    Deadlines: undergraduate ~September–October (for the following year); graduate ~February–March — confirm your embassy's exact dates
    ⚠ The Korean language year is mandatory for most — plan for a 5-year undergrad commitment (1+4). Selection weighs grades (~80%+ average), essays and recommendations.
+
+69. Banach NAWA Scholarship Programme — Poland [VERIFIED — nawa.gov.pl]
+   Country: Poland | Level: Master's (second-cycle), Polish- or English-taught
+   Amount: FULL — tuition waiver + PLN 2,500/month stipend + travel support + a funded 1-year preparatory course (Polish language + subject grounding) before the degree — ~300 awards/yr
+   Eligibility (verified): citizens of ~36 Polish Aid partner countries across Eastern Europe/Partnership, Central Asia, the Western Balkans, Africa and Latin America — check the current call's country list
+   Deadline: 8 May 2026, 3pm CEST for the 2026/27 cycle (or until country-group quotas fill — apply EARLY)
+   ⚠ Joint Ministry of Foreign Affairs + NAWA development programme — motivation tied to your country's growth strengthens the application. Poland's low living costs make the PLN 2,500 stipend genuinely livable outside Warsaw.
 
 
 ━━━ UNIVERSITIES ━━━
@@ -2692,6 +2708,59 @@ UNIST (Ulsan National Institute of Science and Technology) — Ulsan, South Kore
   Language: FULLY English-taught
   Fees/funding: National-institute scale with generous scholarships for internationals — confirm on unist.ac.kr. A smart KAIST alternative.
 
+━━ Polish universities (English programmes €2,000–6,000/yr; medicine €10,000–16,000/yr; Banach NAWA full scholarships — see Poland country block & scholarship #69) ━━
+
+University of Warsaw (UW) — Warsaw, Poland [NOT individually verified — see country fee ranges]
+  Type: Poland's largest and top-ranked university
+  Known for: Computer Science (ICPC pedigree), Economics, Law, Physics, Psychology
+  Language: Solid English-taught catalogue. Fees: ~€2,000–6,000/yr English programmes — confirm on en.uw.edu.pl.
+
+Jagiellonian University — Kraków, Poland [PARTIALLY VERIFIED — medicine fees official-derived]
+  Type: Poland's oldest university (1364) — Copernicus's alma mater, in the beautiful student capital Kraków
+  Known for: Medicine (English MD), Law, History, Biotechnology
+  Language: English MD + growing general English catalogue
+  Fees: English medicine ~€13,000–15,000/yr (official-derived); other English programmes ~€2,000–6,000 — confirm on en.uj.edu.pl.
+
+Warsaw University of Technology (WUT) — Warsaw, Poland [NOT individually verified]
+  Type: Poland's leading technical university
+  Known for: Engineering (all branches), Computer Science, Robotics, Aerospace
+  Language: Many English engineering programmes (~€3,000–5,000/yr typical) — confirm on pw.edu.pl.
+
+AGH University of Krakow — Kraków, Poland [NOT individually verified]
+  Type: Mining-heritage technical powerhouse — strong industry links
+  Known for: Mining & Geoengineering, Computer Science, Materials, Energy
+  Language: English engineering options — confirm on agh.edu.pl.
+
+Adam Mickiewicz University — Poznań, Poland [NOT individually verified]
+  Type: Big classical university in a lively, affordable student city
+  Known for: Linguistics, Chemistry, Law, Social Sciences
+  Language: Some English programmes — confirm on international.amu.edu.pl.
+
+University of Wrocław — Wrocław, Poland [NOT individually verified]
+  Type: Historic university in Poland's fastest-growing tech-hub city
+  Known for: Law, International Relations, Biotechnology, Computer Science
+  Language: English options — confirm on international.uni.wroc.pl.
+
+University of Łódź — Łódź, Poland [NOT individually verified]
+  Type: One of Poland's most international-friendly universities — very low living costs
+  Known for: Business, Economics, International Relations, Computer Science
+  Language: Large English catalogue — confirm on iso.uni.lodz.pl.
+
+Gdańsk University of Technology — Gdańsk, Poland [NOT individually verified]
+  Type: Baltic-coast technical university in the attractive Tricity area
+  Known for: Engineering, Computer Science, Ocean/Naval Engineering
+  Language: English engineering programmes — confirm on pg.edu.pl.
+
+Medical University of Warsaw — Warsaw, Poland [PARTIALLY VERIFIED — country medicine range applies]
+  Type: Poland's leading medical university — long-running English MD Division
+  Known for: Medicine (English MD), Dentistry, Pharmacy
+  Fees: English MD within the €12,000–16,000/yr national range — confirm on wum.edu.pl. ⚠ Verify home-country recognition before enrolling in any foreign MD.
+
+Wroclaw Medical University — Wrocław, Poland [PARTIALLY VERIFIED — ~€13,400/yr official-derived]
+  Type: Established English-division medical school popular with international students
+  Known for: Medicine (English MD), Dentistry
+  Fees: General medicine ~PLN 28,850/semester ≈ €13,400/yr (official-derived) — confirm on umw.edu.pl.
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -2735,6 +2804,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'Hungary': ['hungary', 'hungarian', 'budapest', 'stipendium', 'semmelweis', 'debrecen', 'szeged'],
   'Japan': ['japan', 'japanese', 'tokyo', 'kyoto', 'osaka', 'mext', 'waseda', 'keio', 'nagoya'],
   'South Korea': ['korea', 'korean', 'seoul', 'kaist', 'yonsei', 'topik', 'gks', 'postech'],
+  'Poland': ['poland', 'polish', 'warsaw', 'krakow', 'wroclaw', 'gdansk', 'nawa', 'banach', 'jagiellonian'],
 }
 
 // Words too generic to identify a university by name.

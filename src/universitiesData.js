@@ -3738,6 +3738,44 @@ export const UNIVERSITIES = [
     verified: false,
   })),
 
+  // ── LIGHT ENTRIES (Poland) ───────────────────────────────────────────────
+  // Verified country facts: English programmes €2,000–6,000/yr; English MD
+  // €10,000–16,000/yr; Banach NAWA full scholarship (tuition + PLN 2,500/mo,
+  // ~36 Polish Aid countries, deadline ~8 May); one-time 9-month graduate
+  // job-seeking permit; full-time graduates work WITHOUT a permit.
+  ...[
+    ['uw-warsaw', 'University of Warsaw (UW)', 'Warsaw', "Poland's largest and top-ranked university — ICPC computer-science pedigree", ['Computer Science', 'Economics', 'Law', 'Physics'], 'https://en.uw.edu.pl/'],
+    ['jagiellonian', 'Jagiellonian University', 'Kraków', "Poland's oldest (1364) — Copernicus's alma mater; English MD ~€13,000–15,000/yr", ['Medicine (English MD)', 'Law', 'History', 'Biotechnology'], 'https://en.uj.edu.pl/'],
+    ['wut', 'Warsaw University of Technology (WUT)', 'Warsaw', "Poland's leading technical university", ['Engineering', 'Computer Science', 'Robotics', 'Aerospace'], 'https://www.pw.edu.pl/engpw'],
+    ['agh', 'AGH University of Krakow', 'Kraków', 'Mining-heritage technical powerhouse with strong industry links', ['Mining & Geoengineering', 'Computer Science', 'Materials', 'Energy'], 'https://www.agh.edu.pl/en/'],
+    ['amu-poznan', 'Adam Mickiewicz University', 'Poznań', 'Big classical university in a lively, affordable student city', ['Linguistics', 'Chemistry', 'Law', 'Social Sciences'], 'https://international.amu.edu.pl/'],
+    ['wroclaw-u', 'University of Wrocław', 'Wrocław', "Historic university in Poland's fastest-growing tech-hub city", ['Law', 'International Relations', 'Biotechnology', 'Computer Science'], 'https://international.uni.wroc.pl/en'],
+    ['lodz', 'University of Łódź', 'Łódź', "One of Poland's most international-friendly universities — very low living costs", ['Business', 'Economics', 'International Relations', 'Computer Science'], 'https://iso.uni.lodz.pl/'],
+    ['gdansk-tech', 'Gdańsk University of Technology', 'Gdańsk', 'Baltic-coast technical university in the attractive Tricity area', ['Engineering', 'Computer Science', 'Ocean & Naval Engineering'], 'https://pg.edu.pl/en'],
+    ['mu-warsaw', 'Medical University of Warsaw', 'Warsaw', "Poland's leading medical university — long-running English MD Division", ['Medicine (English MD)', 'Dentistry', 'Pharmacy'], 'https://www.wum.edu.pl/en'],
+    ['wroclaw-med', 'Wroclaw Medical University', 'Wrocław', 'Established English-division medical school — general medicine ~€13,400/yr (official-derived)', ['Medicine (English MD)', 'Dentistry'], 'https://www.umw.edu.pl/en'],
+  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'Poland',
+    city,
+    flag: '🇵🇱',
+    ranking,
+    knownFor,
+    language: 'Large English-taught catalogues at most — no Polish needed for those; confirm per programme.',
+    entryGrades: 'Document-based direct admission; medicine uses entrance exams/biology-chemistry requirements — confirm on the official site.',
+    tests: 'IELTS/TOEFL (or equivalent proof) for English programmes — confirm per programme.',
+    acceptance: 'Accessible to moderately competitive — medicine most selective',
+    tuitionIntl: 'English-taught programmes typically €2,000–€6,000/yr; English medicine €10,000–€16,000/yr (verified country ranges — per-university figures where noted). Confirm on the official site.',
+    living: 'Poland is cheap: ~€400–€700/month (Warsaw/Kraków at the top).',
+    deadline: 'Main October intake with applications ~spring–summer; some February starts — confirm on the official site.',
+    scholarshipsHere: 'Banach NAWA full scholarship (tuition + PLN 2,500/month + prep year) for ~36 Polish Aid countries — deadline ~8 May. Post-study: 9-month graduate job-seeking permit; full-time graduates work without a permit.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
   // ── LIGHT ENTRIES (Malaysia) ─────────────────────────────────────────────
   // Real institutions with name/city/official link only — fees, entry
   // requirements and deadlines NOT yet researched (verified: false).
