@@ -2,8 +2,8 @@
 // AdmitAI verified reference data — injected into the AI's system prompt.
 //
 // NOTE ON SCALE:
-//   The dataset covers ~26 countries, ~69 scholarships, ~319 detailed
-//   universities (~51,000–66,000 tokens if injected whole).
+//   The dataset covers ~27 countries, ~69 scholarships, ~326 detailed
+//   universities (~52,000–67,000 tokens if injected whole).
 //
 //   RETRIEVAL: use buildAdmitaiContext(query) (bottom of this file) instead of
 //   injecting ADMITAI_VERIFIED_DATA directly. It selects only the country
@@ -96,6 +96,15 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   Post-study (verified): a one-time 9-MONTH graduate residence permit for job-seeking (apply immediately after graduating, before your student stay expires) — and graduates of FULL-TIME Polish studies can work WITHOUT a work permit
   Application effort: Low-Medium — universities admit directly, document-based; October intake with some February starts
   Language: Polish-taught study exists but internationals overwhelmingly use the English-taught catalogue; no Polish needed for those (the Banach scholarship adds a funded preparatory year).
+
+🇨🇾 CYPRUS [MIXED — heavily agent-marketed to international students; read the warnings]
+  System: TWO separate worlds. (1) The REPUBLIC of Cyprus (south) — EU member: public universities (University of Cyprus, CUT) + private universities (Nicosia, UCLan Cyprus, European University Cyprus). (2) NORTHERN Cyprus (TRNC) — not internationally recognised as a state; universities accredited via Turkey's YÖK.
+  Tuition: Republic privates ~€6,000–€10,000/yr sticker with 30–50% scholarships routinely offered (UCLan Cyprus verified examples: €9,950 → €5,970–6,965 after standard discounts); Nicosia's English medicine runs far higher (~€18,000+/yr — confirm). North Cyprus is very cheap: CIU ~€3,099/yr for most bachelor's and €7,400 medicine AFTER the automatic 50% scholarship every admitted international gets (verified pattern — the "50% scholarship" agents advertise is standard pricing, not an achievement).
+  Living: ~€400–€800/month; North cheaper than South
+  ⚠ LANGUAGE TRAP (Republic): PUBLIC universities teach most BACHELOR'S in GREEK — the cheap public option is largely closed to non-Greek speakers; English-taught study is mainly at private universities and postgrad level.
+  ⚠ RECOGNITION WARNING (North): because the TRNC is unrecognised, degree recognition VARIES BY COUNTRY — degrees are Turkish-accredited (fine for Turkey and many states; EMU/NEU hold real international programme accreditations like ABET) but some countries and professional bodies do not accept them. VERIFY with your home country's credential authority BEFORE enrolling — agents will not volunteer this.
+  Scholarships: "Automatic" discounts are the norm (treat advertised scholarships as list-price marketing) | Application effort: Low
+  Post-study: Republic = EU rules; North Cyprus offers no meaningful post-study migration path — plan it as degree-only.
 
 🇳🇱 NETHERLANDS [VERIFIED — source: European Education Area / official EU; system facts below verified 2026]
   System: 13 research universities + universities of applied sciences (HBO); applications via Studielink
@@ -2761,6 +2770,52 @@ Wroclaw Medical University — Wrocław, Poland [PARTIALLY VERIFIED — ~€13,4
   Known for: Medicine (English MD), Dentistry
   Fees: General medicine ~PLN 28,850/semester ≈ €13,400/yr (official-derived) — confirm on umw.edu.pl.
 
+━━ Cypriot universities (TWO systems — EU Republic vs unrecognised North; see the Cyprus country block warnings before recommending anything) ━━
+
+University of Cyprus (UCY) — Nicosia (Republic), Cyprus [NOT individually verified]
+  Type: The Republic's public flagship — EU degrees
+  Known for: Economics, Computer Science, Engineering, Education
+  Language: ⚠ Most BACHELOR'S are GREEK-taught; English mainly at master's/PhD — confirm per programme on ucy.ac.cy
+  Fees: Public rates are modest (postgrad ~€5,000–10,000 total programme typical) — confirm on ucy.ac.cy.
+
+Cyprus University of Technology (CUT) — Limassol (Republic), Cyprus [NOT individually verified]
+  Type: The Republic's public technical university
+  Known for: Engineering, Health Sciences, Multimedia & Communications
+  Language: ⚠ Greek-taught bachelor's mostly; some English postgrad — confirm on cut.ac.cy.
+
+University of Nicosia (UNIC) — Nicosia (Republic), Cyprus [NOT individually verified]
+  Type: The Republic's largest private university — EU-recognised degrees, big international cohort
+  Known for: Medicine (English, ~€18,000+/yr — confirm), Business, Law, Digital Currency/Blockchain
+  Language: English-taught across the board
+  Fees: ~€8,000–10,000/yr sticker for most bachelor's with routine partial scholarships; medicine far higher — confirm on unic.ac.cy.
+
+UCLan Cyprus — Larnaca (Republic), Cyprus [PARTIALLY VERIFIED — discount examples official]
+  Type: Cyprus campus of the University of Central Lancashire (UK) — DOUBLE UK+Cyprus accredited degree, EU-based
+  Known for: Law (UK LLB), Computing, Business, Mathematics
+  Language: English-taught
+  Fees (verified examples): €9,950/yr sticker with standard 30–40% programme scholarships → ~€5,970–€6,965/yr — a UK degree inside the EU at budget prices. Confirm on uclancyprus.ac.cy.
+
+Eastern Mediterranean University (EMU) — Famagusta (NORTH Cyprus), Cyprus [PARTIALLY VERIFIED — recognition warning applies]
+  Type: North Cyprus's oldest and best-known university — large international cohort
+  Known for: Engineering (ABET-accredited programmes), Tourism, Architecture, Business
+  Language: English-taught
+  Fees: Very cheap after the standard automatic scholarships (~$3,000–5,000/yr typical) — confirm on emu.edu.tr
+  ⚠ TRNC recognition warning (see country block): Turkish-accredited; VERIFY your home country accepts it before enrolling.
+
+Near East University (NEU) — Nicosia (NORTH Cyprus), Cyprus [PARTIALLY VERIFIED — recognition warning applies]
+  Type: Huge private university in the North — medicine/dentistry marketed heavily abroad
+  Known for: Medicine, Dentistry, Pharmacy, Engineering
+  Language: English-taught programmes
+  Fees: Cheap after automatic discounts — confirm on neu.edu.tr
+  ⚠ Same TRNC recognition warning — ESPECIALLY for medicine/dentistry: confirm your home medical council recognises North Cyprus degrees before paying anything.
+
+Cyprus International University (CIU) — Nicosia (NORTH Cyprus), Cyprus [PARTIALLY VERIFIED — fee pattern official-derived]
+  Type: Private university in the North — the classic agent-marketed option
+  Known for: Engineering, Business, Health Sciences, Pharmacy
+  Language: English-taught
+  Fees (official-derived): EVERY admitted international automatically gets "50% scholarship" — the real prices are ~€3,099/yr most bachelor's, €7,400 medicine, €6,800 dentistry. Treat the "scholarship" as list pricing.
+  ⚠ Same TRNC recognition warning applies.
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -2805,6 +2860,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'Japan': ['japan', 'japanese', 'tokyo', 'kyoto', 'osaka', 'mext', 'waseda', 'keio', 'nagoya'],
   'South Korea': ['korea', 'korean', 'seoul', 'kaist', 'yonsei', 'topik', 'gks', 'postech'],
   'Poland': ['poland', 'polish', 'warsaw', 'krakow', 'wroclaw', 'gdansk', 'nawa', 'banach', 'jagiellonian'],
+  'Cyprus': ['cyprus', 'cypriot', 'nicosia', 'famagusta', 'trnc', 'limassol', 'larnaca'],
 }
 
 // Words too generic to identify a university by name.

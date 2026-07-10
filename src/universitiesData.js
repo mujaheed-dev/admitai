@@ -3776,6 +3776,41 @@ export const UNIVERSITIES = [
     verified: false,
   })),
 
+  // ── LIGHT ENTRIES (Cyprus) ───────────────────────────────────────────────
+  // TWO systems: EU Republic (public unis teach bachelor's mostly in GREEK;
+  // privates English with routine 30–50% discounts) vs NORTH Cyprus (TRNC,
+  // unrecognised state — Turkish-accredited degrees; recognition VARIES BY
+  // COUNTRY, verify with your home credential authority before enrolling).
+  ...[
+    ['ucy', 'University of Cyprus (UCY)', 'Nicosia (Republic)', "The Republic's public flagship — EU degrees; ⚠ bachelor's mostly GREEK-taught", ['Economics', 'Computer Science', 'Engineering', 'Education'], 'https://www.ucy.ac.cy/?lang=en'],
+    ['cut-cyprus', 'Cyprus University of Technology (CUT)', 'Limassol (Republic)', "Public technical university; ⚠ Greek-taught bachelor's mostly", ['Engineering', 'Health Sciences', 'Multimedia & Communications'], 'https://www.cut.ac.cy/?languageId=2'],
+    ['unic', 'University of Nicosia (UNIC)', 'Nicosia (Republic)', "The Republic's largest private — EU-recognised, English-taught; medicine ~€18,000+/yr", ['Medicine', 'Business', 'Law', 'Blockchain & Digital Currency'], 'https://www.unic.ac.cy/'],
+    ['uclan-cyprus', 'UCLan Cyprus', 'Larnaca (Republic)', 'DOUBLE UK+Cyprus accredited degree in the EU — €9,950 sticker drops to ~€6,000–7,000 with standard scholarships (verified examples)', ['Law (UK LLB)', 'Computing', 'Business', 'Mathematics'], 'https://www.uclancyprus.ac.cy/'],
+    ['emu', 'Eastern Mediterranean University (EMU)', 'Famagusta (NORTH Cyprus)', "North's oldest and best-known — ABET-accredited engineering; ⚠ TRNC recognition varies by country", ['Engineering', 'Tourism', 'Architecture', 'Business'], 'https://www.emu.edu.tr/en'],
+    ['neu', 'Near East University (NEU)', 'Nicosia (NORTH Cyprus)', 'Huge private in the North — medicine/dentistry heavily marketed; ⚠ verify home medical-council recognition FIRST', ['Medicine', 'Dentistry', 'Pharmacy', 'Engineering'], 'https://neu.edu.tr/en/'],
+    ['ciu', 'Cyprus International University (CIU)', 'Nicosia (NORTH Cyprus)', 'The classic agent-marketed option — the automatic "50% scholarship" is standard pricing: real fees ~€3,099/yr, medicine €7,400', ['Engineering', 'Business', 'Health Sciences', 'Pharmacy'], 'https://www.ciu.edu.tr/en'],
+  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'Cyprus',
+    city,
+    flag: '🇨🇾',
+    ranking,
+    knownFor,
+    language: 'Republic publics: mostly Greek-taught bachelor\'s; Republic privates & North: English-taught — confirm per programme.',
+    entryGrades: 'Accessible — document-based admission at most; medicine more selective.',
+    tests: 'IELTS/TOEFL or university English tests — confirm on the official site.',
+    acceptance: 'Accessible — varies by programme',
+    tuitionIntl: 'See per-university notes: Republic privates ~€6,000–10,000/yr sticker with routine 30–50% discounts; North Cyprus ~€3,000–7,400/yr AFTER the automatic discounts every international gets. Treat advertised "scholarships" as list pricing. Confirm on the official site.',
+    living: '~€400–800/month; the North is cheaper than the South.',
+    deadline: 'Rolling admissions with autumn and spring intakes at most — confirm on the official site.',
+    scholarshipsHere: 'Automatic/standard tuition discounts are the norm — negotiate and compare rather than treating them as awards. ⚠ NORTH Cyprus (TRNC) degrees are Turkish-accredited and recognition varies by country — verify with your home credential authority (and medical council for medicine) BEFORE enrolling.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
   // ── LIGHT ENTRIES (Malaysia) ─────────────────────────────────────────────
   // Real institutions with name/city/official link only — fees, entry
   // requirements and deadlines NOT yet researched (verified: false).
