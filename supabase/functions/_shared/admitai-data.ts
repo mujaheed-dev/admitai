@@ -2,8 +2,8 @@
 // AdmitAI verified reference data — injected into the AI's system prompt.
 //
 // NOTE ON SCALE:
-//   The dataset covers ~23 countries, ~66 scholarships, ~288 detailed
-//   universities (~46,000–60,000 tokens if injected whole).
+//   The dataset covers ~24 countries, ~67 scholarships, ~299 detailed
+//   universities (~48,000–62,000 tokens if injected whole).
 //
 //   RETRIEVAL: use buildAdmitaiContext(query) (bottom of this file) instead of
 //   injecting ADMITAI_VERIFIED_DATA directly. It selects only the country
@@ -68,6 +68,15 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   Living: LOW — ~€400–€700/month (Budapest at the top; Debrecen/Szeged/Pécs cheaper)
   Scholarships: Exceptional relative to country size | Application effort: Low-Medium (one SH portal application covers up to 2 programmes)
   ⚠ The SH stipend (~€110/month) does NOT cover living costs by itself — treat it as tuition-free study with pocket money, and budget family support of ~€200–400/month, especially in Budapest.
+
+🇯🇵 JAPAN [LARGELY VERIFIED — studyinjapan.go.jp, u-tokyo.ac.jp, immigration sources]
+  System: National universities (uniform low tuition) + prestigious privates (Waseda/Keio) + the unique half-international APU
+  Tuition (verified): national universities charge a standardised ¥535,800/yr (~$3,600) regardless of nationality + one-time ¥282,000 admission fee. Exception: the University of Tokyo raised tuition to ¥642,960 (first hike in 20 years). Privates run ¥1.3M–3.5M/yr.
+  Living: ~¥100,000–150,000/month (~$8,000–12,000/yr) — Tokyo at the top
+  ★ MEXT (verified): the Japanese government's full ride — tuition + entrance fees + monthly stipend (¥117,000 undergrad / ¥143,000–145,000 research) + round-trip airfare, with NO service obligation (see #67)
+  Post-study (verified): "Designated Activities" job-hunting status — 6 months + one 6-month renewal = 12 months; the newer J-FIND visa gives graduates of top-globally-ranked universities up to 2 YEARS to job-hunt or start a business (needs ~¥200,000 savings)
+  Scholarships: Strong (MEXT + JASSO + university reductions — Waseda up to 100%, APU 30–65% common) | Application effort: Medium-High
+  Language: most undergraduate study is JAPANESE-taught (EJU entrance exam + JLPT) — but full English degrees exist: UTokyo PEAK, Nagoya G30, Waseda/Keio/Sophia programmes, and APU (half the student body is international, fully English). MEXT undergrad includes a preparatory Japanese year.
 
 🇳🇱 NETHERLANDS [VERIFIED — source: European Education Area / official EU; system facts below verified 2026]
   System: 13 research universities + universities of applied sciences (HBO); applications via Studielink
@@ -639,6 +648,13 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    Eligibility (verified): citizens of 100+ partner countries (large quotas across Africa, the Middle East, Asia, Latin America — including Egypt, Jordan, Nigeria, Pakistan, India and many more)
    Deadline: 15 January, 2pm CET each year — one online application covers up to two programme choices
    ⚠ One of the world's highest-volume full scholarships — genuinely winnable for solid students. The stipend alone won't cover living costs (~€400–700/month); plan a family top-up. Medicine seats via SH exist but are the most competitive.
+
+67. Japanese Government MEXT Scholarship [VERIFIED — studyinjapan.go.jp / Japanese embassies]
+   Country: Japan | Level: Undergraduate, Research (master's/PhD), College of Technology, Japanese Studies
+   Amount: FULL — tuition + entrance-exam and admission fees + monthly stipend ¥117,000 (undergraduate) / ¥143,000–145,000 (research, plus regional supplements) + round-trip economy airfare. NO service obligation afterwards — rare among full government scholarships.
+   Routes (verified): EMBASSY recommendation — apply at the Japanese embassy in YOUR country (recruitment typically ~April–June for the following year: written exams + interview); or UNIVERSITY recommendation — apply through a Japanese university that nominates you (arrival usually Sept/Oct).
+   Undergraduate track: includes a 1-year preparatory JAPANESE language year before the 4-year degree — most MEXT undergrads then study in Japanese.
+   ⚠ Start a year early: embassy cycles open ~April. Research applicants should contact prospective supervising professors BEFORE applying — a professor's informal acceptance letter dramatically strengthens the file.
 
 
 ━━━ UNIVERSITIES ━━━
@@ -2537,6 +2553,70 @@ Corvinus University of Budapest — Budapest, Hungary [NOT VERIFIED fees — con
   Language: Wide English-taught selection
   Fees/deadline: NOT verified — typically €3,000–€7,000/yr; Corvinus left the SH programme in favour of its OWN scholarship scheme in recent years — check which applies before planning. Confirm on uni-corvinus.hu.
 
+━━ Japanese universities (national tuition ¥535,800/yr standardised; MEXT full scholarships — see Japan country block & scholarship #67) ━━
+
+University of Tokyo (UTokyo) — Tokyo, Japan [VERIFIED tuition — u-tokyo.ac.jp]
+  Type: Japan's #1 university
+  Known for: everything — Engineering, Science, Law, Medicine, Economics
+  Language: Mostly Japanese-taught; PEAK (English-taught liberal arts/environmental science undergrad) and GSC transfer programme (GSC students get ¥150,000/month + housing support, verified)
+  Tuition (verified): ¥642,960/yr (raised from the national standard ¥535,800 — Japan's first hike in 20 years) + ¥282,000 admission fee
+  Deadline: PEAK applications ~Dec–Jan for autumn entry; Japanese-track via EJU — confirm on u-tokyo.ac.jp
+  Scholarship here: MEXT (university + embassy routes), PEAK-specific aid
+
+Kyoto University — Kyoto, Japan [NOT individually verified — national tuition scale]
+  Type: Japan's #2 — famous for Nobel-heavy fundamental research and academic freedom
+  Known for: Physics, Chemistry, Biology, Engineering, Philosophy
+  Language: Mostly Japanese; iUP programme offers English-entry undergrad with Japanese transition (stipends available). Tuition: national scale ¥535,800 — confirm on kyoto-u.ac.jp.
+
+Osaka University — Osaka, Japan [NOT individually verified — national tuition scale]
+  Type: Top-3 national university — big engineering/medicine
+  Known for: Engineering, Immunology, Medicine, Economics
+  Language: Mostly Japanese; some English graduate programmes. Tuition: national scale — confirm on osaka-u.ac.jp.
+
+Tohoku University — Sendai, Japan [NOT individually verified — national tuition scale]
+  Type: Historic imperial university — Japan's #1 in some domestic rankings; research powerhouse
+  Known for: Materials Science, Engineering, Physics, Spintronics
+  Language: English undergrad tracks (ex-G30) in engineering/science. Tuition: national scale — confirm on tohoku.ac.jp.
+
+Institute of Science Tokyo — Tokyo, Japan [NOT individually verified — national tuition scale]
+  Type: NEW name (2024): the merger of Tokyo Institute of Technology (Tokyo Tech) and Tokyo Medical and Dental University — older guides list them separately
+  Known for: Engineering, Computer Science, Materials, Medicine & Dentistry
+  Language: English graduate programmes common. Tuition: national scale — confirm on isct.ac.jp.
+
+Nagoya University — Nagoya, Japan [NOT individually verified — national tuition scale]
+  Type: Imperial-lineage national university in Japan's automotive heartland — the strongest ex-G30 ENGLISH undergraduate lineup
+  Known for: Automotive Engineering, Physics (multiple Nobels), Chemistry, Economics
+  Language: G30 English undergrad in engineering/science/social science. Tuition: national scale — confirm on nagoya-u.ac.jp.
+
+Kyushu University — Fukuoka, Japan [NOT individually verified — national tuition scale]
+  Type: Southern flagship in one of Japan's most livable, affordable big cities
+  Known for: Engineering, Energy/Hydrogen research, Medicine, Design
+  Language: Some English undergrad/graduate tracks. Tuition: national scale — confirm on kyushu-u.ac.jp.
+
+Hokkaido University — Sapporo, Japan [NOT individually verified — national tuition scale]
+  Type: Northern flagship — huge campus, agriculture/environment heritage
+  Known for: Agriculture, Veterinary Medicine, Environmental Science, Fisheries
+  Language: Modern Japanese Studies + some English tracks. Tuition: national scale — confirm on hokudai.ac.jp.
+
+Waseda University — Tokyo, Japan [NOT individually verified — private fees]
+  Type: Japan's most famous private university — enormous alumni network, most international-friendly of the big privates
+  Known for: Political Science & Economics, International Liberal Studies (SILS, English), Business, Literature
+  Language: Several full English-taught undergrad schools (SILS, PSE-EDESSA...)
+  Fees: Private (~¥1.2M–1.8M/yr) BUT tuition reductions up to 100% exist for international students (per official-derived sources) — confirm on waseda.jp.
+
+Keio University — Tokyo, Japan [NOT individually verified — private fees]
+  Type: Waseda's great private rival — business elite pipeline (1858)
+  Known for: Economics, Business, Medicine, Law, PEARL/GIGA English programmes
+  Language: PEARL (economics) and GIGA (informatics) English undergrad tracks
+  Fees: Private (~¥1.3M–1.9M/yr); institutional scholarships exist — confirm on keio.ac.jp.
+
+Ritsumeikan Asia Pacific University (APU) — Beppu, Japan [PARTIALLY VERIFIED — tuition reductions common]
+  Type: Japan's international outlier — HALF the student body is international (90+ countries), fully bilingual campus, no Japanese needed to start
+  Known for: International Management, Asia Pacific Studies, Sustainability & Tourism
+  Language: Fully English-taught tracks (Japanese learned alongside)
+  Fees: ~¥1.3M–1.5M/yr BUT 30–65% tuition reduction scholarships are COMMON — every applicant is considered with the admission application (per official-derived sources; confirm on apu.ac.jp). Beppu living is far cheaper than Tokyo.
+  ⚠ The easiest genuine entry point into Japanese higher education for non-Japanese speakers.
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -2578,6 +2658,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'Italy': ['italy', 'italian', 'rome', 'milan', 'bologna', 'turin', 'naples', 'imat', 'bocconi', 'polimi'],
   'France': ['france', 'french', 'paris', 'lyon', 'grenoble', 'sorbonne', 'campus france', 'eiffel', 'sciences po'],
   'Hungary': ['hungary', 'hungarian', 'budapest', 'stipendium', 'semmelweis', 'debrecen', 'szeged'],
+  'Japan': ['japan', 'japanese', 'tokyo', 'kyoto', 'osaka', 'mext', 'waseda', 'keio', 'nagoya'],
 }
 
 // Words too generic to identify a university by name.
