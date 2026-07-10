@@ -2,8 +2,8 @@
 // AdmitAI verified reference data — injected into the AI's system prompt.
 //
 // NOTE ON SCALE:
-//   The dataset covers ~21 countries, ~63 scholarships, ~269 detailed
-//   universities (~43,000–57,000 tokens if injected whole).
+//   The dataset covers ~22 countries, ~65 scholarships, ~281 detailed
+//   universities (~45,000–59,000 tokens if injected whole).
 //
 //   RETRIEVAL: use buildAdmitaiContext(query) (bottom of this file) instead of
 //   injecting ADMITAI_VERIFIED_DATA directly. It selects only the country
@@ -51,6 +51,15 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   ★ MEDICINE IN ENGLISH (verified): ~16 public universities teach Medicine/Dentistry/Vet in English via the IMAT exam (register ~July, sit ~September; 1,000+ non-EU seats) — with income-based fees this is the cheapest credible English-taught medicine anywhere. Most IMAT universities don't even require IELTS.
   Scholarships: Strong (DSU + MAECI + Invest Your Talent + big university schemes) | Application effort: Medium-High (Universitaly + ISEE paperwork)
   Language: English-taught programmes are common at master's level and growing at bachelor's; most bachelor's remain Italian-taught — confirm per programme.
+
+🇫🇷 FRANCE [LARGELY VERIFIED — campusfrance.org, service-public.gouv.fr, university pages]
+  System: Public universities + grandes écoles (elite selective schools); students from ~70 countries MUST apply via the Campus France "Études en France" procedure (verified — most of Africa and Asia included)
+  Tuition (verified, 2026-27): non-EU "differentiated" fees at public universities — €2,895/yr bachelor's (licence), €3,941/yr master's; PhD is EXEMPT from differentiated fees (~€400/yr). Grandes écoles set their own fees (Sciences Po up to ~€14,900 UG; HEC/private business schools €20,000–50,000).
+  ⚠ POLICY CHANGE (verified, May 2026 decree): fee WAIVERS are being squeezed — until now many universities waived nearly all non-EU students down to EU rates (~€175/€250), but from 2026-27 "differentiated fees are the rule, exemption the exception": waivers capped at 30% of a university's international students (25% in 2027-28, 20% long-term). Old advice that "everyone gets the waiver" is now WRONG — budget the full differentiated fee unless you hold a French government scholarship (BGF holders stay exempt).
+  Living: ~€615/month is the visa requirement (≈€7,380/yr, unchanged for 2026 — one of Western Europe's lowest bars); realistic Paris costs are double that, provincial cities much closer to it. CROUS subsidised housing/meals + CAF housing allowance (open to internationals!) soften costs.
+  Post-study (verified): the RECE permit ("job search/business creation", ex-APS) — 12 months after a master's-level degree, work allowed; NOT renewable for most nationalities (Indian citizens: 12+12 months under the bilateral agreement).
+  Scholarships: Strong at postgrad (Eiffel #64, Boutmy #65) | Application effort: Medium-High (Campus France procedure + interviews)
+  Language: most bachelor's are French-taught (B2 needed); English-taught master's are plentiful, especially at grandes écoles and in engineering/business.
 
 🇳🇱 NETHERLANDS [VERIFIED — source: European Education Area / official EU; system facts below verified 2026]
   System: 13 research universities + universities of applied sciences (HBO); applications via Studielink
@@ -601,6 +610,20 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    Eligibility: Citizens of the listed target countries in Africa, Asia, Latin America and Eastern Europe (check the current list)
    Deadline: 11 May 2026, 6pm Italian time for the 2026/27 cycle — annual
    ⚠ The internship is the differentiator — it converts the degree into Italian work experience. Country list changes; confirm yours is eligible.
+
+64. France Excellence Eiffel Scholarship [VERIFIED — campusfrance.org]
+   Country: France | Level: Master's & PhD
+   Amount: €1,200/month at master's, €2,100/month at PhD (rates from Jan 2026) + international transport + insurance + housing help + cultural activities. Eiffel laureates are also typically exempted from differentiated tuition.
+   Eligibility (verified): foreign nationality; age ≤29 (master's) / ≤35 (PhD)
+   Apply: ONLY through a French institution — you apply to the school in autumn, the SCHOOL nominates you to Campus France (institution deadline ~early January; 2026 cycle closed 8 Jan)
+   ⚠ You cannot apply directly. Contact your target school's international office in September–October and ask about their internal Eiffel deadline — it is EARLIER than the national one.
+
+65. Émile Boutmy Scholarship — Sciences Po [VERIFIED — sciencespo.fr]
+   Country: France | Level: Bachelor's & Master's at Sciences Po
+   Amount: Undergraduate — full exemption (fees up to ~€14,900/yr for 2026-27) or a €9,500/yr reduction, for all 3 years; Master's — €18,500/yr exemption for both years
+   Eligibility (verified): first-time non-EU applicants whose household pays taxes outside the EU; excludes some dual degrees, 1-year master's and PhD
+   Deadline (2026 cycle): UG from foreign school systems ~20 January; master's committees ~19 October / 30 November
+   ⚠ Tick the scholarship box in the "Financial information" section of the Sciences Po application — there is no separate form.
 
 
 ━━━ UNIVERSITIES ━━━
@@ -2381,6 +2404,74 @@ University of Trento — Trento, Italy [NOT individually verified — income-bas
   Known for: Computer Science, Physics, Cognitive Science, Sociology
   Language: Good English-taught selection. Fees: income-based; Trento's opera universitaria DSU packages are among Italy's most reliable — confirm on unitn.it.
 
+━━ French universities & grandes écoles (apply via Campus France for ~70 countries; differentiated fees €2,895/€3,941 with waivers now CAPPED — see France country block & scholarships #64–65) ━━
+
+Sciences Po — Paris (+ 6 regional campuses), France [VERIFIED — sciencespo.fr fees & Boutmy]
+  Type: France's elite social-science grande école — the political science school of presidents
+  Known for: Political Science, International Relations, Economics, Law, Journalism
+  Language: Full English-taught tracks at bachelor's and master's
+  Tuition (2026-27, verified): undergraduate up to ~€14,900/yr, master's ~€20,000+/yr — income-adjusted for EU students, flat for non-EU, BUT the Boutmy scholarship (see #65) gives full or large exemptions to non-EU admits
+  Deadline: UG (foreign school systems) ~January; master's rounds Oct–Dec — confirm on sciencespo.fr
+  Scholarship here: Émile Boutmy — full exemption or €9,500/yr (UG), €18,500/yr (master's) — see #65
+
+Université PSL (Paris Sciences et Lettres) — Paris, France [NOT individually verified — public fees]
+  Type: France's top-ranked university collective (ENS, Dauphine, Mines Paris...) — global top-30
+  Known for: Sciences, Mathematics, Economics (Dauphine), Humanities, Arts
+  Language: French mostly at bachelor's; English master's options. Fees: differentiated €2,895/€3,941 unless waived/scholarship — confirm on psl.eu.
+
+Sorbonne Université — Paris, France [NOT individually verified — public fees]
+  Type: The historic Paris flagship (sciences + humanities + medicine)
+  Known for: Humanities, Physics, Mathematics, Medicine
+  Language: French mostly; some English master's. Fees: differentiated rates apply — confirm on sorbonne-universite.fr.
+
+Université Paris-Saclay — Saclay (Paris region), France [NOT individually verified — public fees]
+  Type: Science powerhouse south of Paris — world #1 in mathematics rankings
+  Known for: Mathematics, Physics, Engineering, Life Sciences
+  Language: French bachelor's mostly; many English master's. Fees: differentiated rates; Paris-Saclay runs its own IDEX international master's scholarships (~€10,000/yr) — confirm on universite-paris-saclay.fr. Eiffel partner.
+
+Université Paris Cité — Paris, France [NOT individually verified — public fees]
+  Type: Large central-Paris university (ex Paris Descartes + Diderot)
+  Known for: Medicine, Sciences, Social Sciences, Linguistics
+  Language: French mostly. Fees: differentiated rates — confirm on u-paris.fr.
+
+École Polytechnique (l'X) — Palaiseau (Paris region), France [NOT individually verified]
+  Type: France's most prestigious engineering grande école — military-founded, extremely selective
+  Known for: Mathematics, Physics, Engineering, Economics
+  Language: The Bachelor of Science and most graduate programmes are English-taught
+  Fees: Grande école pricing (Bachelor ~€15,000+/yr; MSc&T ~€20,000+/yr — confirm on polytechnique.edu); merit scholarships exist for internationals.
+
+HEC Paris — Jouy-en-Josas (Paris region), France [NOT individually verified]
+  Type: Europe's #1-ranked business school (grande école, private pricing)
+  Known for: MBA, Master in Management, Finance, Entrepreneurship
+  Language: English-taught graduate programmes
+  Fees: High — MiM ~€50,000 total, MBA ~€100,000 (confirm on hec.edu) — but HEC Foundation scholarships (up to 100%) and Eiffel apply; strong salary outcomes offset cost.
+
+Université Grenoble Alpes — Grenoble, France [NOT individually verified — public fees]
+  Type: Alpine science/tech university city — strong labs (CNRS, CEA), affordable student living
+  Known for: Computer Science, Physics, Nanoscience, Earth Sciences
+  Language: French mostly; English master's options. Fees: differentiated rates — confirm on univ-grenoble-alpes.fr.
+
+Université de Strasbourg — Strasbourg, France [NOT individually verified — public fees]
+  Type: Historic Rhine-border university — chemistry Nobel tradition, EU institutions city
+  Known for: Chemistry, Law, European Studies, Life Sciences
+  Language: French mostly; some English master's. Fees: differentiated rates — confirm on unistra.fr.
+
+Aix-Marseille Université — Marseille/Aix-en-Provence, France [NOT individually verified — public fees]
+  Type: France's largest university — Mediterranean, cheaper living than Paris
+  Known for: Medicine, Law, Physics, Oceanography
+  Language: French mostly. Fees: differentiated rates — confirm on univ-amu.fr.
+
+Université Claude Bernard Lyon 1 — Lyon, France [NOT individually verified — public fees]
+  Type: Lyon's science/health university — France's second student city, much cheaper than Paris
+  Known for: Medicine, Pharmacy, Sciences, Sport Science
+  Language: French mostly. Fees: differentiated rates — confirm on univ-lyon1.fr.
+
+INSA Lyon — Lyon, France [NOT individually verified — public fees]
+  Type: France's largest PUBLIC engineering grande école — elite training at public-university prices
+  Known for: Mechanical/Civil/Electrical Engineering, Computer Science, Materials
+  Language: Mostly French (international sections ease the first years); some English master's
+  Fees: Public-scale (~€600–4,000/yr by status — confirm on insa-lyon.fr) — the value route to a French engineering diploma. Eiffel partner.
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -2420,6 +2511,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'USA': ['usa', 'u.s.', 'united states', 'america', 'american', 'ivy league', 'harvard', 'stanford'],
   'Australia': ['australia', 'australian', 'aussie', 'sydney', 'melbourne', 'brisbane', 'perth', 'canberra'],
   'Italy': ['italy', 'italian', 'rome', 'milan', 'bologna', 'turin', 'naples', 'imat', 'bocconi', 'polimi'],
+  'France': ['france', 'french', 'paris', 'lyon', 'grenoble', 'sorbonne', 'campus france', 'eiffel', 'sciences po'],
 }
 
 // Words too generic to identify a university by name.

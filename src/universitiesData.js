@@ -3430,6 +3430,80 @@ export const UNIVERSITIES = [
     verified: false,
   })),
 
+  {
+    id: 'sciencespo',
+    name: 'Sciences Po',
+    country: 'France',
+    city: 'Paris (+ 6 regional campuses)',
+    flag: '🇫🇷',
+    ranking: "France's elite social-science grande école — the school of presidents",
+    knownFor: ['Political Science', 'International Relations', 'Economics', 'Law', 'Journalism'],
+    language: "Full English-taught tracks at bachelor's and master's.",
+    entryGrades: 'Highly competitive — holistic file + essays; regional campuses each have a world-region focus.',
+    tests: 'IELTS/TOEFL for English tracks — confirm on sciencespo.fr.',
+    acceptance: 'Highly competitive',
+    tuitionIntl: 'Undergraduate up to ~€14,900/yr and master\'s ~€20,000+/yr for 2026-27 (verified) — but the Émile Boutmy scholarship gives non-EU admits full exemptions or large reductions.',
+    living: 'Paris is expensive (~€1,200–1,600/month realistic); regional campuses (Reims, Le Havre, Menton...) cost much less. CROUS housing and CAF allowances apply.',
+    deadline: 'UG (foreign school systems) ~20 January; master\'s committees ~19 Oct / 30 Nov — confirm on sciencespo.fr.',
+    scholarshipsHere: 'Émile Boutmy (verified): full exemption or €9,500/yr at UG (all 3 years), €18,500/yr at master\'s — tick the scholarship box in the application\'s Financial information section; no separate form.',
+    scholarships: [
+      {
+        name: 'Émile Boutmy Scholarship',
+        percentage: "UG: full exemption or €9,500/yr × 3 years · Master's: €18,500/yr × 2 years",
+        whoQualifies: 'First-time non-EU applicants whose household pays taxes outside the EU (some dual degrees and 1-year master\'s excluded)',
+        howToApply: 'Within the Sciences Po application ("Financial information" section) — UG deadline ~20 Jan, master\'s ~Oct–Nov',
+        deadlineMonth: 1,
+        amountTier: 1,
+        level: 'Undergraduate',
+        verified: true,
+      },
+    ],
+    sourceName: 'Sciences Po (official)',
+    sourceUrl: 'https://www.sciencespo.fr/students/en/fees-funding/bursaries-financial-aid/emile-boutmy-scholarship/',
+    verified: true,
+  },
+
+  // ── LIGHT ENTRIES (France) ───────────────────────────────────────────────
+  // Public differentiated fees (verified 2026-27): €2,895/yr bachelor's,
+  // €3,941/yr master's, PhD exempt — and fee WAIVERS are now capped (30% of
+  // international students in 2026-27, shrinking after). ~70 countries apply
+  // via Campus France; visa needs €615/month; RECE post-study permit = 12
+  // months after a master's. Eiffel scholarship: €1,200–2,100/month via the
+  // institution (ask its international office in Sept–Oct).
+  ...[
+    ['psl', 'Université PSL (Paris Sciences et Lettres)', 'Paris', "France's top-ranked collective (ENS, Dauphine, Mines Paris) — global top-30", ['Sciences', 'Mathematics', 'Economics (Dauphine)', 'Humanities'], 'https://psl.eu/en'],
+    ['sorbonne', 'Sorbonne Université', 'Paris', 'The historic Paris flagship — sciences, humanities and medicine', ['Humanities', 'Physics', 'Mathematics', 'Medicine'], 'https://www.sorbonne-universite.fr/en'],
+    ['paris-saclay', 'Université Paris-Saclay', 'Saclay (Paris region)', 'World #1 in mathematics rankings — science powerhouse with its own ~€10,000/yr IDEX international scholarships', ['Mathematics', 'Physics', 'Engineering', 'Life Sciences'], 'https://www.universite-paris-saclay.fr/en'],
+    ['paris-cite', 'Université Paris Cité', 'Paris', 'Large central-Paris university (ex Descartes + Diderot)', ['Medicine', 'Sciences', 'Social Sciences', 'Linguistics'], 'https://u-paris.fr/en/'],
+    ['polytechnique', 'École Polytechnique (l\'X)', 'Palaiseau (Paris region)', "France's most prestigious engineering grande école — English-taught BSc and MSc&T (~€15,000–20,000/yr, own scholarships)", ['Mathematics', 'Physics', 'Engineering', 'Economics'], 'https://www.polytechnique.edu/en'],
+    ['hec', 'HEC Paris', 'Jouy-en-Josas (Paris region)', "Europe's #1 business school — expensive (MiM ~€50k total) but HEC Foundation scholarships reach 100% and outcomes are elite", ['Master in Management', 'MBA', 'Finance', 'Entrepreneurship'], 'https://www.hec.edu/en'],
+    ['grenoble', 'Université Grenoble Alpes', 'Grenoble', 'Alpine science/tech city — big labs, affordable student living', ['Computer Science', 'Physics', 'Nanoscience', 'Earth Sciences'], 'https://www.univ-grenoble-alpes.fr/english/'],
+    ['strasbourg', 'Université de Strasbourg', 'Strasbourg', 'Chemistry Nobel tradition in the EU-institutions city', ['Chemistry', 'Law', 'European Studies', 'Life Sciences'], 'https://en.unistra.fr/'],
+    ['aix-marseille', 'Aix-Marseille Université', 'Marseille / Aix-en-Provence', "France's largest university — Mediterranean, far cheaper than Paris", ['Medicine', 'Law', 'Physics', 'Oceanography'], 'https://www.univ-amu.fr/en'],
+    ['lyon1', 'Université Claude Bernard Lyon 1', 'Lyon', "Science/health university in France's second student city", ['Medicine', 'Pharmacy', 'Sciences', 'Sport Science'], 'https://www.univ-lyon1.fr/en/'],
+    ['insa-lyon', 'INSA Lyon', 'Lyon', "France's largest PUBLIC engineering grande école — elite training at public prices (~€600–4,000/yr)", ['Mechanical Engineering', 'Computer Science', 'Civil Engineering', 'Materials'], 'https://www.insa-lyon.fr/en/'],
+  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'France',
+    city,
+    flag: '🇫🇷',
+    ranking,
+    knownFor,
+    language: "Mostly French-taught bachelor's (B2 needed); English-taught master's are plentiful — confirm per programme.",
+    entryGrades: 'Varies by institution — universities are open-access-ish at licence level, grandes écoles highly selective.',
+    tests: 'French B2 for French-taught; IELTS/TOEFL for English-taught — confirm per programme.',
+    acceptance: 'Varies widely — see notes',
+    tuitionIntl: 'Public differentiated fees for non-EU (verified 2026-27): €2,895/yr bachelor\'s, €3,941/yr master\'s, PhD exempt. ⚠ Fee waivers are now CAPPED (30% of international students in 2026-27, shrinking) — budget the full differentiated fee unless you hold a French government scholarship. Grande école fees differ — see notes; confirm on the official site.',
+    living: 'Visa requires €615/month (≈€7,380/yr — verified, one of Western Europe\'s lowest bars); Paris realistically costs ~double, provincial cities much less. CROUS housing + CAF allowances (open to internationals) help.',
+    deadline: 'Most applications run via the Campus France "Études en France" portal (~Dec–Feb for autumn) for ~70 countries — confirm your country\'s calendar.',
+    scholarshipsHere: 'Eiffel Excellence (€1,200/month master\'s, €2,100 PhD) — apply THROUGH the institution in autumn; MAECI-type French government scholarships exempt you from differentiated fees. RECE post-study permit: 12 months after a master\'s (24 for Indian citizens).',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
   // ── LIGHT ENTRIES (Malaysia) ─────────────────────────────────────────────
   // Real institutions with name/city/official link only — fees, entry
   // requirements and deadlines NOT yet researched (verified: false).
