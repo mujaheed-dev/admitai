@@ -113,7 +113,7 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   Scholarships: Essentially none for internationals — this is a self-funded market | Application effort: Low
   Post-study: no meaningful migration path — plan Georgia as degree-only and licensing-exam prep back home.
 
-🇦🇲 ARMENIA [MIXED — same agent-driven MBBS pattern as Georgia; figures agent-quoted]
+🇦🇲 ARMENIA [MIXED — same agent-driven MBBS pattern as its Caucasus neighbour; figures agent-quoted]
   System: Small Caucasus country; Yerevan State Medical University (YSMU) is the credible flagship marketed abroad
   Cost: English MBBS ~$5,000–$6,500/yr at YSMU + hostels ~$600/yr — among the cheapest credible MD routes anywhere; living ~$300–500/month
   ⚠ Same rules as Georgia: verify YOUR medical council's recognition and graduate licensing pass rates first; Indian students still need NEET qualification for home recognition. No IELTS needed is marketing, not a quality signal.
@@ -3066,7 +3066,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'South Korea': ['korea', 'korean', 'seoul', 'kaist', 'yonsei', 'topik', 'gks', 'postech'],
   'Poland': ['poland', 'polish', 'warsaw', 'krakow', 'wroclaw', 'gdansk', 'nawa', 'banach', 'jagiellonian'],
   'Cyprus': ['cyprus', 'cypriot', 'nicosia', 'famagusta', 'trnc', 'limassol', 'larnaca'],
-  'Georgia': ['georgia', 'georgian', 'tbilisi', 'tsmu', 'caucasus'],
+  'Georgia': ['georgia', 'georgian', 'tbilisi', 'tsmu'],
   'Armenia': ['armenia', 'armenian', 'yerevan', 'ysmu'],
   'Singapore': ['singapore', 'singaporean', 'nus', 'ntu', 'tuition grant'],
   'Sweden': ['sweden', 'swedish', 'stockholm', 'lund', 'uppsala', 'gothenburg', 'kth', 'chalmers'],
@@ -3096,14 +3096,21 @@ interface ParsedData {
   scholarshipIndex: string[]  // first lines, for the coverage index
 }
 
+function hasWord(haystackLower: string, needleLower: string): boolean {
+  // Word-boundary substring test — prevents e.g. the alias "imat" matching
+  // inside "approximate" (a real bug this replaced-indexOf version caused).
+  const escaped = needleLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  return new RegExp('(^|[^a-z])' + escaped + '($|[^a-z])').test(haystackLower)
+}
+
 function canonicalCountry(raw: string): string | null {
   const s = raw.toLowerCase()
   if (s.indexOf('united kingdom') >= 0) return 'UK'
   if (s.indexOf('united states') >= 0) return 'USA'
   for (const canon of Object.keys(COUNTRY_ALIASES)) {
-    if (s.indexOf(canon.toLowerCase()) >= 0) return canon
+    if (hasWord(s, canon.toLowerCase())) return canon
     for (const a of COUNTRY_ALIASES[canon]) {
-      if (a.length >= 4 && s.indexOf(a) >= 0) return canon
+      if (a.length >= 4 && hasWord(s, a)) return canon
     }
   }
   return null
@@ -3120,8 +3127,8 @@ function parseData(): ParsedData {
       .slice(from, to)
       .split(/\n\s*\n/)
       .map(function (b) { return b.trim() })
-      // drop section headers and "━━ ..." sub-headers
-      .filter(function (b) { return b.length > 40 && b.charAt(0) !== '━' })
+      // drop section headers, "━━ ..." sub-headers and "═══" separators
+      .filter(function (b) { return b.length > 40 && b.charAt(0) !== '━' && b.charAt(0) !== '═' })
 
   const destinations: Chunk[] = splitBlocks(destStart, scholStart).map(function (text) {
     return { text: text, country: canonicalCountry(text.split('\n')[0]), nameTokens: [] }
@@ -3226,6 +3233,9 @@ export function buildAdmitaiContext(query: string, budgetChars = 60000): string 
     'ADMITAI VERIFIED REFERENCE DATA (extract relevant to this conversation)\n' +
     'Use this as your primary source when answering questions about countries, costs, scholarships, or universities.\n' +
     'VERIFIED = confirmed from official sources. ESTIMATE / NOT VERIFIED = treat as approximate and say so.\n' +
+    'DEADLINES: dates cite the cycle in which they were verified (e.g. "15 January 2026"). Scholarship and\n' +
+    'admission cycles recur ANNUALLY — if a cited date has passed, do not say the opportunity is closed;\n' +
+    'say it runs every year around that date and direct the student to confirm the current cycle.\n' +
     '═══════════════════════════════════════════════════'
 
   const footer =
