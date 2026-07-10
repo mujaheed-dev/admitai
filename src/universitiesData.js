@@ -3879,6 +3879,65 @@ export const UNIVERSITIES = [
     verified: false,
   })),
 
+  // ── LIGHT ENTRIES (Sweden) ───────────────────────────────────────────────
+  // One portal (universityadmissions.se), 15 Jan deadline for autumn. Fees
+  // SEK 80,000–300,000/yr by field (verified ranges). SI Scholarship: full
+  // tuition + SEK 12,000/mo — but only if you applied to programmes by 15 Jan
+  // (the SI portal opens ~2 weeks in February). ~12-month job-seeking permit.
+  ...[
+    ['kth', 'KTH Royal Institute of Technology', 'Stockholm', 'Sweden', '🇸🇪', "Sweden's top technical university (~SEK 155,000–195,000/yr engineering)", ['Engineering', 'Computer Science', 'Architecture', 'Energy'], 'https://www.kth.se/en/studies'],
+    ['lund', 'Lund University', 'Lund', 'Sweden', '🇸🇪', "Sweden's most international-friendly comprehensive — classic student town", ['Engineering (LTH)', 'International Relations', 'Law', 'Life Sciences'], 'https://www.lunduniversity.lu.se/'],
+    ['uppsala', 'Uppsala University', 'Uppsala', 'Sweden', '🇸🇪', "The Nordics' oldest university (1477)", ['Sciences', 'Pharmacy', 'Law', 'Peace & Conflict Studies'], 'https://www.uu.se/en'],
+    ['stockholm-u', 'Stockholm University', 'Stockholm', 'Sweden', '🇸🇪', 'Big capital-city university — sciences and social sciences', ['Social Sciences', 'Law', 'Environmental Science', 'Data Science'], 'https://www.su.se/english/'],
+    ['chalmers', 'Chalmers University of Technology', 'Gothenburg', 'Sweden', '🇸🇪', 'Elite technical university — Avancez/IPOET scholarships give 75% reductions to top applicants', ['Automotive Engineering', 'Architecture', 'Computer Science', 'Shipping'], 'https://www.chalmers.se/en/education/'],
+    ['gothenburg', 'University of Gothenburg', 'Gothenburg', 'Sweden', '🇸🇪', 'Large comprehensive university sharing the city with Chalmers', ['Business', 'Social Sciences', 'Arts', 'Medicine'], 'https://www.gu.se/en'],
+    ['linkoping', 'Linköping University', 'Linköping', 'Sweden', '🇸🇪', 'Innovation-oriented younger university — strong engineering/IT', ['Computer Science', 'Engineering', 'Cognitive Science'], 'https://liu.se/en'],
+    ['umea', 'Umeå University', 'Umeå', 'Sweden', '🇸🇪', "Northern hub — world-renowned Institute of Design, CRISPR heritage, cheaper living", ['Design', 'Life Sciences', 'Computing'], 'https://www.umu.se/en/'],
+  ].map(([id, name, city, country, flag, ranking, knownFor, sourceUrl]) => ({
+    id, name, country, city, flag, ranking, knownFor,
+    language: "English-taught master's everywhere; bachelor's mostly Swedish-taught — confirm per programme.",
+    entryGrades: 'Merit-ranked via the national portal — grades and programme fit decide.',
+    tests: 'IELTS 6.5 / TOEFL 90 typical — confirm per programme.',
+    acceptance: 'Competitive — varies by programme',
+    tuitionIntl: 'Country ranges (verified): SEK 80,000–120,000/yr humanities, 120,000–180,000 engineering/science, up to 300,000 medicine/design (≈€7,000–26,000). Per-university figures in the note above are typical, not verified — confirm on the official site.',
+    living: '~SEK 10,000–14,000/month; the visa requires ~SEK 10,584/month — confirm on migrationsverket.se.',
+    deadline: 'ONE national portal (universityadmissions.se): applications 16 Oct – 15 JANUARY for autumn entry.',
+    scholarshipsHere: 'SI Scholarship for Global Professionals (full tuition + SEK 12,000/month + travel) — but its February window requires having applied to programmes by 15 Jan. University tuition scholarships also exist. ~12-month job-seeking permit after graduation (confirm on migrationsverket.se).',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
+  // ── LIGHT ENTRIES (Finland) ──────────────────────────────────────────────
+  // One portal (studyinfo.fi), January window. Fees €8,000–20,000/yr with
+  // 50–100% waivers routinely awarded AUTOMATICALLY at application (verified
+  // pattern). 2-YEAR post-study residence permit (verified) — Europe's most
+  // generous, usable within 5 years of graduation.
+  ...[
+    ['helsinki', 'University of Helsinki', 'Helsinki', 'Finland', '🇫🇮', "Finland's flagship — Nordic top-tier research (~€13,000–18,000/yr before waivers)", ['Computer Science', 'Life Sciences', 'Education', 'Law'], 'https://www.helsinki.fi/en/admissions-and-education'],
+    ['aalto', 'Aalto University', 'Espoo (Helsinki region)', 'Finland', '🇫🇮', "Finland's innovation engine — tech/business/design merger, Slush startup culture", ['Computer Science', 'Design', 'Engineering', 'Business'], 'https://www.aalto.fi/en/admission-services'],
+    ['turku', 'University of Turku', 'Turku', 'Finland', '🇫🇮', "Historic university in Finland's old capital", ['Astronomy', 'Biosciences', 'Education', 'Law'], 'https://www.utu.fi/en/study-at-utu'],
+    ['tampere', 'Tampere University', 'Tampere', 'Finland', '🇫🇮', "Finland's second research hub — technology + social sciences", ['Signal Processing', 'Gaming & Interactive Tech', 'Health Sciences'], 'https://www.tuni.fi/en/study-with-us'],
+    ['oulu', 'University of Oulu', 'Oulu', 'Finland', '🇫🇮', 'Northern tech university — the 6G wireless research capital', ['Wireless Communications (6G)', 'Computer Science', 'Mining', 'Medicine'], 'https://www.oulu.fi/en/apply'],
+    ['jyvaskyla', 'University of Jyväskylä', 'Jyväskylä', 'Finland', '🇫🇮', "Education and sport-science specialist — home of Finland's famous teacher training", ['Education', 'Sport Sciences', 'Psychology', 'IT'], 'https://www.jyu.fi/en/apply'],
+    ['lut', 'LUT University', 'Lappeenranta / Lahti', 'Finland', '🇫🇮', 'Energy/sustainability technical university — well-known 50–100% early-bird scholarship ladder', ['Energy Systems', 'Sustainability Science', 'Mechanical Engineering', 'Business'], 'https://www.lut.fi/en/studies'],
+  ].map(([id, name, city, country, flag, ranking, knownFor, sourceUrl]) => ({
+    id, name, country, city, flag, ranking, knownFor,
+    language: 'English-taught programmes plentiful at both bachelor\'s and master\'s — confirm per programme. Finnish/Swedish helps for jobs later.',
+    entryGrades: 'Merit-based via the national Studyinfo system; some programmes use entrance exams or SAT.',
+    tests: 'IELTS 6.0–6.5 / TOEFL typical — confirm per programme.',
+    acceptance: 'Moderately competitive — waiver tiers track your ranking',
+    tuitionIntl: 'Non-EU €8,000–€20,000/yr (verified country range; per-university figures in the note are typical) — BUT 50–100% tuition waivers are routinely awarded AUTOMATICALLY with your application at most universities. Confirm on the official site.',
+    living: '~€800–1,100/month; the residence permit requires ~€800/month in funds — confirm on migri.fi.',
+    deadline: 'ONE national portal (studyinfo.fi) — main joint application in JANUARY for autumn entry; some rolling windows.',
+    scholarshipsHere: 'Automatic waiver consideration (50–100%) with the application — apply early with strong grades; waivers cover tuition, not living. Post-study: a 2-YEAR job-seeking/business residence permit (verified), usable within 5 years of graduating.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
   // ── LIGHT ENTRIES (Malaysia) ─────────────────────────────────────────────
   // Real institutions with name/city/official link only — fees, entry
   // requirements and deadlines NOT yet researched (verified: false).

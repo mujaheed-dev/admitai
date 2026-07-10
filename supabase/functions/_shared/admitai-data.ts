@@ -2,8 +2,8 @@
 // AdmitAI verified reference data — injected into the AI's system prompt.
 //
 // NOTE ON SCALE:
-//   The dataset covers ~30 countries, ~70 scholarships, ~338 detailed
-//   universities (~54,000–70,000 tokens if injected whole).
+//   The dataset covers ~32 countries, ~71 scholarships, ~353 detailed
+//   universities (~56,000–73,000 tokens if injected whole).
 //
 //   RETRIEVAL: use buildAdmitaiContext(query) (bottom of this file) instead of
 //   injecting ADMITAI_VERIFIED_DATA directly. It selects only the country
@@ -126,6 +126,23 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   ★ MOE TUITION GRANT (verified): the defining deal — the government pays 40–60% of your fees, you sign a contract to work at a Singapore entity for 3 YEARS after graduating. It is a BOND, not a scholarship — breaking it means repaying with interest. For most students it's a good trade: guaranteed right to work in one of the world's strongest job markets.
   Scholarships: Beyond the grant, university/ASEAN scholarships exist for top admits (some cover everything + stipend) | Application effort: High — NUS/NTU admission is extremely competitive
   Post-study: the bond IS the post-study plan; non-grant graduates compete for Employment Passes.
+
+🇸🇪 SWEDEN [LARGELY VERIFIED — si.se, universityadmissions.se]
+  System: Applications for ALL universities go through one portal (universityadmissions.se); master's-heavy English catalogue
+  Tuition (verified ranges): non-EU SEK 80,000–120,000/yr humanities/social sciences; 120,000–180,000 engineering/IT/science; 120,000–200,000 business; 200,000–300,000 medicine/design (≈€7,000–26,000/yr). EU/EEA free.
+  Living: ~SEK 10,000–14,000/month (~€10,000–14,500/yr) — the visa requires showing ~SEK 10,584/month (confirm current figure on migrationsverket.se)
+  ★ SI SCHOLARSHIP FOR GLOBAL PROFESSIONALS (see #71): full tuition + SEK 12,000/month + travel grant — Sweden's flagship for developing-country professionals
+  Post-study: a job-seeking residence permit (~12 months) exists after graduation — confirm current rules on migrationsverket.se
+  Deadlines (verified): programme applications 16 Oct – 15 JANUARY for autumn; the SI scholarship portal opens for only ~2 WEEKS in February — you must already have applied to programmes by 15 Jan
+  Language: master's in English everywhere; bachelor's mostly Swedish-taught | Application effort: Low-Medium (one portal)
+
+🇫🇮 FINLAND [LARGELY VERIFIED — studyinfinland.fi, studyinfo.fi, university pages]
+  System: Research universities + universities of applied sciences (UAS); ONE national application platform (studyinfo.fi)
+  Tuition (verified): non-EU €8,000–€20,000/yr for English-taught degrees — BUT 50–100% tuition WAIVERS are routine for strong applicants and most universities consider you AUTOMATICALLY when you apply via Studyinfo (no separate scholarship application at most)
+  Living: ~€800–€1,100/month; the residence permit requires showing ~€800/month (~€9,600/yr — confirm current figure on migri.fi)
+  Post-study (verified): a 2-YEAR residence permit to look for work or start a business after graduating — among Europe's most generous, usable flexibly within 5 years of graduation
+  Scholarships: The automatic waiver system IS the scholarship — apply early (January joint application) with strong grades; waivers usually cover tuition only, not living
+  Language: English-taught programmes are plentiful at both university types; Finnish/Swedish needed for many jobs later — start learning early | Application effort: Low (one portal, January window for autumn)
 
 🇳🇱 NETHERLANDS [VERIFIED — source: European Education Area / official EU; system facts below verified 2026]
   System: 13 research universities + universities of applied sciences (HBO); applications via Studielink
@@ -725,6 +742,13 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    The catch (verified): you sign a Tuition Grant Agreement obliging you to work FULL-TIME at a Singapore entity for 3 YEARS after graduation — with sureties, and repayment with interest if broken
    Apply: Offered alongside your university admission — you accept or decline it with your place (decision deadline ~mid-July)
    ⚠ Frame it correctly for students: it is a subsidy-for-bond TRADE, not a scholarship — but the bond doubles as a guaranteed start in Singapore's job market, which many graduates want anyway. Read the agreement before signing; sureties are personally liable.
+
+71. SI Scholarship for Global Professionals — Sweden [VERIFIED — si.se]
+   Country: Sweden | Level: Master's (full-time, eligible programmes)
+   Amount: FULL tuition (paid directly to the university) + SEK 12,000/month living allowance + SEK 15,000 one-time travel grant (SEK 10,000 for some Eastern Partnership countries) + the SI professional network and alumni membership
+   Eligibility: Citizens of the eligible (mainly developing) country list with ~3,000+ hours of work experience and demonstrated leadership — check the current list on si.se
+   Timeline (verified): apply to Swedish master's programmes at universityadmissions.se by 15 JANUARY → the SI scholarship portal then opens for only ~2 WEEKS in February (9–25 Feb in the 2026 cycle)
+   ⚠ The two-step timing catches people every year: no programme application by 15 Jan = no scholarship. Work experience and leadership essays weigh as much as grades.
 
 
 ━━━ UNIVERSITIES ━━━
@@ -2918,6 +2942,85 @@ Singapore Institute of Technology (SIT) — Singapore [NOT individually verified
   Known for: Applied Engineering, InfoComm, Health Sciences, Hospitality
   Fees: Grant applies; note SIT admits fewer internationals — confirm on singaporetech.edu.sg.
 
+━━ Swedish universities (one portal: universityadmissions.se, deadline 15 Jan; SI scholarship #71; fees SEK 80,000–300,000/yr) ━━
+
+KTH Royal Institute of Technology — Stockholm, Sweden [NOT individually verified — country fee ranges apply]
+  Type: Sweden's top technical university
+  Known for: Engineering, Computer Science, Architecture, Energy
+  Fees: ~SEK 155,000–195,000/yr typical for engineering — confirm on kth.se; KTH also runs its own tuition scholarships.
+
+Lund University — Lund, Sweden [NOT individually verified]
+  Type: Sweden's most international-friendly comprehensive university — classic student town
+  Known for: Engineering (LTH), International Relations, Law, Life Sciences
+  Fees: ~SEK 110,000–200,000/yr by field — confirm on lunduniversity.lu.se; Lund Global Scholarship exists.
+
+Uppsala University — Uppsala, Sweden [NOT individually verified]
+  Type: The Nordics' oldest university (1477)
+  Known for: Sciences, Pharmacy, Law, Peace & Conflict Studies
+  Fees: ~SEK 100,000–200,000/yr — confirm on uu.se; Uppsala IPK scholarships exist.
+
+Stockholm University — Stockholm, Sweden [NOT individually verified]
+  Type: Big capital-city university — sciences and social sciences
+  Known for: Social Sciences, Law, Environmental Science, Data Science
+  Fees: ~SEK 90,000–160,000/yr — confirm on su.se.
+
+Chalmers University of Technology — Gothenburg, Sweden [NOT individually verified]
+  Type: Elite private-foundation technical university
+  Known for: Automotive Engineering, Architecture, Computer Science, Shipping
+  Fees: ~SEK 160,000/yr typical — confirm on chalmers.se; Avancez/IPOET scholarships give 75% reductions to top applicants.
+
+University of Gothenburg — Gothenburg, Sweden [NOT individually verified]
+  Type: Large comprehensive university sharing the city with Chalmers
+  Known for: Business (Handels), Social Sciences, Arts, Medicine (Sahlgrenska)
+  Fees: ~SEK 100,000–190,000/yr — confirm on gu.se.
+
+Linköping University — Linköping, Sweden [NOT individually verified]
+  Type: Innovation-oriented younger university — strong engineering/IT
+  Known for: Computer Science, Engineering, Cognitive Science
+  Fees: ~SEK 120,000–170,000/yr — confirm on liu.se; LiU International Scholarships reduce fees.
+
+Umeå University — Umeå, Sweden [NOT individually verified]
+  Type: Northern Sweden's hub — cheaper living, strong design school
+  Known for: Design (world-renowned Institute of Design), Life Sciences (CRISPR heritage), Computing
+  Fees: ~SEK 95,000–160,000/yr — confirm on umu.se.
+
+━━ Finnish universities (one portal: studyinfo.fi, January window; automatic 50–100% waivers; 2-year post-study permit — see Finland country block) ━━
+
+University of Helsinki — Helsinki, Finland [NOT individually verified — country ranges apply]
+  Type: Finland's flagship — Nordic top-tier research
+  Known for: Computer Science, Life Sciences, Education, Law
+  Fees: ~€13,000–€18,000/yr with automatic scholarship consideration (waivers to 100% for top applicants) — confirm on helsinki.fi.
+
+Aalto University — Espoo (Helsinki region), Finland [NOT individually verified]
+  Type: Merger of tech/business/design schools — Finland's innovation engine (Slush startup culture)
+  Known for: Computer Science, Design, Engineering, Business
+  Fees: ~€12,000–€15,000/yr; Aalto scholarships waive 50–100% automatically for strong admits — confirm on aalto.fi.
+
+University of Turku — Turku, Finland [NOT individually verified]
+  Type: Historic university in Finland's old capital
+  Known for: Astronomy, Biosciences, Education, Law
+  Fees: ~€8,000–€14,000/yr with automatic waiver consideration — confirm on utu.fi.
+
+Tampere University — Tampere, Finland [NOT individually verified]
+  Type: Finland's second research hub — technology + social sciences merger
+  Known for: Signal Processing, Gaming/Interactive Tech, Health Sciences, Social Sciences
+  Fees: ~€10,000–€14,000/yr with automatic scholarships — confirm on tuni.fi.
+
+University of Oulu — Oulu, Finland [NOT individually verified]
+  Type: Northern tech university — wireless/6G research capital
+  Known for: Wireless Communications (6G flagship), Computer Science, Mining, Medicine
+  Fees: ~€10,000–€13,000/yr with generous waivers — confirm on oulu.fi.
+
+University of Jyväskylä — Jyväskylä, Finland [NOT individually verified]
+  Type: Education and sport-science specialist in the lake district
+  Known for: Education (Finland's famous teacher training), Sport Sciences, Psychology, IT
+  Fees: ~€8,000–€12,000/yr — confirm on jyu.fi.
+
+LUT University — Lappeenranta/Lahti, Finland [NOT individually verified]
+  Type: Energy/sustainability-focused technical university — very international-friendly
+  Known for: Energy Systems, Sustainability Science, Mechanical Engineering, Business
+  Fees: ~€10,000–€13,500/yr with a well-known 50–100% early-bird scholarship ladder — confirm on lut.fi.
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -2966,6 +3069,8 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'Georgia': ['georgia', 'georgian', 'tbilisi', 'tsmu', 'caucasus'],
   'Armenia': ['armenia', 'armenian', 'yerevan', 'ysmu'],
   'Singapore': ['singapore', 'singaporean', 'nus', 'ntu', 'tuition grant'],
+  'Sweden': ['sweden', 'swedish', 'stockholm', 'lund', 'uppsala', 'gothenburg', 'kth', 'chalmers'],
+  'Finland': ['finland', 'finnish', 'helsinki', 'aalto', 'tampere', 'oulu', 'turku'],
 }
 
 // Words too generic to identify a university by name.
