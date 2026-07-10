@@ -2,8 +2,8 @@
 // AdmitAI verified reference data — injected into the AI's system prompt.
 //
 // NOTE ON SCALE:
-//   The dataset covers ~24 countries, ~67 scholarships, ~299 detailed
-//   universities (~48,000–62,000 tokens if injected whole).
+//   The dataset covers ~25 countries, ~68 scholarships, ~309 detailed
+//   universities (~49,000–64,000 tokens if injected whole).
 //
 //   RETRIEVAL: use buildAdmitaiContext(query) (bottom of this file) instead of
 //   injecting ADMITAI_VERIFIED_DATA directly. It selects only the country
@@ -77,6 +77,16 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   Post-study (verified): "Designated Activities" job-hunting status — 6 months + one 6-month renewal = 12 months; the newer J-FIND visa gives graduates of top-globally-ranked universities up to 2 YEARS to job-hunt or start a business (needs ~¥200,000 savings)
   Scholarships: Strong (MEXT + JASSO + university reductions — Waseda up to 100%, APU 30–65% common) | Application effort: Medium-High
   Language: most undergraduate study is JAPANESE-taught (EJU entrance exam + JLPT) — but full English degrees exist: UTokyo PEAK, Nagoya G30, Waseda/Keio/Sophia programmes, and APU (half the student body is international, fully English). MEXT undergrad includes a preparatory Japanese year.
+
+🇰🇷 SOUTH KOREA [LARGELY VERIFIED — studyinkorea.go.kr, university pages, immigration sources]
+  System: SKY elite (Seoul National, Korea, Yonsei) + science institutes (KAIST, POSTECH, UNIST) + big privates; surging global popularity
+  Tuition (verified ranges): national universities ₩2M–5M per SEMESTER (~$3,000–7,400/yr); privates ₩4M–8M/semester (~$6,000–12,000/yr; Yonsei internationals ₩4.3M–8.7M/semester) — medicine/engineering at the top
+  Living: ~₩800,000–1,500,000/month in Seoul (~$7,000–13,000/yr); regional cities notably cheaper
+  ★ GKS (verified): the Korean government full ride — tuition (to ₩5M/semester) + monthly stipend ₩900,000 (UG) / ₩1,380,000 (graduate, raised for 2026) + airfare + settlement allowance + a FUNDED 1-year Korean language year + insurance (see #68)
+  ★ KAIST (verified): every admitted international undergraduate gets full tuition (8 semesters) + ₩350,000/month automatically — see the KAIST entry
+  Post-study (verified): D-10 job-seeker visa — fresh Korean-university graduates are EXEMPT from its points system; extendable up to 2 years total from a D-2 student visa; part-time work allowed with TOPIK 4+
+  Scholarships: Very strong | Application effort: Medium (embassy or university track paperwork)
+  Language: Korean-taught dominates undergrad (TOPIK 3–4 entry, 4+ to graduate at many); genuine English tracks exist at KAIST/POSTECH/UNIST (fully English) and Yonsei UIC, Korea U, SKKU. GKS includes the Korean year — treat learning Korean as part of the deal.
 
 🇳🇱 NETHERLANDS [VERIFIED — source: European Education Area / official EU; system facts below verified 2026]
   System: 13 research universities + universities of applied sciences (HBO); applications via Studielink
@@ -655,6 +665,13 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    Routes (verified): EMBASSY recommendation — apply at the Japanese embassy in YOUR country (recruitment typically ~April–June for the following year: written exams + interview); or UNIVERSITY recommendation — apply through a Japanese university that nominates you (arrival usually Sept/Oct).
    Undergraduate track: includes a 1-year preparatory JAPANESE language year before the 4-year degree — most MEXT undergrads then study in Japanese.
    ⚠ Start a year early: embassy cycles open ~April. Research applicants should contact prospective supervising professors BEFORE applying — a professor's informal acceptance letter dramatically strengthens the file.
+
+68. Global Korea Scholarship (GKS) [VERIFIED — studyinkorea.go.kr]
+   Country: South Korea | Level: Undergraduate, Master's, PhD
+   Amount: FULL — tuition (up to ₩5,000,000/semester) + monthly stipend ₩900,000 (undergraduate) / ₩1,380,000 (graduate — raised for 2026) + round-trip airfare + settlement allowance + medical insurance + a fully funded 1-YEAR Korean language programme before the degree (skipped only with TOPIK 5+). TOPIK 5/6 holders earn a ₩100,000/month proficiency bonus.
+   Routes (verified): EMBASSY track — apply via the Korean embassy in your country, choose up to 3 universities; UNIVERSITY track — apply directly to 1 university. Universities split into Type A (27 top/Seoul institutions, most competitive) and Type B (31 regional, meaningfully better odds) — mixing types is smart strategy.
+   Deadlines: undergraduate ~September–October (for the following year); graduate ~February–March — confirm your embassy's exact dates
+   ⚠ The Korean language year is mandatory for most — plan for a 5-year undergrad commitment (1+4). Selection weighs grades (~80%+ average), essays and recommendations.
 
 
 ━━━ UNIVERSITIES ━━━
@@ -2617,6 +2634,64 @@ Ritsumeikan Asia Pacific University (APU) — Beppu, Japan [PARTIALLY VERIFIED �
   Fees: ~¥1.3M–1.5M/yr BUT 30–65% tuition reduction scholarships are COMMON — every applicant is considered with the admission application (per official-derived sources; confirm on apu.ac.jp). Beppu living is far cheaper than Tokyo.
   ⚠ The easiest genuine entry point into Japanese higher education for non-Japanese speakers.
 
+━━ South Korean universities (GKS full scholarships across Type A/B lists — see Korea country block & scholarship #68; D-10 job-seeker visa after graduation) ━━
+
+KAIST (Korea Advanced Institute of Science and Technology) — Daejeon, South Korea [VERIFIED — admission.kaist.ac.kr]
+  Type: Korea's MIT — fully English-taught STEM institute
+  Known for: Computer Science, Electrical Engineering, Robotics, Physics, Entrepreneurship
+  Language: FULLY English-taught — no Korean required to graduate
+  Cost (verified): effectively FREE for admitted international undergraduates — the KAIST Scholarship (full tuition for 8 semesters + ₩350,000/month + insurance) is granted automatically when you select it in the admission application; keep GPA 2.7/4.3 to renew
+  Deadline: Early ~September, regular ~January for autumn entry — confirm on admission.kaist.ac.kr
+  ⚠ One of the best value propositions in global STEM education — competitive but genuinely accessible to strong students worldwide (no IELTS alternative routes exist too).
+
+Seoul National University (SNU) — Seoul, South Korea [NOT individually verified — national fee scale]
+  Type: Korea's #1 — the S of "SKY"
+  Known for: everything — Engineering, Business, Medicine, Law, Humanities
+  Language: Mostly Korean-taught (TOPIK needed); some English graduate programmes. Fees: national scale ₩2M–5M/semester — confirm on snu.ac.kr. GKS Type A partner.
+
+POSTECH — Pohang, South Korea [NOT individually verified]
+  Type: Elite private STEM institute (steel-industry endowed) — tiny classes, research-intensive
+  Known for: Physics, Materials, Chemical Engineering, Computer Science
+  Language: Largely English-taught in STEM; graduate admissions usually funded. Fees/funding: most graduate students receive assistantships — confirm on postech.ac.kr.
+
+Yonsei University — Seoul, South Korea [PARTIALLY VERIFIED — fee range official-derived]
+  Type: Top private, the Y of SKY — home of Underwood International College (UIC)
+  Known for: UIC (English-taught liberal arts), Business, Medicine, Korean Language Institute
+  Language: UIC is fully English; most else Korean-taught
+  Fees: ₩4.3M–8.7M/semester for internationals (2025, official-derived) — UIC at the top end; merit aid exists. Confirm on yonsei.ac.kr.
+
+Korea University — Seoul, South Korea [NOT individually verified]
+  Type: Top private, the K of SKY — famous alumni network and school spirit
+  Known for: Business, Law, Political Science, Media
+  Language: Many English-taught courses; Korean recommended. Fees: private scale ₩4M–8M/semester — confirm on korea.ac.kr. GKS Type A partner.
+
+Sungkyunkwan University (SKKU) — Seoul/Suwon, South Korea [NOT individually verified]
+  Type: 600-year-old university reborn with SAMSUNG backing — strong corporate pipelines
+  Known for: Semiconductor Engineering (Samsung track), Business, Medicine, Software
+  Language: Notable English-taught options. Fees: private scale — confirm on skku.edu. Samsung-linked scholarships exist.
+
+Hanyang University — Seoul, South Korea [NOT individually verified]
+  Type: "The MIT of Korea" nickname domestically — engineering employment powerhouse
+  Known for: Engineering, Architecture, Business, Theatre & Film
+  Language: Some English tracks. Fees: private scale — confirm on hanyang.ac.kr.
+
+Kyung Hee University — Seoul, South Korea [NOT individually verified]
+  Type: Large private with a strong international orientation — beautiful campus
+  Known for: Hospitality & Tourism, Korean Medicine, International Studies, Media
+  Language: Global Collaborative programmes in English. Fees: private scale — confirm on khu.ac.kr.
+
+Ewha Womans University — Seoul, South Korea [NOT individually verified]
+  Type: The world's largest WOMEN's university — prestigious, strong international programmes
+  Known for: International Studies, Business, Medicine, Education
+  Language: English-taught international programmes. Fees: private scale — confirm on ewha.ac.kr.
+  ⚠ Women only.
+
+UNIST (Ulsan National Institute of Science and Technology) — Ulsan, South Korea [NOT individually verified]
+  Type: Young national STEM institute — fully English like KAIST, easier admission
+  Known for: Materials, Battery/Energy Science, AI, Biomedical Engineering
+  Language: FULLY English-taught
+  Fees/funding: National-institute scale with generous scholarships for internationals — confirm on unist.ac.kr. A smart KAIST alternative.
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -2659,6 +2734,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'France': ['france', 'french', 'paris', 'lyon', 'grenoble', 'sorbonne', 'campus france', 'eiffel', 'sciences po'],
   'Hungary': ['hungary', 'hungarian', 'budapest', 'stipendium', 'semmelweis', 'debrecen', 'szeged'],
   'Japan': ['japan', 'japanese', 'tokyo', 'kyoto', 'osaka', 'mext', 'waseda', 'keio', 'nagoya'],
+  'South Korea': ['korea', 'korean', 'seoul', 'kaist', 'yonsei', 'topik', 'gks', 'postech'],
 }
 
 // Words too generic to identify a university by name.

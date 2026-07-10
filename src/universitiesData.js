@@ -3669,6 +3669,75 @@ export const UNIVERSITIES = [
     verified: false,
   })),
 
+  {
+    id: 'kaist',
+    name: 'KAIST',
+    country: 'South Korea',
+    city: 'Daejeon',
+    flag: '🇰🇷',
+    ranking: "Korea's MIT — fully English-taught STEM institute",
+    knownFor: ['Computer Science', 'Electrical Engineering', 'Robotics', 'Physics', 'Entrepreneurship'],
+    language: 'FULLY English-taught — no Korean required to graduate.',
+    entryGrades: 'Competitive holistic STEM admission — strong maths/science record; genuinely accessible to strong students worldwide.',
+    tests: 'English proficiency evidence (flexible routes exist) — confirm on admission.kaist.ac.kr.',
+    acceptance: 'Competitive',
+    tuitionIntl: 'Effectively FREE for admitted international undergraduates (verified): the KAIST Scholarship grants full tuition for 8 semesters + ₩350,000/month + insurance, automatically — just select it in the admission application. Renewal needs GPA 2.7/4.3.',
+    living: 'Daejeon is much cheaper than Seoul (~₩600,000–900,000/month); the stipend covers a real share.',
+    deadline: 'Early round ~September, regular ~January for autumn entry — confirm on admission.kaist.ac.kr.',
+    scholarshipsHere: 'KAIST Scholarship (automatic full funding, verified); GKS places also exist. One of the best value propositions in global STEM education.',
+    scholarships: [
+      {
+        name: 'KAIST Scholarship (international undergraduates)',
+        percentage: 'Full tuition (8 semesters) + ₩350,000/month + health insurance',
+        whoQualifies: 'All admitted international undergraduates who select it in the application; renew with GPA 2.7/4.3',
+        howToApply: 'Choose "KAIST Scholarship" in the financial-resources section of the admission application — no separate form',
+        amountTier: 1,
+        level: 'Undergraduate',
+        verified: true,
+      },
+    ],
+    sourceName: 'KAIST (official admissions)',
+    sourceUrl: 'https://admission.kaist.ac.kr/intl-graduate/FinancialSupport/Scholarship/KAISTScholarship',
+    verified: true,
+  },
+
+  // ── LIGHT ENTRIES (South Korea) ──────────────────────────────────────────
+  // Fee scales (official-derived): national ₩2M–5M/semester, private ₩4M–8M.
+  // GKS full scholarships (tuition + ₩900k–1,380k/month + flights + Korean
+  // year) run on embassy (~Sep–Oct UG) and university tracks; D-10 job-seeker
+  // visa after graduation (up to 2 years from a D-2).
+  ...[
+    ['snu', 'Seoul National University (SNU)', 'Seoul', 'Korea\'s #1 — the S of "SKY"', ['Engineering', 'Business', 'Medicine', 'Law'], 'https://en.snu.ac.kr/'],
+    ['postech', 'POSTECH', 'Pohang', 'Elite private STEM institute — tiny classes, graduate study usually funded', ['Physics', 'Materials', 'Chemical Engineering', 'Computer Science'], 'https://international.postech.ac.kr/'],
+    ['yonsei', 'Yonsei University', 'Seoul', 'Top private (SKY) — Underwood International College is fully English-taught (₩4.3M–8.7M/semester for internationals)', ['UIC Liberal Arts (English)', 'Business', 'Medicine', 'Korean Language Institute'], 'https://www.yonsei.ac.kr/en_sc/'],
+    ['korea-u', 'Korea University', 'Seoul', 'Top private (SKY) — famous alumni network', ['Business', 'Law', 'Political Science', 'Media'], 'https://www.korea.edu/'],
+    ['skku', 'Sungkyunkwan University (SKKU)', 'Seoul / Suwon', '600-year-old university reborn with SAMSUNG backing — corporate pipelines', ['Semiconductor Engineering', 'Business', 'Medicine', 'Software'], 'https://www.skku.edu/eng/'],
+    ['hanyang', 'Hanyang University', 'Seoul', 'Engineering employment powerhouse', ['Engineering', 'Architecture', 'Business', 'Theatre & Film'], 'https://www.hanyang.ac.kr/web/eng'],
+    ['kyunghee', 'Kyung Hee University', 'Seoul', 'Large private with strong international orientation', ['Hospitality & Tourism', 'Korean Medicine', 'International Studies', 'Media'], 'https://www.khu.ac.kr/eng/user/main/view.do'],
+    ['ewha', 'Ewha Womans University', 'Seoul', "The world's largest WOMEN's university — prestigious international programmes", ['International Studies', 'Business', 'Medicine', 'Education'], 'https://www.ewha.ac.kr/ewhaen/index.do'],
+    ['unist', 'UNIST', 'Ulsan', 'Young national STEM institute — fully English like KAIST, easier admission, generous scholarships', ['Battery & Energy Science', 'Materials', 'AI', 'Biomedical Engineering'], 'https://www.unist.ac.kr/eng/'],
+  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'South Korea',
+    city,
+    flag: '🇰🇷',
+    ranking,
+    knownFor,
+    language: 'Mostly Korean-taught (TOPIK 3–4 to enter, higher to graduate); English tracks where noted — confirm per programme.',
+    entryGrades: 'Competitive — document-based international admission; ~80%+ averages for GKS competitiveness.',
+    tests: 'TOPIK for Korean-taught; IELTS/TOEFL for English tracks — confirm per programme.',
+    acceptance: 'Competitive — varies by track',
+    tuitionIntl: 'Not individually verified — national universities ₩2M–5M/semester, privates ₩4M–8M/semester (official-derived ranges). Confirm on the official site.',
+    living: 'Seoul ~₩800,000–1,500,000/month; regional cities notably cheaper.',
+    deadline: 'International admissions typically ~Sep–Nov (spring) and ~Mar–May (autumn); GKS embassy track ~Sep–Oct for UG — confirm.',
+    scholarshipsHere: 'GKS full scholarship (tuition + ₩900k–1,380k/month + flights + funded Korean year — embassy or university track; Type B regional universities have better odds). D-10 job-seeker visa after graduation.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
   // ── LIGHT ENTRIES (Malaysia) ─────────────────────────────────────────────
   // Real institutions with name/city/official link only — fees, entry
   // requirements and deadlines NOT yet researched (verified: false).
