@@ -2,8 +2,8 @@
 // AdmitAI verified reference data — injected into the AI's system prompt.
 //
 // NOTE ON SCALE:
-//   The dataset covers ~20 countries, ~60 scholarships, ~257 detailed
-//   universities (~41,000–55,000 tokens if injected whole).
+//   The dataset covers ~21 countries, ~63 scholarships, ~269 detailed
+//   universities (~43,000–57,000 tokens if injected whole).
 //
 //   RETRIEVAL: use buildAdmitaiContext(query) (bottom of this file) instead of
 //   injecting ADMITAI_VERIFIED_DATA directly. It selects only the country
@@ -41,6 +41,16 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   Language reality: most BACHELOR'S are German-taught (TestDaF/DSH needed); English-taught MASTER'S are abundant. Students from 12-year school systems often need a Studienkolleg foundation year first — check anabin/uni-assist for your certificate.
   Applications: many universities use uni-assist; classic deadlines ~15 July (winter semester) and ~15 January (summer) — confirm per university
   Post-study (verified): an 18-MONTH residence permit to seek work after graduating — any job allowed while searching; apply IMMEDIATELY at graduation (the clock starts then); ~€100; non-renewable, so use it well.
+
+🇮🇹 ITALY [LARGELY VERIFIED — MUR circulars, university fee pages, regional DSU agencies]
+  System: Public universities with INCOME-BASED fees + a few privates (Bocconi); non-EU applicants MUST pre-enrol via the Universitaly portal (mandatory, verified)
+  Tuition (verified): public universities charge €0–€4,000/yr based on family income via the ISEE Parificato (calculated by an Italian CAF from your home-country documents) — below roughly €13,000–€26,000 ISEE many universities charge zero or the minimum ~€156. Even MEDICINE follows this scale.
+  Living: ~€700–€1,200/month by city (Milan highest, the south cheapest)
+  Visa money (verified with a caveat): the official MUR reference is €534.41/month ≈ €6,947/yr for 2026/27–2027/28 — but several consulates have begun demanding ~€10,179; check YOUR consulate's current figure.
+  ★ DSU REGIONAL GRANTS (verified): each region's right-to-study agency (ER-GO, EDISU, DiSCo LazioDiSCo etc) gives low-income students — internationals INCLUDED — a full package: tuition waiver + cash grant up to ~€6,000–8,000/yr + dormitory place + canteen meals. Qualify via ISEE Parificato under the regional threshold (typically ~€25,000–30,000). Deadlines are regional (~Jul–Sep) and SEPARATE from admission — do not miss them.
+  ★ MEDICINE IN ENGLISH (verified): ~16 public universities teach Medicine/Dentistry/Vet in English via the IMAT exam (register ~July, sit ~September; 1,000+ non-EU seats) — with income-based fees this is the cheapest credible English-taught medicine anywhere. Most IMAT universities don't even require IELTS.
+  Scholarships: Strong (DSU + MAECI + Invest Your Talent + big university schemes) | Application effort: Medium-High (Universitaly + ISEE paperwork)
+  Language: English-taught programmes are common at master's level and growing at bachelor's; most bachelor's remain Italian-taught — confirm per programme.
 
 🇳🇱 NETHERLANDS [VERIFIED — source: European Education Area / official EU; system facts below verified 2026]
   System: 13 research universities + universities of applied sciences (HBO); applications via Studielink
@@ -570,6 +580,27 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    Eligibility: Citizenship (or permanent residence) of a SADC member state: Angola, Botswana, Comoros, DRC, Eswatini, Lesotho, Madagascar, Malawi, Mauritius, Mozambique, Namibia, Seychelles, Tanzania, Zambia, Zimbabwe
    Apply: Automatic by nationality at registration — no application; bring proof of citizenship
    ⚠ Non-SADC internationals typically pay ~double local tuition (verified at Wits/UP). Levies are unregulated and vary — check each university's international fee guide.
+
+61. DSU Regional Right-to-Study Grants — Italy [VERIFIED — regional agencies (ER-GO, EDISU Piemonte, DiSCo Lazio etc.)]
+   Country: Italy | Level: Undergraduate & Postgraduate
+   Amount: FULL package for low-income students including internationals — tuition waiver + cash grant up to ~€6,000–€8,000/yr + free/discounted dormitory + canteen meals
+   Eligibility: family ISEE Parificato below the regional threshold (typically ~€25,000–€30,000; the lowest brackets get the maximum grant). The ISEE Parificato is calculated by an Italian CAF from your home-country income/property documents — start gathering them early.
+   Deadline: REGIONAL and separate from university admission — typically July–September each year; every region has its own agency, rules and dates
+   ⚠ The single best-value funding in Western Europe for genuinely low-income students — but the paperwork is real, and missing the regional deadline means paying full costs for the year.
+
+62. MAECI Italian Government Scholarships [VERIFIED — Ministry of Foreign Affairs]
+   Country: Italy | Level: Master's, AFAM (arts/music), PhD, Italian language courses
+   Amount: ~€900/month allowance + enrollment/tuition fee exemption at most public universities + health insurance for the grant period
+   Eligibility (verified): foreign citizens from eligible countries; age ≤28 for master's/AFAM, ≤30 for PhD at the deadline
+   Deadline: Annual call, typically spring for October enrollment — check the MAECI "Study in Italy" portal for your country's cycle
+   ⚠ Grants are often issued in 6–9-month instalments and renewed — read your award terms carefully.
+
+63. Invest Your Talent in Italy (IYT) [VERIFIED — MAECI + Italian Trade Agency]
+   Country: Italy | Level: Master's (English-taught) in engineering, economics/management, design, ICT
+   Amount: Tuition waiver + €900/month stipend + a GUARANTEED 3–6 month internship at an Italian company after the taught part — ~20+ partner universities incl. Politecnico di Milano, Politecnico di Torino, Bologna, Bocconi
+   Eligibility: Citizens of the listed target countries in Africa, Asia, Latin America and Eastern Europe (check the current list)
+   Deadline: 11 May 2026, 6pm Italian time for the 2026/27 cycle — annual
+   ⚠ The internship is the differentiator — it converts the degree into Italian work experience. Country list changes; confirm yours is eligible.
 
 
 ━━━ UNIVERSITIES ━━━
@@ -2278,6 +2309,78 @@ Technological University Dublin (TU Dublin) — Dublin, Ireland [PARTIALLY VERIF
   Deadline: CAO ~1 Feb — confirm
   ⚠ Same Stamp 1G stay-back and Dublin job market as the pricier universities — strong value pick.
 
+━━ Italian universities (non-EU applicants pre-enrol via Universitaly; income-based fees €0–4,000 at publics; DSU regional grants — see Italy country block & scholarships #61–63) ━━
+
+Politecnico di Milano (PoliMi) — Milan, Italy [VERIFIED — polimi.it fees & merit call]
+  Type: Italy's top technical university — global top-20 in design, top-50 in engineering
+  Known for: Design, Architecture, Mechanical/Aerospace Engineering, Computer Science
+  Language: Most MSc programmes English-taught; bachelor's mixed Italian/English
+  Non-EU tuition (verified): standard ~€3,886/yr for MSc — already low; income-based reductions below that
+  Scholarship here (verified): Merit-Based International Scholarships for English MSc applicants in the EARLY BIRD window (1 Oct–1 Dec) — Platinum €10,000/yr + full waiver, Gold €8,000 + waiver, Silver waiver only (~€170 admin fee remains). Awarded automatically by ranking; ~3.3+/4.0 GPA realistic for Gold/Platinum.
+  Deadline: Early Bird 1 Oct–1 Dec for the following autumn; later windows exist without scholarship priority
+  ⚠ Milan is Italy's most expensive city (~€1,000–1,400/month) — DSU (#61) helps low-income admits.
+
+University of Bologna (Unibo) — Bologna, Italy [VERIFIED — unibo.it grants & fee pages]
+  Type: The oldest university in the world (1088) — large, comprehensive, very international
+  Known for: Law, Humanities, Economics, Engineering, Agriculture
+  Language: Many English-taught bachelor's and master's
+  Non-EU tuition: Income-based via ISEE Parificato (€0–~€4,000/yr); even full-waiver students pay ~€157 fixed charges (verified)
+  Scholarship here (verified): Unibo Actions — Action 1: tuition waivers; Action 2: €11,000 gross study grant for master's; plus International Talents @Unibo (€6,500 + full exemption, 2 years, GRE/SAT-based). Apply via Studenti Online, deadlines in the first half of the year.
+  Deadline: Programme-dependent; scholarship calls close ~spring — confirm on unibo.it
+
+Bocconi University — Milan, Italy [VERIFIED — unibocconi.it funding pages]
+  Type: Italy's elite PRIVATE business university — Europe's top tier for economics/finance
+  Known for: Economics, Finance, Management, Data Science, Law (WBB)
+  Language: Full English-taught tracks at all levels
+  Tuition: Income-based ~€3,500–€14,000+/yr (ISEE-assessed; flat higher rate possible for internationals) — far above public universities but with real aid
+  Scholarship here (verified): ISU Bocconi need-based package — full/partial waiver + cash up to €8,000/yr + dorm discounts + one free meal/day (apply via the single "Bocconi4Access to Education" application); merit scholarships are automatic for strong admits
+  Deadline: Rounds through autumn–spring — confirm on unibocconi.it
+
+Sapienza University of Rome — Rome, Italy [NOT individually verified — income-based public fees]
+  Type: Europe's largest university by enrollment — comprehensive, historic
+  Known for: Classics & Archaeology (world #1 field), Medicine (English IMAT track), Engineering, Physics
+  Language: Italian mostly; English options incl. IMAT Medicine. Fees: income-based €0–~€3,000 — confirm on uniroma1.it. DSU agency: DiSCo Lazio.
+
+University of Padua — Padua, Italy [NOT individually verified — income-based public fees]
+  Type: Historic research university (1222) — Galileo taught here
+  Known for: Medicine (English IMAT track), Psychology, Astronomy, Data Science
+  Language: Growing English-taught catalogue. Fees: income-based — confirm on unipd.it; Padua also runs its own international excellence scholarships. MAECI partner (see #62).
+
+University of Milan (Statale) — Milan, Italy [NOT individually verified — income-based public fees]
+  Type: Milan's big public comprehensive university (distinct from PoliMi/Bocconi)
+  Known for: Medicine (English IMAT track), Law, Political Science, Biotechnology
+  Language: Italian mostly; English IMAT medicine + some master's. Fees: income-based — confirm on unimi.it.
+
+University of Turin — Turin, Italy [NOT individually verified — income-based public fees]
+  Type: Large historic public university in an affordable student city
+  Known for: Medicine (English IMAT track), Law, Economics, Veterinary
+  Language: Italian mostly; English IMAT medicine + master's options. Fees: income-based — confirm on unito.it. DSU agency: EDISU Piemonte (generous packages).
+
+Politecnico di Torino (PoliTo) — Turin, Italy [NOT individually verified — income-based public fees]
+  Type: Turin's technical university — engineering-focused, very international, cheaper city than Milan
+  Known for: Automotive & Aerospace Engineering, Architecture, Computer Engineering
+  Language: Many English-taught programmes at BOTH bachelor's and master's (rare in Italy). Fees: income-based, low thousands — confirm on polito.it. IYT partner (#63).
+
+University of Pisa — Pisa, Italy [NOT individually verified — income-based public fees]
+  Type: Historic public university in a compact, cheap student city (Scuola Normale next door)
+  Known for: Physics, Computer Science (Italy's first CS degree), Mathematics, Engineering
+  Language: Italian mostly; English master's options. Fees: income-based — confirm on unipi.it.
+
+University of Naples Federico II — Naples, Italy [NOT individually verified — income-based public fees]
+  Type: One of the world's oldest state universities (1224) — the south's flagship; Apple Developer Academy host
+  Known for: Engineering, Medicine (English IMAT track), Agriculture, Computer Science
+  Language: Italian mostly; English IMAT medicine. Fees: income-based; Naples living is Italy's cheapest big-city option (~€700–900/month).
+
+University of Pavia — Pavia, Italy [NOT individually verified — income-based public fees]
+  Type: Historic collegiate-style university town near Milan — an IMAT medicine favourite
+  Known for: Medicine (one of the oldest English IMAT programmes), Pharmacy, Engineering, Physics
+  Language: English IMAT medicine + master's options. Fees: income-based — confirm on unipv.it (apply.unipv.eu handles internationals well).
+
+University of Trento — Trento, Italy [NOT individually verified — income-based public fees]
+  Type: Small, consistently top-ranked Italian public university in the Alps — strong scholarship culture for internationals
+  Known for: Computer Science, Physics, Cognitive Science, Sociology
+  Language: Good English-taught selection. Fees: income-based; Trento's opera universitaria DSU packages are among Italy's most reliable — confirm on unitn.it.
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -2316,6 +2419,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'China': ['china', 'chinese', 'beijing', 'shanghai', 'tsinghua', 'peking', 'hsk'],
   'USA': ['usa', 'u.s.', 'united states', 'america', 'american', 'ivy league', 'harvard', 'stanford'],
   'Australia': ['australia', 'australian', 'aussie', 'sydney', 'melbourne', 'brisbane', 'perth', 'canberra'],
+  'Italy': ['italy', 'italian', 'rome', 'milan', 'bologna', 'turin', 'naples', 'imat', 'bocconi', 'polimi'],
 }
 
 // Words too generic to identify a university by name.
