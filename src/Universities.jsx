@@ -3,14 +3,16 @@ import { Building2, Heart, Plus, CheckCircle } from 'lucide-react'
 import { UNIVERSITIES, UNIVERSITY_COUNTRIES, UNIVERSITY_FIELDS } from './universitiesData.js'
 import UniversityDetail from './UniversityDetail.jsx'
 import ProfileMenu from './ProfileMenu.jsx'
+import FilterDropdown from './FilterDropdown.jsx'
 import { supabase } from './supabase.js'
 
 // Default checklist for new university applications
 const UNI_CHECKLIST = ['Transcripts', 'Personal statement', 'References', 'Application fee', 'Submitted']
 function uid() { return Math.random().toString(36).slice(2, 10) }
 
-const COUNTRY_OPTIONS = ['All', ...UNIVERSITY_COUNTRIES]
-const FIELD_OPTIONS   = ['All', ...UNIVERSITY_FIELDS]
+// Alphabetical inside the pickers so long lists stay scannable
+const COUNTRY_OPTIONS = ['All', ...[...UNIVERSITY_COUNTRIES].sort((a, b) => a.localeCompare(b))]
+const FIELD_OPTIONS   = ['All', ...[...UNIVERSITY_FIELDS].sort((a, b) => a.localeCompare(b))]
 
 // ─── page ─────────────────────────────────────────────────────────────────────
 
@@ -228,8 +230,11 @@ export default function Universities({
               </button>
             </div>
 
-            <FilterRow label="Country" options={COUNTRY_OPTIONS} active={countryFilter} onChange={setCountryFilter} />
-            <FilterRow label="Field"   options={FIELD_OPTIONS}   active={fieldFilter}   onChange={setFieldFilter} />
+            {/* Filter dropdowns — same picker pattern as the Scholarships page */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
+              <FilterDropdown label="Country" options={COUNTRY_OPTIONS} active={countryFilter} onChange={setCountryFilter} />
+              <FilterDropdown label="Field"   options={FIELD_OPTIONS}   active={fieldFilter}   onChange={setFieldFilter} />
+            </div>
             <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B99', fontSize: '0.875rem', margin: '14px 0 20px' }}>
               <strong style={{ color: '#16302B', fontWeight: 600 }}>{displayList.length}</strong>{' '}
               {displayList.length === 1 ? 'university' : 'universities'}{activeView === 'saved' ? ' saved' : ' found'}
@@ -283,30 +288,6 @@ function GhostBtn({ onClick, children }) {
     >
       {children}
     </button>
-  )
-}
-
-function FilterRow({ label, options, active, onChange }) {
-  return (
-    <div style={{ marginBottom: 14 }}>
-      <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', color: '#16302B55', display: 'block', marginBottom: 8 }}>
-        {label}
-      </span>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-        {options.map(opt => (
-          <button key={opt} onClick={() => onChange(opt)} style={{
-            background: active === opt ? '#16302B' : '#fff',
-            color: active === opt ? '#F7F4EE' : '#16302B',
-            border: `1.5px solid ${active === opt ? '#16302B' : '#16302B1a'}`,
-            borderRadius: 100, padding: '5px 13px',
-            fontSize: '0.82rem', fontFamily: 'Hanken Grotesk, sans-serif',
-            fontWeight: active === opt ? 600 : 400, cursor: 'pointer', transition: 'all 0.15s',
-          }}>
-            {opt}
-          </button>
-        ))}
-      </div>
-    </div>
   )
 }
 
