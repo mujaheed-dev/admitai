@@ -3216,6 +3216,14 @@ function coverageIndex(parsed: ParsedData, included: { [c: string]: true }): str
 }
 
 /**
+ * Which covered countries does this query mention? Used by the coverage
+ * logger — an empty result means the dataset had nothing specific to offer.
+ */
+export function detectCoverageCountries(query: string): string[] {
+  return Object.keys(detectCountries(query))
+}
+
+/**
  * Build a query-relevant extract of the AdmitAI verified data.
  *
  * @param query        Free text to match against (user message(s), or

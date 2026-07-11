@@ -3,7 +3,7 @@
 // for Deno globals (Deno.serve, Deno.env) — these are valid at runtime.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
-import { buildAdmitaiContext } from '../_shared/admitai-data.ts'
+import { buildAdmitaiContext, detectCoverageCountries } from '../_shared/admitai-data.ts'
 
 // ─── constants ────────────────────────────────────────────────────────────────
 
@@ -182,6 +182,21 @@ Deno.serve(async (req: Request) => {
 
     const anthropicData = await anthropicRes.json()
     const reply = anthropicData.content?.[0]?.text ?? "I couldn't generate a response. Please try again."
+
+    // ── 4b. Coverage log (fire-and-forget — never blocks the reply) ─────────
+    // Records what the student asked and which covered countries matched.
+    // Empty matched_countries = a coverage gap: the demand signal for what
+    // universities/scholarships to add next.
+    supabase
+      .from('ai_search_log')
+      .insert({
+        user_id: user.id,
+        message: message.trim().slice(0, 500),
+        matched_countries: detectCoverageCountries(message.trim()),
+      })
+      .then(({ error }) => {
+        if (error) console.error('ai_search_log insert failed:', error.message)
+      })
 
     // ── 5. Increment usage count (only after a successful Claude call) ───────
     const newCount = searchesUsed + 1
