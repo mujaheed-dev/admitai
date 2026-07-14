@@ -3,6 +3,7 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 import { buildAdmitaiContext } from '../_shared/admitai-data.ts'
+import { getActiveSubscription, checkFairUse, bumpFairUse, FAIR_USE_MONTHLY_CAP } from '../_shared/subscription.ts'
 
 const FREE_LIMIT = 2  // shared with ask-admitai — same ai_usage counter
 
@@ -75,16 +76,29 @@ Deno.serve(async (req: Request) => {
     if (userError || !user) return json({ error: 'Unauthorized' }, 401)
 
     // ── 2. Check shared usage limit ──────────────────────────────────────────
-    const { data: usageRow } = await supabase
-      .from('ai_usage')
-      .select('searches_used')
-      .eq('user_id', user.id)
-      .maybeSingle()
+    // Paid subscribers skip the free counter; they get unlimited use within
+    // the monthly fair-use cap (shared with ask-admitai and the paid tools).
+    const sub = await getActiveSubscription(supabase, user.id)
+    let fair = null
+    let searchesUsed = 0
 
-    const searchesUsed = usageRow?.searches_used ?? 0
+    if (sub) {
+      fair = await checkFairUse(supabase, user.id)
+      if (!fair.allowed) {
+        return json({ limitReached: true, fairUse: true, searchesUsed: fair.used, searchesLimit: FAIR_USE_MONTHLY_CAP })
+      }
+    } else {
+      const { data: usageRow } = await supabase
+        .from('ai_usage')
+        .select('searches_used')
+        .eq('user_id', user.id)
+        .maybeSingle()
 
-    if (searchesUsed >= FREE_LIMIT) {
-      return json({ limitReached: true, searchesUsed, searchesLimit: FREE_LIMIT })
+      searchesUsed = usageRow?.searches_used ?? 0
+
+      if (searchesUsed >= FREE_LIMIT) {
+        return json({ limitReached: true, searchesUsed, searchesLimit: FREE_LIMIT })
+      }
     }
 
     // ── 3. Parse and validate ────────────────────────────────────────────────
@@ -139,6 +153,11 @@ Deno.serve(async (req: Request) => {
     const reply = anthropicData.content?.[0]?.text ?? "I couldn't generate a roadmap. Please try again."
 
     // ── 6. Increment usage ───────────────────────────────────────────────────
+    if (sub) {
+      await bumpFairUse(supabase, user.id, fair)
+      return json({ reply, limitReached: false, unlimited: true })
+    }
+
     const newCount = searchesUsed + 1
     await supabase
       .from('ai_usage')

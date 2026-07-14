@@ -4,6 +4,7 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
 import { buildAdmitaiContext, detectCoverageCountries } from '../_shared/admitai-data.ts'
+import { getActiveSubscription, checkFairUse, bumpFairUse, FAIR_USE_MONTHLY_CAP } from '../_shared/subscription.ts'
 
 // ─── constants ────────────────────────────────────────────────────────────────
 
@@ -109,21 +110,40 @@ Deno.serve(async (req: Request) => {
     if (userError || !user) return json({ error: 'Unauthorized' }, 401)
 
     // ── 2. Check usage limit (server-side — cannot be bypassed from browser) ─
-    const { data: usageRow } = await supabase
-      .from('ai_usage')
-      .select('searches_used')
-      .eq('user_id', user.id)
-      .maybeSingle()
+    // Paid subscribers skip the free counter entirely; they get unlimited use
+    // within the monthly fair-use cap. Free users keep their FREE_LIMIT.
+    const sub = await getActiveSubscription(supabase, user.id)
+    let fair = null
+    let searchesUsed = 0
 
-    const searchesUsed = usageRow?.searches_used ?? 0
+    if (sub) {
+      fair = await checkFairUse(supabase, user.id)
+      if (!fair.allowed) {
+        // Fair-use cap hit — not an upgrade prompt, just a monthly ceiling.
+        return json({
+          limitReached: true,
+          fairUse: true,
+          searchesUsed: fair.used,
+          searchesLimit: FAIR_USE_MONTHLY_CAP,
+        })
+      }
+    } else {
+      const { data: usageRow } = await supabase
+        .from('ai_usage')
+        .select('searches_used')
+        .eq('user_id', user.id)
+        .maybeSingle()
 
-    if (searchesUsed >= FREE_LIMIT) {
-      // Do NOT call Claude. Return a limit-reached signal.
-      return json({
-        limitReached: true,
-        searchesUsed,
-        searchesLimit: FREE_LIMIT,
-      })
+      searchesUsed = usageRow?.searches_used ?? 0
+
+      if (searchesUsed >= FREE_LIMIT) {
+        // Do NOT call Claude. Return a limit-reached signal.
+        return json({
+          limitReached: true,
+          searchesUsed,
+          searchesLimit: FREE_LIMIT,
+        })
+      }
     }
 
     // ── 3. Parse request and validate ───────────────────────────────────────
@@ -199,6 +219,12 @@ Deno.serve(async (req: Request) => {
       })
 
     // ── 5. Increment usage count (only after a successful Claude call) ───────
+    if (sub) {
+      await bumpFairUse(supabase, user.id, fair)
+      // unlimited: true tells the frontend to hide the free-uses counter
+      return json({ reply, limitReached: false, unlimited: true })
+    }
+
     const newCount = searchesUsed + 1
     await supabase
       .from('ai_usage')

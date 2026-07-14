@@ -3,6 +3,7 @@
 // for Deno globals (Deno.serve, Deno.env) — these are valid at runtime.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
+import { getActiveSubscription, checkFairUse, bumpFairUse } from '../_shared/subscription.ts'
 
 // ─── system prompt ────────────────────────────────────────────────────────────
 
@@ -71,14 +72,14 @@ Deno.serve(async (req: Request) => {
     const { data: { user }, error: userError } = await supabase.auth.getUser(token)
     if (userError || !user) return json({ error: 'Unauthorized' }, 401)
 
-    // ── 2. Paid-only feature — zero free uses, enforced server-side ─────────
-    // No billing system exists yet, so every account is free and this always
-    // returns the upgrade signal. Swap `isPaid` for a real plan/subscription
-    // check once payments ship — the Claude call below will then run for paid users.
-    const isPaid = false
-    if (!isPaid) {
-      return json({ paidOnly: true })
-    }
+    // ── 2. Paid-only feature — enforced server-side ─────────────────────────
+    // Any active plan unlocks essay review; free accounts get the upgrade
+    // signal. Paid use counts against the shared monthly fair-use cap.
+    const sub = await getActiveSubscription(supabase, user.id)
+    if (!sub) return json({ paidOnly: true })
+
+    const fair = await checkFairUse(supabase, user.id)
+    if (!fair.allowed) return json({ limitReached: true, fairUse: true })
 
     // ── 3. Parse and validate request ───────────────────────────────────────
     const { essay, context } = await req.json()
@@ -124,6 +125,7 @@ Deno.serve(async (req: Request) => {
     const anthropicData = await anthropicRes.json()
     const reply = anthropicData.content?.[0]?.text ?? "I couldn't generate feedback. Please try again."
 
+    await bumpFairUse(supabase, user.id, fair)
     return json({ reply })
   } catch (err) {
     console.error('review-essay error:', err)

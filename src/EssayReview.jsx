@@ -68,7 +68,7 @@ function parseFeedback(text) {
 
 // ─── component ────────────────────────────────────────────────────────────────
 
-export default function EssayReview({ firstName, user, onGoToDashboard, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
+export default function EssayReview({ firstName, user, isPaid, onGoToPricing, onGoToDashboard, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
   const [essay,          setEssay]          = useState('')
   const [context,        setContext]        = useState('')
   const [feedback,       setFeedback]       = useState(null)
@@ -76,12 +76,9 @@ export default function EssayReview({ firstName, user, onGoToDashboard, onSignOu
   const [error,          setError]          = useState(null)
   const feedbackRef = useRef(null)
 
-  // Essay Review is a paid-only feature — no free uses. No billing system
-  // exists yet, so every account is free and sees the upgrade wall below.
-  // Flip this to a real plan check once payments ship; the form beneath
-  // reactivates as-is for paid users.
-  const isPaid = false
-
+  // Essay Review is paid-only. `isPaid` comes from the user's subscription
+  // (App.jsx) and only controls what renders — the review-essay edge function
+  // re-checks the subscription server-side on every call.
   const wc = wordCount(essay)
   const canSubmit = wc >= 30 && !loading
 
@@ -99,6 +96,9 @@ export default function EssayReview({ firstName, user, onGoToDashboard, onSignOu
       })
 
       if (fnError) throw fnError
+
+      if (data?.paidOnly) { setError('This feature needs an active plan — your subscription may have ended.'); return }
+      if (data?.limitReached) { setError("You've reached this month's fair-use cap (300 AI requests). It resets at the start of next month."); return }
 
       setFeedback(data?.reply ?? 'Unable to generate feedback — please try again.')
       // Scroll to feedback after a short delay
@@ -150,6 +150,7 @@ export default function EssayReview({ firstName, user, onGoToDashboard, onSignOu
               onGoToPrivacy={onGoToPrivacy}
               onGoToTerms={onGoToTerms}
               onDeleted={onDeleted}
+              onGoToPricing={onGoToPricing}
             />
           </div>
         </header>
@@ -176,10 +177,10 @@ export default function EssayReview({ firstName, user, onGoToDashboard, onSignOu
                 Find your options free — upgrade when you want the AI to help you get in.
               </p>
               <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.92rem', lineHeight: 1.6, margin: '0 auto 24px', maxWidth: 420 }}>
-                ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance.
+                ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance — from $14.99/month.
               </p>
-              <button disabled style={{ background: '#16302B12', color: '#16302B66', border: 'none', borderRadius: 100, padding: '11px 30px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.9rem', fontWeight: 600, cursor: 'default' }}>
-                Coming soon
+              <button onClick={onGoToPricing} style={{ background: '#E07A2F', color: '#fff', border: 'none', borderRadius: 100, padding: '11px 30px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer' }}>
+                See plans →
               </button>
             </div>
           ) : (

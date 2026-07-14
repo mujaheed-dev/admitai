@@ -44,7 +44,7 @@ const CARDS = [
 
 // ─── shared message bubble renderer ──────────────────────────────────────────
 
-function MessageBubble({ msg, handleRetry, loading }) {
+function MessageBubble({ msg, handleRetry, loading, onGoToPricing }) {
   if (msg.role === 'user') {
     return (
       <div>
@@ -92,6 +92,24 @@ function MessageBubble({ msg, handleRetry, loading }) {
   }
 
   if (msg.role === 'limit') {
+    // Paid users hitting the monthly fair-use cap get an explanation, not a
+    // sales pitch; free users at their 2-use limit get the real upgrade flow.
+    if (msg.fairUse) {
+      return (
+        <div style={{ display: 'flex', gap: 9, alignItems: 'flex-start' }}>
+          <AiAvatar color="#E07A2F" bgColor="rgba(224,122,47,0.15)" />
+          <div style={{ background: '#fff', border: '1px solid #E07A2F22', borderRadius: '4px 16px 16px 16px', padding: '16px 18px', maxWidth: '85%' }}>
+            <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '0.975rem', fontWeight: 600, margin: '0 0 6px', lineHeight: 1.35 }}>
+              You&apos;ve reached this month&apos;s fair-use cap.
+            </p>
+            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', lineHeight: 1.55, margin: 0 }}>
+              Your plan includes 300 AI requests a month — it resets on the 1st. The cap exists to
+              prevent abuse; if you hit it with honest use, contact support and we&apos;ll sort you out.
+            </p>
+          </div>
+        </div>
+      )
+    }
     return (
       <div style={{ display: 'flex', gap: 9, alignItems: 'flex-start' }}>
         <AiAvatar color="#E07A2F" bgColor="rgba(224,122,47,0.15)" />
@@ -100,10 +118,13 @@ function MessageBubble({ msg, handleRetry, loading }) {
             Find your options free — upgrade when you want the AI to help you get in.
           </p>
           <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', lineHeight: 1.55, margin: '0 0 14px' }}>
-            ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance.
+            ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance — from $14.99/month.
           </p>
-          <button disabled style={{ background: '#16302B12', color: '#16302B66', border: 'none', borderRadius: 100, padding: '8px 20px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, cursor: 'default' }}>
-            Coming soon
+          <button
+            onClick={onGoToPricing}
+            style={{ background: '#E07A2F', color: '#fff', border: 'none', borderRadius: 100, padding: '8px 20px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer' }}
+          >
+            See plans →
           </button>
         </div>
       </div>
@@ -136,17 +157,21 @@ function AiAvatar({ color = '#4F8A6E', bgColor = 'rgba(79,138,110,0.18)' }) {
 // Defining it inside Dashboard caused it to be re-created on every keystroke,
 // which destroyed focus on each re-render.
 
-function InputBar({ input, setInput, loading, atLimit, hasMessages, inputFocused, setInputFocused, inputRef, handleSend, searchesUsed, LIMIT }) {
+function InputBar({ input, setInput, loading, atLimit, hasMessages, inputFocused, setInputFocused, inputRef, handleSend, searchesUsed, LIMIT, isPaid, onGoToPricing }) {
   return (
     <div>
       <form onSubmit={handleSend}>
-        <div style={{
+        <div
+          onClick={() => { if (atLimit) onGoToPricing?.() }}
+          style={{
           display: 'flex', alignItems: 'center', gap: 10,
           background: '#fff', borderRadius: 16,
           border: `1.5px solid ${inputFocused ? 'rgba(79,138,110,0.45)' : 'rgba(22,48,43,0.12)'}`,
           padding: '10px 10px 10px 16px',
           boxShadow: inputFocused ? '0 4px 20px rgba(22,48,43,0.10)' : '0 2px 10px rgba(22,48,43,0.06)',
           transition: 'border-color 0.2s, box-shadow 0.2s',
+          // At the limit the whole bar becomes an upgrade affordance
+          cursor: atLimit ? 'pointer' : 'default',
         }}>
           <Sparkles size={16} color={inputFocused ? '#4F8A6E' : '#16302B33'} style={{ flexShrink: 0, transition: 'color 0.2s' }} strokeWidth={2} />
           <input
@@ -162,6 +187,9 @@ function InputBar({ input, setInput, loading, atLimit, hasMessages, inputFocused
               flex: 1, border: 'none', outline: 'none', background: 'transparent',
               fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.925rem', color: '#16302B', minWidth: 0,
               opacity: (loading || atLimit) ? 0.5 : 1,
+              // Let the parent's click-to-upgrade handler fire over the disabled input
+              cursor: atLimit ? 'pointer' : 'text',
+              pointerEvents: atLimit ? 'none' : 'auto',
             }}
           />
           <button
@@ -185,7 +213,7 @@ function InputBar({ input, setInput, loading, atLimit, hasMessages, inputFocused
         </div>
       </form>
 
-      {searchesUsed > 0 && (
+      {!isPaid && searchesUsed > 0 && (
         <div style={{ marginTop: 8, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 6 }}>
           <div style={{ display: 'flex', gap: 4 }}>
             {Array.from({ length: LIMIT }).map((_, i) => (
@@ -197,7 +225,23 @@ function InputBar({ input, setInput, loading, atLimit, hasMessages, inputFocused
             ))}
           </div>
           <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', color: searchesUsed >= LIMIT ? '#9A5010' : '#16302B55' }}>
-            {searchesUsed} of {LIMIT} free AI uses used · shared with the roadmap generator{searchesUsed >= LIMIT && ' · Upgrade for unlimited'}
+            {searchesUsed} of {LIMIT} free AI uses used · shared with the roadmap generator
+            {searchesUsed >= LIMIT && (
+              <>
+                {' · '}
+                <button
+                  type="button"
+                  onClick={() => onGoToPricing?.()}
+                  style={{
+                    background: 'none', border: 'none', padding: 0, cursor: 'pointer',
+                    fontFamily: 'inherit', fontSize: 'inherit', color: '#E07A2F', fontWeight: 700,
+                    textDecoration: 'underline',
+                  }}
+                >
+                  Upgrade for unlimited
+                </button>
+              </>
+            )}
           </span>
         </div>
       )}
@@ -207,7 +251,7 @@ function InputBar({ input, setInput, loading, atLimit, hasMessages, inputFocused
 
 // ─── dashboard ────────────────────────────────────────────────────────────────
 
-export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholarships, onGoToUniversities, onGoToApplications, onGoToEssayReview, onGoToRoadmap, onGoToCvBuilder, onGoToInterviewPrep, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
+export default function Dashboard({ firstName, user, isPaid, onGoToPricing, onGoToBoard, onGoToScholarships, onGoToUniversities, onGoToApplications, onGoToEssayReview, onGoToRoadmap, onGoToCvBuilder, onGoToInterviewPrep, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
   const LIMIT = 2
 
   const [hovered,        setHovered]        = useState(null)
@@ -226,7 +270,9 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
   const messagesEndRef = useRef(null)
 
   const email    = user && (user.email.length > 28 ? user.email.slice(0, 28) + '…' : user.email)
-  const atLimit  = searchesUsed >= LIMIT
+  // Paid users are never client-side limited; the server enforces their
+  // monthly fair-use cap and returns fairUse: true if they ever hit it.
+  const atLimit  = !isPaid && searchesUsed >= LIMIT
   const hasMessages = messages.length > 0
   const lastAiMsg = [...messages].reverse().find(m => m.role === 'assistant')
 
@@ -314,8 +360,8 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
       if (error) throw error
 
       if (data?.limitReached) {
-        setSearchesUsed(data.searchesLimit ?? LIMIT)
-        setMessages(prev => [...prev, { id: Date.now() + 1, role: 'limit' }])
+        if (!data.fairUse) setSearchesUsed(data.searchesLimit ?? LIMIT)
+        setMessages(prev => [...prev, { id: Date.now() + 1, role: 'limit', fairUse: !!data.fairUse }])
       } else {
         if (data?.searchesUsed != null) setSearchesUsed(data.searchesUsed)
         const reply = data?.reply ?? "Sorry, I couldn't generate a response — please try again."
@@ -359,8 +405,8 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
 
       if (data?.limitReached) {
         // Original attempt may have already incremented the count — server is authoritative
-        setSearchesUsed(data.searchesLimit ?? LIMIT)
-        setMessages(prev => [...prev, { id: Date.now(), role: 'limit' }])
+        if (!data.fairUse) setSearchesUsed(data.searchesLimit ?? LIMIT)
+        setMessages(prev => [...prev, { id: Date.now(), role: 'limit', fairUse: !!data.fairUse }])
       } else {
         if (data?.searchesUsed != null) setSearchesUsed(data.searchesUsed)
         const reply = data?.reply ?? "Sorry, I couldn't generate a response — please try again."
@@ -444,7 +490,7 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
 
   // InputBar is defined at module level (below) to keep its identity stable
   // across re-renders — defining it inside Dashboard caused focus loss on every keystroke.
-  const inputBarProps = { input, setInput, loading, atLimit, hasMessages, inputFocused, setInputFocused, inputRef, handleSend, searchesUsed, LIMIT }
+  const inputBarProps = { input, setInput, loading, atLimit, hasMessages, inputFocused, setInputFocused, inputRef, handleSend, searchesUsed, LIMIT, isPaid, onGoToPricing }
 
   // ── FULL-SCREEN CHAT VIEW ────────────────────────────────────────────────────
   if (isChatOpen) {
@@ -573,7 +619,7 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
               <div className="max-w-3xl mx-auto px-4 sm:px-6 py-5" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 {messages.map(msg => (
                   <div key={msg.id} className="dash-msg">
-                    <MessageBubble msg={msg} handleRetry={handleRetry} loading={loading} />
+                    <MessageBubble msg={msg} handleRetry={handleRetry} loading={loading} onGoToPricing={onGoToPricing} />
                   </div>
                 ))}
 
@@ -637,6 +683,7 @@ export default function Dashboard({ firstName, user, onGoToBoard, onGoToScholars
               onGoToPrivacy={onGoToPrivacy}
               onGoToTerms={onGoToTerms}
               onDeleted={onDeleted}
+              onGoToPricing={onGoToPricing}
             />
           </div>
         </header>

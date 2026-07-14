@@ -176,7 +176,9 @@ function getBudgetLabel(budget) {
   if (budget === 10000) return 'under $10k'
   if (budget === 20000) return '$10–20k'
   if (budget === 35000) return '$20–35k'
-  return '$35k or more'
+  if (budget >= 1e9) return '$35k or more'
+  // Custom typed amount from the intake flow
+  return '$' + budget.toLocaleString('en-US')
 }
 
 function getBudgetFlag(allInLow, budget) {
@@ -222,7 +224,7 @@ import ProfileMenu from './ProfileMenu.jsx'
 export default function Board({
   answers, onStartOver, onGoToScholarships,
   user, onOpenAuth, onSignOut, onGoToDashboard,
-  onGoToPrivacy, onGoToTerms, onDeleted, firstName,
+  onGoToPrivacy, onGoToTerms, onDeleted, firstName, onGoToPricing,
 }) {
   const { budget, field, regions } = answers
   const showAll = regions.includes('anywhere')
@@ -290,7 +292,7 @@ export default function Board({
               <button style={tabStyle(true)}>My Board</button>
               <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>
             </div>
-            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
+            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
           </div>
         </div>
         {/* Desktop: single row */}
@@ -301,7 +303,7 @@ export default function Board({
             <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
-            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
+            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
             {changeBtn}
           </div>
         </div>
@@ -338,7 +340,7 @@ export default function Board({
               fontSize: '0.975rem', lineHeight: 1.6, margin: 0,
             }}>
               Based on your <strong style={{ color: '#16302B' }}>{budgetLabel}</strong> budget for{' '}
-              <strong style={{ color: '#16302B' }}>{field}</strong>,
+              <strong style={{ color: '#16302B' }}>{field === 'Any field' ? 'any field' : field}</strong>,
               here's your honest picture{firstName ? `, ${firstName}` : ''}.
             </p>
           </div>

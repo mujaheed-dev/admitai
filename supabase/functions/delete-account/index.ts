@@ -2,6 +2,7 @@
 // Runs in Supabase's Deno runtime.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
+import { cancelFlwSubscriptionsByEmail } from '../_shared/flw.ts'
 
 Deno.serve(async (req: Request) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
@@ -25,7 +26,25 @@ Deno.serve(async (req: Request) => {
 
     const uid = user.id
 
-    // 2. Explicitly delete all user rows.
+    // 2. Cancel any active Flutterwave subscription FIRST, so nobody is billed
+    //    after their account (and its data) is gone. Best-effort: a user
+    //    leaving must never be blocked from deleting. "No subscription" and a
+    //    provider hiccup are both handled gracefully — we log and proceed.
+    try {
+      const { data: sub } = await supabase
+        .from('subscriptions')
+        .select('flw_customer_email')
+        .eq('user_id', uid)
+        .maybeSingle()
+      const email = sub?.flw_customer_email || user.email
+      const result = await cancelFlwSubscriptionsByEmail(email)
+      if (result.found > 0) console.log(`delete-account: cancelled ${result.cancelled} FLW subscription(s) for ${email}`)
+    } catch (err) {
+      // Do not abort deletion — just record it for follow-up.
+      console.error('delete-account: Flutterwave cancel failed (continuing with deletion):', err?.message ?? err)
+    }
+
+    // 3. Explicitly delete all user rows.
     //    All tables have ON DELETE CASCADE so deleting the auth user would
     //    cascade anyway — but being explicit is safer and faster.
     await Promise.all([
@@ -33,9 +52,10 @@ Deno.serve(async (req: Request) => {
       supabase.from('ai_usage').delete().eq('user_id', uid),
       supabase.from('chat_messages').delete().eq('user_id', uid),
       supabase.from('applications').delete().eq('user_id', uid),
+      supabase.from('subscriptions').delete().eq('user_id', uid),
     ])
 
-    // 3. Delete the auth user — requires service role.
+    // 4. Delete the auth user — requires service role.
     const { error: deleteError } = await supabase.auth.admin.deleteUser(uid)
     if (deleteError) {
       console.error('Failed to delete auth user:', deleteError)

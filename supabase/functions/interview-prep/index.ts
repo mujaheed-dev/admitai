@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 import { corsHeaders } from '../_shared/cors.ts'
+import { getActiveSubscription, checkFairUse, bumpFairUse } from '../_shared/subscription.ts'
 
 // ─── interview configuration ─────────────────────────────────────────────────
 
@@ -94,12 +95,13 @@ Deno.serve(async (req: Request) => {
     const { data: { user }, error: userError } = await supabase.auth.getUser(token)
     if (userError || !user) return json({ error: 'Unauthorized' }, 401)
 
-    // Paid-only feature — zero free uses, enforced server-side. No billing
-    // system exists yet, so every account is free and this always returns the
-    // upgrade signal. Swap `isPaid` for a real plan check once payments ship —
-    // the interview flow below will then run for paid users.
-    const isPaid = false
-    if (!isPaid) return json({ paidOnly: true })
+    // Paid-only feature — enforced server-side. Any active plan unlocks it;
+    // paid use counts against the shared monthly fair-use cap.
+    const sub = await getActiveSubscription(supabase, user.id)
+    if (!sub) return json({ paidOnly: true })
+
+    const fair = await checkFairUse(supabase, user.id)
+    if (!fair.allowed) return json({ limitReached: true, fairUse: true })
 
     const { interviewType, history } = await req.json()
 
@@ -142,6 +144,7 @@ Deno.serve(async (req: Request) => {
     const reply = anthropicData.content?.[0]?.text ?? "Couldn't generate a response. Please try again."
     const isComplete = reply.includes('[INTERVIEW COMPLETE]')
 
+    await bumpFairUse(supabase, user.id, fair)
     return json({ reply, isComplete })
   } catch (err) {
     console.error('interview-prep error:', err)

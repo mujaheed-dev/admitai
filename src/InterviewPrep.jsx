@@ -133,7 +133,7 @@ function AnswerInput({ value, onChange, onSubmit, loading, isComplete, inputFocu
 
 // ─── main component ───────────────────────────────────────────────────────────
 
-export default function InterviewPrep({ firstName, user, onGoToDashboard, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
+export default function InterviewPrep({ firstName, user, isPaid, onGoToPricing, onGoToDashboard, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
 
   const [step,          setStep]          = useState('select')  // 'select' | 'interview'
   const [interviewType, setInterviewType] = useState(null)
@@ -153,11 +153,9 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
   const typeConfig       = INTERVIEW_TYPES.find(t => t.id === interviewType)
   const questionsAnswered = messages.filter(m => m.role === 'user').length
 
-  // Interview Prep is a paid-only feature — no free uses. No billing system
-  // exists yet, so every account is free and sees the upgrade wall below.
-  // Flip this to a real plan check once payments ship; the flow beneath
-  // reactivates as-is for paid users.
-  const isPaid = false
+  // Interview Prep is paid-only. `isPaid` comes from the user's subscription
+  // (App.jsx) and only controls what renders — the interview-prep edge
+  // function re-checks the subscription server-side on every call.
 
   // ── Load saved interviews ──────────────────────────────────────────────────
   useEffect(() => {
@@ -376,7 +374,7 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
                   <RotateCcw size={13} strokeWidth={2} />
                   <span className="hidden sm:inline">New interview</span>
                 </button>
-                <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
+                <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
               </div>
             </div>
           </header>
@@ -555,7 +553,7 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
             <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600 }}>
               Interview Prep
             </span>
-            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
+            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
           </div>
         </header>
 
@@ -588,10 +586,10 @@ export default function InterviewPrep({ firstName, user, onGoToDashboard, onSign
                 Find your options free — upgrade when you want the AI to help you get in.
               </p>
               <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.92rem', lineHeight: 1.6, margin: '0 auto 24px', maxWidth: 420 }}>
-                ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance.
+                ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance — from $14.99/month.
               </p>
-              <button disabled style={{ background: '#16302B12', color: '#16302B66', border: 'none', borderRadius: 100, padding: '11px 30px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.9rem', fontWeight: 600, cursor: 'default' }}>
-                Coming soon
+              <button onClick={onGoToPricing} style={{ background: '#E07A2F', color: '#fff', border: 'none', borderRadius: 100, padding: '11px 30px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer' }}>
+                See plans →
               </button>
             </div>
           ) : (

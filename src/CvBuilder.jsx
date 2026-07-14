@@ -165,7 +165,7 @@ const CV_MD = {
 // function reference on every re-render, so React unmounts/remounts the whole
 // subtree and every input loses focus after a single keystroke.
 
-function PageShell({ topRef, onGoToDashboard, user, firstName, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted, children }) {
+function PageShell({ topRef, onGoToDashboard, user, firstName, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted, onGoToPricing, children }) {
   return (
     <>
       <style>{`
@@ -191,7 +191,7 @@ function PageShell({ topRef, onGoToDashboard, user, firstName, onSignOut, onGoTo
               Dashboard
             </button>
             <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600 }}>CV Builder</span>
-            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
+            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
           </div>
         </header>
         <main ref={topRef} className="max-w-3xl mx-auto px-5 sm:px-6 pt-8 pb-24">
@@ -204,7 +204,7 @@ function PageShell({ topRef, onGoToDashboard, user, firstName, onSignOut, onGoTo
 
 // ─── main component ───────────────────────────────────────────────────────────
 
-export default function CvBuilder({ firstName, user, onGoToDashboard, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
+export default function CvBuilder({ firstName, user, isPaid, onGoToPricing, onGoToDashboard, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
 
   const [step,          setStep]         = useState(1)  // 1=type, 2=form, 3=result
   const [cvType,        setCvType]       = useState(null)
@@ -220,16 +220,14 @@ export default function CvBuilder({ firstName, user, onGoToDashboard, onSignOut,
 
   const topRef = useRef(null)
 
-  // CV Builder is a paid-only feature — no free uses. No billing system exists
-  // yet, so every account is free and sees the upgrade wall below. Flip this to
-  // a real plan check once payments ship; the flow beneath reactivates as-is.
-  const isPaid = false
-
+  // CV Builder is paid-only. `isPaid` comes from the user's subscription
+  // (App.jsx) and only controls what renders — the build-cv edge function
+  // re-checks the subscription server-side on every call.
   const typeConfig = CV_TYPES.find(t => t.id === cvType)
 
   // shellProps is passed to the module-level PageShell (defined outside this component
   // so its identity stays stable across re-renders — prevents focus loss on input)
-  const shellProps = { topRef, onGoToDashboard, user, firstName, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }
+  const shellProps = { topRef, onGoToDashboard, user, firstName, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted, onGoToPricing }
 
   // ── Load saved CVs ───────────────────────────────────────────────────────────
   useEffect(() => {
@@ -382,10 +380,10 @@ export default function CvBuilder({ firstName, user, onGoToDashboard, onSignOut,
           Find your options free — upgrade when you want the AI to help you get in.
         </p>
         <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.92rem', lineHeight: 1.6, margin: '0 auto 24px', maxWidth: 420 }}>
-          ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance.
+          ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance — from $14.99/month.
         </p>
-        <button disabled style={{ background: '#16302B12', color: '#16302B66', border: 'none', borderRadius: 100, padding: '11px 30px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.9rem', fontWeight: 600, cursor: 'default' }}>
-          Coming soon
+        <button onClick={onGoToPricing} style={{ background: '#E07A2F', color: '#fff', border: 'none', borderRadius: 100, padding: '11px 30px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer' }}>
+          See plans →
         </button>
       </div>
     </PageShell>

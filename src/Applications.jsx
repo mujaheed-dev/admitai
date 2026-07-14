@@ -61,7 +61,7 @@ function deadlineMeta(days) {
 
 import ProfileMenu from './ProfileMenu.jsx'
 
-export default function Applications({ firstName, user, onSignOut, onGoToDashboard, onGoToPrivacy, onGoToTerms, onDeleted }) {
+export default function Applications({ firstName, user, onSignOut, onGoToDashboard, onGoToPrivacy, onGoToTerms, onDeleted, onGoToPricing }) {
   const [apps,     setApps]     = useState([])
   const [loading,  setLoading]  = useState(true)
   const [showAdd,  setShowAdd]  = useState(false)
@@ -121,7 +121,7 @@ export default function Applications({ firstName, user, onSignOut, onGoToDashboa
             <span className="hidden sm:inline">Dashboard</span>
           </button>
           <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>My Applications</span>
-          <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
+          <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
         </div>
       </header>
 

@@ -76,7 +76,7 @@ function fmtDate(iso) {
 
 // ─── component ────────────────────────────────────────────────────────────────
 
-export default function Roadmap({ firstName, user, onGoToDashboard, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
+export default function Roadmap({ firstName, user, isPaid, onGoToPricing, onGoToDashboard, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted }) {
   const [field,         setField]         = useState('')
   const [country,       setCountry]       = useState('')
   const [level,         setLevel]         = useState('Undergraduate')
@@ -90,7 +90,8 @@ export default function Roadmap({ firstName, user, onGoToDashboard, onSignOut, o
   const [savedCurrentId, setSavedCurrentId] = useState(null)
 
   const roadmapRef = useRef(null)
-  const atLimit    = searchesUsed >= LIMIT
+  // Paid users skip the free limit; the server enforces their fair-use cap
+  const atLimit    = !isPaid && searchesUsed >= LIMIT
   const canSubmit  = field.trim() && country.trim() && !loading && !atLimit
   const alreadySaved = savedCurrentId !== null
 
@@ -128,7 +129,8 @@ export default function Roadmap({ firstName, user, onGoToDashboard, onSignOut, o
       if (fnError) throw fnError
 
       if (data?.limitReached) {
-        setSearchesUsed(data.searchesLimit ?? LIMIT)
+        if (data.fairUse) setError("You've reached this month's fair-use cap (300 AI requests). It resets at the start of next month.")
+        else setSearchesUsed(data.searchesLimit ?? LIMIT)
       } else {
         if (data?.searchesUsed != null) setSearchesUsed(data.searchesUsed)
         setRoadmap(data?.reply ?? 'Unable to generate a roadmap — please try again.')
@@ -224,6 +226,7 @@ export default function Roadmap({ firstName, user, onGoToDashboard, onSignOut, o
               onGoToPrivacy={onGoToPrivacy}
               onGoToTerms={onGoToTerms}
               onDeleted={onDeleted}
+              onGoToPricing={onGoToPricing}
             />
           </div>
         </header>
@@ -247,10 +250,10 @@ export default function Roadmap({ firstName, user, onGoToDashboard, onSignOut, o
                 Find your options free — upgrade when you want the AI to help you get in.
               </p>
               <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', lineHeight: 1.55, margin: '0 0 14px' }}>
-                ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance.
+                ✨ Unlock essay review, CV builder, mock interviews, and unlimited AI guidance — from $14.99/month.
               </p>
-              <button disabled style={{ background: '#16302B12', color: '#16302B66', border: 'none', borderRadius: 100, padding: '8px 20px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, cursor: 'default' }}>
-                Coming soon
+              <button onClick={onGoToPricing} style={{ background: '#E07A2F', color: '#fff', border: 'none', borderRadius: 100, padding: '8px 20px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, cursor: 'pointer' }}>
+                See plans →
               </button>
             </div>
           )}
@@ -322,7 +325,7 @@ export default function Roadmap({ firstName, user, onGoToDashboard, onSignOut, o
 
               {/* Usage + Submit */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 10, marginBottom: 0 }}>
-                {searchesUsed > 0 && (
+                {!isPaid && searchesUsed > 0 && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                     <div style={{ display: 'flex', gap: 4 }}>
                       {Array.from({ length: LIMIT }).map((_, i) => (
