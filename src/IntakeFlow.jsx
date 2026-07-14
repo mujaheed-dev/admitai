@@ -1,4 +1,18 @@
 import { useState } from 'react'
+import FilterDropdown from './FilterDropdown.jsx'
+import { UNIVERSITY_FIELDS } from './universitiesData.js'
+
+// Stored as the field answer when the student doesn't know yet — the Board
+// treats any string the same way, this one just reads friendlier.
+export const ANY_FIELD = 'Any field'
+
+// Full field vocabulary from the university data — same list the
+// Universities page filter uses, alphabetical so search feels predictable.
+const FIELD_CHOICES = [...UNIVERSITY_FIELDS].sort((a, b) => a.localeCompare(b))
+
+// Custom budgets are capped here; anything above behaves like the '$35k+'
+// preset anyway, and it keeps typos ($2,000,000,000) out of the data.
+const MAX_CUSTOM_BUDGET = 1000000
 
 const QUESTIONS = [
   {
@@ -16,15 +30,8 @@ const QUESTIONS = [
   {
     id: 'field',
     question: 'What do you want to study?',
-    hint: "We'll highlight paths strong in your field.",
-    type: 'single',
-    options: [
-      { label: 'Computer Science', value: 'Computer Science' },
-      { label: 'Engineering', value: 'Engineering' },
-      { label: 'Business', value: 'Business' },
-      { label: 'Health Sciences', value: 'Health Sciences' },
-      { label: 'Arts & Humanities', value: 'Arts & Humanities' },
-    ],
+    hint: "Search for your exact field — or skip ahead if you're still deciding.",
+    type: 'field',
   },
   {
     id: 'regions',
@@ -48,6 +55,10 @@ const TOTAL = QUESTIONS.length
 export default function IntakeFlow({ onComplete, onBack, firstName }) {
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState({ budget: null, field: null, regions: [] })
+  // Custom budget entry — raw digit string, formatted with commas on render
+  const [customOpen, setCustomOpen]     = useState(false)
+  const [customBudget, setCustomBudget] = useState('')
+  const customValid = Number(customBudget) > 0
 
   const q = QUESTIONS[step]
   const progressPct = ((step + 1) / TOTAL) * 100
@@ -158,6 +169,22 @@ export default function IntakeFlow({ onComplete, onBack, firstName }) {
         </p>
 
         {/* Options */}
+        {q.type === 'field' ? (
+          // Full searchable field list — same picker as the Universities and
+          // Scholarships filters, so typing "pha" surfaces Pharmacy.
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
+            <FilterDropdown
+              label="Field of study"
+              options={FIELD_CHOICES}
+              active={answers.field && answers.field !== ANY_FIELD ? answers.field : 'All'}
+              onChange={handleSingle}
+            />
+            <OptionButton
+              label="Not sure yet — open to any field"
+              onClick={() => handleSingle(ANY_FIELD)}
+            />
+          </div>
+        ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {q.options.map(opt => {
             const isSelected =
@@ -179,7 +206,67 @@ export default function IntakeFlow({ onComplete, onBack, firstName }) {
               />
             )
           })}
+
+          {/* Custom budget — typed amount flows into matching exactly like a preset */}
+          {q.id === 'budget' && (
+            <>
+              <OptionButton
+                label="Custom amount…"
+                selected={customOpen}
+                onClick={() => setCustomOpen(v => !v)}
+              />
+              {customOpen && (
+                <div style={{ display: 'flex', gap: 10 }}>
+                  <div style={{
+                    flex: 1, minWidth: 0, display: 'flex', alignItems: 'center', gap: 8,
+                    background: '#fff', border: '1.5px solid #4F8A6E',
+                    borderRadius: 14, padding: '0 18px',
+                  }}>
+                    <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontWeight: 600, color: '#16302B77' }}>$</span>
+                    <input
+                      autoFocus
+                      type="text"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      placeholder="7,500"
+                      aria-label="Custom annual budget in US dollars"
+                      value={customBudget ? Number(customBudget).toLocaleString('en-US') : ''}
+                      onChange={e => {
+                        const digits = e.target.value.replace(/[^0-9]/g, '')
+                        setCustomBudget(digits ? String(Math.min(Number(digits), MAX_CUSTOM_BUDGET)) : '')
+                      }}
+                      onKeyDown={e => { if (e.key === 'Enter' && customValid) handleSingle(Number(customBudget)) }}
+                      style={{
+                        flex: 1, minWidth: 0, border: 'none', outline: 'none',
+                        background: 'transparent', color: '#16302B',
+                        fontFamily: 'Hanken Grotesk, sans-serif', fontWeight: 500,
+                        // 16px prevents iOS Safari from auto-zooming the page
+                        fontSize: 16, padding: '16px 0',
+                      }}
+                    />
+                    <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B55', fontSize: '0.85rem', whiteSpace: 'nowrap' }}>/ year</span>
+                  </div>
+                  <button
+                    onClick={() => customValid && handleSingle(Number(customBudget))}
+                    disabled={!customValid}
+                    style={{
+                      padding: '0 22px', borderRadius: 14, border: 'none',
+                      cursor: customValid ? 'pointer' : 'not-allowed',
+                      background: customValid ? '#E07A2F' : '#16302B18',
+                      color: customValid ? '#fff' : '#16302B44',
+                      fontFamily: 'Hanken Grotesk, sans-serif',
+                      fontSize: '0.95rem', fontWeight: 600,
+                      transition: 'background 0.2s, color 0.2s',
+                    }}
+                  >
+                    Next →
+                  </button>
+                </div>
+              )}
+            </>
+          )}
         </div>
+        )}
 
         {/* Continue button for multi-select */}
         {q.type === 'multi' && (

@@ -13,16 +13,36 @@ function uid() { return Math.random().toString(36).slice(2, 10) }
 // Alphabetical inside the pickers so long lists stay scannable
 const COUNTRY_OPTIONS = ['All', ...[...UNIVERSITY_COUNTRIES].sort((a, b) => a.localeCompare(b))]
 const FIELD_OPTIONS   = ['All', ...[...UNIVERSITY_FIELDS].sort((a, b) => a.localeCompare(b))]
+// Same values as the Scholarships page's Level picker
+const LEVEL_OPTIONS   = ['All', 'Undergraduate', 'Masters / PhD', 'Both']
+
+// Paid-tier level gating comes in via the `planLevel` prop (from the user's
+// subscription in App.jsx):
+//   'Undergraduate'  -> undergrad plan (shows Undergraduate + Both)
+//   'Masters / PhD'  -> postgrad plan (shows Masters / PhD + Both)
+//   null             -> combined plan OR free account (everyone sees everything
+//                       — free browsing is never restricted)
+// Universities with level 'Both' always pass — same rule the scholarship
+// tier filtering uses.
+
+// A university matches a level if it teaches at that level — 'Both' entries
+// genuinely offer undergrad AND postgrad, so they match either choice.
+function matchesLevel(uniLevel, wanted) {
+  if (!wanted || wanted === 'All') return true
+  if (wanted === 'Both') return uniLevel === 'Both'
+  return uniLevel === wanted || uniLevel === 'Both'
+}
 
 // ─── page ─────────────────────────────────────────────────────────────────────
 
 export default function Universities({
-  answers, onGoToBoard, onBack,
+  answers, planLevel, onGoToBoard, onBack,
   user, firstName, onSignOut, onGoToDashboard,
-  onGoToScholarships, onGoToPrivacy, onGoToTerms, onDeleted,
+  onGoToScholarships, onGoToPrivacy, onGoToTerms, onDeleted, onGoToPricing,
 }) {
   const [countryFilter, setCountryFilter] = useState('All')
   const [fieldFilter,   setFieldFilter]   = useState('All')
+  const [levelFilter,   setLevelFilter]   = useState('All')
   const [selectedUni,   setSelectedUni]   = useState(null)
   const [activeView,    setActiveView]    = useState('all')  // 'all' | 'saved'
 
@@ -105,18 +125,20 @@ export default function Universities({
   }
 
   // ── Filter & derive lists ──────────────────────────────────────────────────
-  const allFiltered = UNIVERSITIES.filter(u => {
-    const countryOk = countryFilter === 'All' || u.country === countryFilter
-    const fieldOk   = fieldFilter === 'All' || u.knownFor.includes(fieldFilter)
-    return countryOk && fieldOk
-  })
+  // Plan gating first (no-op while planLevel is null), then user filters.
+  const planVisible = UNIVERSITIES.filter(u => matchesLevel(u.level, planLevel))
 
-  const savedList    = UNIVERSITIES.filter(u => savedIds.has(u.id))
-  const savedFiltered = savedList.filter(u => {
+  const matchesFilters = u => {
     const countryOk = countryFilter === 'All' || u.country === countryFilter
     const fieldOk   = fieldFilter === 'All' || u.knownFor.includes(fieldFilter)
-    return countryOk && fieldOk
-  })
+    const levelOk   = matchesLevel(u.level, levelFilter)
+    return countryOk && fieldOk && levelOk
+  }
+
+  const allFiltered = planVisible.filter(matchesFilters)
+
+  const savedList     = planVisible.filter(u => savedIds.has(u.id))
+  const savedFiltered = savedList.filter(matchesFilters)
 
   const displayList = activeView === 'saved' ? savedFiltered : allFiltered
 
@@ -149,7 +171,7 @@ export default function Universities({
               {onGoToScholarships && <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>}
               <button style={tabStyle(true)}>Universities</button>
             </div>
-            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
+            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
           </div>
         </div>
         {/* Desktop: single row */}
@@ -163,7 +185,7 @@ export default function Universities({
             <button style={tabStyle(true)}>Universities</button>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
-            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} />
+            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
             <GhostBtn onClick={selectedUni ? () => setSelectedUni(null) : onBack}>
               {selectedUni ? '← Universities' : '← Home'}
             </GhostBtn>
@@ -234,6 +256,7 @@ export default function Universities({
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
               <FilterDropdown label="Country" options={COUNTRY_OPTIONS} active={countryFilter} onChange={setCountryFilter} />
               <FilterDropdown label="Field"   options={FIELD_OPTIONS}   active={fieldFilter}   onChange={setFieldFilter} />
+              <FilterDropdown label="Level"   options={LEVEL_OPTIONS}   active={levelFilter}   onChange={setLevelFilter} />
             </div>
             <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B99', fontSize: '0.875rem', margin: '14px 0 20px' }}>
               <strong style={{ color: '#16302B', fontWeight: 600 }}>{displayList.length}</strong>{' '}
