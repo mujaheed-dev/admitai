@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import CountryDetail from './CountryDetail.jsx'
+import HomeButton from './HomeButton.jsx'
 
 // Tuition ranges are for international/non-resident students, annual, USD.
 // Living cost is an annual estimate for a single student (shared housing, moderate spending).
@@ -245,23 +246,6 @@ export default function Board({
       : fitScore(a, budget) - fitScore(b, budget) || a.allInLow - b.allInLow
   )
 
-  const tabStyle = (isActive) => ({
-    background: isActive ? '#16302B' : 'none',
-    color: isActive ? '#F7F4EE' : '#16302B99',
-    border: 'none', borderRadius: 100, padding: '6px 13px',
-    fontSize: '0.85rem', fontFamily: 'Hanken Grotesk, sans-serif',
-    fontWeight: isActive ? 600 : 500, cursor: isActive ? 'default' : 'pointer', whiteSpace: 'nowrap',
-  })
-
-  const logoBtn = (
-    <button
-      onClick={onGoToDashboard}
-      style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}
-    >
-      AdmitAI
-    </button>
-  )
-
   const changeBtn = (
     <button
       onClick={onStartOver}
@@ -281,31 +265,12 @@ export default function Board({
         className="sticky top-0 z-50 border-b"
         style={{ background: '#F7F4EEf5', borderColor: '#16302B20', backdropFilter: 'blur(8px)' }}
       >
-        {/* Mobile: two rows */}
-        <div className="sm:hidden max-w-3xl mx-auto px-6 pt-3.5 pb-3">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 9 }}>
-            {logoBtn}
-            {changeBtn}
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', gap: 2 }}>
-              <button style={tabStyle(true)}>My Board</button>
-              <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>
-            </div>
-            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
-          </div>
-        </div>
-        {/* Desktop: single row */}
-        <div className="hidden sm:flex max-w-3xl mx-auto px-6 py-3 items-center justify-between gap-3">
-          {logoBtn}
-          <div style={{ display: 'flex', gap: 2, flexShrink: 0 }}>
-            <button style={tabStyle(true)}>My Board</button>
-            <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
-            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
-            {changeBtn}
-          </div>
+        {/* Standard header: Home (exit) at top-left, account menu at top-right.
+            Page context ("Your matches") lives in the heading below; Change
+            answers and Scholarships are secondary actions near the matches. */}
+        <div className="max-w-3xl mx-auto px-6 py-3 flex items-center justify-between gap-3">
+          <HomeButton onClick={onGoToDashboard} />
+          <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
         </div>
       </header>
 
@@ -343,6 +308,11 @@ export default function Board({
               <strong style={{ color: '#16302B' }}>{field === 'Any field' ? 'any field' : field}</strong>,
               here's your honest picture{firstName ? `, ${firstName}` : ''}.
             </p>
+
+            {/* Change answers — secondary, tied to the matches, not the profile area */}
+            <div style={{ marginTop: 18 }}>
+              {changeBtn}
+            </div>
           </div>
 
           {/* Sort / filter bar */}
@@ -426,17 +396,37 @@ export default function Board({
                 </p>
               </div>
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {results.map((c, i) => (
-                  <CountryCard
-                    key={c.id}
-                    country={c}
-                    budget={budget}
-                    rank={i + 1}
-                    onSelect={setSelectedCountry}
-                  />
-                ))}
-              </div>
+              <>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  {results.map((c, i) => (
+                    <CountryCard
+                      key={c.id}
+                      country={c}
+                      budget={budget}
+                      rank={i + 1}
+                      onSelect={setSelectedCountry}
+                    />
+                  ))}
+                </div>
+
+                {/* Secondary cross-nav to scholarships for the matched countries */}
+                {onGoToScholarships && (
+                  <div style={{ marginTop: 22, textAlign: 'center' }}>
+                    <button
+                      onClick={onGoToScholarships}
+                      style={{
+                        background: 'none', border: 'none', cursor: 'pointer',
+                        fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.9rem', fontWeight: 600,
+                        color: '#4F8A6E', padding: '6px 4px',
+                      }}
+                      onMouseEnter={e => (e.currentTarget.style.color = '#2D7A52')}
+                      onMouseLeave={e => (e.currentTarget.style.color = '#4F8A6E')}
+                    >
+                      See scholarships for these countries →
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </>

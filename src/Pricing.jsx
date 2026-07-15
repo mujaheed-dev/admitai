@@ -5,9 +5,10 @@
 // the webhook and verify-payment functions.
 
 import { useState } from 'react'
-import { ArrowLeft, Check, CheckCircle, XCircle, Loader } from 'lucide-react'
+import { Check, CheckCircle, XCircle, Loader } from 'lucide-react'
 import { supabase } from './supabase.js'
 import ProfileMenu from './ProfileMenu.jsx'
+import HomeButton from './HomeButton.jsx'
 import { CONTACT_EMAIL } from './config.js'
 
 export const PLAN_LABELS = {
@@ -89,15 +90,7 @@ export default function Pricing({
       {/* ── Nav ── */}
       <header className="sticky top-0 z-50 border-b" style={{ background: '#F7F4EEf8', borderColor: '#16302B1a', backdropFilter: 'blur(8px)' }}>
         <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-          <button
-            onClick={onBack}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', fontWeight: 500, padding: 0 }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#16302B88')}
-          >
-            <ArrowLeft size={16} strokeWidth={2} />
-            Back
-          </button>
+          <HomeButton onClick={onBack} />
           <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>
             Plans
           </span>

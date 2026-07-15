@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { supabase } from './supabase.js'
 import ScholarshipDetail from './ScholarshipDetail.jsx'
 import FilterDropdown from './FilterDropdown.jsx'
+import HomeButton from './HomeButton.jsx'
 import { getUniversityScholarshipsForPage } from './universitiesData.js'
 
 // All figures and deadlines are illustrative until verified from official sources.
@@ -902,8 +903,6 @@ export default function Scholarships({
   }, [user])
 
   const hasBoard    = answers && onGoToBoard
-  const backLabel   = hasBoard ? '← Change answers' : '← Back'
-  const onBackClick = hasBoard ? onStartOver : onBack
   const email       = user && (user.email.length > 22 ? user.email.slice(0, 22) + '…' : user.email)
   const displayName = firstName || (user?.email?.split('@')[0]) || ''
 
@@ -953,33 +952,23 @@ export default function Scholarships({
 
       {/* ── Nav ── */}
       <header className="sticky top-0 z-50 border-b" style={{ background: '#F7F4EEf5', borderColor: '#16302B20', backdropFilter: 'blur(8px)' }}>
-        {/* Mobile: two rows */}
+        {/* Mobile: two rows — Home (exit) top-left, account top-right, tabs below */}
         <div className="sm:hidden max-w-3xl mx-auto px-6 pt-3.5 pb-3">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 9 }}>
-            <Logo onClick={onGoToDashboard} />
-            <GhostBtn onClick={selectedScholarship ? () => setSelectedScholarship(null) : onBackClick}>
-              {selectedScholarship ? '← Scholarships' : backLabel}
-            </GhostBtn>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', gap: 2 }}>
-              {hasBoard && <NavTabs active="scholarships" onGoToBoard={onGoToBoard} />}
-            </div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: hasBoard ? 9 : 0 }}>
+            <HomeButton onClick={onGoToDashboard} />
             <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
           </div>
+          {hasBoard && <NavTabs active="scholarships" onGoToBoard={onGoToBoard} />}
         </div>
-        {/* Desktop: single row */}
+        {/* Desktop: single row — Home (exit) left, tabs center, account right */}
         <div className="hidden sm:flex max-w-3xl mx-auto px-6 py-3 items-center justify-between gap-3">
-          <Logo onClick={onGoToDashboard} />
+          <HomeButton onClick={onGoToDashboard} />
           {hasBoard && <NavTabs active="scholarships" onGoToBoard={onGoToBoard} />}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
             <span className="hidden md:inline" style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B66', fontSize: '0.8rem', whiteSpace: 'nowrap' }}>
               {email}
             </span>
             <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
-            <GhostBtn onClick={selectedScholarship ? () => setSelectedScholarship(null) : onBackClick}>
-              {selectedScholarship ? '← Scholarships' : backLabel}
-            </GhostBtn>
           </div>
         </div>
       </header>
@@ -1104,14 +1093,6 @@ export default function Scholarships({
 
 // ─── nav helpers ──────────────────────────────────────────────────────────────
 
-function Logo({ onClick }) {
-  return (
-    <button onClick={onClick} style={{ background: 'none', border: 'none', padding: 0, cursor: onClick ? 'pointer' : 'default', fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>
-      AdmitAI
-    </button>
-  )
-}
-
 function NavTabs({ active, onGoToBoard }) {
   const t = (isActive) => ({
     background: isActive ? '#16302B' : 'none', color: isActive ? '#F7F4EE' : '#16302B99',
@@ -1124,17 +1105,6 @@ function NavTabs({ active, onGoToBoard }) {
       <button style={t(active === 'board')} onClick={active === 'board' ? undefined : onGoToBoard}>My Board</button>
       <button style={t(active === 'scholarships')}>Scholarships</button>
     </div>
-  )
-}
-
-function GhostBtn({ onClick, children }) {
-  return (
-    <button onClick={onClick} style={{ background: 'none', border: '1.5px solid #16302B30', borderRadius: 100, padding: '6px 16px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.82rem', fontWeight: 500, whiteSpace: 'nowrap' }}
-      onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
-      onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B30')}
-    >
-      {children}
-    </button>
   )
 }
 
@@ -1171,10 +1141,10 @@ function ScholarshipCard({ scholarship: s, onSelect, highlighted = false }) {
           <h2 className="line-clamp-2" style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.08rem', fontWeight: 600, margin: '0 0 7px', lineHeight: 1.25 }}>
             {s.name}
           </h2>
-          <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 7 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-              <span style={{ fontSize: '0.9rem', lineHeight: 1 }}>{s.flag}</span>
-              <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B77', fontSize: '0.82rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 7, minWidth: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 5, minWidth: 0 }}>
+              <span style={{ fontSize: '0.9rem', lineHeight: 1, flexShrink: 0 }}>{s.flag}</span>
+              <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B77', fontSize: '0.82rem', minWidth: 0, overflowWrap: 'break-word', wordBreak: 'break-word' }}>
                 {s.country}{s.universityName ? ` · ${s.universityName}` : ''}
               </span>
             </div>
@@ -1189,11 +1159,13 @@ function ScholarshipCard({ scholarship: s, onSelect, highlighted = false }) {
             </span>
           </div>
         </div>
-        <div className="sm:text-right" style={{ flexShrink: 0 }}>
-          <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600, lineHeight: 1.3 }}>
+        <div className="sm:text-right" style={{ flexShrink: 0, minWidth: 0 }}>
+          <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600, lineHeight: 1.3, overflowWrap: 'break-word', wordBreak: 'break-word' }}>
             {s.amount}
           </span>
         </div>
+
+
       </div>
 
       {/* Field tags */}

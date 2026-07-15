@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
-import { ArrowLeft, Compass, Languages, Building2, Calendar, Globe, Award, Lightbulb, Sparkles, BookmarkPlus, BookmarkCheck, Trash2 } from 'lucide-react'
+import { Compass, Languages, Building2, Calendar, Globe, Award, Lightbulb, Sparkles, BookmarkPlus, BookmarkCheck, Trash2 } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { supabase } from './supabase.js'
 import ProfileMenu from './ProfileMenu.jsx'
+import HomeButton from './HomeButton.jsx'
 
 const LIMIT = 2
 
@@ -208,15 +209,7 @@ export default function Roadmap({ firstName, user, isPaid, onGoToPricing, onGoTo
         {/* ── Nav ── */}
         <header className="sticky top-0 z-50 border-b" style={{ background: '#F7F4EEf8', borderColor: '#16302B1a', backdropFilter: 'blur(8px)' }}>
           <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-            <button
-              onClick={onGoToDashboard}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', fontWeight: 500, padding: 0 }}
-              onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
-              onMouseLeave={e => (e.currentTarget.style.color = '#16302B88')}
-            >
-              <ArrowLeft size={16} strokeWidth={2} />
-              Dashboard
-            </button>
+            <HomeButton onClick={onGoToDashboard} />
             <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>
               My Roadmap
             </span>

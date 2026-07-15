@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import {
   Plus, Trash2, Check, X,
-  ChevronDown, ArrowLeft, ExternalLink,
+  ChevronDown, ExternalLink,
 } from 'lucide-react'
 import { supabase } from './supabase.js'
 
@@ -60,6 +60,7 @@ function deadlineMeta(days) {
 // ─── page ─────────────────────────────────────────────────────────────────────
 
 import ProfileMenu from './ProfileMenu.jsx'
+import HomeButton from './HomeButton.jsx'
 
 export default function Applications({ firstName, user, onSignOut, onGoToDashboard, onGoToPrivacy, onGoToTerms, onDeleted, onGoToPricing }) {
   const [apps,     setApps]     = useState([])
@@ -113,13 +114,7 @@ export default function Applications({ firstName, user, onSignOut, onGoToDashboa
       {/* ── Nav ── */}
       <header className="sticky top-0 z-50 border-b" style={{ background: '#F7F4EEf8', borderColor: '#16302B1a', backdropFilter: 'blur(8px)' }}>
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-          <button onClick={onGoToDashboard} style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', fontWeight: 500, padding: 0 }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#16302B88')}
-          >
-            <ArrowLeft size={16} strokeWidth={2} />
-            <span className="hidden sm:inline">Dashboard</span>
-          </button>
+          <HomeButton onClick={onGoToDashboard} />
           <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>My Applications</span>
           <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
         </div>

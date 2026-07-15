@@ -3,6 +3,7 @@ import { Building2, Heart, Plus, CheckCircle } from 'lucide-react'
 import { UNIVERSITIES, UNIVERSITY_COUNTRIES, UNIVERSITY_FIELDS } from './universitiesData.js'
 import UniversityDetail from './UniversityDetail.jsx'
 import ProfileMenu from './ProfileMenu.jsx'
+import HomeButton from './HomeButton.jsx'
 import FilterDropdown from './FilterDropdown.jsx'
 import { supabase } from './supabase.js'
 
@@ -155,41 +156,25 @@ export default function Universities({
 
       {/* ── Nav ── */}
       <header className="sticky top-0 z-50 border-b" style={{ background: '#F7F4EEf5', borderColor: '#16302B20', backdropFilter: 'blur(8px)' }}>
-        {/* Mobile: two rows */}
+        {/* Mobile: two rows — Home (exit) top-left, account top-right, tabs below */}
         <div className="sm:hidden max-w-3xl mx-auto px-6 pt-3.5 pb-3">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 9 }}>
-            <button onClick={onGoToDashboard} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600 }}>
-              AdmitAI
-            </button>
-            <GhostBtn onClick={selectedUni ? () => setSelectedUni(null) : onBack}>
-              {selectedUni ? '← Universities' : '← Home'}
-            </GhostBtn>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', gap: 2 }}>
-              {hasBoard && <button style={tabStyle(false)} onClick={onGoToBoard}>My Board</button>}
-              {onGoToScholarships && <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>}
-              <button style={tabStyle(true)}>Universities</button>
-            </div>
+            <HomeButton onClick={onGoToDashboard} />
             <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
           </div>
-        </div>
-        {/* Desktop: single row */}
-        <div className="hidden sm:flex max-w-3xl mx-auto px-6 py-3 items-center justify-between gap-3">
-          <button onClick={onGoToDashboard} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.1rem', fontWeight: 600, flexShrink: 0 }}>
-            AdmitAI
-          </button>
-          <div style={{ display: 'flex', gap: 2, flexShrink: 0 }}>
+          <div style={{ display: 'flex', gap: 2 }}>
             {hasBoard && <button style={tabStyle(false)} onClick={onGoToBoard}>My Board</button>}
-            {onGoToScholarships && <button style={tabStyle(false)} onClick={onGoToScholarships}>Scholarships</button>}
             <button style={tabStyle(true)}>Universities</button>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto' }}>
-            <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
-            <GhostBtn onClick={selectedUni ? () => setSelectedUni(null) : onBack}>
-              {selectedUni ? '← Universities' : '← Home'}
-            </GhostBtn>
+        </div>
+        {/* Desktop: single row — Home (exit) left, tabs center, account right */}
+        <div className="hidden sm:flex max-w-3xl mx-auto px-6 py-3 items-center justify-between gap-3">
+          <HomeButton onClick={onGoToDashboard} />
+          <div style={{ display: 'flex', gap: 2, flexShrink: 0 }}>
+            {hasBoard && <button style={tabStyle(false)} onClick={onGoToBoard}>My Board</button>}
+            <button style={tabStyle(true)}>Universities</button>
           </div>
+          <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
         </div>
       </header>
 
@@ -303,17 +288,6 @@ export default function Universities({
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
 
-function GhostBtn({ onClick, children }) {
-  return (
-    <button onClick={onClick} style={{ background: 'none', border: '1.5px solid #16302B30', borderRadius: 100, padding: '6px 16px', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B', fontSize: '0.82rem', fontWeight: 500, whiteSpace: 'nowrap' }}
-      onMouseEnter={e => (e.currentTarget.style.borderColor = '#16302B')}
-      onMouseLeave={e => (e.currentTarget.style.borderColor = '#16302B30')}
-    >
-      {children}
-    </button>
-  )
-}
-
 // ─── university card ──────────────────────────────────────────────────────────
 
 function UniversityCard({ university: u, onSelect, isSaved, onToggleSave, savingId, showAddToApp, onAddToApp, addedToApp, addingId }) {
@@ -343,11 +317,14 @@ function UniversityCard({ university: u, onSelect, isSaved, onToggleSave, saving
         transition: 'transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease',
         cursor: 'pointer', userSelect: 'none',
         padding: '24px 24px 20px',
+        // Keep the card within its grid track on narrow screens (grid items
+        // default to min-width:auto, which lets long content force overflow).
+        minWidth: 0, maxWidth: '100%', boxSizing: 'border-box',
       }}
     >
       {/* Top: name + verified + heart */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8, marginBottom: 4 }}>
-        <h2 style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: 'clamp(1rem, 2.5vw, 1.1rem)', fontWeight: 600, lineHeight: 1.25, margin: 0, minWidth: 0 }}>
+        <h2 style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: 'clamp(1rem, 2.5vw, 1.1rem)', fontWeight: 600, lineHeight: 1.25, margin: 0, minWidth: 0, overflowWrap: 'break-word', wordBreak: 'break-word' }}>
           {u.name}
         </h2>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0, marginTop: 2 }}>
@@ -371,7 +348,7 @@ function UniversityCard({ university: u, onSelect, isSaved, onToggleSave, saving
 
       {/* Location */}
       <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B77', fontSize: '0.82rem', margin: '0 0 12px', display: 'flex', alignItems: 'center', gap: 5 }}>
-        <span>{u.flag}</span><span>{u.city}, {u.country}</span>
+        <span style={{ flexShrink: 0 }}>{u.flag}</span><span style={{ minWidth: 0, overflowWrap: 'break-word' }}>{u.city}, {u.country}</span>
       </p>
 
       {/* Ranking */}
@@ -379,10 +356,17 @@ function UniversityCard({ university: u, onSelect, isSaved, onToggleSave, saving
         {u.ranking}
       </p>
 
-      {/* Scholarship badge */}
+      {/* Scholarship badge — percentage can be a full sentence, so let it wrap
+          and clamp to 2 lines (full text shows in the detail view). */}
       {bestScholarship && (
         <div style={{ marginBottom: 12 }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', background: '#E4F5EC', color: '#2D7A52', border: '1px solid #4F8A6E22', borderRadius: 100, padding: '3px 10px', fontSize: '0.68rem', fontFamily: 'Hanken Grotesk, sans-serif', fontWeight: 700, whiteSpace: 'nowrap' }}>
+          <span style={{
+            display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden',
+            maxWidth: '100%', background: '#E4F5EC', color: '#2D7A52', border: '1px solid #4F8A6E22',
+            borderRadius: 12, padding: '4px 11px', fontSize: '0.68rem',
+            fontFamily: 'Hanken Grotesk, sans-serif', fontWeight: 700, lineHeight: 1.35,
+            overflowWrap: 'anywhere', wordBreak: 'break-word',
+          }}>
             {bestScholarship.percentage} scholarship
           </span>
         </div>
@@ -404,11 +388,11 @@ function UniversityCard({ university: u, onSelect, isSaved, onToggleSave, saving
 
       {/* Bottom row */}
       <div style={{ borderTop: '1px solid #16302B08', paddingTop: 14, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, flexWrap: 'wrap' }}>
-        <div>
+        <div style={{ flex: '1 1 auto', minWidth: 0 }}>
           <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#16302B44', margin: '0 0 3px' }}>
             Intl tuition
           </p>
-          <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, color: '#16302B', margin: 0 }}>
+          <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.875rem', fontWeight: 600, color: '#16302B', margin: 0, overflowWrap: 'break-word', wordBreak: 'break-word' }}>
             {tuitionShort}
           </p>
         </div>

@@ -1,4 +1,4 @@
-import { ArrowLeft } from 'lucide-react'
+import HomeButton from './HomeButton.jsx'
 import { CONTACT_EMAIL } from './config.js'
 
 export default function PrivacyPolicy({ onBack }) {
@@ -7,15 +7,7 @@ export default function PrivacyPolicy({ onBack }) {
       {/* Minimal nav */}
       <header className="border-b sticky top-0 z-50" style={{ background: '#F7F4EEf8', borderColor: '#16302B1a', backdropFilter: 'blur(8px)' }}>
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
-          <button
-            onClick={onBack}
-            style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', fontWeight: 500, padding: 0 }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#16302B88')}
-          >
-            <ArrowLeft size={16} strokeWidth={2} />
-            Back
-          </button>
+          <HomeButton onClick={onBack} />
           <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600 }}>
             AdmitAI
           </span>

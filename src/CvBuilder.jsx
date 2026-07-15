@@ -7,6 +7,7 @@ import {
 import ReactMarkdown from 'react-markdown'
 import { supabase } from './supabase.js'
 import ProfileMenu from './ProfileMenu.jsx'
+import HomeButton from './HomeButton.jsx'
 
 // ─── CV types ─────────────────────────────────────────────────────────────────
 
@@ -181,15 +182,7 @@ function PageShell({ topRef, onGoToDashboard, user, firstName, onSignOut, onGoTo
       <div style={{ background: '#F7F4EE', minHeight: '100vh' }}>
         <header className="sticky top-0 z-50" style={{ background: '#F7F4EEf8', borderBottom: '1px solid #16302B1a', backdropFilter: 'blur(8px)' }}>
           <div className="max-w-3xl mx-auto px-5 sm:px-6 py-3 flex items-center justify-between gap-3">
-            <button
-              onClick={onGoToDashboard}
-              style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', fontWeight: 500, padding: '4px 0', whiteSpace: 'nowrap' }}
-              onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
-              onMouseLeave={e => (e.currentTarget.style.color = '#16302B88')}
-            >
-              <ChevronLeft size={16} strokeWidth={2} />
-              Dashboard
-            </button>
+            <HomeButton onClick={onGoToDashboard} />
             <span style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600 }}>CV Builder</span>
             <ProfileMenu user={user} firstName={firstName} onSignOut={onSignOut} onGoToPrivacy={onGoToPrivacy} onGoToTerms={onGoToTerms} onDeleted={onDeleted} onGoToPricing={onGoToPricing} />
           </div>
