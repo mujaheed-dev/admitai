@@ -4,6 +4,7 @@
 // exact same server-side verification as the webhook (verifyAndActivate) —
 // the transaction_id from the URL is just a lookup key, never trusted.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { reportError } from '../_shared/sentry.ts'
 import { corsHeaders } from '../_shared/cors.ts'
 import { verifyAndActivate } from '../_shared/flw.ts'
 
@@ -45,6 +46,7 @@ Deno.serve(async (req: Request) => {
     return json({ active: true, plan: result.plan })
   } catch (err) {
     console.error('Unexpected error:', err)
+    await reportError(err, { fn: 'verify-payment' })
     return json({ error: 'Something went wrong — please try again.' }, 500)
   }
 })

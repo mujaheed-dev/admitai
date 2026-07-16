@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { reportError } from '../_shared/sentry.ts'
 import { corsHeaders } from '../_shared/cors.ts'
 import { getActiveSubscription, checkFairUse, bumpFairUse } from '../_shared/subscription.ts'
 
@@ -138,6 +139,7 @@ Deno.serve(async (req: Request) => {
     return json({ reply })
   } catch (err) {
     console.error('build-cv error:', err)
+    await reportError(err, { fn: 'build-cv' })
     return json({ reply: "Something went wrong. Please try again in a moment." })
   }
 })

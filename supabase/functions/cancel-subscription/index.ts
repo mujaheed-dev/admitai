@@ -8,6 +8,7 @@
 // current_period_end — so getActiveSubscription() still grants access until
 // that date, after which the user reverts to free automatically.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { reportError } from '../_shared/sentry.ts'
 import { corsHeaders } from '../_shared/cors.ts'
 import { cancelFlwSubscriptionsByEmail } from '../_shared/flw.ts'
 
@@ -60,6 +61,7 @@ Deno.serve(async (req: Request) => {
       console.log(`Cancelled ${result.cancelled}/${result.found} FLW subscription(s) for ${email}`)
     } catch (err) {
       console.error('Flutterwave cancel failed:', err?.message ?? err)
+      await reportError(err, { fn: 'cancel-subscription', stage: 'flw-cancel', userId: user.id })
       return json({
         error: 'We couldn’t reach the payment provider to cancel. Please try again in a moment.',
       }, 502)
@@ -83,6 +85,7 @@ Deno.serve(async (req: Request) => {
     return json({ ok: true, accessUntil: sub.current_period_end, plan: sub.plan })
   } catch (err) {
     console.error('cancel-subscription error:', err)
+    await reportError(err, { fn: 'cancel-subscription' })
     return json({ error: 'Something went wrong — please try again.' }, 500)
   }
 })

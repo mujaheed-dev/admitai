@@ -1,6 +1,7 @@
 // @ts-nocheck
 // Runs in Supabase's Deno runtime.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { reportError } from '../_shared/sentry.ts'
 import { corsHeaders } from '../_shared/cors.ts'
 import { buildAdmitaiContext } from '../_shared/admitai-data.ts'
 import { getActiveSubscription, checkFairUse, bumpFairUse, FAIR_USE_MONTHLY_CAP } from '../_shared/subscription.ts'
@@ -169,6 +170,7 @@ Deno.serve(async (req: Request) => {
     return json({ reply, limitReached: false, searchesUsed: newCount, searchesLimit: FREE_LIMIT })
   } catch (err) {
     console.error('generate-roadmap error:', err)
+    await reportError(err, { fn: 'generate-roadmap' })
     return json({ reply: "Something went wrong on my end. Please try again in a moment." })
   }
 })

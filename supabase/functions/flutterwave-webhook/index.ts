@@ -7,6 +7,7 @@
 //      re-verified against Flutterwave's verify API before anything is
 //      written (verifyAndActivate in _shared/flw.ts).
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { reportError } from '../_shared/sentry.ts'
 import { verifyAndActivate } from '../_shared/flw.ts'
 
 // Constant-time string compare — avoids leaking the hash via timing.
@@ -76,6 +77,7 @@ Deno.serve(async (req: Request) => {
     return new Response('ok', { status: 200 })
   } catch (err) {
     console.error('Webhook error:', err)
+    await reportError(err, { fn: 'flutterwave-webhook' })
     // 200 so Flutterwave doesn't retry a body we already can't parse.
     return new Response('ok', { status: 200 })
   }

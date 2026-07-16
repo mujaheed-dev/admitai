@@ -1,6 +1,7 @@
 // @ts-nocheck
 // Runs in Supabase's Deno runtime.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { reportError } from '../_shared/sentry.ts'
 import { corsHeaders } from '../_shared/cors.ts'
 import { cancelFlwSubscriptionsByEmail } from '../_shared/flw.ts'
 
@@ -40,8 +41,10 @@ Deno.serve(async (req: Request) => {
       const result = await cancelFlwSubscriptionsByEmail(email)
       if (result.found > 0) console.log(`delete-account: cancelled ${result.cancelled} FLW subscription(s) for ${email}`)
     } catch (err) {
-      // Do not abort deletion — just record it for follow-up.
+      // Do not abort deletion — just record it for follow-up (billing risk:
+      // the account is going away but a subscription may still be active).
       console.error('delete-account: Flutterwave cancel failed (continuing with deletion):', err?.message ?? err)
+      await reportError(err, { fn: 'delete-account', stage: 'flw-cancel', userId: uid, note: 'billing-risk: sub may remain active after deletion' })
     }
 
     // 3. Explicitly delete all user rows.
@@ -65,6 +68,7 @@ Deno.serve(async (req: Request) => {
     return json({ success: true })
   } catch (err) {
     console.error('Unexpected error:', err)
+    await reportError(err, { fn: 'delete-account' })
     return json({ error: 'An unexpected error occurred.' }, 500)
   }
 })

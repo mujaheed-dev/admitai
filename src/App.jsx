@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { supabase } from './supabase.js'
+import { setSentryUser } from './sentry.js'
 import LandingPage from './LandingPage.jsx'
 import IntakeFlow from './IntakeFlow.jsx'
 import Board from './Board.jsx'
@@ -41,6 +42,9 @@ export default function App() {
     if (hash === '#privacy') setView('privacy')
     else if (hash === '#terms') setView('terms')
   }, [])
+
+  // Attach the current user to Sentry so error alerts show who was affected.
+  useEffect(() => { setSentryUser(user) }, [user])
 
   // ── Post-payment return from Flutterwave's hosted checkout ────────────────
   // create-subscription sets redirect_url to /?flw-return=1; Flutterwave

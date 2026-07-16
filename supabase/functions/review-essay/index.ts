@@ -2,6 +2,7 @@
 // Runs in Supabase's Deno runtime. @ts-nocheck suppresses false IDE errors
 // for Deno globals (Deno.serve, Deno.env) — these are valid at runtime.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { reportError } from '../_shared/sentry.ts'
 import { corsHeaders } from '../_shared/cors.ts'
 import { getActiveSubscription, checkFairUse, bumpFairUse } from '../_shared/subscription.ts'
 
@@ -129,6 +130,7 @@ Deno.serve(async (req: Request) => {
     return json({ reply })
   } catch (err) {
     console.error('review-essay error:', err)
+    await reportError(err, { fn: 'review-essay' })
     return json({ reply: "Something went wrong on my end. Please try again in a moment." })
   }
 })

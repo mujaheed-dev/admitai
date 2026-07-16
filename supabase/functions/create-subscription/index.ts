@@ -3,6 +3,7 @@
 // Called from the Pricing page; returns the hosted-checkout link the browser
 // redirects to. The Flutterwave secret key never leaves this function.
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { reportError } from '../_shared/sentry.ts'
 import { corsHeaders } from '../_shared/cors.ts'
 import { FLW_PLANS } from '../_shared/flw.ts'
 
@@ -85,6 +86,7 @@ Deno.serve(async (req: Request) => {
     return json({ link: flwBody.data.link, txRef })
   } catch (err) {
     console.error('Unexpected error:', err)
+    await reportError(err, { fn: 'create-subscription' })
     return json({ error: 'Something went wrong — please try again.' }, 500)
   }
 })
