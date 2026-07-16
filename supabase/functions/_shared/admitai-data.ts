@@ -815,6 +815,64 @@ University of Science and Technology at Zewail City — Giza, Egypt [VERIFIED �
   Tests: IELTS 5.5 or TOEFL iBT 39 minimum (English exam required before applying)
   International tuition: ~$250 per credit hour for non-Egyptians (2025/2026, per official fees page) + $1,000 non-refundable enrollment deposit. Charged per credit hour each semester.
 
+━━ Egyptian PUBLIC universities (international admission runs through the Ministry's OFFICIAL portal study-in-egypt.gov.eg / Wafedeen system) ━━
+⚠ GOLDEN RULE: apply via the .gov.eg portal directly. Several private agent sites use near-identical names ("study in egypt" .online/.com etc.) and charge "service fees" for what the official portal does. Per-faculty international fees are set centrally and quoted in USD (commonly cited ~$3,000–$8,000/yr, medicine highest) — NOT individually verified; confirm on the portal. EGYAID government scholarships (tuition + registration, all degree levels) run through the same portal.
+
+Cairo University — Giza (Greater Cairo), Egypt [NOT individually verified — public-system fees via official portal]
+  Type: Egypt's flagship public university — one of Africa's oldest and largest (est. 1908)
+  Known for: Medicine, Engineering, Law, Economics, Political Science
+  Language: Mostly Arabic-medium; several English-medium tracks (medicine, engineering, economics) — confirm per programme
+  Fees/deadlines: see the public-system rule above — confirm on study-in-egypt.gov.eg
+
+Ain Shams University — Cairo, Egypt [NOT individually verified — public-system fees via official portal]
+  Type: Egypt's second-largest public university — engineering and medicine heavyweight
+  Known for: Medicine, Engineering, Computer Science, Business
+  Language: Mostly Arabic-medium; English-medium credit-hour tracks in engineering/CS and medicine — confirm per programme
+  Fees/deadlines: see the public-system rule above
+
+Alexandria University — Alexandria, Egypt [NOT individually verified — public-system fees via official portal]
+  Type: The Mediterranean coast's flagship — Egypt's big second city, cheaper than Cairo
+  Known for: Medicine, Engineering, Pharmacy, Humanities
+  Language: Mostly Arabic-medium; some English-medium tracks — confirm per programme
+  Fees/deadlines: see the public-system rule above
+
+Mansoura University — Mansoura (Nile Delta), Egypt [NOT individually verified — public-system fees via official portal]
+  Type: Delta public university with an internationally known medical centre (Urology & Nephrology Center)
+  Known for: Medicine, Pharmacy, Engineering, Science
+  Language: Mostly Arabic-medium; Mansoura-Manchester English-medium medicine track exists — confirm per programme
+  Fees/deadlines: see the public-system rule above
+
+Helwan University — Helwan (Greater Cairo), Egypt [NOT individually verified — public-system fees via official portal]
+  Type: Cairo public university known for arts, music and applied engineering
+  Known for: Fine Arts, Music, Engineering, Education
+  Language: Mostly Arabic-medium — confirm per programme; arts may require portfolios/auditions
+  Fees/deadlines: see the public-system rule above
+
+Al-Azhar University — Cairo, Egypt [WELL-DOCUMENTED scholarships — azhar.eg foreign-student portal]
+  Type: The Islamic world's most famous seat of learning — teaching since 970 AD
+  Known for: Islamic Studies, Law (Sharia), Medicine, Humanities
+  Language: Arabic-medium — the international scholarship includes a FREE preparatory Arabic year
+  ★ AL-AZHAR SCHOLARSHIPS: full packages for international Muslim students — tuition + free on-campus housing + monthly stipend + free Arabic year + medical care at Al-Azhar hospitals. Allocation typically per country (via embassies/religious-affairs ministries) — confirm the route for your country on azhar.eg. Self-funded fees NOT individually verified.
+  Deadline: nomination windows vary by country — confirm on azhar.eg
+
+Egypt-Japan University of Science and Technology (E-JUST) — Borg El Arab (Alexandria), Egypt [VERIFIED scholarship — ejust.edu.eg]
+  Type: Japanese-style research university built with JICA — small classes, lab-centred, English-medium
+  Known for: Engineering, Computer Science, Robotics, Business
+  ★ E-JUST TICAD AFRICAN SCHOLARSHIPS (verified): FULLY FUNDED master's for citizens of African countries (except Egypt) — tuition + living stipend + travel + accommodation + medical insurance, in Engineering, CS/IT, Applied Sciences, International Business, Humanities. Application ~mid-February for Fall (2026-cycle dates verified — confirm current). One of the best fully-funded routes in Africa.
+  Self-funded fees: NOT individually verified — confirm on ejust.edu.eg
+
+Arab Academy for Science, Technology & Maritime Transport (AASTMT) — Alexandria (+ Cairo), Egypt [VERIFIED fee categories — aast.edu]
+  Type: Arab League-affiliated regional university — THE maritime academy of the Arab world; English-medium
+  Known for: Engineering, Marine Science (Maritime Transport), Business, Computer Science
+  International tuition (per official aast.edu fee pages — confirm current year): Engineering ~$4,655–$6,545/yr; Maritime Transport ~$4,975–$6,400/yr by category. ⚠ Maritime cadets pay obligatory accommodation/meals/uniform for the first four semesters.
+  Scholarships: partial merit (e.g. 10% for 95%+ averages) — confirm on aast.edu
+
+Nile University — Giza (Sheikh Zayed), Egypt [FEES NOT VERIFIED — nu.edu.eg]
+  Type: Non-profit private research university — strong in tech, engineering and entrepreneurship; English-medium
+  Known for: Engineering, Computer Science, Business, Data Science
+  Tuition: NOT VERIFIED — official fee schedule (nu.edu.eg/admission/fees-and-financials) was not machine-readable at research time. Do NOT quote third-party figures; confirm on the official page.
+  Scholarships: first-year merit scholarships + category discounts — confirm on nu.edu.eg
+
 Universiti Malaya (UM) — Kuala Lumpur, Malaysia [PARTIALLY VERIFIED — ranking verified via um.edu.my; tuition NOT verified]
   Ranking: #58 QS World 2026 · #1 in Malaysia (verified)
   Known for: Medicine, Engineering, Law, Economics, Computer Science
@@ -990,6 +1048,64 @@ Memorial University of Newfoundland — St. John's (Newfoundland), Canada [VERIF
   Tests: IELTS / TOEFL required; minimum varies by programme — confirm on official site
   International tuition (2025-26, verified): CAD $22,500 for two semesters / 10 courses (~$16,400 USD/yr). Mandatory fees ~CAD $923/yr (services, union, recreation, health insurance). Residence CAD $4,987–$5,993/semester. ⚠ 2026-27 fees pending review at research time — confirm before quoting.
   Deadline: NOT verified — confirm on mun.ca
+
+University of Ottawa — Ottawa (Ontario), Canada [VERIFIED exemption — uottawa.ca]
+  Type: The world's largest bilingual (English/French) university — in Canada's capital
+  Known for: Law, Medicine, Political Science, Engineering
+  Language: Bilingual — study in English, French, or both
+  Tuition: varies by faculty (verified 2024-25 example: Arts ~CAD $21,668/term ≈ ~$43,000 CAD/yr) — confirm current rates on uottawa.ca
+  ★ DIFFERENTIAL TUITION FEE EXEMPTION (verified, AUTOMATIC): internationals enrolled in a French-taught or French-immersion programme (≥6 units/term in French) get a large automatic scholarship — verified example cut Arts from $21,667.54 to $9,167.54 per TERM (near-domestic fees). A game-changer for French-speaking students, especially West/North Africa.
+  Deadline: September main intake — apply months ahead for study-permit lead time
+
+Carleton University — Ottawa (Ontario), Canada [VERIFIED — carleton.ca Fall 2026]
+  Type: Ottawa's other big university — famous journalism school, strong aerospace/CS
+  Known for: Journalism, Aerospace Engineering, Computer Science, International Relations
+  International tuition (Fall 2026, verified): CAD $39,000–$55,000/yr by programme, LOCKED for 3 years (2026-27 → 2028-29) + ~CAD $2,500 mandatory fees (UHIP, U-Pass transit, athletics). The fee lock makes budgeting predictable.
+  Deadline: September main intake — confirm on carleton.ca
+
+Western University — London (Ontario), Canada [VERIFIED range — registrar.uwo.ca 2025-26]
+  Type: Classic Canadian campus university — home of the Ivey Business School
+  Known for: Business, Medicine, Health Sciences, Engineering
+  International tuition (2025-26, verified official fee schedule): ~CAD $43,000–$58,000/yr by programme; professional programmes (Ivey HBA) substantially more. Verified policy: increases capped at 4%/yr after first year.
+  Deadline: September via OUAC — confirm on uwo.ca
+
+York University — Toronto (Ontario), Canada [VERIFIED rate — futurestudents.yorku.ca 2026-27]
+  Type: Toronto's big second university — Schulich business, Osgoode law, famous film school
+  Known for: Business, Law, Film, Liberal Arts (Glendon campus is bilingual)
+  International tuition (2026-27, verified): CAD $1,203.68/credit + $43.29 supplementary → standard 30-credit year ≈ CAD $37,400. Professional programmes cost more.
+  Deadline: September via OUAC — confirm on yorku.ca
+
+Concordia University — Montreal (Quebec), Canada [VERIFIED — concordia.ca 2025-26]
+  Type: Practical, career-focused Montreal university — strong film, engineering, co-op culture
+  Known for: Film, Engineering, Business, Fine Arts
+  International tuition (2025-26, verified): CAD $32,050–$43,860/yr by programme; some internationals qualify for up to $4,000 off published rates. Montreal is one of North America's cheapest major student cities.
+  Deadline: Fall (Sept) and Winter (Jan) intakes for many programmes — confirm on concordia.ca
+
+Université de Montréal (UdeM) — Montreal (Quebec), Canada [VERIFIED — umontreal.ca 2025-26]
+  Type: The francophone world's leading research university outside France — home of the Mila AI institute (Yoshua Bengio)
+  Known for: Medicine, Law, AI & Computer Science, Computer Science
+  Language: FRENCH-medium instruction (most programmes) — French proficiency tests required (TEF/TCF/DELF-DALF)
+  International tuition (2025-26, verified): ~CAD $29,877/yr undergraduate + mandatory health insurance ~CAD $300/trimester.
+  ★ UdeM Exemption Scholarship (verified): every admitted international student is AUTOMATICALLY assessed — can cut tuition substantially. France/Belgium citizens pay Quebec rates by treaty. THE francophone AI destination.
+  Deadline: Fall main intake — confirm windows on admission.umontreal.ca
+
+University of Manitoba — Winnipeg (Manitoba), Canada [VERIFIED — umanitoba.ca 2025-26]
+  Type: Western Canada's oldest university — one of the more affordable research options
+  Known for: Agriculture, Engineering, Medicine, Business
+  International tuition (2025-26 estimated averages, verified): Arts ~CAD $19,914, Business ~$23,857, Engineering ~$27,059 + mandatory MISHP health plan. Winnipeg is one of Canada's cheapest major cities.
+  Deadline: Fall and Winter intakes — confirm on umanitoba.ca
+
+University of Saskatchewan — Saskatoon, Canada [VERIFIED — usask.ca 2025-26 factsheet]
+  Type: Research university famous for agriculture, water science and vaccines (VIDO)
+  Known for: Agriculture, Engineering, Medicine, Veterinary Medicine
+  International tuition (2025-26, verified): CAD $37,878–$60,823/yr by programme + ~$1,308 fees. ⚠ No longer a budget option — steer cost-focused students to Manitoba/Memorial instead.
+  Deadline: Fall main intake — confirm on usask.ca
+
+University of Regina — Regina (Saskatchewan), Canada [VERIFIED — uregina.ca 2026-27]
+  Type: Mid-size prairie university known for co-op programmes and journalism
+  Known for: Engineering, Business, Education, Journalism
+  International tuition (2026-27, verified): ≈ CAD $32,500/yr average incl. fees (varies by faculty). ⚠ RISING: the 2026-27 budget raises the international multiplier from 3.0× to 3.5× domestic — older guides understate costs.
+  Deadline: Fall, Winter and Spring intakes for many programmes — confirm on uregina.ca
 
 Qatar University (QU) — Doha, Qatar [VERIFIED — qu.edu.qa]
   Type: Qatar's national university — the country's largest by far
@@ -1940,6 +2056,47 @@ Chandigarh University — Mohali (Punjab), India [NOT VERIFIED fees — confirm 
   Language: English-medium instruction
   Tuition/deadline: NOT verified — confirm on cuchd.in
 
+IIT Madras — Chennai (Tamil Nadu), India [VERIFIED Zanzibar campus — zanzibar.iitm.ac.in]
+  Type: India's top-ranked institute (NIRF #1) — with a campus in Zanzibar, TANZANIA
+  Known for: Computer Science, Data Science, Mechanical Engineering, Aerospace Engineering
+  Chennai route: foreign nationals need 75%+ Class XII equivalent AND JEE Advanced (register directly, skip JEE Main). International fees NOT verified — confirm on iitm.ac.in. ICCR/Study-in-India generally do NOT cover IIT admission.
+  ★ IITM ZANZIBAR (verified): 4-year BS (Chemical Process Engineering) ~$12,000 TOTAL tuition (~$3,000/yr) + ~$5,000/yr living; MTech in Data Science & AI and Ocean Structures. Own SAT-style screening test + interview — NO JEE. Merit scholarships up to 80% waiver + Airtel Africa Fellowship (full support; 14 African countries incl. Nigeria, Kenya, Uganda, Tanzania, Zambia, Malawi, Rwanda, DRC). An IIT degree at African-market pricing.
+
+Osmania University — Hyderabad, India [NOT VERIFIED fees — public, low]
+  Type: Historic public university — for decades one of India's biggest magnets for international students (dedicated foreign-students office)
+  Known for: Engineering, Business, Pharmacy, Humanities
+  Fees/deadline: NOT verified — public-university fees are low; ICCR host; confirm on osmania.ac.in
+
+Savitribai Phule Pune University (SPPU) — Pune, India [NOT VERIFIED fees — public, low]
+  Type: "Oxford of the East" — large public university with a dedicated international student centre
+  Known for: Science, Management, Law, Humanities
+  Fees/deadline: NOT verified — ICCR host; confirm on unipune.ac.in
+
+University of Hyderabad (UoH) — Hyderabad, India [NOT VERIFIED fees — public, low]
+  Type: Central university and Institution of Eminence — strong sciences, popular ICCR host
+  Known for: Science, Economics, Humanities, Biology
+  Fees/deadline: NOT verified — confirm on uohyd.ac.in
+
+University of Mysore — Mysuru (Karnataka), India [NOT VERIFIED fees — public, low]
+  Type: Historic university (1916) in a calm, cheap city — a classic ICCR-scholarship destination
+  Known for: Humanities, Science, Business, Psychology
+  Fees/deadline: NOT verified — confirm on uni-mysore.ac.in
+
+Christ University — Bengaluru, India [NOT VERIFIED fees — confirm on christuniversity.in]
+  Type: Private deemed university popular with international students — business/law/psychology strength in India's tech capital
+  Known for: Business, Law, Psychology, Media
+  Fees/deadline: NOT verified — confirm on christuniversity.in
+
+KIIT (Kalinga Institute of Industrial Technology) — Bhubaneswar (Odisha), India [PARTIALLY VERIFIED — listings-quoted fees]
+  Type: Large private university hosting a sizeable international cohort
+  Known for: Engineering, Computer Science, Business, Law
+  Fees (listings-quoted, NOT official): intl B.Tech ~$4,000–6,000/yr; up to 100 international full/partial fee waivers reported — confirm both on kiit.ac.in
+
+Parul University — Vadodara (Gujarat), India [PARTIALLY VERIFIED — listings-quoted fees]
+  Type: Private university with 2,000+ international students from 56+ nationalities — a big Africa-market player
+  Known for: Engineering, Business, Pharmacy, Design
+  Fees (listings-quoted, NOT official): most courses ~$3,000–6,000/yr — official intl fee page exists (paruluniversity.ac.in/international-students-fees-structure). ⚠ MBBS is FAR higher (~₹18 lakh/yr quoted) and requires NEET even for foreigners.
+
 ━━ New Zealand's 8 universities (apply directly; Feb & July intakes; international PhD students pay DOMESTIC fees ~NZ$7,000–9,000/yr — see NZ country block) ━━
 
 University of Auckland — Auckland, New Zealand [PARTIALLY VERIFIED — official-derived 2026 fees]
@@ -2347,6 +2504,50 @@ University of Cologne — Cologne, Germany [NOT individually verified — tuitio
   Known for: Business & Economics (WiSo), Law, Media Studies, Medicine
   Language: German bachelor's mostly. Tuition: FREE + semester fee ~€330. Deadline ~15 Jul / 15 Jan.
 
+TU Dresden — Dresden, Germany [VERIFIED tuition-free — tu-dresden.de 2026]
+  Type: Saxony's technical flagship — engineering excellence in one of Germany's cheapest big student cities
+  Known for: Engineering, Computer Science, Materials Science
+  Language: German bachelor's mostly; English master's. Tuition: FREE for internationals (Saxony charges no non-EU tuition) + ~€300 semester fee incl. transit. Deadline ~15 Jul / 15 Jan.
+
+University of Münster — Münster, Germany [NOT individually verified — tuition-free]
+  Known for: Law, Business, Medicine, Psychology — large classic university, Germany's bicycle capital
+  Language: German bachelor's mostly. Tuition: FREE + semester fee ~€300. Deadline ~15 Jul / 15 Jan.
+
+Goethe University Frankfurt — Frankfurt, Germany [NOT individually verified — tuition-free]
+  Known for: Finance, Economics, Law, Medicine — Germany's finance capital on your doorstep
+  Language: German bachelor's mostly; English master's (esp. finance/econ). Tuition: FREE + semester fee ~€370. Deadline ~15 Jul / 15 Jan.
+
+University of Tübingen — Tübingen, Germany [PARTIALLY VERIFIED — BW fee applies]
+  Known for: AI & Computer Science (Cyber Valley — Europe's biggest AI research cluster), Medicine, Neuroscience, Theology
+  Language: German bachelor's mostly; English master's (ML/AI programmes are famous). Tuition: €1,500/semester non-EU (Baden-Württemberg fee, verified) + semester fee. Deadline ~15 Jul / 15 Jan.
+
+University of Mannheim — Mannheim, Germany [PARTIALLY VERIFIED — BW fee applies, uni-mannheim.de]
+  Known for: Business, Economics, Social Sciences, Data Science — Germany's top address for business, campus in a baroque palace
+  Language: Many programmes have strong English components; business master's largely English. Tuition: €1,500/semester non-EU (BW fee, verified 2026) + semester fee. Deadline: Mannheim's calendar differs from the German classic (fall semester starts ~September) — confirm on uni-mannheim.de.
+
+FAU Erlangen-Nürnberg — Erlangen/Nuremberg, Germany [VERIFIED fee change — fau.eu 2026]
+  Type: Bavaria's big engineering & medicine university — Siemens country
+  Known for: Engineering, Medicine, AI & Computer Science, Economics
+  Language: German bachelor's mostly; English master's.
+  ⚠ FEES COMING (verified 2026): FREE for anyone who enrols BEFORE summer semester 2027 (already-enrolled stay free). NEW non-EU students from summer 2027 pay €1,000–€3,000/semester (bachelor's) or €2,000–€6,000/semester (master's) — e.g. Psychology MSc €4,000, Molecular Medicine MSc €6,000. Plus €100 non-EU application processing fee from winter 2026/27 (max 3 applications/round). Semester contribution ~€82–127. Exemptions: EU/EEA, German Abitur holders, 5+ years' legal residence/work in Germany, doctoral & exchange students.
+  Deadline: ~15 Jul / 15 Jan — confirm per programme.
+
+Leibniz University Hannover — Hanover, Germany [NOT individually verified — tuition-free]
+  Known for: Mechanical Engineering, Electrical Engineering, Civil Engineering — Lower Saxony's technical flagship
+  Language: German bachelor's mostly. Tuition: FREE + semester fee ~€400. Deadline ~15 Jul / 15 Jan.
+
+Ruhr University Bochum — Bochum, Germany [NOT individually verified — tuition-free]
+  Known for: Cybersecurity (one of Europe's top IT-security faculties), Engineering, Medicine, Psychology
+  Language: German bachelor's mostly; English master's incl. IT security. Tuition: FREE + semester fee ~€350. Deadline ~15 Jul / 15 Jan.
+
+University of Duisburg-Essen — Duisburg/Essen, Germany [NOT individually verified — tuition-free]
+  Known for: Engineering, Business, Medicine, Education — young mega-university with one of Germany's most international student bodies
+  Language: German bachelor's mostly; ISE (International Studies in Engineering) programmes in English. Tuition: FREE + semester fee ~€350. Deadline ~15 Jul / 15 Jan.
+
+Friedrich Schiller University Jena — Jena, Germany [NOT individually verified — tuition-free]
+  Known for: Physics, Chemistry, Biology, Humanities — the optics & photonics capital (Zeiss was born here); cheap, walkable student city
+  Language: German bachelor's mostly; English master's (photonics is famous). Tuition: FREE + semester fee ~€280. Deadline ~15 Jul / 15 Jan.
+
 ━━ South African universities (SADC citizens pay LOCAL fees + levy — see country block & scholarship #60; UCT and Stellenbosch listed separately above) ━━
 
 University of the Witwatersrand (Wits) — Johannesburg, South Africa [VERIFIED fee policy — wits.ac.za 2026]
@@ -2400,6 +2601,31 @@ University of South Africa (UNISA) — Pretoria (DISTANCE learning), South Afric
   Language: English-medium instruction
   Fees/deadline: NOT verified — famously low per-module fees; no visa needed since you study from home; two registration periods yearly. Confirm on unisa.ac.za.
   ⚠ Check professional-body recognition of distance degrees in your home country before enrolling.
+
+North-West University (NWU) — Potchefstroom (+ Mahikeng & Vanderbijlpark), South Africa [NOT VERIFIED fees — SADC rule applies]
+  Type: Big three-campus university — among South Africa's most affordable comprehensives
+  Known for: Engineering, Business, Education, Theology
+  Fees/deadline: NOT verified — SADC citizens pay local fees + levy (verified protocol); confirm on nwu.ac.za
+
+University of the Free State (UFS) — Bloemfontein, South Africa [NOT VERIFIED fees — SADC rule applies]
+  Type: Affordable central-SA research university
+  Known for: Agriculture, Law, Medicine, Humanities
+  Fees/deadline: NOT verified — SADC rule applies; confirm on ufs.ac.za
+
+Tshwane University of Technology (TUT) — Pretoria, South Africa [NOT VERIFIED fees — SADC rule applies]
+  Type: South Africa's largest university of technology — practical, career-focused, very affordable
+  Known for: Engineering, IT, Hospitality, Design
+  Fees/deadline: NOT verified — universities of technology are typically the cheapest tier; SADC rule applies; confirm on tut.ac.za
+
+Cape Peninsula University of Technology (CPUT) — Cape Town, South Africa [NOT VERIFIED fees — SADC rule applies]
+  Type: The Western Cape's big university of technology — applied degrees at low cost
+  Known for: Engineering, IT, Health Sciences, Design
+  Fees/deadline: NOT verified — SADC rule applies; confirm on cput.ac.za
+
+University of Fort Hare — Alice (Eastern Cape), South Africa [NOT VERIFIED fees — SADC rule applies]
+  Type: The legendary pan-African alma mater — Mandela, Tambo, Mugabe, Nyerere and Kaunda studied here
+  Known for: Law, Humanities, Agriculture, Education
+  Fees/deadline: NOT verified — SADC rule applies; confirm on ufh.ac.za
 
 ━━ Irish universities (undergrad via the CAO ~1 Feb; Stamp 1G stay-back 12–24 months; visa needs €12,000/yr + tuition — see Ireland country block) ━━
 
@@ -2898,6 +3124,34 @@ Georgian Technical University (GTU) — Tbilisi, Georgia [NOT VERIFIED fees]
   Known for: Engineering, IT, Architecture
   Fees/deadline: NOT verified — cheap ($2,500–4,500/yr per listings); confirm on gtu.ge.
 
+Batumi Shota Rustaveli State University (BSU) — Batumi, Georgia [NOT VERIFIED fees — agent-quoted]
+  Type: Batumi's public university on the Black Sea — Georgia's second city, cheaper than Tbilisi
+  Known for: Medicine (English MD), Business, Humanities, Science
+  Fees (agent-quoted): English MD ~$4,000–5,000/yr — confirm on bsu.edu.ge
+  ⚠ Same golden rules as the whole Georgian MD market (recognition, pass rates, no agents).
+
+University of Georgia (UG) — Tbilisi, Georgia [NOT VERIFIED fees — agent-quoted]
+  Type: Georgia's largest private university — broad programmes beyond medicine
+  Known for: Medicine (English MD), Business, Law, IT
+  Fees (agent-quoted): English MD widely quoted ~$6,500/yr — the official fee page is ug.edu.ge/en/tuition-and-fees; confirm there.
+
+New Vision University — Tbilisi, Georgia [VERIFIED MD fee — newvision.ge]
+  Type: Private Tbilisi university with a widely marketed English MD — one of the few with a clear official price
+  Known for: Medicine (English MD, 6 years), Dentistry, Law, Business
+  Tuition (VERIFIED on the official programme page): English MD $7,000/yr.
+  ⚠ Same golden rules as the whole Georgian MD market (recognition, pass rates, no agents).
+
+Kutaisi International University (KIU) — Kutaisi, Georgia [VERIFIED — kiu.edu.ge]
+  Type: New (2020) internationally-oriented STEM university developed in partnership with TU Munich — a different profile from the MD-agent market
+  Known for: Computer Science, Mathematics, Management (English BScs); medicine added — confirm per programme
+  Tuition (VERIFIED): €4,000/yr equivalent in GEL for the main English BScs (some programmes €5,500). KIU offers real 20–50% tuition-waiver scholarships for internationals (verified) — unlike the region's "discount marketing". Kutaisi living is among Europe's cheapest.
+  Deadline: confirm windows on kiu.edu.ge
+
+Caucasus University — Tbilisi, Georgia [NOT VERIFIED fees]
+  Type: Private Tbilisi university built around the well-known Caucasus School of Business (est. 1998)
+  Known for: Business, Law, Media, Economics
+  Fees/deadline: NOT verified — confirm on cu.edu.ge.
+
 Yerevan State Medical University (YSMU) — Yerevan, Armenia [PARTIALLY VERIFIED — agent-quoted fees consistent]
   Type: Armenia's flagship medical university — the credible marketed option
   Known for: Medicine (English MD, 6 years incl. internship), Dentistry, Pharmacy
@@ -2908,6 +3162,28 @@ Yerevan State University (YSU) — Yerevan, Armenia [NOT VERIFIED fees]
   Type: Armenia's main comprehensive university (1919)
   Known for: Sciences, Oriental Studies, Economics, IT
   Fees/deadline: NOT verified — cheap; confirm on ysu.am.
+
+American University of Armenia (AUA) — Yerevan, Armenia [VERIFIED — admissions.aua.am 2025-26]
+  Type: US-accredited (WSCUC) English-medium university — the quality pick in Armenia
+  Known for: Business, Economics, Computer Science, Engineering
+  International tuition (2025-26, VERIFIED): 4,600,000 AMD/yr Business/Economics, 4,100,000 AMD/yr other programmes (≈ roughly $10,500–$12,000 USD — confirm current AMD rate). Paid in AMD; health insurance ~10–12,000 AMD/month for non-citizens.
+  Scholarships: merit awards for internationals up to 50% of tuition (verified) + instalment/deferred plans and work-study.
+  Deadline: confirm rounds on admissions.aua.am
+
+French University in Armenia (UFAR) — Yerevan, Armenia [NOT VERIFIED fees]
+  Type: FRENCH-language university delivering DUAL Armenian-French degrees with Université Jean Moulin Lyon 3 — a French state-recognised diploma at Yerevan costs; natural fit for francophone students
+  Known for: Law, Business, Finance, Computer Science
+  Fees/deadline: NOT verified — confirm on ufar.am.
+
+National Polytechnic University of Armenia (NPUA) — Yerevan, Armenia [NOT VERIFIED fees]
+  Type: Armenia's main engineering school (former Yerevan Polytechnic)
+  Known for: Engineering, IT, Electrical Engineering
+  Fees/deadline: NOT verified — listings suggest low fees ($1,500–3,500/yr — hearsay); confirm on polytechnic.am.
+
+Russian-Armenian University (RAU) — Yerevan, Armenia [NOT VERIFIED fees]
+  Type: Joint Russian-Armenian state university — degrees recognised in both countries; some English tracks incl. medicine
+  Known for: Engineering, Medicine, Law, Economics
+  Fees/deadline: NOT verified — confirm on rau.am. Russian-government quota places exist for some nationalities. For medicine, apply the regional MD golden rules (council recognition, pass rates, no agents).
 
 ━━ Singaporean universities (MOE Tuition Grant cuts fees 40–60% for a 3-year work bond — see Singapore country block & scholarship #70) ━━
 
