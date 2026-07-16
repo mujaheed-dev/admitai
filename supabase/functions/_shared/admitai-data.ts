@@ -934,6 +934,46 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    Eligibility: government officials/development professionals from KOICA partner countries, usually nominated via your government/KOICA country office
    The professional sibling of GKS (#68), which remains the open-to-everyone route.
 
+101. Weidenfeld-Hoffmann Scholarships — Oxford, UK [PARTIALLY VERIFIED — whtrust.org]
+   Country: UK | Level: eligible Oxford master's
+   Amount: FULL — 100% course fees + full living grant + year-long leadership programme
+   Eligibility: graduates from developing/emerging economies intending to return and lead change at home
+   How: tick the scholarship box in the Oxford course application by the January (or earlier) deadline; essay + interview follow. The public-impact sibling of Clarendon (#82).
+
+102. Queen Elizabeth Commonwealth Scholarships (QECS) [VERIFIED — acu.ac.uk]
+   Country: Multiple (low/middle-income Commonwealth hosts) | Level: TWO-YEAR master's
+   Amount: FULL — tuition + living stipend + return flights + arrival allowance
+   Eligibility: Commonwealth citizens studying in ANOTHER low/middle-income Commonwealth country (recent hosts incl. Malaysia, South Africa, Ghana, Rwanda, Bangladesh)
+   Deadline: rounds vary by host — check the current ACU call
+   ★ The intra-Global-South route — often far better odds than UK-bound schemes.
+
+103. Pierre Elliott Trudeau Foundation Doctoral Scholarships — Canada [PARTIALLY VERIFIED — trudeaufoundation.ca]
+   Country: Canada | Level: PhD (humanities/social sciences/law/policy themes)
+   Amount: up to ~C$60,000/yr for 3 years (stipend + research/travel) + leadership programme; ~16–20 scholars/yr
+   How: university nomination cycles ~Nov–Jan — apply through your Canadian university's graduate school.
+
+104. Ontario Trillium Scholarships (OTS) — Canada [PARTIALLY VERIFIED — participating universities]
+   Country: Canada | Level: international PhD at participating Ontario universities
+   Amount: ~C$40,000/yr renewable up to 4 years
+   ⚠ NO direct application — universities award it to their strongest incoming international doctoral applicants. The job is a strong, EARLY PhD application (Toronto, Ottawa, Waterloo, Western, McMaster, Queen's…).
+
+105. UBC International Scholars Program (incl. Karen McKellin Leader of Tomorrow) — Canada [PARTIALLY VERIFIED — you.ubc.ca]
+   Country: Canada | Level: undergraduate
+   Amount: meets FULL demonstrated financial need for the degree (need + merit); automatic merit entrance awards (IMES / Outstanding International Student) stack
+   Deadline: UBC application ~1 December + Scholars Program steps — confirm
+   One of Canada's few genuinely need-based FULL undergraduate awards for internationals.
+
+106. Robertson Scholars Leadership Program — Duke + UNC, USA [PARTIALLY VERIFIED — robertsonscholars.org]
+   Country: USA | Level: undergraduate
+   Amount: FULL — tuition + fees + room & board + funded summers at BOTH Duke and UNC-Chapel Hill
+   Eligibility: any nationality — one of the few US full rides where internationals compete on equal terms
+   Deadline: separate Robertson application ~mid-November.
+
+107. Global Futures Scholarship — University of Manchester, UK [PARTIALLY VERIFIED — manchester.ac.uk]
+   Country: UK | Level: undergraduate + master's
+   Amount: tuition-fee reductions (recent tiers ~£4,000–£8,000/yr; some country-specific) — a discount at scale, not a full ride
+   Deadline: round dates vary (~Feb–May) — low-effort and worth it for any Manchester offer-holder.
+
 
 ━━━ UNIVERSITIES ━━━
 
