@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { CONTACT_EMAIL } from './config.js'
 
 export default function LandingPage({ onShowBoard, onGoToScholarships, user, onOpenAuth, onSignOut, onGoToPrivacy, onGoToTerms }) {
   const openSignup = () => onOpenAuth('signup')
@@ -612,7 +613,7 @@ function Footer({ onGoToPrivacy, onGoToTerms }) {
           <button onClick={onGoToTerms} className="text-sm hover:underline" style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#16302B66', fontFamily: 'Hanken Grotesk, sans-serif', padding: 0 }}>
             Terms
           </button>
-          <a href="mailto:[CONTACT EMAIL]" className="text-sm hover:underline" style={{ color: '#16302B66', fontFamily: 'Hanken Grotesk, sans-serif' }}>
+          <a href={`mailto:${CONTACT_EMAIL}`} className="text-sm hover:underline" style={{ color: '#16302B66', fontFamily: 'Hanken Grotesk, sans-serif' }}>
             Contact
           </a>
         </nav>

@@ -3,6 +3,7 @@ import { Target, Award, Building2, ClipboardList, PenLine, Compass, FileText, Mi
 import ReactMarkdown from 'react-markdown'
 import { supabase } from './supabase.js'
 import ProfileMenu from './ProfileMenu.jsx'
+import { CONTACT_EMAIL } from './config.js'
 
 // ─── markdown component map ───────────────────────────────────────────────────
 
@@ -835,7 +836,10 @@ export default function Dashboard({ firstName, user, isPaid, onGoToPricing, onGo
                   {label}
                 </button>
               ))}
-              <a href="mailto:[CONTACT EMAIL]" style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem', color: '#16302B55' }}>
+              <a href={`mailto:${CONTACT_EMAIL}`} style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem', color: '#16302B55' }}
+                onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
+                onMouseLeave={e => (e.currentTarget.style.color = '#16302B55')}
+              >
                 Contact
               </a>
             </div>
