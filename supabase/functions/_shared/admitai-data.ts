@@ -750,6 +750,190 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    Timeline (verified): apply to Swedish master's programmes at universityadmissions.se by 15 JANUARY → the SI scholarship portal then opens for only ~2 WEEKS in February (9–25 Feb in the 2026 cycle)
    ⚠ The two-step timing catches people every year: no programme application by 15 Jan = no scholarship. Work experience and leadership essays weigh as much as grades.
 
+72. Mastercard Foundation Scholars Program [VERIFIED — mastercardfdn.org]
+   Country: Multiple (partner universities worldwide) | Level: Undergraduate AND Master's
+   Amount: FULL — tuition + accommodation + books + stipend + mentoring/leadership development + return airfare where needed
+   Eligibility: academically talented young AFRICANS facing economic/social barriers
+   How: apply through a PARTNER institution — Toronto, UBC, McGill, Edinburgh, Sciences Po, UC Berkeley, CMU-Africa, UCT, Pretoria, UWC, Makerere, KNUST, Ashesi, ALU, AIMS and more; each partner runs its own round and deadline
+   ⚠ THE flagship for African students. You apply to the partner university's Scholars Program, not the Foundation.
+
+73. Joint Japan/World Bank Graduate Scholarship (JJ/WBGSP) [VERIFIED — worldbank.org 2026]
+   Country: Multiple | Level: Master's only (development-related, fixed participating-programme list)
+   Amount: FULL — tuition + monthly stipend + round-trip airfare + health insurance + travel allowance
+   Eligibility: developing-country nationals with 3+ years development-related work experience, admitted UNCONDITIONALLY to a participating master's outside their home country
+   Deadline: two windows/yr (2026 Window 2: 30 Mar–29 May, verified) — programme lists differ per window
+   ⚠ For professionals, not fresh graduates — the work-experience bar is strict.
+
+74. Aga Khan Foundation International Scholarship [VERIFIED structure — the.akdn]
+   Country: Multiple | Level: Master's (full duration) / PhD (FIRST TWO YEARS only)
+   Amount: 50% GRANT + 50% LOAN (verified) — loan half repaid over 5 years at a 5% annual service charge starting 6 months after studies
+   Eligibility: outstanding students from selected developing countries (mainly Asia/Africa) with genuine financial need — apply via AKF/AKES offices in your country; preference for under-30s
+   Deadline: regional, many ~March — confirm locally
+   ⚠ HALF IS A LOAN — advise honest repayment planning.
+
+75. Islamic Development Bank (IsDB) Scholarship Programme [PARTIALLY VERIFIED — isdb.org; track terms vary]
+   Country: Multiple | Level: Undergraduate to PhD/post-doc (multiple tracks)
+   Amount: FULL for flagship tracks — tuition + living + insurance (+ travel on some tracks); some undergraduate tracks are structured as INTEREST-FREE community loans, not pure grants
+   Eligibility: citizens of the 57 IsDB member countries + Muslim communities in non-member countries
+   Deadline: annual window typically ~Dec–Feb/Mar on the IsDB portal — confirm current cycle
+   ⚠ Read your specific track's terms — repayment-to-community-fund rules differ by track.
+
+76. ADB–Japan Scholarship Program (ADB-JSP) [PARTIALLY VERIFIED — adb.org; institution deadlines vary]
+   Country: Multiple (Asia-Pacific institutions) | Level: Master's mainly (development-related)
+   Amount: FULL — tuition + subsistence & housing + books + medical insurance + travel
+   Eligibility: nationals of ADB developing member countries with 2+ years' work experience
+   How: apply to a DESIGNATED institution (e.g. University of Tokyo, University of Auckland, ANU, Hong Kong/Singapore/Thailand partners) ~6 months before intake and request ADB-JSP consideration — the university handles it.
+
+77. Swiss Government Excellence Scholarships [VERIFIED — sbfi.admin.ch]
+   Country: Switzerland | Level: research/PhD/post-doc (NOT taught degrees; fine-arts master's track for some countries)
+   Amount: FULL — monthly stipend + tuition exemption + insurance (+ housing/airfare support depending on award)
+   Eligibility: graduates from 180+ countries — a Swiss professor's support/supervision letter is effectively required
+   Deadline: through the SWISS EMBASSY in your country, windows typically ~Aug–Dec set per country
+   ⚠ Finding a willing Swiss supervisor BEFORE applying is the real gate.
+
+78. VLIR-UOS ICP Connect Scholarships — Belgium [VERIFIED — vliruos.be 2026 cycle]
+   Country: Belgium (Flemish universities: Ghent, KU Leuven, Antwerp, VUB, Hasselt) | Level: Master's (specific ICP-listed English programmes)
+   Amount: FULL — tuition + travel + insurance + living allowance for the whole programme
+   Eligibility: citizens/residents of 29 eligible countries (incl. Kenya, Tanzania, Uganda, Ethiopia, DR Congo, Cameroon, Senegal, Burkina Faso, South Africa)
+   Deadline: mostly ~1–28 February for September entry (one programme closes in November)
+   ⚠ Only the listed development-themed programmes qualify (water, health, ecology, food, education…); age limits on some.
+
+79. Rotary Peace Fellowships [PARTIALLY VERIFIED — rotary.org]
+   Country: Multiple (Peace Centers: Bradford UK, Uppsala Sweden, ICU Tokyo, Duke/UNC USA, Makerere Uganda certificate) | Level: Master's + certificate track
+   Amount: FULL — tuition + room & board + travel + internship/field-study costs
+   Eligibility: peace/development professionals (~3+ years relevant work for the master's track); Rotary-district endorsement REQUIRED
+   Deadline: to The Rotary Foundation by ~15 May yearly; district steps months earlier — start early.
+
+80. Margaret McNamara Education Grants (MMEG) — women [PARTIALLY VERIFIED — mmeg.org]
+   Country: Multiple (US/Canada + South Africa & Latin America tracks) | Level: enrolled students (UG and grad)
+   Amount: PARTIAL — roughly US$10,000–15,000 (varies by region/year)
+   Eligibility: WOMEN aged 25+ from eligible developing countries, ALREADY enrolled/admitted, committed to improving lives of women and children
+   Deadline: US/Canada window typically ~Sep–Jan; regional tracks differ
+   ⚠ A top-up, not a full ride — but one of very few awards for older women students.
+
+81. Knight-Hennessy Scholars — Stanford, USA [PARTIALLY VERIFIED — knight-hennessy.stanford.edu]
+   Country: USA | Level: ANY Stanford graduate degree (MS/MBA/JD/MD/PhD)
+   Amount: FULL — tuition + living/travel stipend; the largest fully-endowed US graduate scholarship (~100 scholars/yr, heavily international)
+   Eligibility: first degree earned within the last ~7 years; apply to Knight-Hennessy (deadline ~early October) AND the Stanford programme in parallel
+   ⚠ You still need Stanford programme admission itself.
+
+82. Clarendon Fund — University of Oxford, UK [PARTIALLY VERIFIED — ox.ac.uk/clarendon]
+   Country: UK | Level: any Oxford master's or DPhil (PhD)
+   Amount: FULL — all course fees + a generous living stipend for the full course
+   Eligibility: ALL nationalities, awarded purely on academic excellence — NO separate application; every on-time Oxford graduate application is automatically considered (~150 new scholars/yr)
+   ⚠ Apply by the January (or earlier) course deadline to qualify — late applications lose the automatic consideration.
+
+83. Justus & Louise van Effen Excellence — TU Delft, Netherlands [VERIFIED — tudelft.nl]
+   Country: Netherlands | Level: any TU Delft MSc
+   Amount: FULL — full tuition + living allowance (~€1,100/month)
+   Deadline: 1 December for the following September (verified 2026 cycle)
+   ⚠ Top-of-class record expected; apply to the MSc first — the scholarship runs alongside admission.
+
+84. Leiden Excellence Scholarship (LExS) — Netherlands [VERIFIED structure — universiteitleiden.nl]
+   Country: Netherlands | Level: Leiden MA/MSc/LLM
+   Amount: tiered — €10,000 or €15,000 off tuition, or total tuition minus the home (EEA) fee
+   Deadline: ~1 February for September (some programmes 1 October for spring) — confirm
+   ⚠ Even the top tier leaves the EEA-level fee (~€2,600) + living costs — budget accordingly.
+
+85. UM Holland-High Potential Scholarship — Maastricht, Netherlands [VERIFIED structure — maastrichtuniversity.nl]
+   Country: Netherlands | Level: any Maastricht master's
+   Amount: FULL — tuition + monthly living + insurance + visa costs; only ~24 awards/yr
+   Deadline: ~1 February for September — confirm
+   One of the few genuinely FULL Dutch scholarships.
+
+86. Amsterdam Excellence Scholarship (AES) — Netherlands [PARTIALLY VERIFIED — uva.nl]
+   Country: Netherlands | Level: eligible UvA master's
+   Amount: €25,000/yr covering tuition and living; renewable for 2-year programmes on performance
+   Eligibility: top ~10%-of-class non-EU applicants | Deadline: ~15 January (faculty dates vary) — confirm
+
+87. ETH Excellence Scholarship & Opportunity Programme (ESOP) — Switzerland [PARTIALLY VERIFIED — ethz.ch]
+   Country: Switzerland | Level: any ETH Zürich master's
+   Amount: FULL — grant ~CHF 12,000/semester + tuition waiver
+   Deadline: with the master's application in the ~15 Nov – 15 Dec window — confirm
+   ⚠ ETH base tuition is LOW anyway (~CHF 730/semester) — even without ESOP it can be affordable for those who can cover Swiss living costs.
+
+88. Ernst Mach Grant — Austria [VERIFIED — oead.at]
+   Country: Austria | Level: research stays (master's-thesis/PhD level), 1–9 months
+   Amount: €1,150–1,300/month + tuition-fee exemption + travel subsidy up to €1,200 for developing-country grantees
+   Eligibility: young researchers under ~35 from any country (explicit developing-country track — most of Africa eligible)
+   Deadline: opens ~October, closes 1 FEBRUARY (verified) on the OeAD portal
+   ⚠ A research-stay grant, not a full degree — ideal for thesis research or building an Austrian supervisor relationship.
+
+89. Czech Government Scholarships (developing countries) [PARTIALLY VERIFIED — mzv.cz]
+   Country: Czech Republic | Level: bachelor's/master's/PhD
+   Amount: FULL for awardees — tuition-free + monthly stipend + funded 1-year Czech preparatory course (confirm current amounts)
+   Eligibility: citizens of the yearly eligible developing-country list; mostly Czech-taught, smaller English master's/PhD track
+   Deadline: typically ~30 September via the Czech embassy/portal — confirm the current call
+   ⚠ The Czech-language year is part of the deal for most awards.
+
+90. Slovak National Scholarship Programme (NSP) [PARTIALLY VERIFIED — stipendia.sk]
+   Country: Slovakia | Level: master's/PhD/research stays
+   Amount: monthly living stipend (several hundred €; PhD tier higher — confirm current rates)
+   Deadline: TWO windows yearly, ~30 April and ~31 October
+   ⚠ A mobility stipend, NOT tuition — pair with a Slovak programme (Slovak-taught public study is often free; English programmes charge).
+
+91. Romanian Government Scholarship (MFA) [PARTIALLY VERIFIED — studyinromania.gov.ro]
+   Country: Romania | Level: bachelor's/master's/PhD at state universities
+   Amount: tuition-FREE + modest monthly stipend + subsidised accommodation (budget a top-up)
+   Eligibility: non-EU citizens; medicine/dentistry/pharmacy bachelor's usually EXCLUDED — confirm the current call
+   Deadline: typically ~March via the studyinromania portal
+   ⚠ Mostly Romanian-taught with a funded preparatory year; genuinely low competition vs the famous schemes — a quiet EU-degree route.
+
+92. Think Big Scholarships — University of Bristol, UK [PARTIALLY VERIFIED — bristol.ac.uk]
+   Country: UK | Level: undergraduate + one-year taught master's
+   Amount: tiered tuition-fee awards up to full-fee level (tiers change yearly — confirm)
+   Deadline: typically ~late February (UG) / ~late March (PG)
+   One of the largest UK university international scholarship pots; short separate application about ambitions, not just grades.
+
+93. Hong Kong PhD Fellowship Scheme (HKPFS) [VERIFIED — RGC, 2026/27]
+   Country: Hong Kong | Level: PhD at the 8 UGC universities (HKU, CUHK, HKUST, CityU, PolyU, Baptist, Lingnan, EdUHK)
+   Amount: HK$28,400/month (~US$3,640) + HK$14,200/yr conference travel, up to 3 years; universities typically add tuition waivers
+   Deadline: 1 December, 12:00 noon HK time — TWO-step application (RGC initial + full university application); miss either and you're out
+   One of Asia's best-paid PhD packages; open to ALL nationalities.
+
+94. Brunei Darussalam Government Scholarship (BDGS) [VERIFIED deadline — mfa.gov.bn]
+   Country: Brunei | Level: diploma, bachelor's, MASTER'S (no PhD)
+   Amount: FULL — tuition + monthly allowance + meals/books + accommodation + return flights
+   Eligibility: ASEAN/OIC/Commonwealth citizens and others (check the circular); age limits ~under 25 UG / under 35 master's
+   Deadline: 15 FEBRUARY yearly. English-friendly (UBD largely English-taught); quiet and genuinely full.
+
+95. Taiwan MOE Scholarship [PARTIALLY VERIFIED — edu.tw; rates change]
+   Country: Taiwan | Level: degree study (UG + graduate)
+   Amount: tuition covered to ~NT$40,000/semester + ~NT$15,000/month UG / ~NT$20,000/month graduate — confirm current rates
+   How: through the Taiwan representative office serving your country, typically ~1 Feb – 31 Mar
+   ⚠ Tuition above the cap is on you at pricier programmes; Chinese-taught tracks may need the separate Huayu language scholarship first.
+
+96. TaiwanICDF Higher Education Scholarship [PARTIALLY VERIFIED — icdf.org.tw]
+   Country: Taiwan | Level: UG + graduate (designated English-taught programmes at partner universities)
+   Amount: FULL — tuition + housing + monthly allowance + flights + insurance + textbooks
+   Eligibility: nationals of Taiwan's partner/allied developing countries (check the list — it follows diplomatic partnerships)
+   Deadline: typically ~mid-March.
+
+97. Malaysia International Scholarship (MIS) [PARTIALLY VERIFIED — biasiswa.mohe.gov.my]
+   Country: Malaysia | Level: master's + PhD at participating universities
+   Amount: FULL — tuition + ~RM1,500/month living allowance (confirm current terms); age limits ~40 master's / ~45 PhD
+   Deadline: annual window typically ~April–May
+   The government-level route on top of Malaysia's already-low fees.
+
+98. KNB Scholarship — Indonesian Government [PARTIALLY VERIFIED — knb.kemdikbud.go.id]
+   Country: Indonesia | Level: bachelor's, master's, PhD at ~30 top universities (UI, UGM, ITB, IPB…)
+   Amount: FULL — tuition + living allowance + settlement + flights + insurance + funded Indonesian-language year
+   Eligibility: citizens of developing countries (large Africa/Asia list)
+   Deadline: typically ~January–February for August intake
+   ⚠ Indonesian-taught after the funded language year; genuinely low competition vs the famous schemes.
+
+99. JICA SDGs Global Leader Program — Japan [PARTIALLY VERIFIED — jica.go.jp]
+   Country: Japan | Level: master's + PhD
+   Amount: FULL — tuition + monthly allowance + flights + arrival support
+   Eligibility: young professionals/officials from JICA partner countries (heavily African), NOMINATED via the JICA office in your country — not direct-application in most countries
+   ⚠ Route matters: contact your local JICA office. Complements MEXT (#67), which is open-application.
+
+100. KOICA Scholarship Program — South Korea [PARTIALLY VERIFIED — koica.go.kr]
+   Country: South Korea | Level: designated English-taught master's
+   Amount: FULL — tuition + airfare + living allowance + insurance
+   Eligibility: government officials/development professionals from KOICA partner countries, usually nominated via your government/KOICA country office
+   The professional sibling of GKS (#68), which remains the open-to-everyone route.
+
 
 ━━━ UNIVERSITIES ━━━
 
@@ -1284,6 +1468,21 @@ Ajman University — Ajman, UAE [PARTIALLY VERIFIED — tuition NOT verified]
   Tuition: NOT VERIFIED — the official fee brochure PDF could not be parsed during research (a third-party example cites ~AED 1,300/credit hour for Engineering, but do NOT quote this as fact). Confirm on ajman.ac.ae.
   Deadline: NOT verified — confirm on ajman.ac.ae
 
+Zayed University — Dubai & Abu Dhabi, UAE [NOT VERIFIED fees — confirm on zu.ac.ae]
+  Type: Federal university with campuses in both Dubai and Abu Dhabi
+  Known for: Business, Communication, IT, Education
+  Fees/deadline: NOT verified — per-credit international fees; confirm on zu.ac.ae.
+
+Middlesex University Dubai — Dubai (Knowledge Park), UAE [NOT VERIFIED fees — confirm on mdx.ac.ae]
+  Type: One of Dubai's largest UK branch campuses — a UK degree at Dubai-branch pricing
+  Known for: Business, Computer Science, Media, Psychology
+  Fees/deadline: NOT verified — branch fees typically well below UK-in-UK costs; merit/early-payment discounts common. Confirm on mdx.ac.ae.
+
+Manipal Academy of Higher Education, Dubai — Dubai (Academic City), UAE [NOT VERIFIED fees — confirm on manipaldubai.com]
+  Type: Dubai campus of India's best-known private university brand (MAHE — also in the India list)
+  Known for: Engineering, Business, Media, Health Sciences
+  Fees/deadline: NOT verified — typically between Indian and Western pricing; confirm on manipaldubai.com.
+
 King Abdullah University of Science and Technology (KAUST) — Thuwal (near Jeddah), Saudi Arabia [VERIFIED — admissions.kaust.edu.sa]
   Type: GRADUATE-only elite STEM research university — every admitted student is funded
   Known for: AI/Computer Science, Bioscience, Chemical & Materials Science, Earth Science, Electrical Engineering, Marine Science
@@ -1363,6 +1562,16 @@ Effat University — Jeddah, Saudi Arabia [PARTIALLY VERIFIED — tuition NOT ve
   Tuition: NOT VERIFIED — third-party sources suggest roughly SR 70,000/yr but do NOT quote this as fact; scholarships and financial aid are advertised for international students. Confirm on effatuniversity.edu.sa.
   Deadline: NOT verified — confirm on effatuniversity.edu.sa
   ⚠ Women only.
+
+Princess Nourah bint Abdulrahman University (PNU) — Riyadh, Saudi Arabia [NOT VERIFIED — women only]
+  Type: The world's LARGEST women's university — purpose-built Riyadh mega-campus
+  Known for: Medicine, Business, Education, Computer Science
+  Notes: Saudi government universities offer scholarship seats (tuition + stipend + housing model) to international students — confirm routes on pnu.edu.sa. ⚠ Women only.
+
+Taibah University — Madinah, Saudi Arabia [NOT VERIFIED fees — scholarship-seat route]
+  Type: Public university in Madinah — international scholarship seats in the Islamic University tradition
+  Known for: Islamic Studies, Medicine, Engineering, Science
+  Notes: international scholarship seats (tuition + stipend + housing model, often allocated per country) are the main route — confirm current windows on taibahu.edu.sa. Mostly Arabic-medium; Arabic preparatory programmes exist.
 
 Boğaziçi University — Istanbul, Turkey [PARTIALLY VERIFIED — fees via official student pages; confirm current year]
   Type: Turkey's most prestigious public university — English-medium, Bosphorus campus
@@ -2840,6 +3049,21 @@ Maynooth University — Maynooth (near Dublin), Ireland [NOT VERIFIED fees — c
   Language: English-medium instruction
   Fees/deadline: NOT verified — confirm on maynoothuniversity.ie; CAO for undergrad
 
+RCSI University of Medicine and Health Sciences — Dublin, Ireland [NOT VERIFIED fees — confirm on rcsi.com]
+  Type: Health-sciences specialist (est. 1784) — one of Europe's most international medical schools
+  Known for: Medicine, Pharmacy, Physiotherapy, Nursing
+  Fees/deadline: NOT verified — medicine fees are substantial; confirm on rcsi.com. GOI-IES tenable at Irish institutions (see scholarship list).
+
+Munster Technological University (MTU) — Cork & Kerry, Ireland [NOT VERIFIED fees — confirm on mtu.ie]
+  Type: Applied technological university — practical degrees at fees below the traditional universities
+  Known for: Engineering, IT, Business, Music
+  Fees/deadline: NOT verified — technological universities are Ireland's value tier; confirm on mtu.ie.
+
+South East Technological University (SETU) — Waterford & Carlow, Ireland [NOT VERIFIED fees — confirm on setu.ie]
+  Type: The southeast's technological university — among Ireland's most affordable routes
+  Known for: IT, Business, Engineering, Health Sciences
+  Fees/deadline: NOT verified — confirm on setu.ie.
+
 Technological University Dublin (TU Dublin) — Dublin, Ireland [PARTIALLY VERIFIED — value-tier fees per official-derived listings]
   Type: Ireland's first technological university — practice-oriented, the VALUE option in Dublin
   Known for: Engineering, Computing, Hospitality & Culinary Arts, Media, Architecture
@@ -3546,6 +3770,21 @@ Umeå University — Umeå, Sweden [NOT individually verified]
   Known for: Design (world-renowned Institute of Design), Life Sciences (CRISPR heritage), Computing
   Fees: ~SEK 95,000–160,000/yr — confirm on umu.se.
 
+Malmö University — Malmö, Sweden [NOT individually verified]
+  Type: Young urban university minutes from Copenhagen — one of Sweden's most international student bodies
+  Known for: Media, IT, Social Sciences, Design
+  Fees: country ranges apply — confirm on mau.se.
+
+Örebro University — Örebro, Sweden [NOT individually verified]
+  Type: Mid-size university with medicine — cheaper living than the big-city options
+  Known for: Medicine, Psychology, Business, Media
+  Fees: country ranges apply — confirm on oru.se.
+
+Jönköping University — Jönköping, Sweden [NOT individually verified]
+  Type: Foundation university built around the international JIBS business school — unusually international for its size
+  Known for: Business (JIBS), Engineering, Education, Nursing
+  Fees: country ranges apply — confirm on ju.se.
+
 ━━ Finnish universities (one portal: studyinfo.fi, January window; automatic 50–100% waivers; 2-year post-study permit — see Finland country block) ━━
 
 University of Helsinki — Helsinki, Finland [NOT individually verified — country ranges apply]
@@ -3582,6 +3821,21 @@ LUT University — Lappeenranta/Lahti, Finland [NOT individually verified]
   Type: Energy/sustainability-focused technical university — very international-friendly
   Known for: Energy Systems, Sustainability Science, Mechanical Engineering, Business
   Fees: ~€10,000–€13,500/yr with a well-known 50–100% early-bird scholarship ladder — confirm on lut.fi.
+
+University of Eastern Finland (UEF) — Joensuu & Kuopio, Finland [NOT individually verified]
+  Type: Two-city university — strong health sciences and forestry in low-cost eastern Finland
+  Known for: Medicine, Forestry & Environment, Education, Pharmacy
+  Fees: country ranges apply — confirm on uef.fi.
+
+Åbo Akademi University — Turku, Finland [NOT individually verified]
+  Type: Finland's Swedish-language university — small, international, with English master's
+  Known for: Chemical Engineering, IT, Social Sciences, Theology
+  Fees: country ranges apply — confirm on abo.fi.
+
+University of Vaasa — Vaasa, Finland [NOT individually verified]
+  Type: Business/energy specialist on the west coast — in the Nordic energy-technology cluster
+  Known for: Business, Finance, Energy Systems, IT
+  Fees: country ranges apply — confirm on uwasa.fi.
 
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
