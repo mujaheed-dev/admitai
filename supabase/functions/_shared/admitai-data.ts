@@ -2248,6 +2248,83 @@ Xiamen University — Xiamen, China [NOT VERIFIED fees — confirm on admissions
   Language: Chinese-medium mostly; some English programmes
   Tuition/deadline: NOT verified — confirm on admissions.xmu.edu.cn.
 
+Huazhong University of Science and Technology (HUST) — Wuhan, China [NOT VERIFIED fees — CSC host]
+  Type: Top-10 engineering powerhouse with the famed Tongji Medical College
+  Known for: Engineering, Medicine, Computer Science, Electrical Engineering
+  Notes: MOE-approved English MBBS; one of the biggest CSC hosts in central China. Fees NOT verified — typical English-taught ¥20,000–40,000/yr; confirm on iso.hust.edu.cn.
+
+Jiangsu University — Zhenjiang (Jiangsu), China [NOT VERIFIED fees — CSC workhorse]
+  Type: One of China's largest international student cohorts — a classic CSC workhorse
+  Known for: Engineering, Medicine, Business, Agriculture
+  Notes: MOE-approved English MBBS; heavy CSC/university-scholarship presence — a realistic funded route. Confirm fees on oec.ujs.edu.cn.
+
+Zhengzhou University — Zhengzhou (Henan), China [NOT VERIFIED fees]
+  Type: Mega-university (70,000+ students) in low-cost Henan
+  Known for: Medicine, Engineering, Materials Science, Business
+  Notes: MOE-approved English MBBS; among the cheapest big-city options in China. Confirm on english.zzu.edu.cn.
+
+Tianjin University — Tianjin, China [NOT VERIFIED fees]
+  Type: China's oldest modern university (1895) — engineering heritage
+  Known for: Engineering, Architecture, Management, Chemistry
+  Notes: Tianjin Government Scholarship stacks with CSC. Confirm fees on sie.tju.edu.cn.
+
+Nankai University — Tianjin, China [NOT VERIFIED fees]
+  Type: Elite comprehensive famous for economics and finance — Zhou Enlai's alma mater
+  Known for: Economics, Finance, Chemistry, Mathematics
+  Notes: Tianjin Government Scholarship stacks with CSC. Confirm fees on iao.nankai.edu.cn.
+
+Sichuan University — Chengdu, China [NOT VERIFIED fees]
+  Type: Mega-university in laid-back, cheap Chengdu — West China medical fame
+  Known for: Medicine, Dentistry, Engineering, Chinese Language
+  Notes: MOE-approved English MBBS; West China Stomatology is China's top-ranked dentistry. Confirm on en.scu.edu.cn.
+
+Shandong University — Jinan & Qingdao, China [NOT VERIFIED fees]
+  Type: Historic comprehensive spread across two Shandong cities
+  Known for: Medicine, Engineering, Mathematics, Humanities
+  Notes: MOE-approved English MBBS; Shandong Government Scholarship stacks with CSC. Confirm on istudy.sdu.edu.cn.
+
+Central South University — Changsha (Hunan), China [NOT VERIFIED fees]
+  Type: Engineering and medicine giant — Xiangya Medical College heritage
+  Known for: Medicine, Mining Engineering, Materials Science, Engineering
+  Notes: MOE-approved English MBBS; Xiangya is one of China's historic medical names. Confirm on en.csu.edu.cn.
+
+Southeast University — Nanjing, China [NOT VERIFIED fees]
+  Type: Engineering elite of Nanjing — architecture and electronics heritage
+  Known for: Engineering, Architecture, Electrical Engineering, Computer Science
+  Notes: Jasmine Jiangsu Government Scholarship stacks with CSC. Confirm on international.seu.edu.cn.
+
+Chongqing University — Chongqing, China [NOT VERIFIED fees]
+  Type: Southwest engineering flagship in the Yangtze mega-city
+  Known for: Engineering, Architecture, Business, Materials Science
+  Notes: Chongqing municipal scholarship stacks with CSC. Confirm on international.cqu.edu.cn.
+
+Soochow University — Suzhou (Jiangsu), China [NOT VERIFIED fees]
+  Type: Comprehensive university in canal-city Suzhou — strong scholarship presence
+  Known for: Medicine, Engineering, Business, Design
+  Notes: Jasmine Jiangsu Government Scholarship stacks with CSC. Confirm on global.suda.edu.cn.
+
+Dalian Medical University — Dalian (Liaoning), China [NOT VERIFIED fees — MOE-approved MBBS]
+  Type: Dedicated MBBS-for-internationals specialist on the northeast coast
+  Known for: Medicine, Dentistry, Nursing
+  ⚠ MBBS GOLDEN RULE: enrol ONLY at the 45 MOE-approved English-MBBS universities (this is one) — unapproved schools risk your home-country licensing. Confirm fees on english.dmu.edu.cn.
+
+China Medical University — Shenyang (Liaoning), China [NOT VERIFIED fees — MOE-approved MBBS]
+  Type: One of China's longest-running English-MBBS providers (teaching internationals since 1978)
+  Known for: Medicine, Pharmacy, Nursing
+  Notes: MOE-approved English MBBS; same golden rule — approved list only. Confirm on enweb.cmu.edu.cn.
+
+Xi'an Jiaotong-Liverpool University (XJTLU) — Suzhou (Jiangsu), China [VERIFIED — xjtlu.edu.cn]
+  Type: Sino-British joint venture — graduate with BOTH an XJTLU and a University of Liverpool (UK) degree; fully English-medium, no Chinese required
+  Known for: Business, Computer Science, Engineering, Design
+  International tuition (VERIFIED): RMB 93,000/yr (~$13,000 USD) + RMB 2,000/yr non-tuition charge — a UK dual degree at roughly a third of UK-in-UK cost, with China living costs.
+  Scholarships (verified): entry scholarships up to 50% of tuition + 10% Early Bird discount for complete applications by ~15 April; sibling discounts.
+
+University of Nottingham Ningbo China (UNNC) — Ningbo (Zhejiang), China [VERIFIED range — nottingham.edu.cn]
+  Type: The first Sino-foreign university (2004) — a full University of Nottingham (UK) degree earned in China; fully English-medium
+  Known for: Business, Engineering, Finance, International Relations
+  International tuition (official guide): ~RMB 80,000–110,000/yr by year of study (≈ $11,000–15,500 USD); all-in ~RMB 150,000–190,000/yr incl. housing. Confirm current figures.
+  Scholarships: Nottingham Global up to 100% of first-year tuition (RMB 110,000, per official guide).
+
 ━━ US universities (Common App; ED ~Nov 1 / RD ~Jan; F-1 visa + OPT up to 3 years — see USA country block and scholarships #53–55) ━━
 
 Harvard University — Cambridge, Massachusetts, USA [VERIFIED aid — college.harvard.edu]
