@@ -2430,6 +2430,69 @@ University of Alabama — Tuscaloosa, Alabama, USA [PARTIALLY VERIFIED — merit
   Deadline: Rolling with scholarship priority dates — confirm current merit tables on ua.edu
   ⚠ The archetype of the merit-aid route (see scholarship #55): strong stats can make the US cheaper than sticker-price Europe.
 
+Dartmouth College — Hanover, New Hampshire, USA [VERIFIED aid policy — financialaid.dartmouth.edu]
+  Type: Ivy League — universal NEED-BLIND including internationals (2022 policy, verified) + meets 100% of demonstrated need
+  Known for: Liberal Arts, Economics, Government, Engineering
+  Cost: sticker ~$85k+/yr all-in, but aid removes the barrier for admitted low-income internationals. Apply with the full aid application.
+
+Brown University — Providence, Rhode Island, USA [VERIFIED aid policy — admission.brown.edu]
+  Type: Ivy League — the NEWEST need-blind school for internationals (first-years from the Class of 2029 / fall 2025 entry, verified); meets 100% of need for all admitted
+  Known for: Liberal Arts, Computer Science, Economics, Public Health
+
+Berea College — Berea, Kentucky, USA [VERIFIED — berea.edu; ★ the budget gem]
+  Type: The NO-TUITION college — the ONLY US school funding 100% of enrolled internationals (verified)
+  Known for: Liberal Arts, Business, Computer Science, Nursing
+  Package (verified): No-Tuition Promise for every admitted student; aid + scholarships cover tuition, housing, food, fees; paid campus job (~$2,000 first year for personal costs). Limited international seats — intensely competitive; apply very early.
+
+Brigham Young University (BYU) — Provo, Utah, USA [VERIFIED tuition — enrollment.byu.edu 2025-26]
+  Type: The cheapest reputable private in America — church-subsidised tuition
+  Known for: Business, Accounting & Finance, Engineering, Languages
+  Tuition (verified 2025-26): $3,444/semester (~$6,888/yr) for Latter-day Saint members; non-members pay DOUBLE (~$13,776/yr) — still a fraction of US norms. ⚠ Religious environment and Honor Code apply to all students.
+
+Minerva University — San Francisco (+ 6 global rotation cities), USA [PARTIALLY VERIFIED — costs not confirmed]
+  Type: Radically different — four years living across 7 world cities; majority-international student body; fully accredited
+  Known for: Computer Science, Business, Social Sciences, Data Science
+  Cost: markedly below US norms (~$25k/yr all-in commonly cited — NOT verified; confirm on minerva.edu) + need-based aid. Extremely selective but stats-light admissions.
+
+Caltech — Pasadena, California, USA [WELL-DOCUMENTED aid — admissions.caltech.edu]
+  Type: The tiny science powerhouse — meets 100% of demonstrated need of every admit incl. internationals (admission need-aware for internationals)
+  Known for: Physics, Engineering, Computer Science, Mathematics
+  Cost: sticker ~$86k/yr; tiny class, brutal odds.
+
+Johns Hopkins University — Baltimore, Maryland, USA [WELL-DOCUMENTED aid — confirm on jhu.edu]
+  Type: America's medicine and public-health name; meets full need of admitted internationals (need-aware admission)
+  Known for: Medicine, Public Health, Biomedical Engineering, International Relations
+
+University of Chicago — Chicago, Illinois, USA [NOT individually verified aid pool]
+  Type: Elite research brand — economics royalty
+  Known for: Economics, Mathematics, Political Science, Physics
+  ⚠ International aid exists but the pool is limited and need-aware — you MUST apply for aid AT admission (cannot request later). Sticker ~$90k/yr all-in.
+
+Rice University — Houston, Texas, USA [WELL-DOCUMENTED aid — confirm on rice.edu]
+  Type: Small elite in the energy/medical capital — generous aid culture; admitted internationals get full-need packages (need-aware admission)
+  Known for: Engineering, Computer Science, Business, Architecture
+  Notes: Houston costs are low for a major US city.
+
+Vanderbilt University — Nashville, Tennessee, USA [WELL-DOCUMENTED merit — confirm on vanderbilt.edu]
+  Type: Elite southern private — famous FULL-RIDE merit scholarships open to internationals
+  Known for: Economics, Engineering, Education, Medicine
+  ★ Ingram / Cornelius Vanderbilt / Chancellor's merit scholarships cover full tuition-plus and are OPEN to internationals (separate application ~Dec 1); regular international aid is need-aware.
+
+Carnegie Mellon University (CMU) — Pittsburgh, Pennsylvania, USA [WELL-DOCUMENTED — no intl aid]
+  Type: The computer-science name on every list
+  Known for: Computer Science, AI & Computer Science, Robotics, Design
+  ⚠ HONEST NOTE: CMU offers essentially NO financial aid to international undergraduates — budget the full ~$84k+/yr, or target its Qatar campus (in this dataset) or funded graduate programmes.
+
+University of Washington (UW) — Seattle, Washington, USA [NOT individually verified fees]
+  Type: CS/tech public powerhouse in Amazon-and-Microsoft country
+  Known for: Computer Science, Engineering, Medicine, Oceanography
+  Cost: non-resident tuition ~$43k/yr; ⚠ essentially no aid for international undergrads; direct CS admission hyper-competitive. Superb tech job market for OPT.
+
+UC San Diego (UCSD) — San Diego, California, USA [NOT individually verified fees]
+  Type: UC-system heavyweight — biology and CS strength on the Pacific
+  Known for: Biology, Computer Science, Engineering, Oceanography
+  Cost: non-resident all-in commonly ~$70k/yr; ⚠ the UC system gives internationals NO need-based aid and minimal merit — budget fully. UC application closes Nov 30.
+
 ━━ Australian universities (Feb & July intakes; visa needs AU$29,710/yr + tuition + travel; 485 post-study visa 2–3 years — see Australia country block) ━━
 
 University of Melbourne — Melbourne, Australia [PARTIALLY VERIFIED — fees per course]
@@ -2512,6 +2575,31 @@ Queensland University of Technology (QUT) — Brisbane, Australia [NOT VERIFIED 
   Type: "A university for the real world" — applied, industry-connected
   Known for: Media & Communication, IT, Nursing, Business, Creative Industries
   Tuition/deadline: NOT verified — confirm on qut.edu.au.
+
+Griffith University — Brisbane / Gold Coast, Australia [NOT VERIFIED fees — confirm on griffith.edu.au]
+  Type: Accessible Queensland university — health/nursing strength
+  Known for: Nursing, Health Sciences, Business, Criminology
+  Notes: The Gold Coast campus counts as a designated regional area — extra post-study 485 time; confirm current settings on immi.homeaffairs.gov.au.
+
+La Trobe University — Melbourne (+ regional Victoria campuses), Australia [NOT VERIFIED fees — confirm on latrobe.edu.au]
+  Type: Melbourne university whose regional campuses (Bendigo etc.) carry the regional visa bonus
+  Known for: Health Sciences, Business, Science, Education
+  Notes: Study at a regional campus for the 485 bonus + cheaper living.
+
+University of Newcastle — Newcastle (NSW), Australia [NOT VERIFIED fees — confirm on newcastle.edu.au]
+  Type: Research-strong regional NSW university — cheaper than Sydney
+  Known for: Engineering, Medicine, Nursing, Education
+  Notes: Designated regional area (+1 year post-study 485).
+
+Flinders University — Adelaide, Australia [NOT VERIFIED fees — confirm on flinders.edu.au]
+  Type: Adelaide health/medicine specialist — lower entry bar than its Go8 neighbour
+  Known for: Medicine, Nursing, Psychology, Public Health
+  Notes: Adelaide is a designated regional area (+1 year post-study 485) with lower living costs.
+
+University of Tasmania (UTAS) — Hobart / Launceston, Australia [NOT VERIFIED fees — confirm on utas.edu.au]
+  Type: The budget-and-visa play — cheap living, regional 485 bonus, famously generous automatic international scholarships
+  Known for: Marine Science, Nursing, Engineering, Agriculture
+  Notes: Tasmania's regional classification gives extra post-study time; UTAS routinely offers automatic percentage scholarships to internationals — confirm current offers on utas.edu.au.
 
 ━━ German universities (public = tuition-free + semester fee, EXCEPT Baden-Württemberg €1,500/sem non-EU; blocked account €11,904; 18-month job-seeker permit — see Germany country block; TUM listed separately above) ━━
 
@@ -2832,6 +2920,26 @@ University of Trento — Trento, Italy [NOT individually verified — income-bas
   Known for: Computer Science, Physics, Cognitive Science, Sociology
   Language: Good English-taught selection. Fees: income-based; Trento's opera universitaria DSU packages are among Italy's most reliable — confirm on unitn.it.
 
+University of Florence (UniFi) — Florence, Italy [NOT individually verified — income-based public fees]
+  Type: Big historic public in the Renaissance capital — arts, architecture and design heritage
+  Known for: Architecture, Humanities, Design, Agriculture
+  Fees: income-based via ISEE (€0–~€4,000/yr); Tuscany's DSU agency serves internationals — confirm on unifi.it.
+
+University of Rome Tor Vergata — Rome, Italy [NOT individually verified — income-based public fees]
+  Type: Rome's #2 public — internationally famous for ENGLISH-taught Medicine (IMAT) and the Global Governance bachelor
+  Known for: Medicine (English, IMAT), Economics, Engineering, Business
+  Fees: income-based via ISEE; DiSCo Lazio DSU grants apply — confirm on en.uniroma2.it.
+
+University of Milano-Bicocca — Milan, Italy [NOT individually verified — income-based public fees]
+  Type: Young Milan public — ENGLISH-taught Medicine (IMAT) and strong sciences at income-based fees
+  Known for: Medicine (English, IMAT), Psychology, Science, Economics
+  Fees: income-based via ISEE — a route into Milan far cheaper than the private options; confirm on en.unimib.it.
+
+University of Siena — Siena, Italy [NOT individually verified — income-based public fees]
+  Type: Historic small-city university (1240) — very cheap living, English-taught medicine and economics
+  Known for: Medicine (English, IMAT), Economics, Law, Biotechnology
+  Fees: income-based via ISEE; Siena living costs are among the lowest of Italy's famous university towns — confirm on en.unisi.it.
+
 ━━ French universities & grandes écoles (apply via Campus France for ~70 countries; differentiated fees €2,895/€3,941 with waivers now CAPPED — see France country block & scholarships #64–65) ━━
 
 Sciences Po — Paris (+ 6 regional campuses), France [VERIFIED — sciencespo.fr fees & Boutmy]
@@ -2900,6 +3008,26 @@ INSA Lyon — Lyon, France [NOT individually verified — public fees]
   Language: Mostly French (international sections ease the first years); some English master's
   Fees: Public-scale (~€600–4,000/yr by status — confirm on insa-lyon.fr) — the value route to a French engineering diploma. Eiffel partner.
 
+Université de Montpellier — Montpellier, France [NOT individually verified — differentiated public fees]
+  Type: Home of the world's OLDEST medical faculty (1220) — big science/health public in a sunny student city
+  Known for: Medicine, Pharmacy, Biology, Ecology
+  Fees: differentiated non-EU rates (€2,895 bachelor / €3,941 master, waiver caps apply); Montpellier is one of France's classic student cities — confirm on umontpellier.fr.
+
+Université Toulouse III – Paul Sabatier — Toulouse, France [NOT individually verified — differentiated public fees]
+  Type: Science/health public in Europe's aerospace capital (Airbus country)
+  Known for: Aerospace Engineering, Science, Medicine, Computer Science
+  Fees: differentiated non-EU rates; Toulouse offers aerospace-industry proximity at provincial living costs — confirm on univ-tlse3.fr.
+
+Université de Lille — Lille, France [NOT individually verified — differentiated public fees]
+  Type: One of France's largest publics — cheap northern student city an hour from Paris and Brussels
+  Known for: Medicine, Law, Science, Humanities
+  Fees: differentiated non-EU rates; Lille living costs are well below Paris — confirm on univ-lille.fr.
+
+Université de Bordeaux — Bordeaux, France [NOT individually verified — differentiated public fees]
+  Type: Major southwestern public — strong sciences and law in a famously livable city
+  Known for: Science, Law, Medicine, Economics
+  Fees: differentiated non-EU rates — confirm on u-bordeaux.fr.
+
 ━━ Hungarian universities (Stipendium Hungaricum full scholarships across all of them — deadline 15 Jan; see Hungary country block & scholarship #66) ━━
 
 Semmelweis University — Budapest, Hungary [PARTIALLY VERIFIED — medicine fees via official-derived sources]
@@ -2949,6 +3077,21 @@ Corvinus University of Budapest — Budapest, Hungary [NOT VERIFIED fees — con
   Known for: Business, Economics, International Relations, Data Science
   Language: Wide English-taught selection
   Fees/deadline: NOT verified — typically €3,000–€7,000/yr; Corvinus left the SH programme in favour of its OWN scholarship scheme in recent years — check which applies before planning. Confirm on uni-corvinus.hu.
+
+Hungarian University of Agriculture and Life Sciences (MATE) — Gödöllő (near Budapest), Hungary [NOT VERIFIED fees — major SH host]
+  Type: One of Europe's biggest agricultural universities — a major Stipendium Hungaricum host
+  Known for: Agriculture, Food Science, Environmental Science, Business
+  ★ FAO-Hungary joint scholarships fund agriculture students from developing countries here (alongside SH) — confirm current calls on uni-mate.hu.
+
+Óbuda University — Budapest, Hungary [NOT VERIFIED fees — SH partner]
+  Type: Budapest's applied engineering/IT university — accessible SH partner in the capital
+  Known for: Engineering, IT, Computer Science, Cybersecurity
+  Fees/deadline: NOT verified — confirm on uni-obuda.hu; SH deadline 15 January.
+
+Széchenyi István University — Győr, Hungary [NOT VERIFIED fees — SH partner]
+  Type: Engineering university in Audi's Hungarian manufacturing hub — industry-linked
+  Known for: Automotive Engineering, Engineering, Business, IT
+  Fees/deadline: NOT verified — confirm on sze.hu; SH deadline 15 January.
 
 ━━ Japanese universities (national tuition ¥535,800/yr standardised; MEXT full scholarships — see Japan country block & scholarship #67) ━━
 
@@ -3006,6 +3149,32 @@ Keio University — Tokyo, Japan [NOT individually verified — private fees]
   Known for: Economics, Business, Medicine, Law, PEARL/GIGA English programmes
   Language: PEARL (economics) and GIGA (informatics) English undergrad tracks
   Fees: Private (~¥1.3M–1.9M/yr); institutional scholarships exist — confirm on keio.ac.jp.
+
+Sophia University — Tokyo, Japan [NOT individually verified — private fees]
+  Type: The Jesuit international pioneer — its English-taught Faculty of Liberal Arts (FLA) has run for decades
+  Known for: Liberal Arts, International Relations, Languages, Business
+  Language: FLA fully English; many other programmes Japanese-taught
+  Fees: Private scale — confirm on sophia.ac.jp.
+
+International Christian University (ICU) — Tokyo, Japan [NOT individually verified — private fees]
+  Type: Fully bilingual (English/Japanese) liberal-arts college — small classes, generous need-based aid for internationals
+  Known for: Liberal Arts, Languages, Political Science, Science
+  Fees: Private scale with meaningful financial aid — confirm on icu.ac.jp.
+
+University of Tsukuba — Tsukuba (Science City), Japan [NOT individually verified — national fee scale]
+  Type: National university with one of Japan's widest ENGLISH degree lineups — MEXT-heavy and very international
+  Known for: Science, Computer Science, Medicine, Education
+  Fees: National standard ¥535,800/yr (~$3,600) + ¥282,000 admission fee (verified nationally). Confirm English-programme specifics on tsukuba.ac.jp.
+
+Hiroshima University — Hiroshima, Japan [NOT individually verified — national fee scale]
+  Type: Major national with strong education heritage and English-taught tracks
+  Known for: Education, Engineering, Medicine, Humanities
+  Fees: National standard ¥535,800/yr + admission fee. Confirm on hiroshima-u.ac.jp.
+
+Kobe University — Kobe, Japan [NOT individually verified — national fee scale]
+  Type: Port-city national famous for business, economics and maritime studies
+  Known for: Business, Economics, Law, Engineering
+  Fees: National standard ¥535,800/yr + admission fee. Confirm on kobe-u.ac.jp.
 
 Ritsumeikan Asia Pacific University (APU) — Beppu, Japan [PARTIALLY VERIFIED — tuition reductions common]
   Type: Japan's international outlier — HALF the student body is international (90+ countries), fully bilingual campus, no Japanese needed to start
@@ -3072,6 +3241,31 @@ UNIST (Ulsan National Institute of Science and Technology) — Ulsan, South Kore
   Language: FULLY English-taught
   Fees/funding: National-institute scale with generous scholarships for internationals — confirm on unist.ac.kr. A smart KAIST alternative.
 
+Pusan National University (PNU) — Busan, South Korea [NOT individually verified — national fee scale]
+  Type: Korea's #2 national university — coastal big-city life at national-scale fees (₩2M–5M/semester)
+  Known for: Engineering, Business, Marine Science, Medicine
+  Notes: GKS partner; Busan living is notably cheaper than Seoul. Confirm on pusan.ac.kr.
+
+Kyungpook National University (KNU) — Daegu, South Korea [NOT individually verified — national fee scale]
+  Type: Major regional national — cheap fees, strong IT/electronics ties (Samsung country)
+  Known for: Engineering, IT, Agriculture, Medicine
+  Notes: GKS partner; Daegu is one of Korea's cheapest big cities. Confirm on en.knu.ac.kr.
+
+Chonnam National University (CNU) — Gwangju, South Korea [NOT individually verified — national fee scale]
+  Type: Big southwestern national university
+  Known for: Agriculture, Engineering, Medicine, Humanities
+  Notes: The regional GKS Type B route often means BETTER scholarship odds than Seoul universities — a smart play for GKS hunters. Confirm on global.jnu.ac.kr.
+
+Sogang University — Seoul, South Korea [NOT individually verified — private fee scale]
+  Type: Elite Seoul private just behind SKY — strong business/economics with real English offerings
+  Known for: Business, Economics, Media, Computer Science
+  Notes: Private fee scale (₩4M–8M/semester); GKS partner. Confirm on sogang.ac.kr.
+
+Hankuk University of Foreign Studies (HUFS) — Seoul, South Korea [NOT individually verified — private fee scale]
+  Type: Korea's foreign-studies specialist (45+ languages taught) — famously international-friendly
+  Known for: Languages, International Relations, Translation, Business
+  Notes: A classic GKS host with deep experience of international students. Confirm on hufs.ac.kr.
+
 ━━ Polish universities (English programmes €2,000–6,000/yr; medicine €10,000–16,000/yr; Banach NAWA full scholarships — see Poland country block & scholarship #69) ━━
 
 University of Warsaw (UW) — Warsaw, Poland [NOT individually verified — see country fee ranges]
@@ -3124,6 +3318,21 @@ Wroclaw Medical University — Wrocław, Poland [PARTIALLY VERIFIED — ~€13,4
   Type: Established English-division medical school popular with international students
   Known for: Medicine (English MD), Dentistry
   Fees: General medicine ~PLN 28,850/semester ≈ €13,400/yr (official-derived) — confirm on umw.edu.pl.
+
+Medical University of Lodz — Łódź, Poland [PARTIALLY VERIFIED — ~€15,470/yr official-derived]
+  Type: Poland's largest English-division medical school
+  Known for: Medicine (English MD), Dentistry, Pharmacy
+  Fees: MD ~€15,470/yr (official-derived — see Poland country block) — confirm on en.umed.pl.
+
+Wrocław University of Science and Technology (WUST) — Wrocław, Poland [NOT VERIFIED fees]
+  Type: Big south-western tech university — engineering/IT in one of Poland's liveliest student cities
+  Known for: Engineering, Computer Science, Architecture, Electrical Engineering
+  Fees/deadline: NOT verified — English programmes typically €2,000–6,000/yr; confirm on pwr.edu.pl.
+
+SGH Warsaw School of Economics — Warsaw, Poland [NOT VERIFIED fees]
+  Type: Poland's top economics & business school — CEMS member
+  Known for: Economics, Business, Finance, Data Science
+  Fees/deadline: NOT verified — confirm on sgh.waw.pl.
 
 ━━ Cypriot universities (TWO systems — EU Republic vs unrecognised North; see the Cyprus country block warnings before recommending anything) ━━
 
