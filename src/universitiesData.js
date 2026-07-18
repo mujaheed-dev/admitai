@@ -5037,21 +5037,14 @@ export const UNIVERSITIES = [
   // GKS full scholarships (tuition + ₩900k–1,380k/month + flights + Korean
   // year) run on embassy (~Sep–Oct UG) and university tracks; D-10 job-seeker
   // visa after graduation (up to 2 years from a D-2).
+  // Hanyang, Kyungpook, Chonnam, Sogang and HUFS stay unverified: their fee
+  // figures came only from aggregators (no official page confirmed). Rankings added.
   ...[
-    ['snu', 'Seoul National University (SNU)', 'Seoul', 'Korea\'s #1 — the S of "SKY"', ['Engineering', 'Business', 'Medicine', 'Law'], 'https://en.snu.ac.kr/'],
-    ['postech', 'POSTECH', 'Pohang', 'Elite private STEM institute — tiny classes, graduate study usually funded', ['Physics', 'Materials Science', 'Chemical Engineering', 'Computer Science'], 'https://international.postech.ac.kr/'],
-    ['yonsei', 'Yonsei University', 'Seoul', 'Top private (SKY) — Underwood International College is fully English-taught (₩4.3M–8.7M/semester for internationals)', ['Liberal Arts', 'Business', 'Medicine', 'Korean Language Institute'], 'https://www.yonsei.ac.kr/en_sc/'],
-    ['korea-u', 'Korea University', 'Seoul', 'Top private (SKY) — famous alumni network', ['Business', 'Law', 'Political Science', 'Media'], 'https://www.korea.edu/'],
-    ['skku', 'Sungkyunkwan University (SKKU)', 'Seoul / Suwon', '600-year-old university reborn with SAMSUNG backing — corporate pipelines', ['Semiconductor Engineering', 'Business', 'Medicine', 'Software'], 'https://www.skku.edu/eng/'],
-    ['hanyang', 'Hanyang University', 'Seoul', 'Engineering employment powerhouse', ['Engineering', 'Architecture', 'Business', 'Theatre & Film'], 'https://www.hanyang.ac.kr/web/eng'],
-    ['kyunghee', 'Kyung Hee University', 'Seoul', 'Large private with strong international orientation', ['Hospitality & Tourism', 'Korean Medicine', 'International Studies', 'Media'], 'https://www.khu.ac.kr/eng/user/main/view.do'],
-    ['ewha', 'Ewha Womans University', 'Seoul', "The world's largest WOMEN's university — prestigious international programmes", ['International Studies', 'Business', 'Medicine', 'Education'], 'https://www.ewha.ac.kr/ewhaen/index.do'],
-    ['unist', 'UNIST', 'Ulsan', 'Young national STEM institute — fully English like KAIST, easier admission, generous scholarships', ['Battery & Energy Science', 'Materials Science', 'AI & Computer Science', 'Biomedical Engineering'], 'https://www.unist.ac.kr/eng/'],
-    ['pusan-nu', 'Pusan National University (PNU)', 'Busan', "Korea's #2 national university — coastal big-city life at national-scale fees; GKS partner", ['Engineering', 'Business', 'Marine Science', 'Medicine'], 'https://www.pusan.ac.kr/eng/Main.do'],
-    ['kyungpook-nu', 'Kyungpook National University (KNU)', 'Daegu', 'Major regional national — cheap fees, strong IT/electronics ties (Samsung country); GKS partner', ['Engineering', 'IT', 'Agriculture', 'Medicine'], 'https://en.knu.ac.kr/'],
-    ['chonnam-nu', 'Chonnam National University (CNU)', 'Gwangju', 'Big southwestern national — regional GKS Type B route often means better scholarship odds', ['Agriculture', 'Engineering', 'Medicine', 'Humanities'], 'https://global.jnu.ac.kr/'],
-    ['sogang', 'Sogang University', 'Seoul', 'Elite Seoul private just behind SKY — strong business/economics with real English offerings', ['Business', 'Economics', 'Media', 'Computer Science'], 'https://www.sogang.ac.kr/en/home'],
-    ['hufs', 'Hankuk University of Foreign Studies (HUFS)', 'Seoul', "Korea's foreign-studies specialist (45+ languages taught) — famously international-friendly", ['Languages', 'International Relations', 'Translation', 'Business'], 'https://www.hufs.ac.kr/'],
+    ['hanyang', 'Hanyang University', 'Seoul', '#155 QS World 2027 · engineering employment powerhouse', ['Engineering', 'Architecture', 'Business', 'Theatre & Film'], 'https://www.hanyang.ac.kr/web/eng'],
+    ['kyungpook-nu', 'Kyungpook National University (KNU)', 'Daegu', '#481 QS World 2027 · major regional national — cheap fees, strong IT/electronics ties (Samsung country); GKS partner. Generous TOPIK scholarships (up to 80–100% off)', ['Engineering', 'IT', 'Agriculture', 'Medicine'], 'https://en.knu.ac.kr/'],
+    ['chonnam-nu', 'Chonnam National University (CNU)', 'Gwangju', '~#901 QS World 2027 band · big southwestern national — regional GKS Type B route often means better scholarship odds; full-tuition international scholarship offered', ['Agriculture', 'Engineering', 'Medicine', 'Humanities'], 'https://global.jnu.ac.kr/'],
+    ['sogang', 'Sogang University', 'Seoul', '#494 QS World 2027 · elite Seoul private just behind SKY — strong business/economics with real English offerings', ['Business', 'Economics', 'Media', 'Computer Science'], 'https://www.sogang.ac.kr/en/home'],
+    ['hufs', 'Hankuk University of Foreign Studies (HUFS)', 'Seoul', "Korea's foreign-studies specialist (45+ languages taught) — famously international-friendly (QS World rank not confirmed)", ['Languages', 'International Relations', 'Translation', 'Business'], 'https://www.hufs.ac.kr/'],
   ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
     id,
     name,
@@ -5065,7 +5058,7 @@ export const UNIVERSITIES = [
     entryGrades: 'Competitive — document-based international admission; ~80%+ averages for GKS competitiveness.',
     tests: 'TOPIK for Korean-taught; IELTS/TOEFL for English tracks — confirm per programme.',
     acceptance: 'Competitive — varies by track',
-    tuitionIntl: 'Not individually verified — national universities ₩2M–5M/semester, privates ₩4M–8M/semester (official-derived ranges). Confirm on the official site.',
+    tuitionIntl: 'NOT VERIFIED — international students pay the same as domestic (national universities ~₩2M–5M/semester, privates ~₩4M–8M), but the exact figure came only from aggregators. Confirm on the official site.',
     living: 'Seoul ~₩800,000–1,500,000/month; regional cities notably cheaper.',
     deadline: 'International admissions typically ~Sep–Nov (spring) and ~Mar–May (autumn); GKS embassy track ~Sep–Oct for UG — confirm.',
     scholarshipsHere: 'GKS full scholarship (tuition + ₩900k–1,380k/month + flights + funded Korean year — embassy or university track; Type B regional universities have better odds). D-10 job-seeker visa after graduation.',
@@ -5073,6 +5066,40 @@ export const UNIVERSITIES = [
     sourceName: 'Official site',
     sourceUrl,
     verified: false,
+  })),
+
+  // ── South Korea — verified from official pages (fees = same as domestic) ──
+  ...[
+    ['snu', 'Seoul National University (SNU)', 'Seoul', '#38 QS World 2027 (highest in Korea) — the S of "SKY"', ['Engineering', 'Business', 'Medicine', 'Law'], 'NATIONAL university — international students pay the same as domestic: ~KRW 2.44M–3.92M/semester by college (≈ KRW 4.9M–7.8M/yr, ~$3,600–$5,800 USD); Humanities lower, Engineering/Science/Music higher.', 'https://en.snu.ac.kr/academics/resources/registration'],
+    ['postech', 'POSTECH', 'Pohang', '#106 QS World 2027 · elite STEM institute — tiny classes', ['Physics', 'Materials Science', 'Chemical Engineering', 'Computer Science'], 'Sticker ~KRW 5.58M/yr (~$4,100 USD) — but ALL international freshmen receive a 100% tuition waiver plus airfare and living/settlement allowances (International Track scholarships, auto-granted), so it is effectively free.', 'https://www.postech.ac.kr/eng/admission-aid/scholarship_information.do'],
+    ['yonsei', 'Yonsei University', 'Seoul', '#42 QS World 2027 · top private (SKY) — Underwood International College is fully English-taught', ['Liberal Arts', 'Business', 'Medicine', 'Korean Language Institute'], 'PRIVATE — ~KRW 8.42M/semester at Underwood International College (2025), ≈ KRW 16.8M/yr (~$12,500 USD); varies by college.', 'https://www.yonsei.ac.kr/sites/en_sc/'],
+    ['korea-u', 'Korea University', 'Seoul', '#52 QS World 2027 · top private (SKY) — famous alumni network', ['Business', 'Law', 'Political Science', 'Media'], 'PRIVATE — ~KRW 5.8M–7.8M/semester by college, ≈ KRW 11.6M–15.6M/yr (~$8,600–$11,600 USD).', 'https://oia.korea.ac.kr/oia/under/Tuition.do'],
+    ['skku', 'Sungkyunkwan University (SKKU)', 'Seoul / Suwon', '#108 QS World 2027 · 600-year-old university reborn with SAMSUNG backing — corporate pipelines', ['Semiconductor Engineering', 'Business', 'Medicine', 'Software'], 'PRIVATE — ~KRW 5.09M–6.61M/semester (2024), ≈ KRW 10.2M–13.2M/yr (~$7,500–$9,800 USD), plus a one-time KRW 150,000 admission fee; 2025 likely slightly higher.', 'https://www.skku.edu/eng/International/StudySKKU/BulletinBoard.do'],
+    ['kyunghee', 'Kyung Hee University', 'Seoul', '#309 QS World 2027 · large private with strong international orientation', ['Hospitality & Tourism', 'Korean Medicine', 'International Studies', 'Media'], 'PRIVATE — ~KRW 4.30M–5.80M/semester (2024), ≈ KRW 8.6M–11.6M/yr (~$6,400–$8,600 USD); admission fee KRW 180,000 (250,000 for arts).', 'https://www.khu.ac.kr/eng/user/contents/view.do?menuNo=300152'],
+    ['ewha', 'Ewha Womans University', 'Seoul', "#488 QS World 2027 · the world's largest WOMEN's university — prestigious international programmes", ['International Studies', 'Business', 'Medicine', 'Education'], 'PRIVATE (women only) — ~KRW 7.65M–12.90M/semester (2024), ≈ KRW 15.3M–25.8M/yr (~$11,300–$19,100 USD); the upper band is science/medical majors; registration fee KRW 150,000.', 'http://oia.ewha.ac.kr/oia/1144/subview.do'],
+    ['unist', 'UNIST', 'Ulsan', '#299 QS World 2027 · young national STEM institute — fully English like KAIST, easier admission, generous scholarships', ['Battery & Energy Science', 'Materials Science', 'AI & Computer Science', 'Biomedical Engineering'], 'NATIONAL science-tech institute — the sticker fee is not published, but international undergraduates are typically covered by Global Dream / Global Uni-Star scholarships (tuition + monthly stipend + meals), so most study effectively tuition-free. Application fee KRW 50,000.', 'https://www.unist.ac.kr/eng/'],
+    ['pusan-nu', 'Pusan National University (PNU)', 'Busan', "#449 QS World 2027 · Korea's #2 national university — coastal big-city life at national-scale fees; GKS partner", ['Engineering', 'Business', 'Marine Science', 'Medicine'], 'NATIONAL university — low fees: tuition ~KRW 1.50M–2.25M/semester (≈ KRW 3.0M–4.5M/yr, ~$2,200–$3,300 USD) plus a KRW 378K–412K admission fee.', 'https://gsis.pusan.ac.kr/gsiseng/52063/subview.do'],
+  ].map(([id, name, city, ranking, knownFor, tuitionIntl, sourceUrl]) => ({
+    id,
+    name,
+    country: 'South Korea',
+    city,
+    flag: '🇰🇷',
+    level: 'Both',
+    ranking,
+    knownFor,
+    language: 'Mostly Korean-taught (TOPIK 3–4 to enter, higher to graduate); English tracks where noted — confirm per programme.',
+    entryGrades: 'Competitive — document-based international admission; ~80%+ averages for GKS competitiveness.',
+    tests: 'TOPIK for Korean-taught; IELTS/TOEFL for English tracks — confirm per programme.',
+    acceptance: 'Competitive — varies by track (acceptance rates not officially published)',
+    tuitionIntl: tuitionIntl + ' Fees are billed per semester (×2 for the year).',
+    living: 'Seoul ~₩800,000–1,500,000/month; regional cities notably cheaper.',
+    deadline: 'International admissions typically ~Sep–Nov (spring) and ~Mar–May (autumn); GKS embassy track ~Sep–Oct for UG — confirm.',
+    scholarshipsHere: 'GKS full scholarship (tuition + ₩900k–1,380k/month + flights + funded Korean year — embassy or university track; Type B regional universities have better odds). D-10 job-seeker visa after graduation.',
+    scholarships: [],
+    sourceName: 'Official university page',
+    sourceUrl,
+    verified: true,
   })),
 
   // ── LIGHT ENTRIES (Poland) ───────────────────────────────────────────────
