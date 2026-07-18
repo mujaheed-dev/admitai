@@ -4611,13 +4611,13 @@ export const UNIVERSITIES = [
     city: 'Milan',
     flag: '🇮🇹',
     level: 'Both',
-    ranking: "Italy's elite private business university — Europe's top tier for economics and finance",
+    ranking: "#134 QS World 2026 · Italy's elite private business university — Europe's top tier for economics and finance",
     knownFor: ['Economics', 'Finance', 'Management', 'Data Science', 'Law'],
     language: 'Full English-taught tracks at all levels.',
     entryGrades: 'Highly competitive — Bocconi test or SAT + strong school record; confirm per programme.',
     tests: 'Bocconi admission test or SAT; IELTS/TOEFL — confirm on unibocconi.it.',
     acceptance: 'Highly competitive',
-    tuitionIntl: 'Income-based ~€3,500–€14,000+/yr assessed via ISEE (a flat higher rate can apply to internationals) — far above public universities, but with genuine aid attached.',
+    tuitionIntl: 'PRIVATE — a flat ~€17,000/yr for first-year Bachelor 2026-27 (~$18,500 USD), verified on the official fees page; master programmes are higher (e.g. MFin ~€18,550). Income-based reductions apply mainly to EU students, so non-EU typically pay the full fee — but genuine need-based aid is attached (see the ISU package). NOT the public ISEE sliding scale.',
     living: 'Milan costs (~€1,000–1,400/month); ISU package includes dorm discounts and a daily free meal.',
     deadline: 'Admission rounds run autumn–spring; apply for aid via the single "Bocconi4Access to Education" application — confirm on unibocconi.it.',
     scholarshipsHere: 'ISU Bocconi need-based package (verified): full/partial waiver + cash up to €8,000/yr + dorm discounts + one free meal/day. Merit scholarships are automatic for strong admits. Also an Invest Your Talent partner.',
@@ -4632,9 +4632,9 @@ export const UNIVERSITIES = [
         verified: true,
       },
     ],
-    sourceName: 'Bocconi University (official funding pages)',
-    sourceUrl: 'https://www.unibocconi.it/en/applying-bocconi/bachelor-and-law-programs/funding',
-    verified: false,
+    sourceName: 'Bocconi University — Bachelor Fees (official)',
+    sourceUrl: 'https://www.unibocconi.it/en/applying-bocconi/bachelor-and-law-programs/fees',
+    verified: true,
   },
 
   // ── LIGHT ENTRIES (Italy) ────────────────────────────────────────────────
@@ -4642,20 +4642,12 @@ export const UNIVERSITIES = [
   // and NOT individually verified. Shared verified facts: Universitaly
   // pre-enrolment is mandatory; DSU regional grants (waiver + ~€6–8k cash +
   // housing + meals) for low-income students; English medicine via IMAT.
+  // Naples and Bicocca stay unverified: Naples' official fee band came only from
+  // aggregators (official page not confirmed) and Bicocca does not publish a clean
+  // min–max band (amounts are only via its fee simulator).
   ...[
-    ['sapienza', 'Sapienza University of Rome', 'Rome', "Europe's largest university — world #1 for Classics & Archaeology", ['Classics & Archaeology', 'Medicine', 'Engineering', 'Physics'], 'https://www.uniroma1.it/en/'],
-    ['padua', 'University of Padua', 'Padua', 'Historic research university (1222) — Galileo taught here', ['Medicine', 'Psychology', 'Astronomy', 'Data Science'], 'https://www.unipd.it/en/'],
-    ['unimi', 'University of Milan (Statale)', 'Milan', "Milan's big public comprehensive university", ['Medicine', 'Law', 'Political Science', 'Biotechnology'], 'https://www.unimi.it/en'],
-    ['turin-u', 'University of Turin', 'Turin', 'Large historic public university in an affordable student city', ['Medicine', 'Law', 'Economics', 'Veterinary Medicine'], 'https://en.unito.it/'],
-    ['polito', 'Politecnico di Torino (PoliTo)', 'Turin', "Engineering-focused and very international — English-taught bachelor's too (rare in Italy)", ['Automotive & Aerospace Engineering', 'Architecture', 'Computer Engineering'], 'https://www.polito.it/en'],
-    ['pisa', 'University of Pisa', 'Pisa', 'Historic university in a compact, cheap student city', ['Physics', 'Computer Science', 'Mathematics', 'Engineering'], 'https://www.unipi.it/index.php/english'],
-    ['naples', 'University of Naples Federico II', 'Naples', "One of the world's oldest state universities (1224) — the south's flagship, cheapest big-city living", ['Engineering', 'Medicine', 'Agriculture', 'Computer Science'], 'https://www.international.unina.it/'],
-    ['pavia', 'University of Pavia', 'Pavia', 'Collegiate university town near Milan — an IMAT medicine favourite', ['Medicine', 'Pharmacy', 'Engineering', 'Physics'], 'https://web.unipv.it/en/'],
-    ['trento', 'University of Trento', 'Trento', 'Small, consistently top-ranked, in the Alps — reliable scholarship culture for internationals', ['Computer Science', 'Physics', 'Cognitive Science', 'Sociology'], 'https://www.unitn.it/en'],
-    ['florence', 'University of Florence (UniFi)', 'Florence', 'Big historic public in the Renaissance capital — arts, architecture and design heritage', ['Architecture', 'Humanities', 'Design', 'Agriculture'], 'https://www.unifi.it/en'],
-    ['tor-vergata', 'University of Rome Tor Vergata', 'Rome', "Rome's #2 public — internationally famous for English-taught Medicine (IMAT) and Global Governance", ['Medicine', 'Economics', 'Engineering', 'Business'], 'https://en.uniroma2.it/'],
-    ['bicocca', 'University of Milano-Bicocca', 'Milan', 'Young Milan public — English-taught Medicine (IMAT) and strong sciences at income-based fees', ['Medicine', 'Psychology', 'Science', 'Economics'], 'https://en.unimib.it/'],
-    ['siena', 'University of Siena', 'Siena', 'Historic small-city university (1240) — very cheap living, English-taught medicine and economics', ['Medicine', 'Economics', 'Law', 'Biotechnology'], 'https://en.unisi.it/'],
+    ['naples', 'University of Naples Federico II', 'Naples', "#401 QS World 2027 · one of the world's oldest state universities (1224) — the south's flagship, cheapest big-city living", ['Engineering', 'Medicine', 'Agriculture', 'Computer Science'], 'https://www.international.unina.it/'],
+    ['bicocca', 'University of Milano-Bicocca', 'Milan', '#542 QS World 2026 · young Milan public — English-taught Medicine (IMAT) and strong sciences at income-based fees', ['Medicine', 'Psychology', 'Science', 'Economics'], 'https://en.unimib.it/'],
   ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
     id,
     name,
@@ -4669,7 +4661,7 @@ export const UNIVERSITIES = [
     entryGrades: 'Varies by programme; English medicine requires the IMAT exam (register ~July, sit ~September).',
     tests: 'IELTS/TOEFL for English programmes (many IMAT universities skip it); Italian B2 for Italian-taught — confirm per programme.',
     acceptance: 'Varies by programme — IMAT medicine is seat-limited and competitive',
-    tuitionIntl: 'Income-based public fees €0–~€4,000/yr via ISEE Parificato (below ~€13,000–26,000 ISEE many charge zero/minimum) — not individually verified; confirm on the official site. Non-EU applicants pre-enrol via Universitaly (mandatory, verified).',
+    tuitionIntl: 'NOT VERIFIED — income-based public fee (ISEE, roughly €0–~€4,000/yr) but the exact official band could not be confirmed (Naples: aggregator-only; Bicocca: amounts only via the fee simulator). Non-EU non-submitters pay the maximum. Confirm on the official fee page/simulator. Non-EU applicants pre-enrol via Universitaly (mandatory, verified).',
     living: 'Roughly €700–€1,200/month by city; DSU regional grants (fee waiver + up to ~€6,000–8,000/yr + housing + meals) are open to low-income internationals — regional deadlines ~Jul–Sep, separate from admission.',
     deadline: 'Programme windows vary (~spring for autumn entry); IMAT registration ~July. Confirm on the official site and Universitaly.',
     scholarshipsHere: 'DSU regional grant (see the Italy scholarship entries), MAECI (~€900/month) and Invest Your Talent (waiver + €900/month + guaranteed internship, selected countries) all apply — plus per-university awards.',
@@ -4677,6 +4669,42 @@ export const UNIVERSITIES = [
     sourceName: 'Official site',
     sourceUrl,
     verified: false,
+  })),
+
+  // ── Italy — verified from official fee pages (income-based / ISEE) ────────
+  ...[
+    ['sapienza', 'Sapienza University of Rome', 'Rome', '#111 QS World 2027 · Europe\'s largest university — world #1 for Classics & Ancient History', ['Classics & Archaeology', 'Medicine', 'Engineering', 'Physics'], 'Income-based (ISEE): official band ~€300–€1,500/yr (~$325–$1,625 USD); non-EU who don\'t file ISEE/ISEE-Parificato pay the max bracket. File ISEE on Infostud (~Dec) or the max applies.', 'https://www.uniroma1.it/en/pagina/tuition-fees-and-benefits'],
+    ['padua', 'University of Padua', 'Padua', '#204 QS World 2027 · historic research university (1222) — Galileo taught here', ['Medicine', 'Psychology', 'Astronomy', 'Data Science'], 'Non-EU residing abroad pay a FIXED (non-recalculable) band: ~€2,790/yr (humanities) or ~€2,990/yr (scientific) (~$3,000–$3,250 USD), reduced to ~€930–€997 for low-HDI countries. No-tax area up to ISEE €30,000 for those who file.', 'https://www.unipd.it/en/contribuzione-studentesca'],
+    ['unimi', 'University of Milan (Statale)', 'Milan', "#276 QS World 2026 · Milan's big public comprehensive university", ['Medicine', 'Law', 'Political Science', 'Biotechnology'], 'Income-based (ISEE) all-inclusive fee ~€0–€4,000/yr (~$0–$4,350 USD) + €140 regional tax + €16 stamp; non-EU non-submitters pay the max. Plus (2025/26) 60 merit scholarships of €8,000 and 100 fee waivers for top international master entrants.', 'https://www.unimi.it/en/study/bachelor-and-master-study/fees-and-how-pay-them/university-fees'],
+    ['turin-u', 'University of Turin', 'Turin', '#408 QS World 2026 · large historic public university in an affordable student city', ['Medicine', 'Law', 'Economics', 'Veterinary Medicine'], 'Income-based ~€156–€2,800/yr (~$170–$3,050 USD). Non-EU residing abroad may take a reduction based on their home country\'s GDP-per-capita (PPP) INSTEAD of filing ISEE-Parificato.', 'https://en.unito.it/studying-unito/tuition-fees/tuition-fees-international-students'],
+    ['polito', 'Politecnico di Torino (PoliTo)', 'Turin', "#206 QS World 2027 · top-tier Italian engineering — English-taught bachelor's too (rare in Italy)", ['Automotive & Aerospace Engineering', 'Architecture', 'Computer Engineering'], 'Non-EU fee = the maximum scaled by the home country\'s GDP-per-capita (PPP): a floor of €600/yr up to ~€3,500–€4,000/yr (~$650–$4,350 USD). An official fee simulator is available.', 'https://www.polito.it/en/education/services-and-life-at-politecnico/right-to-education-and-tuition-fees/tuition-fees'],
+    ['pisa', 'University of Pisa', 'Pisa', '#343 QS World 2026 · historic university in a compact, cheap student city', ['Physics', 'Computer Science', 'Mathematics', 'Engineering'], 'Income-based ~€446–€2,900/yr (~$485–$3,150 USD). From 2025/26 non-EU with foreign income are auto-assigned a flat country coefficient × the €2,900 max, or may instead request an ISEEU-Parificato reduction.', 'https://www.unipi.it/en/education/registration/enrolment-and-registration/enrolment-for-international-students/university-fees-and-scholarships/'],
+    ['pavia', 'University of Pavia', 'Pavia', '#423 QS World 2026 · collegiate university town near Milan — an IMAT medicine favourite', ['Medicine', 'Pharmacy', 'Engineering', 'Physics'], 'Non-EU residing abroad pay a FLAT rate (no financial documents needed) set by citizenship + study area, in 3 brackets: ~€400–€4,500/yr (~$435–$4,900 USD) including the €156 fixed tax. Tuition-fee waivers for international students are available.', 'https://en.unipv.it/en/education/bachelors-and-masters-degree-programs/fees-and-funding/fees/prospective-students/non-eu-students'],
+    ['trento', 'University of Trento', 'Trento', '#438 QS World 2027 · small, consistently top-ranked, in the Alps — reliable scholarship culture for internationals', ['Computer Science', 'Physics', 'Cognitive Science', 'Sociology'], 'UNUSUAL: non-EU residing abroad are assessed by MERIT (admission score), not income — the first-year fee is set by admission ranking and later years by academic performance; the overall range runs ~€146–€3,345/yr (~$160–$3,600 USD).', 'https://www.unitn.it/en/study/fees-scholarships-accommodation/tuition-fees'],
+    ['florence', 'University of Florence (UniFi)', 'Florence', '#404 QS World 2026 · big historic public in the Renaissance capital — arts, architecture and design heritage', ['Architecture', 'Humanities', 'Design', 'Agriculture'], 'Income-based ~€156–€3,500/yr (~$170–$3,800 USD). Non-EU residing abroad are assigned a NOTIONAL ISEE by their country\'s World Bank income group; the first installment is a fixed €156 and the second is variable.', 'https://www.unifi.it/en/study-us/access-and-enrolment/fees-and-charges'],
+    ['tor-vergata', 'University of Rome Tor Vergata', 'Rome', "#342 QS World 2027 · Rome's #2 public — internationally famous for English-taught Medicine (IMAT) and Global Governance", ['Medicine', 'Economics', 'Engineering', 'Business'], 'Income-based (ISEE) across 6 contribution classes: ~€156–€2,500/yr (~$170–$2,700 USD) + ~€140 regional tax + €16 stamp. Flat reduced fees apply for students from developing countries who cannot file ISEE.', 'https://web.uniroma2.it/en/percorso/admissions/sezione/tuition_fees'],
+    ['siena', 'University of Siena', 'Siena', '#572 QS World 2027 · historic small-city university (1240) — very cheap living, English-taught medicine and economics', ['Medicine', 'Economics', 'Law', 'Biotechnology'], 'Income-based (ISEE-U Parificato) ~€156–€3,500/yr (~$170–$3,800 USD), set by country of origin + course; non-submitters pay the max. An online fee simulator is available on the admissions portal.', 'https://apply.unisi.it/contents/content/8-tuition-fees-and-costs'],
+  ].map(([id, name, city, ranking, knownFor, tuitionIntl, sourceUrl]) => ({
+    id,
+    name,
+    country: 'Italy',
+    city,
+    flag: '🇮🇹',
+    level: 'Both',
+    ranking,
+    knownFor,
+    language: "Mostly Italian-taught bachelor's; English-taught master's and IMAT medicine where noted — confirm per programme.",
+    entryGrades: 'Varies by programme; English medicine requires the IMAT exam (register ~July, sit ~September).',
+    tests: 'IELTS/TOEFL for English programmes (many IMAT universities skip it); Italian B2 for Italian-taught — confirm per programme.',
+    acceptance: 'Varies by programme — IMAT medicine is seat-limited and competitive',
+    tuitionIntl: tuitionIntl + ' Non-EU applicants pre-enrol via Universitaly (mandatory, verified).',
+    living: 'Roughly €700–€1,200/month by city; DSU regional grants (fee waiver + up to ~€6,000–8,000/yr + housing + meals) are open to low-income internationals — regional deadlines ~Jul–Sep, separate from admission.',
+    deadline: 'Programme windows vary (~spring for autumn entry); IMAT registration ~July. Confirm on the official site and Universitaly.',
+    scholarshipsHere: 'DSU regional grant (see the Italy scholarship entries), MAECI (~€900/month) and Invest Your Talent (waiver + €900/month + guaranteed internship, selected countries) all apply — plus per-university awards.',
+    scholarships: [],
+    sourceName: 'Official university fee page',
+    sourceUrl,
+    verified: true,
   })),
 
   {
