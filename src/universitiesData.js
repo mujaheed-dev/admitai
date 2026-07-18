@@ -5617,32 +5617,33 @@ export const UNIVERSITIES = [
   // SEK 80,000–300,000/yr by field (verified ranges). SI Scholarship: full
   // tuition + SEK 12,000/mo — but only if you applied to programmes by 15 Jan
   // (the SI portal opens ~2 weeks in February). ~12-month job-seeking permit.
+  // ── Sweden — verified from official fee pages (EU/EEA free; non-EU by field) ──
   ...[
-    ['kth', 'KTH Royal Institute of Technology', 'Stockholm', 'Sweden', '🇸🇪', "Sweden's top technical university (~SEK 155,000–195,000/yr engineering)", ['Engineering', 'Computer Science', 'Architecture', 'Energy'], 'https://www.kth.se/en/studies'],
-    ['lund', 'Lund University', 'Lund', 'Sweden', '🇸🇪', "Sweden's most international-friendly comprehensive — classic student town", ['Engineering', 'International Relations', 'Law', 'Life Sciences'], 'https://www.lunduniversity.lu.se/'],
-    ['uppsala', 'Uppsala University', 'Uppsala', 'Sweden', '🇸🇪', "The Nordics' oldest university (1477)", ['Science', 'Pharmacy', 'Law', 'Peace & Conflict Studies'], 'https://www.uu.se/en'],
-    ['stockholm-u', 'Stockholm University', 'Stockholm', 'Sweden', '🇸🇪', 'Big capital-city university — sciences and social sciences', ['Social Sciences', 'Law', 'Environmental Science', 'Data Science'], 'https://www.su.se/english/'],
-    ['chalmers', 'Chalmers University of Technology', 'Gothenburg', 'Sweden', '🇸🇪', 'Elite technical university — Avancez/IPOET scholarships give 75% reductions to top applicants', ['Automotive Engineering', 'Architecture', 'Computer Science', 'Shipping'], 'https://www.chalmers.se/en/education/'],
-    ['gothenburg', 'University of Gothenburg', 'Gothenburg', 'Sweden', '🇸🇪', 'Large comprehensive university sharing the city with Chalmers', ['Business', 'Social Sciences', 'Arts', 'Medicine'], 'https://www.gu.se/en'],
-    ['linkoping', 'Linköping University', 'Linköping', 'Sweden', '🇸🇪', 'Innovation-oriented younger university — strong engineering/IT', ['Computer Science', 'Engineering', 'Cognitive Science'], 'https://liu.se/en'],
-    ['umea', 'Umeå University', 'Umeå', 'Sweden', '🇸🇪', "Northern hub — world-renowned Institute of Design, CRISPR heritage, cheaper living", ['Design', 'Life Sciences', 'Computer Science'], 'https://www.umu.se/en/'],
-    ['malmo', 'Malmö University', 'Malmö', 'Sweden', '🇸🇪', 'Young urban university minutes from Copenhagen — one of Sweden\'s most international student bodies', ['Media', 'IT', 'Social Sciences', 'Design'], 'https://mau.se/en/'],
-    ['orebro', 'Örebro University', 'Örebro', 'Sweden', '🇸🇪', 'Mid-size university with medicine — cheaper living than the big-city options', ['Medicine', 'Psychology', 'Business', 'Media'], 'https://www.oru.se/english/'],
-    ['jonkoping', 'Jönköping University', 'Jönköping', 'Sweden', '🇸🇪', 'Foundation university built around the international JIBS business school — unusually international for its size', ['Business', 'Engineering', 'Education', 'Nursing'], 'https://ju.se/en'],
-  ].map(([id, name, city, country, flag, ranking, knownFor, sourceUrl]) => ({
-    id, name, country, city, flag, ranking, knownFor, level: 'Both',
+    ['kth', 'KTH Royal Institute of Technology', 'Stockholm', "#78 QS World 2026 · Sweden's top technical university", ['Engineering', 'Computer Science', 'Architecture', 'Energy'], 'EU/EEA free. Non-EU ~SEK 310,000/yr for most 2-year master\'s (some programmes SEK 145,000–310,000/yr) (~$33,000 USD), official — quoted per full programme, so confirm the specific programme page.', 'https://www.kth.se/en/studies/master/admissions/application-and-tuition-fees-for-master-s-studies-1.65817'],
+    ['lund', 'Lund University', 'Lund', "#72 QS World 2026 · Sweden's most international-friendly comprehensive — classic student town", ['Engineering', 'International Relations', 'Law', 'Life Sciences'], 'EU/EEA free. Non-EU typically ~SEK 120,000–205,000/yr by programme (~$12,600–$21,600 USD), official; paid in semester instalments (first due before the residence-permit decision).', 'https://www.lunduniversity.lu.se/study/bachelors-and-masters-studies/applying-studies-when-apply/tuition-fees'],
+    ['uppsala', 'Uppsala University', 'Uppsala', "#93 QS World 2026 · the Nordics' oldest university (1477)", ['Science', 'Pharmacy', 'Law', 'Peace & Conflict Studies'], 'EU/EEA free. Non-EU ~SEK 99,000–180,000/yr (SEK 49,500–90,000/semester; sciences/engineering at the top of the range) (~$10,400–$19,000 USD), official.', 'https://www.uu.se/en/study/masters-studies/fees'],
+    ['stockholm-u', 'Stockholm University', 'Stockholm', '#147 QS World 2026 · big capital-city university — sciences and social sciences', ['Social Sciences', 'Law', 'Environmental Science', 'Data Science'], 'EU/EEA free. Non-EU SEK 90,000/yr (Humanities/Social Sciences/Law) or SEK 140,000/yr (Sciences) (~$9,500–$14,700 USD), official — the cleanest two-band structure in Sweden.', 'https://www.su.se/english/education/how-to-apply/costs-fees-and-scholarships'],
+    ['chalmers', 'Chalmers University of Technology', 'Gothenburg', '#165 QS World 2026 · elite technical university — Avancez/IPOET scholarships give 75% reductions to top applicants', ['Automotive Engineering', 'Architecture', 'Computer Science', 'Shipping'], 'EU/EEA free. Non-EU ~SEK 140,000/yr (~SEK 70,000/semester) for most programmes; architecture higher (~$14,700 USD), official. Independent foundation university.', 'https://www.chalmers.se/en/education/application-and-admission/tuition-fees/'],
+    ['gothenburg', 'University of Gothenburg', 'Gothenburg', '~#187 QS World 2026 · large comprehensive university sharing the city with Chalmers', ['Business', 'Social Sciences', 'Arts', 'Medicine'], 'EU/EEA free. Non-EU ~SEK 86,000–190,000/yr by faculty (medical/lab-intensive highest) (~$9,000–$20,000 USD), official.', 'https://www.gu.se/en/study-in-gothenburg/apply/tuition-fees'],
+    ['linkoping', 'Linköping University', 'Linköping', '#310 QS World 2026 · innovation-oriented younger university — strong engineering/IT', ['Computer Science', 'Engineering', 'Cognitive Science'], 'EU/EEA free. Non-EU ~SEK 100,000–200,000/yr by programme (~$10,500–$21,000 USD); the exact SEK figure sits on each programme page and includes FAS+ insurance.', 'https://liu.se/en/article/application-and-tuition-fees'],
+    ['umea', 'Umeå University', 'Umeå', "~#401 QS World 2026 · northern hub — world-renowned Institute of Design, CRISPR heritage, cheaper living", ['Design', 'Life Sciences', 'Computer Science'], 'EU/EEA free. Non-EU ~SEK 96,600–395,700/yr by field (Institute of Design SEK 321,300; typical programmes ~SEK 152,300) (~$10,000–$41,600 USD), official.', 'https://www.umu.se/en/education/application-and-admission/tuition-fees/'],
+    ['malmo', 'Malmö University', 'Malmö', "Young urban university minutes from Copenhagen — one of Sweden's most international student bodies (outside the QS World top ~1000)", ['Media', 'IT', 'Social Sciences', 'Design'], 'EU/EEA free. Non-EU ~SEK 110,000–245,000/yr by programme (avg ~SEK 135,000; Urban Studies up to SEK 245,000) (~$11,600–$25,800 USD), official (autumn 2026 start).', 'https://mau.se/en/education/tuition-fees/'],
+    ['orebro', 'Örebro University', 'Örebro', 'Mid-size university with medicine — cheaper living than the big-city options (outside the QS World top ~1000)', ['Medicine', 'Psychology', 'Business', 'Media'], 'EU/EEA free. Non-EU first-year ~SEK 77,362–192,516 by programme (~$8,100–$20,300 USD), official; the first-year fee may differ from later years for some programmes.', 'https://www.oru.se/english/study/master-students/study-fees/'],
+    ['jonkoping', 'Jönköping University', 'Jönköping', 'Foundation university built around the international JIBS business school — unusually international for its size (outside the QS World top ~1000)', ['Business', 'Engineering', 'Education', 'Nursing'], 'EU/EEA free. Non-EU (2026/27): bachelor\'s SEK 115,000/yr, 2-year master\'s SEK 138,000/yr, 1-year master\'s SEK 140,000/yr, some programmes up to SEK 170,000–190,000 (~$12,100–$20,000 USD), official; fees vary by school (Engineering higher).', 'https://ju.se/en/study-at-ju/application-and-admission/application-and-tuition-fees.html'],
+  ].map(([id, name, city, ranking, knownFor, tuitionIntl, sourceUrl]) => ({
+    id, name, country: 'Sweden', city, flag: '🇸🇪', ranking, knownFor, level: 'Both',
     language: "English-taught master's everywhere; bachelor's mostly Swedish-taught — confirm per programme.",
-    entryGrades: 'Merit-ranked via the national portal — grades and programme fit decide.',
-    tests: 'IELTS 6.5 / TOEFL 90 typical — confirm per programme.',
-    acceptance: 'Competitive — varies by programme',
-    tuitionIntl: 'Country ranges (verified): SEK 80,000–120,000/yr humanities, 120,000–180,000 engineering/science, up to 300,000 medicine/design (≈€7,000–26,000). Per-university figures in the note above are typical, not verified — confirm on the official site.',
+    entryGrades: 'Merit-ranked via the national portal — grades and programme fit decide (no published GPA cutoff).',
+    tests: 'IELTS 6.5 / TOEFL 90 typical for English-taught programmes — confirm per programme.',
+    acceptance: 'Merit-ranked centrally — acceptance rates are not officially published',
+    tuitionIntl,
     living: '~SEK 10,000–14,000/month; the visa requires ~SEK 10,584/month — confirm on migrationsverket.se.',
-    deadline: 'ONE national portal (universityadmissions.se): applications 16 Oct – 15 JANUARY for autumn entry.',
+    deadline: 'ONE national portal (universityadmissions.se): applications 16 Oct – 15 JANUARY for autumn entry; SEK 900 one-time application fee.',
     scholarshipsHere: 'SI Scholarship for Global Professionals (full tuition + SEK 12,000/month + travel) — but its February window requires having applied to programmes by 15 Jan. University tuition scholarships also exist. ~12-month job-seeking permit after graduation (confirm on migrationsverket.se).',
     scholarships: [],
-    sourceName: 'Official site',
+    sourceName: 'Official university fee page',
     sourceUrl,
-    verified: false,
+    verified: true,
   })),
 
   // ── LIGHT ENTRIES (Finland) ──────────────────────────────────────────────
