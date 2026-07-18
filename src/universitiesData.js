@@ -4748,23 +4748,52 @@ export const UNIVERSITIES = [
   // via Campus France; visa needs €615/month; RECE post-study permit = 12
   // months after a master's. Eiffel scholarship: €1,200–2,100/month via the
   // institution (ask its international office in Sept–Oct).
+  // PSL, Aix-Marseille, Lyon 1 and Toulouse III stay unverified: PSL and Lyon 1
+  // fee status came only from aggregators, AMU's official page blocks automated
+  // fetch (and appears to actually charge the differentiated rate), and Toulouse
+  // III's figures could not be confirmed. Rankings still added.
   ...[
-    ['psl', 'Université PSL (Paris Sciences et Lettres)', 'Paris', "France's top-ranked collective (ENS, Dauphine, Mines Paris) — global top-30", ['Science', 'Mathematics', 'Economics', 'Humanities'], 'https://psl.eu/en'],
-    ['sorbonne', 'Sorbonne Université', 'Paris', 'The historic Paris flagship — sciences, humanities and medicine', ['Humanities', 'Physics', 'Mathematics', 'Medicine'], 'https://www.sorbonne-universite.fr/en'],
-    ['paris-saclay', 'Université Paris-Saclay', 'Saclay (Paris region)', 'World #1 in mathematics rankings — science powerhouse with its own ~€10,000/yr IDEX international scholarships', ['Mathematics', 'Physics', 'Engineering', 'Life Sciences'], 'https://www.universite-paris-saclay.fr/en'],
-    ['paris-cite', 'Université Paris Cité', 'Paris', 'Large central-Paris university (ex Descartes + Diderot)', ['Medicine', 'Science', 'Social Sciences', 'Linguistics'], 'https://u-paris.fr/en/'],
-    ['polytechnique', 'École Polytechnique (l\'X)', 'Palaiseau (Paris region)', "France's most prestigious engineering grande école — English-taught BSc and MSc&T (~€15,000–20,000/yr, own scholarships)", ['Mathematics', 'Physics', 'Engineering', 'Economics'], 'https://www.polytechnique.edu/en'],
-    ['hec', 'HEC Paris', 'Jouy-en-Josas (Paris region)', "Europe's #1 business school — expensive (MiM ~€50k total) but HEC Foundation scholarships reach 100% and outcomes are elite", ['Master in Management', 'MBA', 'Finance', 'Entrepreneurship'], 'https://www.hec.edu/en'],
-    ['grenoble', 'Université Grenoble Alpes', 'Grenoble', 'Alpine science/tech city — big labs, affordable student living', ['Computer Science', 'Physics', 'Nanotechnology', 'Earth Sciences'], 'https://www.univ-grenoble-alpes.fr/english/'],
-    ['strasbourg', 'Université de Strasbourg', 'Strasbourg', 'Chemistry Nobel tradition in the EU-institutions city', ['Chemistry', 'Law', 'European Studies', 'Life Sciences'], 'https://en.unistra.fr/'],
-    ['aix-marseille', 'Aix-Marseille Université', 'Marseille / Aix-en-Provence', "France's largest university — Mediterranean, far cheaper than Paris", ['Medicine', 'Law', 'Physics', 'Oceanography'], 'https://www.univ-amu.fr/en'],
-    ['lyon1', 'Université Claude Bernard Lyon 1', 'Lyon', "Science/health university in France's second student city", ['Medicine', 'Pharmacy', 'Science', 'Sport Science'], 'https://www.univ-lyon1.fr/en/'],
-    ['insa-lyon', 'INSA Lyon', 'Lyon', "France's largest PUBLIC engineering grande école — elite training at public prices (~€600–4,000/yr)", ['Mechanical Engineering', 'Computer Science', 'Civil Engineering', 'Materials Science'], 'https://www.insa-lyon.fr/en/'],
-    ['montpellier', 'Université de Montpellier', 'Montpellier', "Home of the world's OLDEST medical faculty (1220) — big science/health public in a sunny student city", ['Medicine', 'Pharmacy', 'Biology', 'Ecology'], 'https://www.umontpellier.fr/en/'],
-    ['toulouse3', 'Université Toulouse III – Paul Sabatier', 'Toulouse', "Science/health public in Europe's aerospace capital (Airbus country)", ['Aerospace Engineering', 'Science', 'Medicine', 'Computer Science'], 'https://www.univ-tlse3.fr/'],
-    ['lille', 'Université de Lille', 'Lille', 'One of France\'s largest publics — cheap northern student city, an hour from Paris and Brussels', ['Medicine', 'Law', 'Science', 'Humanities'], 'https://www.univ-lille.fr/en/'],
-    ['bordeaux', 'Université de Bordeaux', 'Bordeaux', 'Major southwestern public — strong sciences and law in a famously livable city', ['Science', 'Law', 'Medicine', 'Economics'], 'https://www.u-bordeaux.fr/en'],
+    ['psl', 'Université PSL (Paris Sciences et Lettres)', 'Paris', "#28 QS World 2026 (#1 in France) — a top-30 collective (ENS, Dauphine, Mines Paris)", ['Science', 'Mathematics', 'Economics', 'Humanities'], 'https://psl.eu/en'],
+    ['aix-marseille', 'Aix-Marseille Université', 'Marseille / Aix-en-Provence', "#428 QS World 2026 (up from #481) · France's largest university — Mediterranean, far cheaper than Paris", ['Medicine', 'Law', 'Physics', 'Oceanography'], 'https://www.univ-amu.fr/en/public/tuition-fees-and-scholarships'],
+    ['lyon1', 'Université Claude Bernard Lyon 1', 'Lyon', "#613 QS World 2027 · science/health university in France's second student city", ['Medicine', 'Pharmacy', 'Science', 'Sport Science'], 'https://www.univ-lyon1.fr/en/'],
+    ['toulouse3', 'Université Toulouse III – Paul Sabatier', 'Toulouse', "~#587 QS World 2025 · science/health public in Europe's aerospace capital (Airbus country)", ['Aerospace Engineering', 'Science', 'Medicine', 'Computer Science'], 'https://www.univ-tlse3.fr/'],
   ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'France',
+    city,
+    flag: '🇫🇷',
+    level: 'Both',
+    ranking,
+    knownFor,
+    language: "Mostly French-taught bachelor's (B2 needed); English-taught master's are plentiful — confirm per programme.",
+    entryGrades: 'Varies by institution — universities are open-access-ish at licence level, grandes écoles highly selective.',
+    tests: 'French B2 for French-taught; IELTS/TOEFL for English-taught — confirm per programme.',
+    acceptance: 'Varies widely — see notes',
+    tuitionIntl: 'NOT VERIFIED — the national non-EU differentiated fee is €2,895/yr bachelor\'s / €3,941/yr master\'s (PhD exempt), but whether this university applies it or exempts non-EU to the ~€175/€250 EU rate could not be confirmed on an official page (AMU\'s page blocks automated access and appears to charge the differentiated rate). ⚠ Fee waivers are now CAPPED (30% of international students in 2026-27, shrinking) — budget the full differentiated fee unless you hold a French government scholarship. Confirm on the official site.',
+    living: 'Visa requires €615/month (≈€7,380/yr — verified, one of Western Europe\'s lowest bars); Paris realistically costs ~double, provincial cities much less. CROUS housing + CAF allowances (open to internationals) help.',
+    deadline: 'Most applications run via the Campus France "Études en France" portal (~Dec–Feb for autumn) for ~70 countries — confirm your country\'s calendar.',
+    scholarshipsHere: 'Eiffel Excellence (€1,200/month master\'s, €2,100 PhD) — apply THROUGH the institution in autumn; MAECI-type French government scholarships exempt you from differentiated fees. RECE post-study permit: 12 months after a master\'s (24 for Indian citizens).',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
+  // ── France — verified from official fee pages ────────────────────────────
+  ...[
+    ['sorbonne', 'Sorbonne Université', 'Paris', '#72 QS World 2026 · the historic Paris flagship — sciences, humanities and medicine', ['Humanities', 'Physics', 'Mathematics', 'Medicine'], 'REDUCED (exemption) rate — non-EU pay the SAME as EU: €178 licence / €254 master / €628 engineering / €397 PhD (~$195–$690 USD), verified; the Governing Board (Jul 2026) kept non-EU at domestic-level fees for 2026-27 under the 19 May 2026 decree.', 'https://www.sorbonne-universite.fr/en/education/study-sorbonne-university/degree-seeking-students/preparing-your-stay'],
+    ['paris-saclay', 'Université Paris-Saclay', 'Saclay (Paris region)', '#70 QS World 2026 · world #1 in mathematics — science powerhouse with its own ~€10,000/yr IDEX international scholarships', ['Mathematics', 'Physics', 'Engineering', 'Life Sciences'], 'REDUCED rate — a partial exemption aligns non-EU with domestic fees (~€175 licence / €250 master + ~€103 CVEC) (~$190–$275 USD), verified (Board Resolution CA-2026-013, Feb 2026).', 'https://www.universite-paris-saclay.fr/en/admission/tuition-fees'],
+    ['paris-cite', 'Université Paris Cité', 'Paris', '#300 QS World 2026 · large central-Paris university (ex Descartes + Diderot)', ['Medicine', 'Science', 'Social Sciences', 'Linguistics'], 'REDUCED rate — equal fees for EU and non-EU: €175 licence / €250 master / €391 PhD (+~€103 CVEC) (~$190–$430 USD), verified via partial exemption. The national differentiated rates (€2,895/€3,941) apply only if the exemption is not renewed.', 'https://u-paris.fr/language/en/admission-as-an-independent-international-student/'],
+    ['polytechnique', 'École Polytechnique (l\'X)', 'Palaiseau (Paris region)', "#41 QS World 2026 (as part of Institut Polytechnique de Paris) · France's most prestigious engineering grande école", ['Mathematics', 'Physics', 'Engineering', 'Economics'], 'GRANDE ÉCOLE flat fee — Bachelor €15,000/yr for non-EU (€12,000 EU) (~$16,300 USD), verified; the Ingénieur Polytechnicien and MSc&T programmes carry separate high flat fees. Does NOT use the national differentiated public rates.', 'https://programmes.polytechnique.edu/en/bachelor/costs-and-funding/tuition-fees'],
+    ['hec', 'HEC Paris', 'Jouy-en-Josas (Paris region)', "#1 in the world for Management (QS Business Masters 2026) · Europe's top business school", ['Master in Management', 'MBA', 'Finance', 'Entrepreneurship'], 'GRANDE ÉCOLE flat fee — Master in Management €57,700 total for the 2-year programme + €950/yr admin + €1,950/yr services, plus a €2,000 non-EU surcharge (~$62,700 total, verified). Private business school — unrelated to public rates; HEC Foundation aid can reach 100%.', 'https://www.hec.edu/en/master-s-programs/master-management/fees-and-financing'],
+    ['grenoble', 'Université Grenoble Alpes', 'Grenoble', '~#334 QS World · alpine science/tech city — big labs, affordable student living', ['Computer Science', 'Physics', 'Nanotechnology', 'Earth Sciences'], 'DIFFERENTIATED rate is the default (€2,770 licence / €3,770 master) but wide exemptions bring eligible non-EU down to ~€175/€243 (+€105 CVEC) (~$190–$4,100 USD), verified — UGA lists the differentiated rate as default with exemption granted on application.', 'https://international.univ-grenoble-alpes.fr/getting-organized/budget/financial-assistance/exemption-from-differentiated-registration-fees/'],
+    ['strasbourg', 'Université de Strasbourg', 'Strasbourg', '#420 QS World 2026 (up from #456) · Chemistry Nobel tradition in the EU-institutions city', ['Chemistry', 'Law', 'European Studies', 'Life Sciences'], 'REDUCED rate — non-EU pay the same as EU via exemption: €178 licence (master ~€254) (~$195–$280 USD), verified official; confirm the current-year master exemption scope.', 'https://www.unistra.fr/en/node/1781/tuition-fees'],
+    ['insa-lyon', 'INSA Lyon', 'Lyon', "#406 QS World 2026 (#201 Engineering by subject) · France's largest PUBLIC engineering grande école", ['Mechanical Engineering', 'Computer Science', 'Civil Engineering', 'Materials Science'], 'PUBLIC engineering school — modest fees: €628/yr (the EU rate) for the ingénieur cycle; international sections carry a ONE-TIME programme fee (EURINSA €2,550, ASINSA €5,350) + €103/yr CVEC (~$680/yr base, verified). NOT the high grande-école fee model.', 'https://www.insa-lyon.fr/en/cout-des-etudes'],
+    ['montpellier', 'Université de Montpellier', 'Montpellier', "~#448 QS World · home of the world's OLDEST medical faculty (1220) — big science/health public in a sunny student city", ['Medicine', 'Pharmacy', 'Biology', 'Ecology'], 'DIFFERENTIATED rate is the default (€2,770 licence / €3,770 master) but a partial exemption aligned non-EU to the EU rate (€175/€250 + CVEC) (~$190–$4,100 USD), verified; the 2026-27 exemption is subject to Decree 2026-385 (19 May 2026) — verify renewal.', 'https://www.umontpellier.fr/en/international/etudier-a-letranger/venir-etudier-a-luniversite-de-montpellier'],
+    ['lille', 'Université de Lille', 'Lille', "#686 QS World 2027 · one of France's largest publics — cheap northern student city, an hour from Paris and Brussels", ['Medicine', 'Law', 'Science', 'Humanities'], 'Mostly the REDUCED (waiver) rate: €178 licence / €254 master / €628 engineering / €397 PhD (~$195–$4,280 USD), verified — BUT the exemption is CONDITIONAL: some non-EU master\'s students without a transitional provision pay the differentiated €3,941.', 'https://www.univ-lille.fr/en/studies/apply-enrol/exemption'],
+    ['bordeaux', 'Université de Bordeaux', 'Bordeaux', '#485 QS World 2027 (up from #535) · major southwestern public — strong sciences and law in a famously livable city', ['Science', 'Law', 'Medicine', 'Economics'], 'For 2026-27 the DIFFERENTIATED non-EU rate applies FIRST (master €3,941), with exemption requests processed ~November to bring eligible students to the EU rate (~€175/€250) (~$190–$4,280 USD), verified — a 2026-27 tightening (enrolled at the differentiated fee first, then apply for exemption).', 'https://www.u-bordeaux.fr/en/education/admissions/tuition-fees/international-non-eu-students'],
+  ].map(([id, name, city, ranking, knownFor, tuitionIntl, sourceUrl]) => ({
     id,
     name,
     country: 'France',
@@ -4777,15 +4806,15 @@ export const UNIVERSITIES = [
     language: "Mostly French-taught bachelor's (B2 needed); English-taught master's are plentiful — confirm per programme.",
     entryGrades: 'Varies by institution — universities are open-access-ish at licence level, grandes écoles highly selective.',
     tests: 'French B2 for French-taught; IELTS/TOEFL for English-taught — confirm per programme.',
-    acceptance: 'Varies widely — see notes',
-    tuitionIntl: 'Public differentiated fees for non-EU (verified 2026-27): €2,895/yr bachelor\'s, €3,941/yr master\'s, PhD exempt. ⚠ Fee waivers are now CAPPED (30% of international students in 2026-27, shrinking) — budget the full differentiated fee unless you hold a French government scholarship. Grande école fees differ — see notes; confirm on the official site.',
+    acceptance: 'Varies widely — publics do not publish acceptance rates; grandes écoles are highly selective',
+    tuitionIntl: tuitionIntl + ' ⚠ Public fee waivers are now capped (30% of international students in 2026-27, shrinking).',
     living: 'Visa requires €615/month (≈€7,380/yr — verified, one of Western Europe\'s lowest bars); Paris realistically costs ~double, provincial cities much less. CROUS housing + CAF allowances (open to internationals) help.',
     deadline: 'Most applications run via the Campus France "Études en France" portal (~Dec–Feb for autumn) for ~70 countries — confirm your country\'s calendar.',
     scholarshipsHere: 'Eiffel Excellence (€1,200/month master\'s, €2,100 PhD) — apply THROUGH the institution in autumn; MAECI-type French government scholarships exempt you from differentiated fees. RECE post-study permit: 12 months after a master\'s (24 for Indian citizens).',
     scholarships: [],
-    sourceName: 'Official site',
+    sourceName: 'Official university fee page',
     sourceUrl,
-    verified: false,
+    verified: true,
   })),
 
   {
