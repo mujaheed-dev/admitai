@@ -4927,7 +4927,7 @@ export const UNIVERSITIES = [
     city: 'Beppu (Kyushu)',
     flag: '🇯🇵',
     level: 'Both',
-    ranking: "Japan's international outlier — HALF the student body is international (90+ countries)",
+    ranking: "~#1001 QS World · Japan's international outlier — HALF the student body is international (90+ countries)",
     knownFor: ['International Management', 'Asia Pacific Studies', 'Sustainability'],
     language: 'Fully English-taught tracks — no Japanese needed to start (you learn it alongside).',
     entryGrades: 'Accessible-to-moderate — holistic document-based admission designed for international applicants.',
@@ -4958,22 +4958,25 @@ export const UNIVERSITIES = [
   // ¥282,000 admission fee (verified; UTokyo raised to ¥642,960). MEXT full
   // scholarships cover tuition + ¥117k–145k/month + flights. Post-study:
   // 12-month job-hunting status; J-FIND gives top-university grads 2 years.
+  // ── Japan — verified. National universities share the standard MEXT-set rate
+  // (¥282,000 admission + ¥535,800/yr tuition, same as domestic); privates
+  // charge higher faculty-specific fees.
   ...[
-    ['kyoto-u', 'Kyoto University', 'Kyoto', "Japan's #2 — Nobel-heavy fundamental research; iUP English-entry undergrad with stipends", ['Physics', 'Chemistry', 'Biology', 'Philosophy'], 'https://www.kyoto-u.ac.jp/en'],
-    ['osaka-u', 'Osaka University', 'Osaka', 'Top-3 national university — engineering and medicine heavyweight', ['Engineering', 'Immunology', 'Medicine', 'Economics'], 'https://www.osaka-u.ac.jp/en'],
-    ['tohoku', 'Tohoku University', 'Sendai', 'Historic imperial university — materials science world leader; English undergrad tracks', ['Materials Science', 'Engineering', 'Physics', 'Spintronics'], 'https://www.tohoku.ac.jp/en/'],
-    ['isct', 'Institute of Science Tokyo', 'Tokyo', 'NEW 2024 merger of Tokyo Tech + Tokyo Medical and Dental — older guides list them separately', ['Engineering', 'Computer Science', 'Materials Science', 'Medicine'], 'https://www.isct.ac.jp/en'],
-    ['nagoya', 'Nagoya University', 'Nagoya', "Strongest ex-G30 ENGLISH undergraduate lineup — automotive heartland, multiple physics Nobels", ['Automotive Engineering', 'Physics', 'Chemistry', 'Economics'], 'https://en.nagoya-u.ac.jp/'],
-    ['kyushu', 'Kyushu University', 'Fukuoka', "Southern flagship in one of Japan's most livable, affordable big cities", ['Engineering', 'Hydrogen & Energy Research', 'Medicine', 'Design'], 'https://www.kyushu-u.ac.jp/en/'],
-    ['hokkaido', 'Hokkaido University', 'Sapporo', 'Northern flagship — huge campus, agriculture/environment heritage', ['Agriculture', 'Veterinary Medicine', 'Environmental Science', 'Fisheries'], 'https://www.global.hokudai.ac.jp/'],
-    ['waseda', 'Waseda University', 'Tokyo', "Japan's most famous private — full English undergrad schools (SILS); tuition reductions up to 100% for internationals", ['Political Science', 'International Liberal Studies', 'Business', 'Literature'], 'https://www.waseda.jp/top/en/'],
-    ['keio', 'Keio University', 'Tokyo', "Waseda's great rival (1858) — business-elite pipeline; PEARL/GIGA English undergrad tracks", ['Economics', 'Business', 'Medicine', 'Computer Science'], 'https://www.keio.ac.jp/en/'],
-    ['sophia', 'Sophia University', 'Tokyo', 'The Jesuit international pioneer — its English-taught Faculty of Liberal Arts has run for decades', ['Liberal Arts', 'International Relations', 'Languages', 'Business'], 'https://www.sophia.ac.jp/eng/'],
-    ['icu-japan', 'International Christian University (ICU)', 'Tokyo', 'Fully bilingual liberal-arts college — small classes, generous need-based aid for internationals', ['Liberal Arts', 'Languages', 'Political Science', 'Science'], 'https://www.icu.ac.jp/en/'],
-    ['tsukuba', 'University of Tsukuba', 'Tsukuba (Science City)', "National university with one of Japan's widest ENGLISH degree lineups — MEXT-heavy and very international", ['Science', 'Computer Science', 'Medicine', 'Education'], 'https://www.tsukuba.ac.jp/en/'],
-    ['hiroshima-u', 'Hiroshima University', 'Hiroshima', 'Major national with strong education heritage and English-taught tracks', ['Education', 'Engineering', 'Medicine', 'Humanities'], 'https://www.hiroshima-u.ac.jp/en'],
-    ['kobe-u', 'Kobe University', 'Kobe', 'Port-city national famous for business, economics and maritime studies', ['Business', 'Economics', 'Law', 'Engineering'], 'https://www.kobe-u.ac.jp/en/'],
-  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    ['kyoto-u', 'Kyoto University', 'Kyoto', '#57 QS World 2026 · Japan\'s #2 — Nobel-heavy fundamental research; iUP English-entry undergrad with stipends', ['Physics', 'Chemistry', 'Biology', 'Philosophy'], 'NATIONAL standard rate — a one-time ¥282,000 admission fee plus ¥535,800/yr tuition (~$3,600 USD), the SAME as domestic students (Law School ¥804,000/yr). The Kyoto iUP English-track programme often waives full tuition for 4.5 years.', 'https://www.kyoto-u.ac.jp/en/education-campus/faq/2-2'],
+    ['osaka-u', 'Osaka University', 'Osaka', "#91 QS World 2026 · top-3 national university — engineering and medicine heavyweight (renamed 'The University of Osaka' in 2025)", ['Engineering', 'Immunology', 'Medicine', 'Economics'], 'NATIONAL standard rate — ¥282,000 admission + ¥535,800/yr tuition (~$3,600 USD), the same as domestic students.', 'https://www.osaka-u.ac.jp/en'],
+    ['tohoku', 'Tohoku University', 'Sendai', '#109 QS World 2026 · historic imperial university — materials science world leader', ['Materials Science', 'Engineering', 'Physics', 'Spintronics'], 'NATIONAL standard rate — ¥282,000 admission + ¥535,800/yr tuition (~$3,600 USD), the same as domestic students. The FGL English undergrad track is closing; Gateway College replaces it from 2027.', 'https://www.insc.tohoku.ac.jp/english/degree/undergraduate-english/'],
+    ['isct', 'Institute of Science Tokyo', 'Tokyo', '~#97 QS World 2026 (engineering subjects) · NEW 2024 merger of Tokyo Tech + Tokyo Medical & Dental — older guides list them separately', ['Engineering', 'Computer Science', 'Materials Science', 'Medicine'], 'NATIONAL standard rate — ¥282,000 admission + ¥535,800/yr tuition (~$3,600 USD), the same as domestic students. GSEP is the English-taught undergraduate path.', 'https://students.isct.ac.jp/en/011/tuition-and-scholarship/tuition'],
+    ['nagoya', 'Nagoya University', 'Nagoya', '#36 QS Asia 2026 · strongest ex-G30 ENGLISH undergraduate lineup — automotive heartland, multiple physics Nobels', ['Automotive Engineering', 'Physics', 'Chemistry', 'Economics'], 'NATIONAL standard rate — ¥282,000 admission + ¥535,800/yr tuition (~$3,600 USD), the same as domestic students. G30 = long-established full-degree English undergraduate programmes.', 'https://admissions.g30.nagoya-u.ac.jp/'],
+    ['kyushu', 'Kyushu University', 'Fukuoka', "#170 QS World 2026 · southern flagship in one of Japan's most livable, affordable big cities", ['Engineering', 'Hydrogen & Energy Research', 'Medicine', 'Design'], 'NATIONAL standard rate — ¥282,000 admission + ¥535,800/yr tuition (~$3,600 USD), the same as domestic students. IUPE is the main English-taught undergraduate route.', 'https://www.kyushu-u.ac.jp/en/'],
+    ['hokkaido', 'Hokkaido University', 'Sapporo', '~#170 QS World 2026 · northern flagship — huge campus, agriculture/environment heritage', ['Agriculture', 'Veterinary Medicine', 'Environmental Science', 'Fisheries'], 'NATIONAL standard rate — ¥282,000 admission + ¥535,800/yr tuition (~$3,600 USD), the same as domestic students. The Integrated Science Program is the English-taught undergraduate route.', 'https://www.global.hokudai.ac.jp/'],
+    ['waseda', 'Waseda University', 'Tokyo', "#196 QS World 2026 · Japan's most famous private — full English undergrad schools (SILS)", ['Political Science', 'International Liberal Studies', 'Business', 'Literature'], 'PRIVATE, faculty-specific — roughly ¥962,000–¥1,640,000 in the first year (~$6,400–$11,000 USD), around ¥1.2–1.8M/yr by school; tuition reductions up to 100% exist for internationals. Confirm the specific school\'s fee.', 'https://www.waseda.jp/inst/admission/en/other/tuition/'],
+    ['keio', 'Keio University', 'Tokyo', "#215 QS World 2026 · Waseda's great rival (1858) — business-elite pipeline; PEARL/GIGA English undergrad tracks", ['Economics', 'Business', 'Medicine', 'Computer Science'], 'PRIVATE, faculty-specific — undergrad ~¥980,000/yr base, Humanities/Social Science ~¥1,110,000, Medicine ~¥3,610,000/yr (~$6,500–$24,000 USD). Confirm your faculty.', 'https://www.keio.ac.jp/en/admissions/fees/'],
+    ['sophia', 'Sophia University', 'Tokyo', '~#951–1000 QS World 2026 · the Jesuit international pioneer — English-taught programmes have run for decades', ['Liberal Arts', 'International Relations', 'Languages', 'Business'], 'PRIVATE — the flagship English-taught SPSF programme is ~¥1,490,000 in year 1, then ~¥1,270,000/yr (~$8,500–$10,000 USD).', 'https://www.sophia.ac.jp/eng/admissions-and-aid/tuition/'],
+    ['icu-japan', 'International Christian University (ICU)', 'Tokyo', '#1201–1400 QS World 2026 · fully bilingual liberal-arts college — small classes, generous need-based aid for internationals', ['Liberal Arts', 'Languages', 'Political Science', 'Science'], 'PRIVATE — a one-time ¥300,000 matriculation fee plus ¥1,167,000 tuition + ¥354,000 facilities = ¥1,521,000/yr (~$10,100 USD) for AY2026, the same for all students (planned annual increases through AY2029).', 'https://www.icu.ac.jp/en/admissions/tuition/'],
+    ['tsukuba', 'University of Tsukuba', 'Tsukuba (Science City)', "#350 QS World 2026 · one of Japan's widest ENGLISH degree lineups — MEXT-heavy and very international", ['Science', 'Computer Science', 'Medicine', 'Education'], 'NATIONAL standard rate — ¥282,000 admission + ¥535,800/yr tuition (~$3,600 USD), the same as domestic students. The Bachelor\'s Program in Global Issues (BPGI) is English-taught.', 'https://www.tsukuba.ac.jp/en/admissions/'],
+    ['hiroshima-u', 'Hiroshima University', 'Hiroshima', '#480 QS World 2026 · major national with strong education heritage and English-taught tracks', ['Education', 'Engineering', 'Medicine', 'Humanities'], 'NATIONAL standard rate — ¥282,000 admission + ¥535,800/yr tuition (~$3,600 USD), the same as domestic students. Integrated Global Studies (IGS) is the English-taught undergraduate route.', 'https://www.hiroshima-u.ac.jp/en'],
+    ['kobe-u', 'Kobe University', 'Kobe', '#482 QS World 2026 · port-city national famous for business, economics and maritime studies', ['Business', 'Economics', 'Law', 'Engineering'], 'NATIONAL standard rate — ¥282,000 admission + ¥535,800/yr tuition (~$3,600 USD), the same as domestic students.', 'https://www.kobe-u.ac.jp/en/'],
+  ].map(([id, name, city, ranking, knownFor, tuitionIntl, sourceUrl]) => ({
     id,
     name,
     country: 'Japan',
@@ -4984,16 +4987,16 @@ export const UNIVERSITIES = [
     knownFor,
     language: 'Mostly Japanese-taught undergrad (EJU exam); English-taught tracks where noted — confirm per programme.',
     entryGrades: 'Competitive; Japanese tracks use the EJU entrance exam, English tracks use holistic international admission.',
-    tests: 'EJU + JLPT for Japanese-taught; IELTS/TOEFL for English tracks — confirm per programme.',
-    acceptance: 'Competitive — varies by track',
-    tuitionIntl: 'National universities: standardised ¥535,800/yr (~$3,600) + ¥282,000 one-time admission fee (verified nationally); privates ¥1.2M–1.9M/yr. Confirm per programme on the official site.',
+    tests: 'EJU + JLPT for Japanese-taught; IELTS/TOEFL (often + SAT/ACT/IB) for English tracks — confirm per programme.',
+    acceptance: 'Competitive — varies by track (acceptance rates not officially published)',
+    tuitionIntl: tuitionIntl + ' MEXT full scholarships and tuition waivers can cut this to near zero for English-track students.',
     living: '~¥100,000–150,000/month (Tokyo highest; regional cities much less).',
     deadline: 'English tracks ~Dec–Feb for autumn; Japanese tracks follow the EJU calendar; MEXT embassy route opens ~April a year ahead — confirm.',
     scholarshipsHere: 'MEXT full scholarship (tuition + ¥117k–145k/month + flights, no service bond — via your Japanese embassy or the university), JASSO monthly awards, and university reductions. Post-study: 12-month job-hunting status; J-FIND 2 years for top-ranked-university graduates.',
     scholarships: [],
-    sourceName: 'Official site',
+    sourceName: 'Official university page',
     sourceUrl,
-    verified: false,
+    verified: true,
   })),
 
   {
