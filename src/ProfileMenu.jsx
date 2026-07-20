@@ -44,7 +44,7 @@ function Item({ icon: Icon, label, onClick, danger = false, rightIcon }) {
 
 // ─── main component ───────────────────────────────────────────────────────────
 
-export default function ProfileMenu({ user, firstName, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted, onGoToPricing }) {
+export default function ProfileMenu({ user, firstName, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted, onGoToPricing, dropUp = false }) {
   const [isOpen,       setIsOpen]       = useState(false)
   // 'menu' | 'delete-confirm' | 'delete-success' | 'cancel-confirm' | 'cancel-success'
   const [step,         setStep]         = useState('menu')
@@ -201,7 +201,11 @@ export default function ProfileMenu({ user, firstName, onSignOut, onGoToPrivacy,
       {/* ── Dropdown ── */}
       {isOpen && (
         <div style={{
-          position: 'absolute', right: 0, top: 'calc(100% + 8px)',
+          position: 'absolute', right: 0,
+          // Flipped upward when the trigger sits at the bottom of a panel
+          // (e.g. the chat sidebar footer) so the dropdown never runs off
+          // the bottom of the viewport on short/mobile screens.
+          ...(dropUp ? { bottom: 'calc(100% + 8px)' } : { top: 'calc(100% + 8px)' }),
           width: 252, background: '#F7F4EE',
           borderRadius: 16, border: '1px solid #16302B12',
           boxShadow: '0 8px 32px rgba(22,48,43,0.14)',

@@ -53,6 +53,7 @@ Deno.serve(async (req: Request) => {
     await Promise.all([
       supabase.from('user_boards').delete().eq('user_id', uid),
       supabase.from('ai_usage').delete().eq('user_id', uid),
+      supabase.from('conversations').delete().eq('user_id', uid),  // cascades to chat_messages
       supabase.from('chat_messages').delete().eq('user_id', uid),
       supabase.from('applications').delete().eq('user_id', uid),
       supabase.from('subscriptions').delete().eq('user_id', uid),
