@@ -284,6 +284,15 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   ⚠⚠ BANKING & SANCTIONS (the deciding factor, verified): major Russian banks are cut off from SWIFT, and Western bank cards / payment apps (Visa, Mastercard, Apple/Google Pay) DO NOT work inside Russia. Paying tuition and receiving money from home is genuinely difficult — often cash-based or routed via third countries; scholarship/allowance transfers can also be disrupted. Get the university's CURRENT payment guidance and budget for this reality before committing. Post-study work options are limited.
   ⚠ MBBS golden rules (as with Georgia/Kyrgyzstan): verify YOUR home medical council recognises the specific university AND check its graduates' licensing-exam pass rates (e.g. FMGE/NExT for India) BEFORE enrolling; apply directly — no agent is required.
 
+🇰🇬 KYRGYZSTAN [MIXED — MBBS fee ranges & recognition well-documented; individual figures agent-quoted; the current approved list must be re-checked]
+  System: State medical universities + private medical institutes (English-taught MBBS is the main draw) + a few comprehensives; a major low-cost MBBS destination for South Asian and some African students
+  Cost: Among the cheapest English MBBS anywhere — ~$3,400–$6,000/yr (e.g. Osh State ~$3,600, Asian Medical Institute ~$3,400); the MD runs 6 years including a 1-year internship. Living is very low (~$150–$300/month).
+  Recognition (well-documented): many universities are listed by WHO/WFME, ECFMG, FAIMER and India's NMC — BUT the approved list CHANGES and quality varies widely. ⚠ Verify the CURRENT approved list for YOUR country's medical council AND check each university's licensing-exam pass rate (FMGE/NExT for India) BEFORE enrolling — this is the single most important step.
+  Language: English-medium MBBS is standard (little/no IELTS required); Kyrgyz/Russian for local-language tracks. A basic Russian/Kyrgyz footing helps for clinical years and daily life.
+  Banking (a real advantage over Russia): Kyrgyzstan is NOT under the sanctions that cut Russia off from SWIFT — paying fees and transfers work through normal channels. For the same cheap-MBBS goal, this makes the money side far simpler than Russia.
+  ⚠ Heavy AGENT market: apply DIRECTLY to the university — agents add cost, not access. Beware inflated all-in "packages"; confirm fees on the official site.
+  Note: American University of Central Asia (AUCA) is a genuine US-accredited (via Bard College) liberal-arts university here — a quality non-medical option, distinct from the MBBS institutes.
+
 
 ━━━ SCHOLARSHIPS ━━━
 
@@ -4441,6 +4450,51 @@ Ural Federal University (UrFU) — Yekaterinburg, Russia [NOT individually verif
   Type: Large federal university — engineering, IT and English MBBS at low cost
   Known for: Engineering, IT, Medicine, Materials Science
 
+━━ Kyrgyz universities (ultra-cheap English MBBS ~$3,400–6,000/yr; NOT sanctioned so payments work normally — unlike Russia; ⚠ verify CURRENT recognition list + FMGE/NExT pass rates, apply directly — see Kyrgyzstan country block) ━━
+
+Osh State University — Osh, Kyrgyzstan [NOT individually verified — MBBS fees agent-quoted]
+  Type: The biggest public medical option — cheapest public English MBBS (~$3,600/yr, agent-quoted); 40,000+ students
+  Known for: Medicine
+  ⚠ Verify your council's current approved list + FMGE/NExT pass rate; apply directly.
+
+Kyrgyz State Medical Academy (KSMA) — Bishkek, Kyrgyzstan [NOT individually verified — MBBS fees agent-quoted]
+  Type: Kyrgyzstan's national medical flagship (est. 1939)
+  Known for: Medicine, Dentistry, Pharmacy
+  ⚠ Same recognition/pass-rate checks apply.
+
+International School of Medicine (ISM) — Bishkek, Kyrgyzstan [NOT individually verified — MBBS fees agent-quoted]
+  Type: Large private medical university with a big international MBBS cohort
+  Known for: Medicine, Dentistry
+
+Asian Medical Institute (ASMI) — Kant (near Bishkek), Kyrgyzstan [NOT individually verified — MBBS fees agent-quoted]
+  Type: Among the cheapest NMC-listed English MBBS (~$3,400/yr, agent-quoted)
+  Known for: Medicine
+
+Jalal-Abad State University — Jalal-Abad, Kyrgyzstan [NOT individually verified — MBBS fees agent-quoted]
+  Type: Public university with an English-medium MBBS
+  Known for: Medicine
+
+Kyrgyz-Russian Slavic University (KRSU) — Bishkek, Kyrgyzstan [NOT individually verified]
+  Type: Joint Kyrgyz-Russian comprehensive — medicine plus broad programmes (Russian-medium mostly)
+  Known for: Medicine, Engineering, Economics, Law
+
+Avicenna International Medical University — Bishkek, Kyrgyzstan [NOT individually verified — MBBS fees agent-quoted]
+  Type: Private medical university with English-medium MBBS
+  Known for: Medicine
+
+American University of Central Asia (AUCA) — Bishkek, Kyrgyzstan [NOT individually verified — quality non-medical option]
+  Type: US-accredited (via Bard College, New York) liberal-arts university — English-medium, need/merit aid; distinct from the MBBS institutes
+  Known for: Liberal Arts, Business, Computer Science, International Relations
+  Notes: selective US-style admission; a genuine quality option in the region.
+
+Kyrgyz National University (KNU) — Bishkek, Kyrgyzstan [NOT individually verified]
+  Type: Kyrgyzstan's oldest and largest comprehensive university (1925)
+  Known for: Humanities, Science, Law, Economics
+
+Kyrgyz-Turkish Manas University — Bishkek, Kyrgyzstan [NOT individually verified]
+  Type: Joint Kyrgyz-Turkish public university — largely tuition-free for admitted students; Turkish/Kyrgyz/Russian
+  Known for: Engineering, Business, Humanities, Agriculture
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -4492,6 +4546,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'Sweden': ['sweden', 'swedish', 'stockholm', 'lund', 'uppsala', 'gothenburg', 'kth', 'chalmers'],
   'Finland': ['finland', 'finnish', 'helsinki', 'aalto', 'tampere', 'oulu', 'turku'],
   'Russia': ['russia', 'russian', 'moscow', 'saint petersburg', 'st petersburg', 'rossotrudnichestvo', 'rudn', 'sechenov', 'lomonosov', 'bauman', 'itmo', 'mephi', 'mipt'],
+  'Kyrgyzstan': ['kyrgyzstan', 'kyrgyz', 'bishkek', 'osh', 'kyrgyzstani', 'krsu', 'ksma', 'auca'],
 }
 
 // Words too generic to identify a university by name.

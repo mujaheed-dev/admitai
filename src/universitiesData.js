@@ -5827,6 +5827,70 @@ export const UNIVERSITIES = [
     sourceUrl,
     verified: false,
   })),
+
+  // ── LIGHT ENTRIES (Kyrgyzstan — MEDICAL) ─────────────────────────────────
+  // Ultra-cheap English MBBS. Fees agent-quoted (NOT verified). ⚠ Golden rules:
+  // verify the CURRENT recognition list for YOUR country + the university's
+  // FMGE/NExT pass rate; apply directly. Positive vs Russia: NOT sanctioned, so
+  // paying fees works normally.
+  ...[
+    ['osh-state-med', 'Osh State University', 'Osh', 'The biggest public medical option — cheapest public English MBBS (~$3,600/yr, agent-quoted); 40,000+ students', ['Medicine'], 'https://www.oshsu.kg/'],
+    ['ksma', 'Kyrgyz State Medical Academy (KSMA)', 'Bishkek', "Kyrgyzstan's national medical flagship (est. 1939)", ['Medicine', 'Dentistry', 'Pharmacy'], 'https://kgma.kg/'],
+    ['ism-bishkek', 'International School of Medicine (ISM)', 'Bishkek', 'Large private medical university with a big international MBBS cohort', ['Medicine', 'Dentistry'], 'https://ism.edu.kg/'],
+    ['asmi', 'Asian Medical Institute (ASMI)', 'Kant (near Bishkek)', 'Among the cheapest NMC-listed English MBBS (~$3,400/yr, agent-quoted)', ['Medicine'], 'https://asmi.edu.kg/'],
+    ['jalalabad-state', 'Jalal-Abad State University', 'Jalal-Abad', 'Public university with an English-medium MBBS', ['Medicine'], 'https://jasu.edu.kg/'],
+    ['krsu', 'Kyrgyz-Russian Slavic University (KRSU)', 'Bishkek', 'Joint Kyrgyz-Russian comprehensive — medicine plus broad programmes (Russian-medium mostly)', ['Medicine', 'Engineering', 'Economics', 'Law'], 'https://www.krsu.edu.kg/'],
+    ['avicenna-kg', 'Avicenna International Medical University', 'Bishkek', 'Private medical university with English-medium MBBS', ['Medicine'], 'https://avicenna.edu.kg/'],
+  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'Kyrgyzstan',
+    flag: '🇰🇬',
+    city,
+    level: 'Both',
+    ranking,
+    knownFor,
+    language: 'English-medium MBBS is standard (little/no IELTS); Kyrgyz/Russian for local-language tracks — confirm per programme.',
+    entryGrades: 'Accessible — MBBS needs qualifying school science marks (and NEET for Indian nationals to practise back home); confirm on the official site.',
+    tests: 'Usually NO IELTS for English MBBS — confirm per programme.',
+    acceptance: 'Accessible — varies by programme',
+    tuitionIntl: 'Agent-quoted, NOT individually verified — English MBBS ~$3,400–$6,000/yr (confirm directly). ⚠ Verify the CURRENT recognition list for your country AND the university\'s FMGE/NExT pass rate before enrolling. Positive vs Russia: Kyrgyzstan is NOT sanctioned, so paying fees works through normal channels.',
+    living: 'Very cheap: ~$150–$300/month.',
+    deadline: 'Rolling — main September intake (some spring); confirm on the official site.',
+    scholarshipsHere: '⚠ Golden rules for this market: (1) verify YOUR country\'s medical council recognises the university, (2) check its licensing-exam pass rates, (3) apply directly — no agent needed. NEET required for Indian nationals to practise home. Few meaningful scholarships — plan as degree-only.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
+  // ── LIGHT ENTRIES (Kyrgyzstan — COMPREHENSIVE, non-medical) ──────────────
+  ...[
+    ['auca', 'American University of Central Asia (AUCA)', 'Bishkek', 'US-accredited (via Bard College, New York) liberal-arts university — English-medium, need- and merit-based aid; the region\'s quality non-medical option', ['Liberal Arts', 'Business', 'Computer Science', 'International Relations'], 'https://www.auca.kg/'],
+    ['knu-kyrgyz', 'Kyrgyz National University (KNU)', 'Bishkek', "Kyrgyzstan's oldest and largest comprehensive university (1925)", ['Humanities', 'Science', 'Law', 'Economics'], 'https://university.kg/'],
+    ['manas', 'Kyrgyz-Turkish Manas University', 'Bishkek', 'Joint Kyrgyz-Turkish public university — largely tuition-free for admitted students; Turkish/Kyrgyz/Russian instruction', ['Engineering', 'Business', 'Humanities', 'Agriculture'], 'https://manas.edu.kg/'],
+  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'Kyrgyzstan',
+    flag: '🇰🇬',
+    city,
+    level: 'Both',
+    ranking,
+    knownFor,
+    language: 'Varies — AUCA is fully English (US-accredited); Manas is Turkish/Kyrgyz/Russian; KNU mainly Kyrgyz/Russian. Confirm per programme.',
+    entryGrades: 'Varies by university — AUCA is selective (SAT/essays, US-style); the state universities are document-based. Confirm on the official site.',
+    tests: 'AUCA: English proficiency (its own test/TOEFL/IELTS); others vary — confirm per programme.',
+    acceptance: 'Varies — AUCA selective, others accessible',
+    tuitionIntl: 'Low by global standards — confirm on the official site. Kyrgyzstan is NOT sanctioned, so payments work through normal channels.',
+    living: 'Very cheap: ~$150–$300/month.',
+    deadline: 'Confirm application windows on the official site.',
+    scholarshipsHere: 'AUCA offers need- and merit-based aid (US model) to internationals; Manas is largely tuition-free for admitted students (Kyrgyz-Turkish government funded). Confirm current terms on the official site.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
 ]
 
 export function getUniversitiesByCountry(countryName) {
