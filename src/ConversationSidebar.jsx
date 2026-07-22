@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Plus, X, Trash2 } from 'lucide-react'
+import { Plus, Trash2 } from 'lucide-react'
 import ProfileMenu from './ProfileMenu.jsx'
 
 // A real open/close toggle at every breakpoint (like Claude's sidebar),
@@ -70,17 +70,10 @@ export default function ConversationSidebar({
       >
         {/* Sidebar header */}
         <div style={{ padding: '16px 14px 12px', flexShrink: 0 }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+          <div style={{ marginBottom: 14 }}>
             <span style={{ fontFamily: 'Fraunces, Georgia, serif', fontWeight: 600, color: '#16302B', fontSize: '1rem' }}>
               AdmitAI
             </span>
-            <button
-              onClick={onClose}
-              aria-label="Close sidebar"
-              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#16302B88', padding: 4, display: 'flex' }}
-            >
-              <X size={18} strokeWidth={2} />
-            </button>
           </div>
           <button
             onClick={onNew}

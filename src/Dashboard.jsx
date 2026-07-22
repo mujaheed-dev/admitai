@@ -166,19 +166,17 @@ export default function Dashboard({ firstName, user, isPaid, onGoToPricing, onGo
 
               {/* Ask AdmitAI — quick chat box */}
               <div style={{
-                background: 'linear-gradient(135deg, #16302B 0%, #1f4038 100%)',
-                borderRadius: 22, padding: '26px 24px', marginBottom: 28,
-                position: 'relative', overflow: 'hidden',
+                background: '#fff', border: '1px solid #16302B0c', borderRadius: 22,
+                padding: '26px 24px', marginBottom: 28,
+                boxShadow: '0 2px 10px rgba(22,48,43,0.06)',
               }}>
-                <div style={{ position: 'absolute', top: -30, right: -30, width: 140, height: 140, borderRadius: '50%', background: 'rgba(224,122,47,0.14)' }} />
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14, position: 'relative' }}>
-                  <div style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <Sparkles size={18} color="#E8C9A0" strokeWidth={1.8} />
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+                  <div style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(79,138,110,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Sparkles size={18} color="#4F8A6E" strokeWidth={1.8} />
                   </div>
                   <div>
-                    <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#F7F4EE', fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>Ask AdmitAI</p>
-                    <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#F7F4EE99', fontSize: '0.8rem', margin: 0 }}>Scholarships, universities, applications — ask anything.</p>
+                    <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>Ask AdmitAI</p>
+                    <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.8rem', margin: 0 }}>Scholarships, universities, applications — ask anything.</p>
                   </div>
                 </div>
 
@@ -187,9 +185,9 @@ export default function Dashboard({ firstName, user, isPaid, onGoToPricing, onGo
                     onClick={() => openConversation(latestConversation.id)}
                     style={{
                       display: 'inline-flex', alignItems: 'center', gap: 6,
-                      background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.16)',
+                      background: 'rgba(79,138,110,0.1)', border: '1px solid rgba(79,138,110,0.22)',
                       borderRadius: 100, padding: '6px 14px', marginBottom: 14, cursor: 'pointer',
-                      fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem', color: '#F7F4EE', fontWeight: 600,
+                      fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem', color: '#16302B', fontWeight: 600,
                     }}
                   >
                     Continue: {latestConversation.title || 'New chat'} →
@@ -202,7 +200,7 @@ export default function Dashboard({ firstName, user, isPaid, onGoToPricing, onGo
                     style={{
                       display: 'flex', alignItems: 'center', gap: 10, background: '#F7F4EE',
                       borderRadius: 14, padding: '9px 9px 9px 15px',
-                      border: `1.5px solid ${homeInputFocused ? '#4F8A6E' : 'transparent'}`,
+                      border: `1.5px solid ${homeInputFocused ? '#4F8A6E' : '#16302B12'}`,
                       cursor: atLimit ? 'pointer' : 'default',
                     }}
                   >
@@ -240,7 +238,7 @@ export default function Dashboard({ firstName, user, isPaid, onGoToPricing, onGo
                 </form>
 
                 {!isPaid && searchesUsed > 0 && (
-                  <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', color: searchesUsed >= LIMIT ? '#E8C9A0' : '#F7F4EE88', margin: '10px 0 0' }}>
+                  <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.72rem', color: searchesUsed >= LIMIT ? '#9A5010' : '#16302B55', margin: '10px 0 0' }}>
                     {searchesUsed} of {LIMIT} free AI uses used
                     {searchesUsed >= LIMIT && (
                       <>
