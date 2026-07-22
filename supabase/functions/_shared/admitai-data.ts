@@ -974,6 +974,73 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    Amount: tuition-fee reductions (recent tiers ~£4,000–£8,000/yr; some country-specific) — a discount at scale, not a full ride
    Deadline: round dates vary (~Feb–May) — low-effort and worth it for any Manchester offer-holder.
 
+108. Pan African University Scholarships — African Union [VERIFIED — pau-au.africa]
+   Country: Multiple (PAU institutes across Africa) | Level: master's + PhD
+   Amount: FULL — tuition + accommodation + monthly stipend + research/thesis support + travel
+   Eligibility: African nationals and diaspora; institutes: Kenya (science/tech), Cameroon (governance), Nigeria (life & earth sciences), Algeria (water & energy), + South Africa space institute
+   Deadline: annual call (2026 round 15 Nov–15 Dec 2025) — confirm current window
+   ★ The AU's own flagship — study WITHIN Africa, no overseas visa, fully funded; women/under-represented countries encouraged.
+
+109. Morocco Government Scholarship (AMCI) [VERIFIED — amci.ma]
+   Country: Morocco | Level: undergraduate, master's, PhD at public universities
+   Amount: FULL — tuition-free + monthly stipend + return airfare + insurance
+   Eligibility: mainly African/partner-country students (French/Arabic-medium mostly)
+   Deadline: 22 JULY for the following year (2026-27, verified) — via AMCI / Moroccan embassy
+   A strong francophone-Africa route; modest stipend covers basics in low-cost Morocco.
+
+110. ABE Initiative (Japan-Africa, JICA) [VERIFIED — jica.go.jp]
+   Country: Japan | Level: 2-year master's + Japanese-company internship (2 weeks–6 months)
+   Amount: FULL — tuition + exam/entrance/course fees + living + medical + flights
+   Eligibility: young African professionals (with work experience), nominated/screened via the JICA office in your country
+   Unique for its Japanese-industry internship & network angle. Complements MEXT (#67, open-application) and E-JUST TICAD (Egypt).
+
+111. AIMS Scholarships (African Institute for Mathematical Sciences) [PARTIALLY VERIFIED — nexteinstein.org]
+   Country: Multiple (South Africa, Rwanda, Ghana, Cameroon, Senegal) | Level: structured master's
+   Amount: FULL — tuition + accommodation + meals + travel
+   Eligibility: African graduates with strong maths/science background
+   A pan-African maths/AI pipeline, intra-Africa & fully funded, springboard to PhDs worldwide; women strongly encouraged.
+
+112. Hamad Bin Khalifa University (HBKU) Graduate Funding — Qatar [PARTIALLY VERIFIED — hbku.edu.qa]
+   Country: Qatar | Level: master's + PhD
+   Amount: FULL for funded admits — tuition waiver + monthly stipend + benefits (Qatar Foundation research university, Education City, Doha)
+   Deadline: main round ~January for autumn — confirm. English-medium, generously resourced Gulf research route.
+
+113. OPEC Fund for International Development Scholarship [PARTIALLY VERIFIED — opecfund.org]
+   Country: Multiple (study anywhere) | Level: development-related master's
+   Amount: FULL — up to a set max (recent ~US$50,000 total): tuition + monthly living + travel + insurance
+   Eligibility: developing-country nationals (excluding OPEC Fund members) admitted to a master's ANYWHERE in the world
+   ⚠ Study-anywhere flexibility is rare, but the annual award count is tiny — very competitive.
+
+114. DAAD In-Country/In-Region Scholarships (Sub-Saharan Africa) [PARTIALLY VERIFIED — daad.de]
+   Country: Multiple (African host universities) | Level: master's + PhD
+   Amount: FULL for the region — tuition + monthly stipend + study/research allowances
+   Eligibility: Sub-Saharan African graduates studying WITHIN Africa (own or neighbouring country), often via the host university's programme
+   The intra-Africa DAAD variant (distinct from DAAD-study-in-Germany, #1) — no European visa, lower cost, German funding.
+
+115. Education Above All — Al Fakhoora Dynamic Futures (Qatar) [PARTIALLY VERIFIED — educationaboveall.org]
+   Country: Multiple (partner universities) | Level: higher education (UG + grad)
+   Amount: FULL — tuition + living + support services
+   Eligibility: youth affected by conflict, occupation or displacement (notably Palestinian and other crisis-affected students), via partner universities/NGOs
+   ★ One of very few scholarships explicitly for refugee/crisis-affected students — access is through partner organisations.
+
+116. Wells Mountain Initiative (WMI) Empowerment Scholarship [PARTIALLY VERIFIED — wellsmountaininitiative.org]
+   Country: Multiple (study in your OWN developing country) | Level: first bachelor's/diploma
+   Amount: PARTIAL — up to US$3,000/yr (tuition/books/fees), renewable
+   Eligibility: financially-needy students from developing countries studying at home (or another developing country), with a give-back record
+   Small but decisive where $3,000 covers a whole year of low-cost home study.
+
+117. Abdulla Al Ghurair Foundation STEM Scholars [PARTIALLY VERIFIED — alghurairfoundation.org]
+   Country: Multiple (Arab-region + select global partners) | Level: undergraduate + master's
+   Amount: FULL or major — tuition + living support for STEM study
+   Eligibility: high-achieving Emirati and Arab youth in STEM (need considered)
+   A major Gulf philanthropy focused on Arab youth in STEM — pairs with the UAE/MENA universities in this dataset.
+
+118. Saudi Government Scholarship (Study in Saudi Arabia) [PARTIALLY VERIFIED — studyinsaudi.moe.gov.sa]
+   Country: Saudi Arabia | Level: UG + graduate at public universities
+   Amount: FULL for awardees — tuition-free + monthly stipend + accommodation + annual airfare + medical + settlement allowances
+   Eligibility: international students admitted via the unified "Study in Saudi" platform (Islamic studies, engineering, sciences, medicine…)
+   Among the most generous government packages anywhere (housing + flights). Many programmes Arabic-medium with a funded Arabic year; English STEM/health tracks exist.
+
 
 ━━━ UNIVERSITIES ━━━
 
