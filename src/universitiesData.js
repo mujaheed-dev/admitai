@@ -6046,6 +6046,71 @@ export const UNIVERSITIES = [
     sourceUrl,
     verified: false,
   })),
+
+  // ── LIGHT ENTRIES (Morocco — ENGLISH-MEDIUM / international standouts) ────
+  ...[
+    ['al-akhawayn', 'Al Akhawayn University (AUI)', 'Ifrane', 'Morocco\'s American liberal-arts university — ALL programmes in English, 39 nationalities on campus', ['Business', 'Computer Science', 'International Relations', 'Humanities'], 'https://aui.ma/'],
+    ['um6p', 'Mohammed VI Polytechnic University (UM6P)', 'Ben Guerir', 'Research-intensive, mostly English — ~80% of students on scholarship; a major hub for African students (AI, mining, agriculture)', ['Engineering', 'Computer Science', 'Business', 'Agriculture'], 'https://www.um6p.ma/'],
+    ['uir', 'Université Internationale de Rabat (UIR)', 'Rabat', 'Modern public-private university — engineering, business and law in French/English', ['Engineering', 'Business', 'Law', 'Computer Science'], 'https://www.uir.ac.ma/'],
+  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'Morocco',
+    flag: '🇲🇦',
+    city,
+    level: 'Both',
+    ranking,
+    knownFor,
+    language: 'Largely English — AUI/UM6P/UIR teach in English (American/international model). Confirm per programme.',
+    entryGrades: 'Selective — strong academics + English proficiency for admission. Confirm on the official site.',
+    tests: 'English proficiency (TOEFL/IELTS) for admission; SAT for some programmes. Confirm per programme.',
+    acceptance: 'Selective',
+    tuitionIntl: 'Confirm on the official site — AUI is from ~$7,500/yr for foreigners; UM6P is heavily scholarshipped (~80% of students funded). Morocco is not sanctioned, so payments work normally.',
+    living: 'Low: ~$250–$400/month.',
+    deadline: 'Confirm application windows on the official site.',
+    scholarshipsHere: 'UM6P funds ~80% of its students (merit/need, strong African focus); AUI offers merit and need-based aid. See also the AMCI government scholarship for public-university study. Confirm current terms.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
+  // ── LIGHT ENTRIES (Morocco — PUBLIC & specialized; AMCI-funded route) ─────
+  // Public universities are essentially tuition-free / very low cost, mostly
+  // French (some Arabic). The AMCI government scholarship (stipend + airfare +
+  // insurance) is the main funded route for international/African students.
+  ...[
+    ['mohammed-v-rabat', 'Mohammed V University', 'Rabat', "Morocco's leading public university — comprehensive, incl. medicine and law", ['Medicine', 'Engineering', 'Law', 'Science'], 'https://www.um5.ac.ma/'],
+    ['hassan-ii-casa', 'Hassan II University of Casablanca', 'Casablanca', "Morocco's largest public university — broad programmes incl. medicine", ['Medicine', 'Engineering', 'Business', 'Science'], 'https://www.univh2c.ma/'],
+    ['cadi-ayyad', 'Cadi Ayyad University', 'Marrakech', 'Large public university in Marrakech — sciences, engineering and medicine', ['Science', 'Engineering', 'Humanities', 'Medicine'], 'https://www.uca.ma/'],
+    ['usmba-fez', 'Sidi Mohamed Ben Abdellah University', 'Fez', 'Major public university in Fez — sciences, engineering and humanities', ['Science', 'Engineering', 'Humanities', 'Law'], 'https://www.usmba.ac.ma/'],
+    ['ibn-zohr', 'Ibn Zohr University', 'Agadir', 'Large public university serving southern Morocco', ['Business', 'Science', 'Humanities', 'Engineering'], 'https://www.uiz.ac.ma/'],
+    ['mohammed-i-oujda', 'Mohammed I University', 'Oujda', 'Public university serving eastern Morocco — sciences, law and medicine', ['Science', 'Humanities', 'Law', 'Medicine'], 'https://www.ump.ma/'],
+    ['um6ss', 'Mohammed VI University of Health Sciences (UM6SS)', 'Casablanca', 'Private health-sciences university — medicine, nursing and pharmacy', ['Medicine', 'Nursing', 'Pharmacy'], 'https://www.um6ss.ma/'],
+    ['iav-hassan-ii', 'Hassan II Institute of Agronomy & Veterinary Medicine (IAV)', 'Rabat', "Morocco's leading agriculture and veterinary institution", ['Agriculture', 'Veterinary Medicine', 'Environmental Science'], 'https://www.iav.ac.ma/'],
+    ['al-quaraouiyine', 'University of al-Qarawiyyin', 'Fez', 'Founded 859 AD — recognised as the oldest existing degree-granting university in the world; today mainly Islamic/religious studies', ['Humanities', 'Law'], 'https://www.uaq.ma/'],
+  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'Morocco',
+    flag: '🇲🇦',
+    city,
+    level: 'Both',
+    ranking,
+    knownFor,
+    language: 'Mostly French (some Arabic) — a funded language footing helps. Confirm per programme.',
+    entryGrades: 'Accessible via AMCI placement / document-based admission — confirm on the official site.',
+    tests: 'Generally no English test (instruction is French/Arabic); confirm per programme.',
+    acceptance: 'Accessible — varies by programme',
+    tuitionIntl: 'Public universities are essentially tuition-free / very low cost — confirm on the official site. The AMCI government scholarship (stipend + airfare + insurance) is the main funded route for international/African students. Morocco is not sanctioned.',
+    living: 'Low: ~$250–$400/month.',
+    deadline: 'AMCI applications typically close mid-year for the following academic year — confirm via AMCI / your Moroccan embassy.',
+    scholarshipsHere: '★ AMCI (Morocco Government Scholarship) — tuition-free public study + monthly stipend + return airfare + insurance for international/African students (UG/Master/PhD). Apply via AMCI / your Moroccan embassy. (In our scholarships list.)',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
 ]
 
 export function getUniversitiesByCountry(countryName) {

@@ -312,6 +312,15 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   ⚠ Heavy AGENT market for the MD (Perpetual Help, AMA, Davao, Cebu Doctors are agent-marketed). Apply DIRECTLY; confirm fees on the official site.
   Quality non-medical options: University of the Philippines (top public), UST (oldest in Asia, 1611), Ateneo & De La Salle (top privates), Mapúa (ABET/US-accredited engineering).
 
+🇲🇦 MOROCCO [MIXED — AMCI scholarship & English-programme facts documented; individual university fees agent-quoted]
+  System: Francophone North Africa. Public universities are essentially tuition-free / very low cost (mostly French, some Arabic), plus a few English-medium, internationally-minded universities.
+  ★ AMCI SCHOLARSHIP (in our scholarships list as "Morocco Government Scholarship (AMCI)"): the Moroccan government's route for international (esp. African) students — tuition-free public study + monthly stipend + return airfare + insurance, for UG/Master/PhD. A strong francophone-Africa option. Apply via AMCI / your country's Moroccan embassy.
+  ★ ENGLISH-MEDIUM STANDOUTS: Al Akhawayn University (Ifrane) — ALL programmes in English, American liberal-arts model (tuition from ~$7,500/yr for foreigners); and Mohammed VI Polytechnic (UM6P, Ben Guerir) — research-intensive, mostly English, ~80% of students on scholarship, ~20,000 African students.
+  Language: public universities are mostly French (some Arabic) — a funded language footing (AMCI) helps; AUI/UM6P/UIR teach largely in English. Confirm per programme.
+  Cost of living: low (~$250–$400/month).
+  Banking: normal — Morocco is NOT sanctioned.
+  Note: University of al-Qarawiyyin (Fez, 859 AD) is recognised as the oldest existing degree-granting university in the world — today mainly Islamic/religious studies.
+
 
 ━━━ SCHOLARSHIPS ━━━
 
@@ -4617,6 +4626,56 @@ Far Eastern University (FEU) — Manila, Philippines [NOT individually verified]
   Type: Large private university — a major name in nursing and (via FEU-NRMF) medicine
   Known for: Nursing, Medicine, Business
 
+━━ Moroccan universities (francophone North Africa; public = tuition-free/very cheap via AMCI scholarship; a few English-medium standouts; NOT sanctioned — see Morocco country block) ━━
+
+Al Akhawayn University (AUI) — Ifrane, Morocco [NOT individually verified — English standout]
+  Type: ★ Morocco's American liberal-arts university — ALL programmes in English, 39 nationalities; tuition from ~$7,500/yr for foreigners
+  Known for: Business, Computer Science, International Relations, Humanities
+
+Mohammed VI Polytechnic University (UM6P) — Ben Guerir, Morocco [NOT individually verified — English, heavily scholarshipped]
+  Type: ★ Research-intensive, mostly English — ~80% of students on scholarship; a major hub for African students (AI, mining, agriculture)
+  Known for: Engineering, Computer Science, Business, Agriculture
+
+Université Internationale de Rabat (UIR) — Rabat, Morocco [NOT individually verified]
+  Type: Modern public-private university — engineering, business and law in French/English
+  Known for: Engineering, Business, Law, Computer Science
+
+Mohammed V University — Rabat, Morocco [NOT individually verified — public, AMCI-funded route]
+  Type: Morocco's leading public university — comprehensive, incl. medicine and law
+  Known for: Medicine, Engineering, Law, Science
+
+Hassan II University of Casablanca — Casablanca, Morocco [NOT individually verified — public, AMCI-funded route]
+  Type: Morocco's largest public university — broad programmes incl. medicine
+  Known for: Medicine, Engineering, Business, Science
+
+Cadi Ayyad University — Marrakech, Morocco [NOT individually verified — public, AMCI-funded route]
+  Type: Large public university in Marrakech — sciences, engineering and medicine
+  Known for: Science, Engineering, Humanities, Medicine
+
+Sidi Mohamed Ben Abdellah University — Fez, Morocco [NOT individually verified — public, AMCI-funded route]
+  Type: Major public university in Fez — sciences, engineering and humanities
+  Known for: Science, Engineering, Humanities, Law
+
+Ibn Zohr University — Agadir, Morocco [NOT individually verified — public, AMCI-funded route]
+  Type: Large public university serving southern Morocco
+  Known for: Business, Science, Humanities, Engineering
+
+Mohammed I University — Oujda, Morocco [NOT individually verified — public, AMCI-funded route]
+  Type: Public university serving eastern Morocco — sciences, law and medicine
+  Known for: Science, Humanities, Law, Medicine
+
+Mohammed VI University of Health Sciences (UM6SS) — Casablanca, Morocco [NOT individually verified]
+  Type: Private health-sciences university — medicine, nursing and pharmacy
+  Known for: Medicine, Nursing, Pharmacy
+
+Hassan II Institute of Agronomy & Veterinary Medicine (IAV) — Rabat, Morocco [NOT individually verified]
+  Type: Morocco's leading agriculture and veterinary institution
+  Known for: Agriculture, Veterinary Medicine, Environmental Science
+
+University of al-Qarawiyyin — Fez, Morocco [NOT individually verified — historic]
+  Type: Founded 859 AD — recognised as the oldest existing degree-granting university in the world; today mainly Islamic/religious studies
+  Known for: Humanities, Law
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -4671,6 +4730,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'Kyrgyzstan': ['kyrgyzstan', 'kyrgyz', 'bishkek', 'osh', 'kyrgyzstani', 'krsu', 'ksma', 'auca'],
   'Kazakhstan': ['kazakhstan', 'kazakh', 'almaty', 'astana', 'nur-sultan', 'nazarbayev', 'kaznu', 'kimep', 'satbayev'],
   'Philippines': ['philippines', 'philippine', 'filipino', 'pinoy', 'manila', 'cebu', 'davao', 'quezon', 'ust', 'ateneo', 'mapua'],
+  'Morocco': ['morocco', 'moroccan', 'maroc', 'rabat', 'casablanca', 'marrakech', 'marrakesh', 'fez', 'fes', 'ifrane', 'akhawayn', 'um6p', 'amci'],
 }
 
 // Words too generic to identify a university by name.
