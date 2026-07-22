@@ -276,6 +276,14 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   Scholarships: Strong for developing countries (Australia Awards, see #56); research degrees widely funded via RTP (see #57) | Application effort: Medium
   ⚠ From 2 Feb 2026 you cannot apply for a student visa onshore while holding a 485 — plan any second course before graduating.
 
+🇷🇺 RUSSIA [MIXED — tuition/scholarship structure verified; the banking/sanctions reality is the decisive caveat; individual university fees are agent-quoted]
+  System: Large public universities + specialised medical universities (English MBBS is a big draw); one of the world's cheapest destinations, with a large African/Asian international cohort (RUDN especially)
+  Cost (agent-quoted ranges): English-taught MBBS ~$3,000–$8,000/yr; general/STEM tuition often ~$2,000–$6,000/yr. Living is very low: ~$150–$250/month.
+  Scholarships (verified structure): the Russian Government Scholarship via ROSSOTRUDNICHESTVO gives ~15,000 quota places/yr to 180+ countries — tuition-free + a monthly stipend + hostel; the OPEN DOORS Olympiad funds international master's/PhD applicants with full tuition waivers at participating universities. Apply via the Rossotrudnichestvo office/portal serving your country.
+  Language: MOST degree programmes are RUSSIAN-medium — a funded 1-year Russian preparatory year is standard. English-taught MD and some English master's exist (many MBBS programmes don't require IELTS) — confirm per programme.
+  ⚠⚠ BANKING & SANCTIONS (the deciding factor, verified): major Russian banks are cut off from SWIFT, and Western bank cards / payment apps (Visa, Mastercard, Apple/Google Pay) DO NOT work inside Russia. Paying tuition and receiving money from home is genuinely difficult — often cash-based or routed via third countries; scholarship/allowance transfers can also be disrupted. Get the university's CURRENT payment guidance and budget for this reality before committing. Post-study work options are limited.
+  ⚠ MBBS golden rules (as with Georgia/Kyrgyzstan): verify YOUR home medical council recognises the specific university AND check its graduates' licensing-exam pass rates (e.g. FMGE/NExT for India) BEFORE enrolling; apply directly — no agent is required.
+
 
 ━━━ SCHOLARSHIPS ━━━
 
@@ -4364,6 +4372,75 @@ University of Vaasa — Vaasa, Finland [NOT individually verified]
   Known for: Business, Finance, Energy Systems, IT
   Fees: country ranges apply — confirm on uwasa.fi.
 
+━━ Russian universities (⚠⚠ SANCTIONS/BANKING: Russian banks are off SWIFT and Western cards/apps don't work inside Russia — paying fees & receiving money from home is genuinely hard; Rossotrudnichestvo quota + Open Doors scholarships; MBBS golden rules apply — see Russia country block) ━━
+
+Lomonosov Moscow State University (MSU) — Moscow, Russia [NOT individually verified — fees agent-quoted]
+  Type: Russia's #1 — the historic flagship, strong across sciences and humanities
+  Known for: Physics, Mathematics, Chemistry, Economics
+  Notes: Rossotrudnichestvo quota + Open Doors apply; confirm fees on msu.ru.
+
+Saint Petersburg State University (SPbU) — Saint Petersburg, Russia [NOT individually verified — fees agent-quoted]
+  Type: Russia's second historic flagship — alma mater of many national leaders
+  Known for: Law, Economics, Physics, International Relations
+  Notes: confirm fees on spbu.ru.
+
+HSE University (Higher School of Economics) — Moscow, Russia [NOT individually verified — fees agent-quoted]
+  Type: Leading social-science/economics university — the most Western-facing, many English-taught programmes
+  Known for: Economics, Business, Computer Science, Political Science
+  Notes: strongest English-taught catalogue in Russia; confirm fees on hse.ru.
+
+RUDN University (Peoples' Friendship University) — Moscow, Russia [NOT individually verified — fees agent-quoted]
+  Type: Built for international students — one of the largest African/Asian cohorts in Russia; strong medicine
+  Known for: Medicine, Engineering, Law, Agriculture
+  Notes: a natural first look for African/Asian applicants; English MBBS available. MBBS golden rules apply.
+
+MGIMO University — Moscow, Russia [NOT individually verified — fees agent-quoted]
+  Type: Russia's elite diplomacy/international-relations school (Foreign Ministry)
+  Known for: International Relations, Law, Economics, Political Science
+
+Bauman Moscow State Technical University — Moscow, Russia [NOT individually verified — fees agent-quoted]
+  Type: Russia's premier engineering university (est. 1830)
+  Known for: Mechanical Engineering, Aerospace Engineering, Robotics, Computer Science
+
+Moscow Institute of Physics and Technology (MIPT) — Dolgoprudny (Moscow region), Russia [NOT individually verified]
+  Type: "Russia's MIT" — elite physics and applied maths ("Phystech")
+  Known for: Physics, Mathematics, Computer Science, AI
+
+National Research Nuclear University MEPhI — Moscow, Russia [NOT individually verified]
+  Type: Top nuclear-physics and engineering university
+  Known for: Physics, Engineering, Cybersecurity, Computer Science
+
+ITMO University — Saint Petersburg, Russia [NOT individually verified]
+  Type: IT/photonics powerhouse — repeat world programming (ICPC) champions
+  Known for: Computer Science, Physics, AI, Robotics
+
+Novosibirsk State University (NSU) — Novosibirsk, Russia [NOT individually verified]
+  Type: Siberia's research flagship, tied to the Akademgorodok science city
+  Known for: Physics, Mathematics, Natural Sciences, Computer Science
+
+Tomsk Polytechnic University — Tomsk, Russia [NOT individually verified]
+  Type: Historic Siberian engineering university with a big international intake
+  Known for: Engineering, Petroleum Engineering, Materials Science, IT
+
+Sechenov University (First Moscow State Medical) — Moscow, Russia [NOT individually verified — MBBS golden rules apply]
+  Type: Russia's top medical university — flagship English-taught MBBS
+  Known for: Medicine, Dentistry, Pharmacy
+  ⚠ Verify your home medical council recognises Sechenov AND check graduates' licensing pass rates (FMGE/NExT for India); apply directly.
+
+Pirogov Russian National Research Medical University — Moscow, Russia [NOT individually verified — MBBS golden rules apply]
+  Type: Major Moscow medical university with an English-medium MD
+  Known for: Medicine, Pharmacy
+  ⚠ Same recognition/pass-rate checks apply.
+
+Kazan Federal University (KFU) — Kazan, Russia [NOT individually verified — MBBS golden rules apply]
+  Type: Historic comprehensive (est. 1804) — big English MBBS plus broad programmes
+  Known for: Medicine, Engineering, IT, Geosciences
+  ⚠ Recognition/pass-rate checks apply for medicine.
+
+Ural Federal University (UrFU) — Yekaterinburg, Russia [NOT individually verified]
+  Type: Large federal university — engineering, IT and English MBBS at low cost
+  Known for: Engineering, IT, Medicine, Materials Science
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -4414,6 +4491,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'Singapore': ['singapore', 'singaporean', 'nus', 'ntu', 'tuition grant'],
   'Sweden': ['sweden', 'swedish', 'stockholm', 'lund', 'uppsala', 'gothenburg', 'kth', 'chalmers'],
   'Finland': ['finland', 'finnish', 'helsinki', 'aalto', 'tampere', 'oulu', 'turku'],
+  'Russia': ['russia', 'russian', 'moscow', 'saint petersburg', 'st petersburg', 'rossotrudnichestvo', 'rudn', 'sechenov', 'lomonosov', 'bauman', 'itmo', 'mephi', 'mipt'],
 }
 
 // Words too generic to identify a university by name.

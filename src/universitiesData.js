@@ -5780,6 +5780,53 @@ export const UNIVERSITIES = [
     sourceUrl,
     verified: false,
   })),
+
+  // ── LIGHT ENTRIES (Russia) ───────────────────────────────────────────────
+  // Fees are agent-quoted (NOT individually verified). Country-level verified
+  // facts: Rossotrudnichestvo government-scholarship quota (~15,000/yr — tuition
+  // + stipend + hostel) and the Open Doors Olympiad (master's/PhD full waivers).
+  // ⚠⚠ BANKING: Russian banks are cut from SWIFT and Western cards/apps do NOT
+  // work inside Russia — paying fees and receiving money from home is genuinely
+  // hard (often cash/third-country). ⚠ MBBS golden rules apply: verify home
+  // medical-council recognition + graduate pass rates; apply directly.
+  ...[
+    ['msu-moscow', 'Lomonosov Moscow State University (MSU)', 'Moscow', "Russia's #1 — the historic flagship, strong across sciences and humanities", ['Physics', 'Mathematics', 'Chemistry', 'Economics'], 'https://www.msu.ru/en/'],
+    ['spbu', 'Saint Petersburg State University (SPbU)', 'Saint Petersburg', "Russia's second historic flagship — alma mater of many national leaders", ['Law', 'Economics', 'Physics', 'International Relations'], 'https://english.spbu.ru/'],
+    ['hse-moscow', 'HSE University (Higher School of Economics)', 'Moscow', 'Leading social-science/economics university — the most Western-facing, with many English-taught programmes', ['Economics', 'Business', 'Computer Science', 'Political Science'], 'https://www.hse.ru/en/'],
+    ['rudn', 'RUDN University (Peoples\' Friendship University)', 'Moscow', 'Built for international students — one of the largest African/Asian cohorts in Russia; strong medicine', ['Medicine', 'Engineering', 'Law', 'Agriculture'], 'https://eng.rudn.ru/'],
+    ['mgimo', 'MGIMO University', 'Moscow', "Russia's elite diplomacy/international-relations school (under the Foreign Ministry)", ['International Relations', 'Law', 'Economics', 'Political Science'], 'https://english.mgimo.ru/'],
+    ['bauman', 'Bauman Moscow State Technical University', 'Moscow', "Russia's premier engineering university (est. 1830)", ['Mechanical Engineering', 'Aerospace Engineering', 'Robotics', 'Computer Science'], 'https://bmstu.ru/en'],
+    ['mipt', 'Moscow Institute of Physics and Technology (MIPT)', 'Dolgoprudny (Moscow region)', '"Russia\'s MIT" — elite physics and applied maths ("Phystech")', ['Physics', 'Mathematics', 'Computer Science', 'AI & Computer Science'], 'https://mipt.ru/english/'],
+    ['mephi', 'National Research Nuclear University MEPhI', 'Moscow', 'Top nuclear-physics and engineering university', ['Physics', 'Engineering', 'Cybersecurity', 'Computer Science'], 'https://eng.mephi.ru/'],
+    ['itmo', 'ITMO University', 'Saint Petersburg', 'IT/photonics powerhouse — repeat world programming (ICPC) champions', ['Computer Science', 'Physics', 'AI & Computer Science', 'Robotics'], 'https://en.itmo.ru/'],
+    ['nsu-novosibirsk', 'Novosibirsk State University (NSU)', 'Novosibirsk', "Siberia's research flagship, tied to the Akademgorodok science city", ['Physics', 'Mathematics', 'Natural Sciences', 'Computer Science'], 'https://english.nsu.ru/'],
+    ['tpu-tomsk', 'Tomsk Polytechnic University', 'Tomsk', 'Historic Siberian engineering university with a big international intake', ['Engineering', 'Petroleum Engineering', 'Materials Science', 'IT'], 'https://tpu.ru/en/'],
+    ['sechenov', 'Sechenov University (First Moscow State Medical)', 'Moscow', "Russia's top medical university — flagship English-taught MBBS", ['Medicine', 'Dentistry', 'Pharmacy'], 'https://www.sechenov.ru/eng/'],
+    ['pirogov-rnrmu', 'Pirogov Russian National Research Medical University', 'Moscow', 'Major Moscow medical university with an English-medium MD', ['Medicine', 'Pharmacy'], 'https://rsmu.press/en/'],
+    ['kazan-federal', 'Kazan Federal University (KFU)', 'Kazan', 'Historic comprehensive (est. 1804) — big English MBBS plus broad programmes', ['Medicine', 'Engineering', 'IT', 'Geosciences'], 'https://kpfu.ru/eng'],
+    ['urfu', 'Ural Federal University (UrFU)', 'Yekaterinburg', 'Large federal university — engineering, IT and English MBBS at low cost', ['Engineering', 'IT', 'Medicine', 'Materials Science'], 'https://urfu.ru/en/'],
+  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'Russia',
+    flag: '🇷🇺',
+    city,
+    level: 'Both',
+    ranking,
+    knownFor,
+    language: 'Mostly Russian-medium (a funded 1-year Russian preparatory year is standard); English-taught MD and some English master\'s where noted — confirm per programme.',
+    entryGrades: 'Document-based admission for most programmes; medical universities are more selective — confirm on the official site.',
+    tests: 'Often NO IELTS for English-taught MBBS; Russian proficiency (TORFL) for Russian-medium programmes — confirm per programme.',
+    acceptance: 'Accessible — varies by programme',
+    tuitionIntl: 'Agent-quoted, NOT individually verified — English MBBS ~$3,000–$8,000/yr, STEM often ~$2,000–$6,000/yr (confirm directly). ⚠⚠ SANCTIONS/BANKING: Russian banks are cut from SWIFT and Western cards/apps (Visa, Mastercard, Apple/Google Pay) do NOT work inside Russia — paying fees and receiving money from home is genuinely difficult (often cash or via third countries). Get the university\'s current payment guidance before committing.',
+    living: 'Very cheap: ~$150–$250/month.',
+    deadline: 'Rolling/annual intakes; the Rossotrudnichestvo government-scholarship quota window is typically autumn–winter for the following year — confirm.',
+    scholarshipsHere: 'Russian Government Scholarship (Rossotrudnichestvo quota — ~15,000 places/yr: tuition-free + monthly stipend + hostel) and the Open Doors Olympiad (full tuition waivers for master\'s/PhD). ⚠ For medicine: verify your home council recognises this university AND check its licensing-exam pass rates (e.g. FMGE/NExT for India); apply directly — no agent needed.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
 ]
 
 export function getUniversitiesByCountry(countryName) {
