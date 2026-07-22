@@ -1041,6 +1041,426 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
    Eligibility: international students admitted via the unified "Study in Saudi" platform (Islamic studies, engineering, sciences, medicine…)
    Among the most generous government packages anywhere (housing + flights). Many programmes Arabic-medium with a funded Arabic year; English STEM/health tracks exist.
 
+119. Cornelius Vanderbilt Scholarship (Vanderbilt University) [VERIFIED — Vanderbilt University (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Full tuition + a one-time summer stipend; extra need-based aid added where demonstrated need exceeds tuition — verified 2026
+   Eligibility: International first-year applicants are eligible for all Vanderbilt merit scholarships; applying to the Cornelius Vanderbilt Scholarship is strongly encouraged and preference goes to those who apply
+   Deadline: Tied to admission — Regular Decision ~Jan 1 (apply by the scholarship deadline; confirm the current cycle)
+   One of the most generous US merit awards — full tuition regardless of nationality.
+
+120. Emory University Scholar Programs (Woodruff / Dean's) [VERIFIED — Emory University (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Robert W. Woodruff Scholarship covers full tuition, room, board and fees; Dean's Scholarships cover full tuition — verified 2026
+   Eligibility: International first-year applicants are eligible; opt in to merit-scholarship consideration on the application (some awards need no separate materials)
+   Deadline: November 15 (Early Decision I or Regular Decision) — confirm the current cycle
+   Merit-based and open to internationals — the Woodruff is a full ride, not just tuition.
+
+121. Karsh International Scholars Program (Duke University) [VERIFIED — Duke University — Office of University Scholars & Fellows (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Full ride — tuition, mandatory fees, room and board for four years, plus funding across three summers for research/internships — verified 2026
+   Eligibility: International applicants with demonstrated financial need; no separate application — apply to Duke and request financial aid
+   Deadline: Tied to admission (apply early / Regular Decision) — confirm the current cycle
+   Full ride specifically for international undergraduates with financial need — extremely competitive.
+
+122. USC Trustee & Mork Family Scholarships (University of Southern California) [VERIFIED — USC Undergraduate Admission (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Trustee: full tuition (~100 awards/yr). Mork Family: full tuition + $5,000/yr living stipend (~10 awards/yr) — verified 2026
+   Eligibility: International first-year applicants are considered; submit a complete application by the December 1 scholarship-consideration deadline
+   Deadline: December 1
+   Automatic consideration by the Dec 1 deadline — no separate scholarship form for the Trustee.
+
+123. Trustee Scholarship (Boston University) [VERIFIED — Boston University (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Full undergraduate tuition + mandatory fees, renewable for four years (housing/dining/insurance not covered) — verified 2026
+   Eligibility: Open to international undergraduate applicants; BU awards ~20 Trustee Scholarships to international students each year — highly competitive
+   Deadline: December 1 (Common App + Trustee Scholarship essay)
+   Full tuition + fees — but budget ~$30k/yr for living costs, which it does not cover.
+
+124. Danforth Scholars Program (Washington University in St. Louis) [VERIFIED — WashU Office of Scholar Programs (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Full-tuition scholarship with a $2,500 stipend, or a partial-tuition award; renewable each year — verified 2026
+   Eligibility: International students are welcome; complete the WashU admission application plus a separate Danforth Scholars application (short leadership essay)
+   Deadline: Separate Danforth application — align with the Regular Decision cycle (~Jan); confirm the current dates
+   Requires a separate scholarship application on top of admission — leadership-focused selection.
+
+125. Richmond Scholars Program (University of Richmond) [VERIFIED — University of Richmond (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Equal to full tuition, housing and food, plus program benefits; ~25 incoming students; renewable up to eight semesters — verified 2026
+   Eligibility: International students and non-US citizens receive full consideration for merit scholarships; all first-year applicants are auto-considered if complete by the deadline
+   Deadline: December 1 (Richmond Scholars deadline)
+   The university's top award — effectively a full ride (tuition + room + board).
+
+126. Global Scholars Program (Clark University) [VERIFIED — Clark University (official)]
+   Country: United States | Level: Undergraduate
+   Amount: $15,000–$25,000/yr for four years, plus up to $5,000 additional need-based aid, plus a guaranteed $2,500 paid-internship/research award — verified 2026
+   Eligibility: First-year international applicants (not transfers) who have attended school overseas for at least four years; international citizens studying in the US may also apply
+   Deadline: Tied to admission deadlines — confirm the current cycle
+   A large partial award (not a full ride) but widely accessible for international first-years.
+
+127. No-Tuition Promise (Berea College) [VERIFIED — Berea College (official)]
+   Country: United States | Level: Undergraduate
+   Amount: No student pays tuition; first-year international students receive aid covering 100% of tuition, room, board and fees. After year one, save ~$1,000/yr toward costs — verified 2026
+   Eligibility: Admitted international students (Berea admits ~30 new international students/year); a ~$2,200 enrollment deposit applies, with aid available for those who cannot pay it
+   Deadline: International applicants apply early — confirm the current deadline (spots are limited)
+   The only US college that fully funds 100% of enrolled international students; all students work an on-campus job.
+
+128. Freeman Asian Scholars Program (Wesleyan University) [VERIFIED — Wesleyan University (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Full cost of attendance — tuition, fees, room, board, supplies and travel home (over $90,000/yr); ~11 scholars/year — verified 2026
+   Eligibility: Citizens/permanent residents of China, Hong Kong, Indonesia, Japan, Malaysia, the Philippines, Singapore, South Korea, Taiwan, Thailand or Vietnam (not dual US citizens/residents), applying as aid-seeking candidates
+   Deadline: Tied to admission — apply by the Regular Decision deadline (~Jan 1); confirm the current cycle
+   Region-specific full ride for East/Southeast Asian students — one of the most generous awards anywhere.
+
+129. Harvard College Need-Based Financial Aid [VERIFIED — Harvard College (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Meets 100% of demonstrated need with grants, no loans; families earning under ~$100,000 typically pay nothing for tuition, room and board — verified 2026
+   Eligibility: Need-blind for all applicants including international students — your ability to pay does not affect the admission decision, and full need is met if admitted
+   Deadline: Tied to admission (financial-aid materials due with the application) — confirm the current cycle
+   Not a named scholarship but a need-blind, full-need, no-loan system — for lower-income families it is effectively a full ride.
+
+130. Yale University Need-Based Financial Aid [VERIFIED — Yale University (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Meets 100% of demonstrated need with grants (no loans, no student-contribution requirement to borrow); many low-income families pay $0 — verified 2026
+   Eligibility: Need-blind for all applicants including international students; admitted students receive aid covering full demonstrated need
+   Deadline: Tied to admission — submit aid documents with the application; confirm the current cycle
+   Need-blind for internationals with 100% of need met by grants — no loans.
+
+131. Princeton University Need-Based Financial Aid [VERIFIED — Princeton University (official)]
+   Country: United States | Level: Undergraduate
+   Amount: All-grant aid (the first US university to replace loans with grants); meets full demonstrated need — most families under ~$100,000 pay nothing — verified 2026
+   Eligibility: Need-blind for all applicants including international students; full demonstrated need guaranteed if admitted
+   Deadline: Tied to admission — submit the Princeton Financial Aid Application with your admission application; confirm the current cycle
+   Pioneered no-loan aid; among the most generous need-based programs for internationals.
+
+132. MIT Need-Based Financial Aid [VERIFIED — MIT Student Financial Services (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Meets 100% of demonstrated need with need-based aid (no merit or athletic scholarships); low- and middle-income families often pay nothing toward tuition — verified 2026
+   Eligibility: Need-blind for all applicants including international students — one of the few STEM-focused universities to be need-blind regardless of nationality
+   Deadline: Tied to admission — submit aid materials with the application; confirm the current cycle
+   Need-blind for internationals and 100% need met — the standout option for STEM.
+
+133. Amherst College Need-Based Financial Aid [VERIFIED — Amherst College (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Meets 100% of demonstrated need through scholarships and work-study, no loans; aid is guaranteed for all four years — verified 2026
+   Eligibility: Need-blind for international students — one of a small number of US colleges that admit internationals without regard to ability to pay and meet full need
+   Deadline: Tied to admission — submit aid documents with the application; confirm the current cycle
+   Leading liberal-arts college, long need-blind for internationals with no-loan aid.
+
+134. Dartmouth College Need-Based Financial Aid [VERIFIED — Dartmouth Financial Aid (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Meets 100% of demonstrated need; free tuition for families earning under ~$125,000 and no-loan packages for many — verified 2026
+   Eligibility: Need-blind for all applicants including international students (universal need-blind policy since 2022); full need met if admitted
+   Deadline: Tied to admission — submit aid materials with the application; confirm the current cycle
+   One of only a handful of universities with universal need-blind admission including internationals.
+
+135. Williams College Need-Based Financial Aid (All-Grant) [VERIFIED — Williams College (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Meets 100% of demonstrated need with grants — no loans, no work-study; international aid averages more than $90,000/yr and includes books, supplies and a yearly flight home — verified 2026
+   Eligibility: Open to international applicants (need-aware for internationals — indicate intent to apply for aid on the application); ~70% of international students receive aid
+   Deadline: Tied to admission — submit aid documents with the application; confirm the current cycle
+   Not need-blind for internationals, but admitted students get one of the most generous all-grant packages in the US.
+
+136. The Colby Commitment (Colby College) [VERIFIED — Colby College (official)]
+   Country: United States | Level: Undergraduate
+   Amount: Meets 100% of demonstrated need with no loans; families earning under ~$75,000 pay $0, and those under ~$200,000 contribute no more than ~$20,000 — verified 2026
+   Eligibility: Open to admitted international students (CSS Profile + International Student Certification of Finances required)
+   Deadline: Tied to admission — submit aid documents with the application; confirm the current cycle
+   No-loan, full-need aid extended to international students under the Colby Commitment.
+
+137. Full International Scholarship (University of Westminster) [VERIFIED — University of Westminster (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: Full ride — full tuition-fee waiver, accommodation, living expenses and flights to/from London — verified 2026
+   Eligibility: International students from developing countries holding an offer for a full-time undergraduate degree; selection weighs academic excellence, development potential and financial need
+   Deadline: Apply after receiving an offer — applications for 2026-27 open in January 2026 (confirm the closing date)
+   A rare full-ride UK undergraduate scholarship — one of very few covering living costs and flights, not just tuition.
+
+138. Denys Holland Scholarship (UCL) [VERIFIED — UCL (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: £9,000/year for three years; scholars may use it for fees, with any remainder paid as a maintenance stipend — verified 2026
+   Eligibility: International (and UK) students holding an offer for full-time undergraduate study at UCL in any department, in financial hardship; applicants aged 25 or under are preferred
+   Deadline: Late July (e.g. ~21 July) — confirm the current cycle
+   Partial award aimed at students who could not otherwise afford UCL — flexible between fees and living costs.
+
+139. International Undergraduate Scholarships (University of Sheffield) [VERIFIED — University of Sheffield (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: Automatic £2,500/yr fee discount (up to £10,000 over the degree, needs a 60%+ average); a competitive Merit award of £10,000 toward tuition; NCUK Merit up to £17,500 — verified 2026
+   Eligibility: Overseas fee-paying students holding an offer for an eligible undergraduate programme; the automatic award needs no separate form
+   Deadline: Varies by scheme — confirm the current cycle
+   The £2,500/yr discount is automatic on admission — worth confirming eligibility even before applying for the competitive Merit award.
+
+140. Undergraduate Global Excellence Scholarship (University of Warwick) [VERIFIED — University of Warwick (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: Tiered tuition awards — for 2026: 6 full-fee, 148 half-fee, 103 quarter-fee and 6 £2,000 awards (~£1.5m total) — verified 2026
+   Eligibility: Self-funded overseas fee-paying students who applied for a full-time undergraduate course before the UCAS deadline (~14 Jan 2026)
+   Deadline: Scholarship application by late February (~27 Feb 2026); must hold an offer by mid-May
+   Full-fee awards are few but half- and quarter-fee awards are plentiful — strong odds of a meaningful discount.
+
+141. International Undergraduate Scholarships (University of Nottingham) [VERIFIED — University of Nottingham (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: Automatic awards of up to £5,000 off tuition on admission, plus a competitive International Undergraduate Excellence award (~£2,000 off first-year tuition) — verified 2026
+   Eligibility: International students holding an offer for an eligible full-time undergraduate programme (some programmes such as Medicine, Pharmacy, Veterinary and Foundation Year are excluded); only the highest-value award applies if multiple are offered
+   Deadline: Excellence award outcomes by end of April — confirm the current cycle
+   The automatic discount needs no application — check eligibility as soon as you hold an offer.
+
+142. Chancellor's International Scholarships (University of Sussex) [VERIFIED — University of Sussex (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: First-year tuition-fee waiver (recent cycles ran a partial waiver of around £5,000 / up to ~50% — confirm the current amount) — verified 2026
+   Eligibility: International (overseas fee-paying) students holding an offer for an eligible full-time undergraduate programme; awarded as a fee reduction with no cash alternative
+   Deadline: Varies — confirm the current cycle
+   First-year only — factor in the full fee for later years when budgeting.
+
+143. Kent International Scholarship for Undergraduates (University of Kent) [VERIFIED — University of Kent (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: £5,000 fee waiver split across two years (£3,000 in year one, £2,000 on progressing to stage two) — verified 2026
+   Eligibility: Self-funded overseas fee payers paying fees directly to the University of Kent, holding an offer for an eligible undergraduate programme
+   Deadline: Varies — confirm the current cycle
+   A modest but reliable tuition discount for self-funded international undergraduates.
+
+144. Undergraduate International Excellence Scholarships (Cardiff University) [VERIFIED — Cardiff University (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: Nine £10,000 Excellence scholarships (first year), plus a Vice-Chancellor's award of £3,500 (or £5,000 for certain countries) — verified 2026
+   Eligibility: New international students starting an eligible undergraduate programme in autumn 2026 who can demonstrate academic potential
+   Deadline: Excellence award application by early April (~3 Apr 2026)
+   The £10,000 Excellence awards are competitive; the Vice-Chancellor's award is broader and easier to qualify for.
+
+145. International Excellence Scholarships (University of Leeds) [VERIFIED — University of Leeds (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: Up to 500 awards worth £3,000, £6,000 or £16,000, applied as a discount on the first year's tuition — verified 2026
+   Eligibility: International students holding an offer for an eligible undergraduate course starting September 2026; competitive, based on academic achievement
+   Deadline: Varies — confirm the current cycle
+   A large scheme (up to 500 awards) — good odds, though most awards are the smaller tiers.
+
+146. International Undergraduate Scholarships (University of Birmingham) [VERIFIED — University of Birmingham (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: £5,000 tuition scholarships for eligible international undergraduates (several country-specific schemes, e.g. Nigeria, Ghana, Kenya, South Africa, Canada) — verified 2026
+   Eligibility: International students holding an offer for an eligible undergraduate programme starting September 2026; specific awards depend on country of domicile
+   Deadline: Varies by scheme — confirm the current cycle
+   Awards are largely country-specific — check the scholarships page for the scheme matching your nationality.
+
+147. International Excellence Award — Undergraduate (University of Surrey) [VERIFIED — University of Surrey (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: £5,000 tuition-fee waiver — verified 2026
+   Eligibility: Self-funded international fee-paying students, regardless of nationality or domicile; application-based, assessed on grades, predicted grades and personal statement
+   Deadline: Main round ~20 July (for UCAS applicants by 30 June); a Clearing round reopens in August — confirm the current cycle
+   Open to any nationality — a straightforward £5,000 fee waiver for self-funded international students.
+
+148. Global Talent Scholarship — Undergraduate (Queen Mary University of London) [VERIFIED — Queen Mary University of London (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: Up to £12,000, renewable each year (needs a 65%+ average) — verified 2026
+   Eligibility: International students holding an offer for an eligible undergraduate programme joining September 2026
+   Deadline: Varies — confirm the current cycle
+   Renewable across years (unlike many UK awards that only cover year one) — strong value if you maintain the grade threshold.
+
+149. Undergraduate Excellence Scholarship (University of Glasgow) [VERIFIED — University of Glasgow (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: £10,000/yr (Medical, Veterinary & Life Sciences and Science & Engineering) or £7,000/yr (Arts and Social Sciences), as a tuition discount, renewable each year — verified 2026
+   Eligibility: International students holding an offer; no separate application — offer-holders are automatically assessed on academic merit
+   Deadline: Automatic on admission — confirm the current cycle
+   Automatic and renewable annually — one of the more generous automatic UK undergraduate awards.
+
+150. Exeter Excellence Scholarships — Undergraduate (University of Exeter) [VERIFIED — University of Exeter (official)]
+   Country: United Kingdom | Level: Undergraduate
+   Amount: £3,000 or £5,000 per year, as a reduction of international tuition fees, continuing at the same value for each year of the degree — verified 2026
+   Eligibility: International students (including EU nationals paying international fees) holding an offer to begin undergraduate study in September 2026; typically expects ~AAB at A-level or equivalent
+   Deadline: Runs in rounds — confirm the current cycle
+   Repeats at the same value every year of the degree, not just year one.
+
+151. International Student Entrance Scholarship (University of Waterloo) [VERIFIED — University of Waterloo (official)]
+   Country: Canada | Level: Undergraduate
+   Amount: $10,000 (paid $5,000 + $5,000 across the first two terms); Engineering adds a further $10,000 for a $20,000 total — verified 2026
+   Eligibility: International fee-paying students admitted to a full-time first-year degree starting September 2026; no minimum average and no application required
+   Deadline: Automatic on admission — first installment in late July
+   Fully automatic — every admitted international first-year gets it, so it is effectively a guaranteed discount.
+
+152. Global Leader of Tomorrow Award (York University) [VERIFIED — York University (official)]
+   Country: Canada | Level: Undergraduate
+   Amount: $20,000/year, renewable for up to four years ($80,000 total); ~2 awards per year — verified 2026
+   Eligibility: International students with outstanding academic achievement (A average) plus leadership/community/other accomplishments; preference to those showing financial need; must have finished high school within the past two years
+   Deadline: Late January (~26 Jan 2026)
+   Very few awards but a genuine full-scale scholarship ($80k over the degree).
+
+153. Entrance Scholarships (McGill University) [VERIFIED — McGill University (official)]
+   Country: Canada | Level: Undergraduate
+   Amount: One-year awards of CAD $3,000 (non-renewable) and Major Entrance Scholarships of $3,000–$12,000 renewable for 3–4 years — verified 2026
+   Eligibility: Newly admitted international undergraduates; automatically considered for one-year awards on academic merit, with a separate application required for Major Entrance Scholarships
+   Deadline: Major scholarship application shortly after applying for admission — confirm the current cycle
+   The one-year award is automatic; the larger renewable Major awards need a separate application.
+
+154. International Entrance Scholarship (University of Calgary) [VERIFIED — University of Calgary (official)]
+   Country: Canada | Level: Undergraduate
+   Amount: $20,000/year, renewable in years two–four ($80,000 total) — verified 2026
+   Eligibility: International undergraduates entering first year in any degree who meet the English Language Proficiency requirement; renewal needs a GPA of 2.60+ over 24 units
+   Deadline: Automatic for eligible admitted students — confirm the current cycle
+   A large renewable award reaching $80k over four years — among Canada's more generous automatic international entrance scholarships.
+
+155. International Entrance Scholarships & Awards (Dalhousie University) [VERIFIED — Dalhousie University (official)]
+   Country: Canada | Level: Undergraduate
+   Amount: International entrance scholarship of $10,000; broader entrance awards range $1,000–$80,000; the Sankofa Scholarship is $48,000 ($12,000/yr for Black/African-descent students from the Caribbean) — verified 2026
+   Eligibility: International students entering an undergraduate degree; specific awards vary by program and background
+   Deadline: February 15 for general entrance awards
+   A range of awards — check the Sankofa and program-specific scholarships alongside the general $10,000 entrance award.
+
+156. President's Scholarship for World Leaders (University of Winnipeg) [VERIFIED — University of Winnipeg (official)]
+   Country: Canada | Level: Undergraduate
+   Amount: $3,500 for international undergraduates (a $5,000 version exists for graduate students) — verified 2026
+   Eligibility: International students entering the University for the first time with a minimum 80% admission average, involved in leadership activities
+   Deadline: Varies — confirm the current cycle
+   A modest entry award, but Winnipeg's lower tuition and living costs stretch it further than in bigger cities.
+
+157. International President's Entrance Scholarships (Western University) [VERIFIED — Western University (official)]
+   Country: Canada | Level: Undergraduate
+   Amount: Three awards of $100,000 each — part of Western's National Scholarship Program — verified 2026
+   Eligibility: Top-performing international students applying for undergraduate study at the main campus; nomination/application via the National Scholarship Program
+   Deadline: Tied to the National Scholarship Program cycle (early — typically autumn/winter) — confirm the current dates
+   Only three awards but each is a full $100,000 — one of Canada's most prestigious international entrance scholarships.
+
+158. Gold Standard Scholarship (University of Alberta) [VERIFIED — University of Alberta (official)]
+   Country: Canada | Level: Undergraduate
+   Amount: Up to CAD $6,000 for the top ~5% of students in each faculty by admission average — verified 2026
+   Eligibility: International undergraduates; admission-based with no individual application — submit one scholarship application after applying and the university matches you to eligible awards
+   Deadline: January 10 (single scholarship application)
+   One scholarship application covers all U of A entrance awards — worth completing even if you only expect the Gold Standard.
+
+159. International Entrance & Excellence Scholarships (Concordia University) [VERIFIED — Concordia University (official)]
+   Country: Canada | Level: Undergraduate
+   Amount: International Excellence Scholarships of $13,000–$19,000/yr (by academic record); merit-based International Entrance Scholarships of ~$5,000/yr; plus a Tuition Award of Excellence — verified 2026
+   Eligibility: Top international candidates in the entrance pool applying for an undergraduate program at Concordia (Montreal)
+   Deadline: Varies — confirm the current cycle
+   The Excellence tier is renewable and sizeable; Montreal's lower living costs add to the value.
+
+160. Undergraduate Scholars Entrance Scholarship — USES (Simon Fraser University) [VERIFIED — Simon Fraser University (official)]
+   Country: Canada | Level: Undergraduate
+   Amount: Covers tuition and mandatory supplementary fees (valued around $140,000 for international students), plus an optional Scholars Living Allowance of $8,000/term — verified 2026
+   Eligibility: Current high school students admitted for the fall term to any undergraduate degree, with a minimum ~90% average (or 31 IB points), showing academic and extracurricular excellence
+   Deadline: January 31 (Fall 2026 intake)
+   Effectively a full-tuition ride, with a living allowance on top for the strongest applicants.
+
+161. International Undergraduate Entrance Awards (McMaster University) [VERIFIED — McMaster University (official)]
+   Country: Canada | Level: Undergraduate
+   Amount: Faculty-specific awards ranging roughly $7,500–$210,000 across the degree (e.g. DeGroote Global Dean's Excellence: $25,000 first year + $20,000/yr renewable) — verified 2026
+   Eligibility: International fee-paying undergraduates admitted to eligible faculties (Business, Engineering, Humanities, Science and others); competitive, faculty-based selection
+   Deadline: February 19 (2026 cycle)
+   Awards differ sharply by faculty — check the specific scheme for your intended program.
+
+162. International Admission Scholarships (University of Ottawa) [VERIFIED — University of Ottawa (official)]
+   Country: Canada | Level: Undergraduate
+   Amount: International English Admission Scholarship of $7,500/term ($60,000 over four years, renewable, automatic); plus a one-time International English Academic Excellence award of $10,000 for top averages — verified 2026
+   Eligibility: International students with a valid study permit, newly admitted to an approved English-language undergraduate program (Arts, Engineering, Health Sciences, Science, Social Sciences or Telfer) with a minimum 80% admission average
+   Deadline: Automatic on admission — confirm the current cycle
+   The $60,000 admission scholarship is automatic and renewable — one of Canada's most accessible large international awards.
+
+163. Melbourne International Undergraduate Scholarship (University of Melbourne) [VERIFIED — University of Melbourne (official)]
+   Country: Australia | Level: Undergraduate
+   Amount: 25% tuition-fee sponsorship for the duration of the course (2026 intakes; drops to 20% from 2027) — verified 2026
+   Eligibility: International students commencing an undergraduate degree at the University of Melbourne; competitive, based on academic merit
+   Deadline: Varies — confirm the current cycle
+   A partial fee sponsorship at Australia's top-ranked university — competitive but applies for the whole degree.
+
+164. Sydney International Student Award (University of Sydney) [VERIFIED — University of Sydney (official)]
+   Country: Australia | Level: Undergraduate
+   Amount: 20% of tuition fees for the duration of the course — verified 2026
+   Eligibility: International students from selected nationalities holding an offer for a new undergraduate coursework degree at the time of application
+   Deadline: Varies — confirm the current cycle
+   A duration-long 20% fee reduction — nationality-restricted, so check the eligible-countries list.
+
+165. International Scientia Coursework Scholarship (UNSW Sydney) [VERIFIED — UNSW Sydney (official)]
+   Country: Australia | Level: Undergraduate
+   Amount: Either full tuition-fee support for the minimum program duration, or $20,000/year toward tuition — verified 2026
+   Eligibility: Students from eligible countries commencing in 2026/2027 with high academic achievement, demonstrated leadership and extracurricular involvement
+   Deadline: Varies by intake term — confirm the current cycle
+   The full-tuition tier is a genuine full ride on fees — one of the strongest undergraduate awards in Australia.
+
+166. Monash International Merit Scholarship (Monash University) [VERIFIED — Monash University (official)]
+   Country: Australia | Level: Undergraduate
+   Amount: $15,000/year (from 2026 intakes) paid until the minimum credit points for the degree are completed — verified 2026
+   Eligibility: International students who have received a Monash undergraduate offer are automatically considered — no application; must maintain a distinction (70%+) average
+   Deadline: Automatic on offer — confirm the current cycle
+   Automatic consideration and a raised 2026 value ($15k/yr) — plus a place in the Monash Minds leadership program.
+
+167. ANU Chancellor's International Scholarship (Australian National University) [VERIFIED — Australian National University (official)]
+   Country: Australia | Level: Undergraduate
+   Amount: 25% or 50% tuition-fee reduction for the duration of the degree, plus guaranteed first-year accommodation if taken up — verified 2026
+   Eligibility: Overseas students applying for undergraduate admission are automatically considered — no separate application; award level depends on eligibility
+   Deadline: Automatic on admission — confirm the current cycle
+   Automatic, and the guaranteed first-year accommodation is a rare, valuable extra at Australia's national university.
+
+168. UQ International Scholarships (University of Queensland) [VERIFIED — University of Queensland (official)]
+   Country: Australia | Level: Undergraduate
+   Amount: International Excellence Scholarship: 25% tuition reduction; International High Achievers: 15% reduction; Vice-Chancellor's: ~AUD $12,000/yr — verified 2026
+   Eligibility: International students commencing an undergraduate program at UQ; awards vary in competitiveness and some are faculty-specific
+   Deadline: Varies by scheme — confirm the current cycle
+   A ladder of awards from ~15% up to 25% of tuition — check which you qualify for once you hold an offer.
+
+169. Global Academic Excellence Scholarship (University of Adelaide) [VERIFIED — University of Adelaide (official)]
+   Country: Australia | Level: Undergraduate
+   Amount: 50% tuition-fee reduction for the duration of the undergraduate program — verified 2026
+   Eligibility: Commencing international undergraduates with demonstrated academic excellence (indicative ATAR ~99.9 or equivalent); awarded automatically to those who qualify — no application
+   Deadline: Automatic for eligible students — confirm the current cycle
+   A large 50% fee cut, but the academic bar is very high — aimed at top ATAR-equivalent applicants.
+
+170. Vice-Chancellor's International Scholarship (Macquarie University) [VERIFIED — Macquarie University (official)]
+   Country: Australia | Level: Undergraduate
+   Amount: Up to AUD $10,000 applied toward tuition fees — verified 2026
+   Eligibility: Full-time international students commencing an undergraduate degree with a minimum ATAR equivalent of ~85; competitive, merit-based
+   Deadline: Varies — confirm the current cycle
+   A moderate one-off tuition contribution at a Sydney university — a more attainable ATAR bar than the top-tier awards.
+
+171. International Undergraduate Scholarships (University of Technology Sydney) [VERIFIED — University of Technology Sydney (official)]
+   Country: Australia | Level: Undergraduate
+   Amount: A suite of awards for the standard course duration: Academic Merit 15%, Vice-Chancellor's full tuition, and region-specific awards of 20–40% — verified 2026
+   Eligibility: International students commencing an undergraduate degree at UTS; several schemes are region-specific (South Asia, Southeast Asia, Europe)
+   Deadline: Varies by scheme — confirm the current cycle
+   Range spans a 15% discount up to a full-tuition Vice-Chancellor's award — check the region-specific schemes for your country.
+
+172. Deakin Vice-Chancellor's International Scholarship (Deakin University) [VERIFIED — Deakin University (official)]
+   Country: Australia | Level: Undergraduate
+   Amount: 100% or 50% tuition-fee waiver for the full duration of the coursework program — verified 2026
+   Eligibility: International students commencing an eligible undergraduate degree; award level (100% or 50%) depends on academic profile and selection; participation in the VC's Professional Excellence Program is required
+   Deadline: Varies — confirm the current cycle
+   The 100% tier is a full tuition ride for the whole degree — one of the most generous Australian undergraduate awards.
+
+173. International Bachelor Scholarships (Erasmus University Rotterdam — ESE) [VERIFIED — Erasmus University Rotterdam — Erasmus School of Economics (official)]
+   Country: Netherlands | Level: Undergraduate
+   Amount: NL Scholarship of €5,000, €10,000 or €15,000 (half as a tuition-fee reduction, half paid over 10 monthly instalments); plus a separate Erasmus School of Economics fund giving partial tuition-fee waivers — verified 2026
+   Eligibility: Outstanding non-EEA students starting a bachelor's degree at Erasmus School of Economics; the NL Scholarship is a once-in-a-lifetime, first-year award
+   Deadline: Varies — confirm the current cycle (EUR runs a limited scholarship programme)
+   One of the few genuine bachelor-level scholarships in the Netherlands — mostly partial, so plan for additional funding.
+
+174. Orange Tulip Scholarship (Netherlands) [VERIFIED — Study in NL / Nuffic (official)]
+   Country: Netherlands | Level: Both
+   Amount: Country-specific partial-to-full tuition awards, commonly €5,000–€15,000 (some cover 25–100% of tuition) — verified 2026
+   Eligibility: International students from participating countries applying to bachelor's (and master's) programmes at participating Dutch institutions; packages and eligibility are set per country
+   Deadline: Differs sharply by institution and country package — check the specific award
+   The centralised programme changed in 2024 — awards are now offered directly by participating Dutch universities / Neso offices, so verify the current package for your country before relying on it.
+
+175. Global Excellence Undergraduate Scholarships (Trinity College Dublin) [VERIFIED — Trinity College Dublin (official)]
+   Country: Ireland | Level: Undergraduate
+   Amount: €2,000–€5,000 (by region), applied as a reduction to year-one tuition fees — verified 2026
+   Eligibility: Non-EU fee-status students holding an offer for year one of a full-time undergraduate degree; students from China are not eligible, and Medicine, Dentistry, Acting, Engineering, Natural Sciences and Computer Science/Statistics are excluded
+   Deadline: By region — e.g. Africa 1 May, Americas 1 Apr, SE Asia/Oceania 15 Jul, elsewhere 15 Jun (confirm the current cycle)
+   First-year tuition reduction only, and several high-demand courses are excluded — check your programme is eligible.
+
+176. Global Excellence Scholarships — Undergraduate (University College Dublin) [VERIFIED — University College Dublin (official)]
+   Country: Ireland | Level: Undergraduate
+   Amount: A limited number of 100% and 50% tuition-fee scholarships — verified 2026
+   Eligibility: Outstanding international (non-EU fee) students applying to an undergraduate programme starting in September; excludes online, part-time, clinical, January-start and foundation pathway programmes
+   Deadline: By region — ~28 Feb (Middle East, Africa, Pakistan) and ~31 Mar (all other regions); confirm the current cycle
+   The 100% tier is a genuine full-tuition award — few in number but among the strongest undergraduate options in Ireland.
+
+177. International Undergraduate Scholarships (University of Galway) [VERIFIED — University of Galway (official)]
+   Country: Ireland | Level: Undergraduate
+   Amount: Merit scholarships of €2,000–€5,000/yr (often automatic, indicated in the offer) and Excellence Scholarships up to €10,000 — verified 2026
+   Eligibility: Non-EU international undergraduates, with many awards focused on the College of Science and Engineering; merit awards are granted automatically on academic results
+   Deadline: Varies — confirm the current cycle
+   Many merit awards are automatic and appear in your offer letter — check the offer before applying separately.
+
+178. International Undergraduate Scholarships (University College Cork) [VERIFIED — University College Cork (official)]
+   Country: Ireland | Level: Undergraduate
+   Amount: College of Business & Law: €5,000/yr; College of Arts, Celtic Studies & Social Sciences: €2,000 — awarded automatically — verified 2026
+   Eligibility: International undergraduates with an accepted offer in the UCC Application Portal; awarded automatically on previous academic results, no separate application
+   Deadline: Automatic on an accepted offer — confirm the current cycle
+   Automatic and college-specific — the Business & Law award is the more valuable at €5,000/yr.
+
 
 ━━━ UNIVERSITIES ━━━
 
