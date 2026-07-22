@@ -293,6 +293,15 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   ⚠ Heavy AGENT market: apply DIRECTLY to the university — agents add cost, not access. Beware inflated all-in "packages"; confirm fees on the official site.
   Note: American University of Central Asia (AUCA) is a genuine US-accredited (via Bard College) liberal-arts university here — a quality non-medical option, distinct from the MBBS institutes.
 
+🇰🇿 KAZAKHSTAN [MIXED — MBBS ranges & Nazarbayev funding well-documented; individual university fees agent-quoted]
+  System: State medical universities (English MBBS) + large comprehensives + the elite English-medium Nazarbayev University; Central Asia's largest economy, NOT sanctioned
+  Cost: English MBBS ~$3,000–$5,000/yr (up to ~$7k); 6-year MD including a 1-year internship. Living low: ~$200–$250/month; hostels ~$600–$800/yr.
+  Recognition: leading medical universities are NMC (India) / WHO listed — ⚠ still verify the CURRENT approved list for YOUR country AND the university's FMGE/NExT pass rate before enrolling.
+  ★ NAZARBAYEV UNIVERSITY (well-documented): elite, fully English-medium, built with Western partners (Cambridge, Duke, Wisconsin, UCL). Its scholarship covers 100% tuition + a monthly stipend + medical insurance, and ALL admitted international applicants are considered automatically (BS/MS/PhD) — a genuine fully-funded route, but highly selective.
+  Language: English-medium MBBS is standard; Nazarbayev/KIMEP/KBTU teach in English; state comprehensives are mostly Kazakh/Russian. Confirm per programme.
+  Banking: normal — Kazakhstan is NOT sanctioned, so paying fees and transfers work through standard channels (like Kyrgyzstan; unlike Russia).
+  ⚠ Heavy AGENT market for MBBS: apply DIRECTLY; confirm fees on the official site.
+
 
 ━━━ SCHOLARSHIPS ━━━
 
@@ -4495,6 +4504,58 @@ Kyrgyz-Turkish Manas University — Bishkek, Kyrgyzstan [NOT individually verifi
   Type: Joint Kyrgyz-Turkish public university — largely tuition-free for admitted students; Turkish/Kyrgyz/Russian
   Known for: Engineering, Business, Humanities, Agriculture
 
+━━ Kazakh universities (English MBBS ~$3,000–5,000/yr; NOT sanctioned so payments work normally; ⚠ verify CURRENT recognition list + FMGE/NExT pass rates, apply directly — see Kazakhstan country block) ━━
+
+Nazarbayev University (NU) — Astana, Kazakhstan [WELL-DOCUMENTED funding — highly selective]
+  Type: ★ Kazakhstan's elite, fully English-medium university (Western-partnered: Cambridge, Duke, Wisconsin, UCL)
+  Known for: Engineering, Computer Science, Medicine, Business
+  ★ Scholarship covers 100% tuition + monthly stipend + insurance; ALL admitted internationals considered automatically (BS/MS/PhD). The gate is admission — apply directly at nu.edu.kz. A genuine fully-funded route, distinct from the MBBS institutes.
+
+Kazakh National Medical University (Asfendiyarov) — Almaty, Kazakhstan [NOT individually verified — MBBS fees agent-quoted]
+  Type: Kazakhstan's national medical flagship (est. 1931)
+  Known for: Medicine, Dentistry, Pharmacy
+  ⚠ Verify your council's current approved list + FMGE/NExT pass rate; apply directly.
+
+Astana Medical University — Astana, Kazakhstan [NOT individually verified — MBBS fees agent-quoted]
+  Type: Major public medical university in the capital; NMC/WHO-listed English MBBS
+  Known for: Medicine, Dentistry
+
+Karaganda Medical University — Karaganda, Kazakhstan [NOT individually verified — MBBS fees agent-quoted]
+  Type: Well-known public medical university with a large international MBBS cohort
+  Known for: Medicine, Nursing
+
+South Kazakhstan Medical Academy — Shymkent, Kazakhstan [NOT individually verified — MBBS fees agent-quoted]
+  Type: Public medical academy offering English-medium MBBS
+  Known for: Medicine, Pharmacy
+
+Semey Medical University — Semey, Kazakhstan [NOT individually verified — MBBS fees agent-quoted]
+  Type: Established public medical university in eastern Kazakhstan
+  Known for: Medicine, Dentistry
+
+West Kazakhstan Marat Ospanov Medical University — Aktobe, Kazakhstan [NOT individually verified — MBBS fees agent-quoted]
+  Type: Public medical university with English-medium MBBS
+  Known for: Medicine
+
+Al-Farabi Kazakh National University (KazNU) — Almaty, Kazakhstan [NOT individually verified]
+  Type: Kazakhstan's top-ranked comprehensive flagship — broad programmes incl. medicine
+  Known for: Science, Engineering, Economics, International Relations
+
+Satbayev University — Almaty, Kazakhstan [NOT individually verified]
+  Type: The country's leading technical university — oil, mining, geology and IT
+  Known for: Engineering, Petroleum Engineering, Computer Science, Geosciences
+
+L.N. Gumilyov Eurasian National University (ENU) — Astana, Kazakhstan [NOT individually verified]
+  Type: Large national comprehensive university in the capital
+  Known for: Science, Humanities, Economics, Law
+
+KIMEP University — Almaty, Kazakhstan [NOT individually verified]
+  Type: American-style, fully English-medium university — Central Asia's top business/social-science school
+  Known for: Business, Economics, Law, International Relations
+
+Kazakh-British Technical University (KBTU) — Almaty, Kazakhstan [NOT individually verified]
+  Type: English-friendly technical university — oil & gas, IT and finance
+  Known for: Engineering, Computer Science, Petroleum Engineering, Finance
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -4547,6 +4608,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'Finland': ['finland', 'finnish', 'helsinki', 'aalto', 'tampere', 'oulu', 'turku'],
   'Russia': ['russia', 'russian', 'moscow', 'saint petersburg', 'st petersburg', 'rossotrudnichestvo', 'rudn', 'sechenov', 'lomonosov', 'bauman', 'itmo', 'mephi', 'mipt'],
   'Kyrgyzstan': ['kyrgyzstan', 'kyrgyz', 'bishkek', 'osh', 'kyrgyzstani', 'krsu', 'ksma', 'auca'],
+  'Kazakhstan': ['kazakhstan', 'kazakh', 'almaty', 'astana', 'nur-sultan', 'nazarbayev', 'kaznu', 'kimep', 'satbayev'],
 }
 
 // Words too generic to identify a university by name.
