@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
-import { Sparkles, Send, X, RotateCcw, Trash2, Menu, Plus } from 'lucide-react'
+import { Sparkles, Send, X, RotateCcw, Menu } from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import { supabase } from './supabase.js'
-import ProfileMenu from './ProfileMenu.jsx'
 
 export const LIMIT = 2
 
@@ -139,9 +138,8 @@ function MessageBubble({ msg, handleRetry, loading, onGoToPricing }) {
 // ─── input bar ───────────────────────────────────────────────────────────────
 // MUST be defined at module level, never inside another component — defining
 // it inline causes it to be re-created on every keystroke, destroying focus.
-// Exported so Dashboard's inline "quick compose" box can reuse it exactly.
 
-export function InputBar({ input, setInput, loading, atLimit, hasMessages, inputFocused, setInputFocused, inputRef, handleSend, searchesUsed, isPaid, onGoToPricing }) {
+function InputBar({ input, setInput, loading, atLimit, hasMessages, inputFocused, setInputFocused, inputRef, handleSend, searchesUsed, isPaid, onGoToPricing }) {
   return (
     <div>
       <form onSubmit={handleSend}>
@@ -238,75 +236,64 @@ function titleFromText(text) {
   return clean.length > 48 ? clean.slice(0, 48) + '…' : clean
 }
 
-// ─── chat (sidebar + conversation) ────────────────────────────────────────────
+// ─── chat panel ────────────────────────────────────────────────────────────────
+// Renders just the conversation itself (header/messages/composer). The
+// conversation list and account menu live in ConversationSidebar, a sibling
+// rendered by Dashboard — activeConversationId/conversations are lifted up
+// there so both stay in sync without this panel owning that state.
 
 export default function Chat({
   user, isPaid, onGoToPricing, onClose,
-  firstName, onSignOut, onGoToPrivacy, onGoToTerms, onDeleted,
-  initialConversationId, pendingMessage, onConsumedPendingMessage,
+  activeConversationId, setActiveConversationId,
+  conversations, setConversations,
+  sidebarOpen, setSidebarOpen,
   searchesUsed, setSearchesUsed,
+  pendingMessage, onConsumedPendingMessage,
 }) {
-  const [conversations,        setConversations]        = useState([])
-  const [conversationsLoading, setConversationsLoading]  = useState(true)
-  const [activeId,             setActiveId]              = useState(initialConversationId || null)
-  const [messages,              setMessages]             = useState([])
-  const [messagesLoading,       setMessagesLoading]      = useState(!!initialConversationId)
-  const [input,                 setInput]                = useState('')
-  const [loading,               setLoading]              = useState(false)
-  const [inputFocused,          setInputFocused]         = useState(false)
-  const [sidebarOpen,           setSidebarOpen]          = useState(false)
-  const [confirmDeleteId,       setConfirmDeleteId]      = useState(null)
+  const [messages,        setMessages]        = useState([])
+  const [messagesLoading, setMessagesLoading]  = useState(!!activeConversationId)
+  const [input,           setInput]            = useState('')
+  const [loading,         setLoading]          = useState(false)
+  const [inputFocused,    setInputFocused]     = useState(false)
 
   const inputRef       = useRef(null)
   const messagesEndRef = useRef(null)
+  // Tracks a conversation id this panel just created itself (via
+  // ensureConversation, mid-send) so the loader effect below doesn't
+  // mistake that prop change for "switch conversations" and wipe out the
+  // in-flight optimistic messages by re-fetching an still-empty row.
+  const selfCreatedId  = useRef(null)
+  // A message handed off from the dashboard's quick composer box, sent
+  // automatically once on mount. Guarded so remounts/re-renders never
+  // resend it twice.
   const didAutoSend    = useRef(false)
 
   const atLimit     = !isPaid && searchesUsed >= LIMIT
   const hasMessages = messages.length > 0
 
-  // ── Load the conversation list for the sidebar ──────────────────────────────
+  // ── Load messages whenever the active conversation changes ──────────────────
   useEffect(() => {
-    if (!user || !supabase) { setConversationsLoading(false); return }
+    if (activeConversationId && activeConversationId === selfCreatedId.current) {
+      selfCreatedId.current = null
+      return
+    }
+    if (!activeConversationId) {
+      setMessages([])
+      setMessagesLoading(false)
+      return
+    }
     let cancelled = false
-    supabase
-      .from('conversations')
-      .select('id, title, updated_at')
-      .eq('user_id', user.id)
-      .order('updated_at', { ascending: false })
-      .limit(200)
-      .then(({ data }) => { if (!cancelled) setConversations(data || []) })
-      .catch(() => {})
-      .finally(() => { if (!cancelled) setConversationsLoading(false) })
-    return () => { cancelled = true }
-  }, [user])
-
-  // ── Load messages for whichever conversation we were opened with ────────────
-  useEffect(() => {
-    if (!initialConversationId || !supabase) return
     setMessagesLoading(true)
     supabase
       .from('chat_messages')
       .select('id, role, content')
-      .eq('conversation_id', initialConversationId)
+      .eq('conversation_id', activeConversationId)
       .order('created_at', { ascending: true })
-      .then(({ data }) => setMessages(data || []))
+      .then(({ data }) => { if (!cancelled) setMessages(data || []) })
       .catch(() => {})
-      .finally(() => setMessagesLoading(false))
-    // Intentionally only runs for the id we mounted with.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  // ── If we were handed a draft message from the dashboard's quick composer,
-  // fire it immediately as this (new) conversation's first message. Guarded
-  // by a ref so React's dev-mode double-effect never sends it twice.
-  useEffect(() => {
-    if (pendingMessage && !didAutoSend.current) {
-      didAutoSend.current = true
-      onConsumedPendingMessage?.()
-      send(pendingMessage)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+      .finally(() => { if (!cancelled) setMessagesLoading(false) })
+    return () => { cancelled = true }
+  }, [activeConversationId])
 
   useEffect(() => {
     if (messages.length > 0) messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -316,17 +303,27 @@ export default function Chat({
     setTimeout(() => inputRef.current?.focus(), 80)
   }, [])
 
+  useEffect(() => {
+    if (pendingMessage && !didAutoSend.current) {
+      didAutoSend.current = true
+      send(pendingMessage)
+      onConsumedPendingMessage?.()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pendingMessage])
+
   // ── Conversation helpers ─────────────────────────────────────────────────────
 
   async function ensureConversation() {
-    if (activeId) return activeId
+    if (activeConversationId) return activeConversationId
     const { data, error } = await supabase
       .from('conversations')
       .insert({ user_id: user.id, title: null })
       .select('id, title, updated_at')
       .single()
     if (error || !data) throw error || new Error('Could not start a new conversation')
-    setActiveId(data.id)
+    selfCreatedId.current = data.id
+    setActiveConversationId(data.id)
     setConversations(prev => [data, ...prev])
     return data.id
   }
@@ -452,50 +449,8 @@ export default function Chat({
     }
   }
 
-  // ── Sidebar actions ───────────────────────────────────────────────────────────
-
-  async function selectConversation(id) {
-    setSidebarOpen(false)
-    if (id === activeId) return
-    setActiveId(id)
-    setMessages([])
-    setMessagesLoading(true)
-    try {
-      const { data } = await supabase
-        .from('chat_messages')
-        .select('id, role, content')
-        .eq('conversation_id', id)
-        .order('created_at', { ascending: true })
-      setMessages(data || [])
-    } catch (err) {
-      console.error('Could not load conversation:', err)
-    } finally {
-      setMessagesLoading(false)
-      setTimeout(() => inputRef.current?.focus(), 80)
-    }
-  }
-
-  function startNewChat() {
-    setActiveId(null)
-    setMessages([])
-    setSidebarOpen(false)
-    setTimeout(() => inputRef.current?.focus(), 80)
-  }
-
-  async function deleteConversation(id) {
-    setConfirmDeleteId(null)
-    if (!supabase) return
-    setConversations(prev => prev.filter(c => c.id !== id))
-    if (id === activeId) {
-      setActiveId(null)
-      setMessages([])
-    }
-    const { error } = await supabase.from('conversations').delete().eq('id', id)
-    if (error) console.error('Could not delete conversation:', error)
-  }
-
   return (
-    <>
+    <div className="chat-enter" style={{ flex: 1, minWidth: 0, height: '100%', display: 'flex', flexDirection: 'column', background: '#F7F4EE' }}>
       <style>{`
         @keyframes dash-msg-in { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
         .dash-msg { animation: dash-msg-in 0.3s ease both; }
@@ -508,256 +463,93 @@ export default function Chat({
         .ai-md a:hover{opacity:.8}
         @keyframes chat-open { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
         .chat-enter { animation: chat-open 0.22s ease-out; }
-        .conv-item:hover .conv-del { opacity: 1; }
       `}</style>
 
-      <div className="chat-enter" style={{ position: 'fixed', inset: 0, background: '#F7F4EE', zIndex: 200, display: 'flex' }}>
+      {/* Header */}
+      <header style={{ flexShrink: 0, borderBottom: '1px solid #16302B12', background: '#F7F4EEf8', backdropFilter: 'blur(8px)' }}>
+        <div style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
+          <button
+            onClick={() => setSidebarOpen(o => !o)}
+            aria-label="Toggle conversation list"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#16302B88', padding: 4, display: 'flex', flexShrink: 0 }}
+          >
+            <Menu size={19} strokeWidth={2} />
+          </button>
 
-        {/* ── Mobile backdrop ── */}
-        {sidebarOpen && (
-          <div
-            className="sm:hidden"
-            onClick={() => setSidebarOpen(false)}
-            style={{ position: 'fixed', inset: 0, background: 'rgba(22,48,43,0.35)', zIndex: 210 }}
-          />
-        )}
+          <span style={{ flex: 1, fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {activeConversationId ? (conversations.find(c => c.id === activeConversationId)?.title || 'New chat') : 'New chat'}
+          </span>
 
-        {/* ── Sidebar (static on desktop, slide-in drawer on mobile) ── */}
-        <aside
-          className="sm:static! sm:translate-x-0!"
-          style={{
-            position: 'fixed', top: 0, left: 0, bottom: 0, width: 272, zIndex: 220,
-            background: '#EFEAE0', borderRight: '1px solid #16302B14',
-            display: 'flex', flexDirection: 'column',
-            transform: sidebarOpen ? 'translateX(0)' : 'translateX(-100%)',
-            transition: 'transform 0.25s ease',
-          }}
-        >
-          {/* Sidebar header */}
-          <div style={{ padding: '16px 14px 12px', flexShrink: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-              <span style={{ fontFamily: 'Fraunces, Georgia, serif', fontWeight: 600, color: '#16302B', fontSize: '1rem' }}>
-                AdmitAI
-              </span>
-              <button
-                className="sm:hidden"
-                onClick={() => setSidebarOpen(false)}
-                aria-label="Close sidebar"
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#16302B88', padding: 4, display: 'flex' }}
-              >
-                <X size={18} strokeWidth={2} />
-              </button>
-            </div>
-            <button
-              onClick={startNewChat}
-              style={{
-                width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7,
-                background: '#16302B', color: '#F7F4EE', border: 'none', borderRadius: 12,
-                padding: '10px 14px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.86rem',
-                fontWeight: 600, cursor: 'pointer', transition: 'opacity 0.15s',
-              }}
-              onMouseEnter={e => (e.currentTarget.style.opacity = '0.88')}
-              onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
-            >
-              <Plus size={15} strokeWidth={2.25} />
-              New chat
-            </button>
+          <button
+            onClick={onClose}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', fontWeight: 500, padding: '4px 0', whiteSpace: 'nowrap', flexShrink: 0 }}
+            onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
+            onMouseLeave={e => (e.currentTarget.style.color = '#16302B88')}
+          >
+            <X size={15} strokeWidth={2} />
+            <span className="hidden sm:inline">Dashboard</span>
+          </button>
+        </div>
+      </header>
+
+      {/* Messages */}
+      <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
+        {messagesLoading ? (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B55', fontSize: '0.875rem' }}>Loading conversation…</p>
           </div>
-
-          {/* Conversation list */}
-          <div style={{ flex: 1, overflowY: 'auto', padding: '4px 10px 10px', WebkitOverflowScrolling: 'touch' }}>
-            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.66rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#16302B55', margin: '6px 8px 8px' }}>
-              Conversations
+        ) : !hasMessages ? (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '0 24px', textAlign: 'center' }}>
+            <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'rgba(79,138,110,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
+              <Sparkles size={22} color="#4F8A6E" strokeWidth={1.75} />
+            </div>
+            <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.15rem', fontWeight: 600, margin: '0 0 6px' }}>
+              Ask me anything.
             </p>
-
-            {conversationsLoading ? (
-              <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B55', fontSize: '0.82rem', padding: '0 8px' }}>Loading…</p>
-            ) : conversations.length === 0 ? (
-              <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B55', fontSize: '0.82rem', padding: '0 8px', lineHeight: 1.5 }}>
-                No conversations yet — start one below.
-              </p>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                {conversations.map(c => {
-                  const isActive = c.id === activeId
-                  if (confirmDeleteId === c.id) {
-                    return (
-                      <div key={c.id} style={{ padding: '9px 10px', borderRadius: 10, background: '#FDECEA', display: 'flex', flexDirection: 'column', gap: 6 }}>
-                        <span style={{ fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.78rem', color: '#9B2335', fontWeight: 600 }}>
-                          Delete this chat?
-                        </span>
-                        <div style={{ display: 'flex', gap: 6 }}>
-                          <button
-                            onClick={() => deleteConversation(c.id)}
-                            style={{ flex: 1, background: '#9B2335', color: '#fff', border: 'none', borderRadius: 8, padding: '5px 8px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.74rem', fontWeight: 600, cursor: 'pointer' }}
-                          >
-                            Delete
-                          </button>
-                          <button
-                            onClick={() => setConfirmDeleteId(null)}
-                            style={{ flex: 1, background: 'none', border: '1px solid rgba(155,35,53,0.25)', borderRadius: 8, padding: '5px 8px', fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.74rem', color: '#9B2335', cursor: 'pointer' }}
-                          >
-                            Cancel
-                          </button>
-                        </div>
-                      </div>
-                    )
-                  }
-                  return (
-                    <div
-                      key={c.id}
-                      className="conv-item"
-                      onClick={() => selectConversation(c.id)}
-                      style={{
-                        display: 'flex', alignItems: 'center', gap: 4, cursor: 'pointer',
-                        background: isActive ? 'rgba(79,138,110,0.16)' : 'transparent',
-                        borderRadius: 10, padding: '9px 6px 9px 10px',
-                        transition: 'background 0.12s',
-                      }}
-                      onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = '#16302B0a' }}
-                      onMouseLeave={e => { if (!isActive) e.currentTarget.style.background = 'transparent' }}
-                    >
-                      <span style={{
-                        flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-                        fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.84rem',
-                        color: isActive ? '#16302B' : '#16302B99', fontWeight: isActive ? 600 : 500,
-                      }}>
-                        {c.title || 'New chat'}
-                      </span>
-                      <button
-                        className="conv-del"
-                        onClick={e => { e.stopPropagation(); setConfirmDeleteId(c.id) }}
-                        title="Delete this conversation"
-                        style={{
-                          flexShrink: 0, background: 'none', border: 'none', cursor: 'pointer',
-                          padding: 5, borderRadius: 7, color: '#16302B44', opacity: isActive ? 1 : 0,
-                          transition: 'opacity 0.12s, color 0.12s, background 0.12s',
-                        }}
-                        onMouseEnter={e => { e.currentTarget.style.color = '#9B2335'; e.currentTarget.style.background = '#9B233510' }}
-                        onMouseLeave={e => { e.currentTarget.style.color = '#16302B44'; e.currentTarget.style.background = 'none' }}
-                      >
-                        <Trash2 size={13} strokeWidth={2} />
-                      </button>
-                    </div>
-                  )
-                })}
-              </div>
-            )}
+            <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', lineHeight: 1.55, margin: 0, maxWidth: 380 }}>
+              Where can I study? What scholarships fit me? How do I apply?
+            </p>
           </div>
-
-          {/* Sidebar footer — the existing account menu, just relocated */}
-          <div style={{ flexShrink: 0, borderTop: '1px solid #16302B12', padding: '10px 10px 10px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-            <div style={{ minWidth: 0 }}>
-              <p style={{
-                fontFamily: 'Hanken Grotesk, sans-serif', fontSize: '0.82rem', fontWeight: 600, color: '#16302B',
-                margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 170,
-              }}>
-                {firstName || user?.email?.split('@')[0] || 'Account'}
-              </p>
-            </div>
-            <ProfileMenu
-              user={user} firstName={firstName}
-              onSignOut={onSignOut}
-              onGoToPrivacy={onGoToPrivacy}
-              onGoToTerms={onGoToTerms}
-              onDeleted={onDeleted}
-              onGoToPricing={onGoToPricing}
-              dropUp
-            />
-          </div>
-        </aside>
-
-        {/* ── Main conversation area ── */}
-        <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-
-          {/* Header */}
-          <header style={{ flexShrink: 0, borderBottom: '1px solid #16302B12', background: '#F7F4EEf8', backdropFilter: 'blur(8px)' }}>
-            <div style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
-              <button
-                className="sm:hidden"
-                onClick={() => setSidebarOpen(true)}
-                aria-label="Open conversation list"
-                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#16302B88', padding: 4, display: 'flex', flexShrink: 0 }}
-              >
-                <Menu size={19} strokeWidth={2} />
-              </button>
-
-              <span style={{ flex: 1, fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1rem', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {activeId ? (conversations.find(c => c.id === activeId)?.title || 'New chat') : 'New chat'}
-              </span>
-
-              <button
-                onClick={onClose}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', fontWeight: 500, padding: '4px 0', whiteSpace: 'nowrap', flexShrink: 0 }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#16302B')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#16302B88')}
-              >
-                <X size={15} strokeWidth={2} />
-                <span className="hidden sm:inline">Dashboard</span>
-              </button>
-            </div>
-          </header>
-
-          {/* Messages */}
-          <div style={{ flex: 1, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
-            {messagesLoading ? (
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-                <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B55', fontSize: '0.875rem' }}>Loading conversation…</p>
+        ) : (
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 py-5" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {messages.map(msg => (
+              <div key={msg.id} className="dash-msg">
+                <MessageBubble msg={msg} handleRetry={handleRetry} loading={loading} onGoToPricing={onGoToPricing} />
               </div>
-            ) : !hasMessages ? (
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '0 24px', textAlign: 'center' }}>
-                <div style={{ width: 44, height: 44, borderRadius: '50%', background: 'rgba(79,138,110,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
-                  <Sparkles size={22} color="#4F8A6E" strokeWidth={1.75} />
+            ))}
+
+            {loading && (
+              <div className="dash-msg" style={{ display: 'flex', gap: 9, alignItems: 'flex-start' }}>
+                <AiAvatar />
+                <div style={{ background: '#fff', border: '1px solid rgba(22,48,43,0.08)', borderRadius: '4px 16px 16px 16px', padding: '14px 18px', display: 'flex', gap: 5 }}>
+                  <span className="dot1" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4F8A6E', display: 'inline-block' }} />
+                  <span className="dot2" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4F8A6E', display: 'inline-block' }} />
+                  <span className="dot3" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4F8A6E', display: 'inline-block' }} />
                 </div>
-                <p style={{ fontFamily: 'Fraunces, Georgia, serif', color: '#16302B', fontSize: '1.15rem', fontWeight: 600, margin: '0 0 6px' }}>
-                  Ask me anything.
-                </p>
-                <p style={{ fontFamily: 'Hanken Grotesk, sans-serif', color: '#16302B88', fontSize: '0.875rem', lineHeight: 1.55, margin: 0, maxWidth: 380 }}>
-                  Where can I study? What scholarships fit me? How do I apply?
-                </p>
-              </div>
-            ) : (
-              <div className="max-w-3xl mx-auto px-4 sm:px-6 py-5" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-                {messages.map(msg => (
-                  <div key={msg.id} className="dash-msg">
-                    <MessageBubble msg={msg} handleRetry={handleRetry} loading={loading} onGoToPricing={onGoToPricing} />
-                  </div>
-                ))}
-
-                {loading && (
-                  <div className="dash-msg" style={{ display: 'flex', gap: 9, alignItems: 'flex-start' }}>
-                    <AiAvatar />
-                    <div style={{ background: '#fff', border: '1px solid rgba(22,48,43,0.08)', borderRadius: '4px 16px 16px 16px', padding: '14px 18px', display: 'flex', gap: 5 }}>
-                      <span className="dot1" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4F8A6E', display: 'inline-block' }} />
-                      <span className="dot2" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4F8A6E', display: 'inline-block' }} />
-                      <span className="dot3" style={{ width: 6, height: 6, borderRadius: '50%', background: '#4F8A6E', display: 'inline-block' }} />
-                    </div>
-                  </div>
-                )}
-
-                <div ref={messagesEndRef} />
               </div>
             )}
-          </div>
 
-          {/* Input bar — fixed above the mobile keyboard */}
-          <div style={{
-            flexShrink: 0, background: '#F7F4EE',
-            borderTop: '1px solid #16302B0e',
-            paddingTop: 12,
-            paddingBottom: 'max(12px, env(safe-area-inset-bottom, 12px))',
-          }}>
-            <div className="max-w-3xl mx-auto px-4 sm:px-6">
-              <InputBar
-                input={input} setInput={setInput} loading={loading} atLimit={atLimit}
-                hasMessages={hasMessages} inputFocused={inputFocused} setInputFocused={setInputFocused}
-                inputRef={inputRef} handleSend={handleSend} searchesUsed={searchesUsed}
-                isPaid={isPaid} onGoToPricing={onGoToPricing}
-              />
-            </div>
+            <div ref={messagesEndRef} />
           </div>
+        )}
+      </div>
+
+      {/* Input bar — fixed above the mobile keyboard */}
+      <div style={{
+        flexShrink: 0, background: '#F7F4EE',
+        borderTop: '1px solid #16302B0e',
+        paddingTop: 12,
+        paddingBottom: 'max(12px, env(safe-area-inset-bottom, 12px))',
+      }}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <InputBar
+            input={input} setInput={setInput} loading={loading} atLimit={atLimit}
+            hasMessages={hasMessages} inputFocused={inputFocused} setInputFocused={setInputFocused}
+            inputRef={inputRef} handleSend={handleSend} searchesUsed={searchesUsed}
+            isPaid={isPaid} onGoToPricing={onGoToPricing}
+          />
         </div>
       </div>
-    </>
+    </div>
   )
 }
