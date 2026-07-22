@@ -302,6 +302,16 @@ VERIFIED = confirmed from official sources. ESTIMATE = illustrative, treat as ap
   Banking: normal — Kazakhstan is NOT sanctioned, so paying fees and transfers work through standard channels (like Kyrgyzstan; unlike Russia).
   ⚠ Heavy AGENT market for MBBS: apply DIRECTLY; confirm fees on the official site.
 
+🇵🇭 PHILIPPINES [MIXED — MD structure & recognition well-documented; individual university fees agent-quoted]
+  System: US-style higher education in ENGLISH (an official language — a real, everyday advantage, not just English-medium classes). Strong for medicine (MD) and nursing; the world's largest exporter of nurses.
+  ★ Medicine is an MD, not an MBBS: ~6 years = 2-year BS pre-med + 4-year MD (internationals often take an integrated BS-MD, ~5–5.5 yrs). Curriculum is US-modelled, so it feeds the USMLE (USA) pathway as well as FMGE/NExT (India).
+  Cost: MD ~$3,000–$6,500/yr (agent-quoted). Nursing (BSN) also popular and affordable. Living moderate.
+  Recognition: many medical schools are NMC (India) / WDOMS-listed and US-ECFMG friendly — ⚠ still verify the CURRENT approved list for YOUR country + the school's FMGE/NExT (or USMLE-match) record before enrolling.
+  Entry: NMAT (Philippine medical aptitude test) for the MD; NEET required for Indian nationals to practise home.
+  Banking: normal — the Philippines is NOT sanctioned.
+  ⚠ Heavy AGENT market for the MD (Perpetual Help, AMA, Davao, Cebu Doctors are agent-marketed). Apply DIRECTLY; confirm fees on the official site.
+  Quality non-medical options: University of the Philippines (top public), UST (oldest in Asia, 1611), Ateneo & De La Salle (top privates), Mapúa (ABET/US-accredited engineering).
+
 
 ━━━ SCHOLARSHIPS ━━━
 
@@ -4556,6 +4566,57 @@ Kazakh-British Technical University (KBTU) — Almaty, Kazakhstan [NOT individua
   Type: English-friendly technical university — oil & gas, IT and finance
   Known for: Engineering, Computer Science, Petroleum Engineering, Finance
 
+━━ Philippine universities (US-style, taught in ENGLISH — an official language; MD not MBBS, ~5.5–6 yrs incl. pre-med, USMLE-friendly; NOT sanctioned; ⚠ heavy agent market for the MD — apply directly, verify recognition + FMGE/NExT record — see Philippines country block) ━━
+
+University of the Philippines (UP Diliman) — Quezon City, Philippines [NOT individually verified]
+  Type: The Philippines' top public flagship — highly selective (UPCAT)
+  Known for: Science, Engineering, Humanities, Business
+
+University of Santo Tomas (UST) — Manila, Philippines [NOT individually verified]
+  Type: The oldest university in Asia (est. 1611) — prestigious, strong in medicine and the sciences
+  Known for: Medicine, Science, Business, Architecture
+
+Ateneo de Manila University — Quezon City, Philippines [NOT individually verified]
+  Type: Top private university — leading in business, law and the humanities
+  Known for: Business, Law, Humanities, Computer Science
+
+De La Salle University — Manila, Philippines [NOT individually verified]
+  Type: Top private university — engineering, business and computer studies
+  Known for: Engineering, Business, Computer Science, Economics
+
+Mapúa University — Manila, Philippines [NOT individually verified]
+  Type: The Philippines' leading engineering/tech university — several programmes ABET-accredited (US-recognised)
+  Known for: Engineering, Computer Science, Architecture, IT
+
+Silliman University — Dumaguete, Philippines [NOT individually verified]
+  Type: Well-regarded American-founded private university — nursing, biology and marine science
+  Known for: Nursing, Biology, Business, Environmental Science
+
+University of the East Ramon Magsaysay (UERM) — Quezon City, Philippines [NOT individually verified — MD fees agent-quoted]
+  Type: Respected private medical centre — MD with a strong USMLE-match track record
+  Known for: Medicine, Nursing
+  ⚠ Verify your council's current approved list + FMGE/NExT (or USMLE-match) record; apply directly.
+
+Cebu Doctors' University — Cebu, Philippines [NOT individually verified — MD fees agent-quoted]
+  Type: Health-sciences university popular with international MD and nursing students
+  Known for: Medicine, Nursing, Pharmacy
+
+University of Perpetual Help System DALTA — Las Piñas, Philippines [NOT individually verified — MD fees agent-quoted]
+  Type: Large private university with a big international BS-MD cohort
+  Known for: Medicine, Nursing
+
+Davao Medical School Foundation (DMSF) — Davao, Philippines [NOT individually verified — MD fees agent-quoted]
+  Type: Established medical school with a large international MD intake
+  Known for: Medicine
+
+AMA School of Medicine — Makati, Philippines [NOT individually verified — MD fees agent-quoted]
+  Type: Private MD programme marketed heavily to international (esp. Indian) students
+  Known for: Medicine
+
+Far Eastern University (FEU) — Manila, Philippines [NOT individually verified]
+  Type: Large private university — a major name in nursing and (via FEU-NRMF) medicine
+  Known for: Nursing, Medicine, Business
+
 ═══════════════════════════════════════════════════
 END OF ADMITAI VERIFIED DATA
 ═══════════════════════════════════════════════════
@@ -4609,6 +4670,7 @@ const COUNTRY_ALIASES: Record<string, string[]> = {
   'Russia': ['russia', 'russian', 'moscow', 'saint petersburg', 'st petersburg', 'rossotrudnichestvo', 'rudn', 'sechenov', 'lomonosov', 'bauman', 'itmo', 'mephi', 'mipt'],
   'Kyrgyzstan': ['kyrgyzstan', 'kyrgyz', 'bishkek', 'osh', 'kyrgyzstani', 'krsu', 'ksma', 'auca'],
   'Kazakhstan': ['kazakhstan', 'kazakh', 'almaty', 'astana', 'nur-sultan', 'nazarbayev', 'kaznu', 'kimep', 'satbayev'],
+  'Philippines': ['philippines', 'philippine', 'filipino', 'pinoy', 'manila', 'cebu', 'davao', 'quezon', 'ust', 'ateneo', 'mapua'],
 }
 
 // Words too generic to identify a university by name.

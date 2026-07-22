@@ -5979,6 +5979,73 @@ export const UNIVERSITIES = [
     sourceUrl,
     verified: false,
   })),
+
+  // ── LIGHT ENTRIES (Philippines — COMPREHENSIVE / quality) ────────────────
+  // English is an OFFICIAL language here — everything runs in English, a real
+  // everyday advantage. US-style system. Not sanctioned.
+  ...[
+    ['up-diliman', 'University of the Philippines (UP Diliman)', 'Quezon City', "The Philippines' top public flagship — highly selective (UPCAT)", ['Science', 'Engineering', 'Humanities', 'Business'], 'https://upd.edu.ph/'],
+    ['ust', 'University of Santo Tomas (UST)', 'Manila', 'The oldest university in Asia (est. 1611) — prestigious, strong in medicine and the sciences', ['Medicine', 'Science', 'Business', 'Architecture'], 'https://www.ust.edu.ph/'],
+    ['ateneo-manila', 'Ateneo de Manila University', 'Quezon City', 'Top private university — leading in business, law and the humanities', ['Business', 'Law', 'Humanities', 'Computer Science'], 'https://www.ateneo.edu/'],
+    ['de-la-salle', 'De La Salle University', 'Manila', 'Top private university — engineering, business and computer studies', ['Engineering', 'Business', 'Computer Science', 'Economics'], 'https://www.dlsu.edu.ph/'],
+    ['mapua', 'Mapúa University', 'Manila', 'The Philippines\' leading engineering/tech university — several programmes ABET-accredited (US-recognised)', ['Engineering', 'Computer Science', 'Architecture', 'IT'], 'https://www.mapua.edu.ph/'],
+    ['silliman', 'Silliman University', 'Dumaguete', 'Well-regarded American-founded private university — nursing, biology and marine science', ['Nursing', 'Biology', 'Business', 'Environmental Science'], 'https://su.edu.ph/'],
+  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'Philippines',
+    flag: '🇵🇭',
+    city,
+    level: 'Both',
+    ranking,
+    knownFor,
+    language: 'English — an official language of the Philippines; instruction is in English. Confirm per programme.',
+    entryGrades: 'Varies — UP is highly selective (UPCAT); the top privates are selective. Confirm on the official site.',
+    tests: 'Entrance exams vary (e.g. UPCAT for UP); a separate English test is generally not required. Confirm per programme.',
+    acceptance: 'Varies by programme',
+    tuitionIntl: 'Low–moderate by global standards — confirm on the official site. English is an official language and the Philippines is not sanctioned, so studying and paying here is straightforward.',
+    living: 'Moderate: ~$300–$450/month.',
+    deadline: 'Confirm application windows on the official site.',
+    scholarshipsHere: 'Some merit and need-based aid at the private universities; confirm current terms on the official site.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
+
+  // ── LIGHT ENTRIES (Philippines — MEDICINE / MD, popular with internationals) ─
+  // MD (not MBBS): ~6 yrs = 2-yr BS pre-med + 4-yr MD; integrated BS-MD ~5–5.5
+  // yrs for internationals. US-modelled → USMLE-friendly. ⚠ Heavy agent market;
+  // verify recognition + FMGE/NExT record, apply directly. Fees agent-quoted.
+  ...[
+    ['uerm', 'University of the East Ramon Magsaysay (UERM)', 'Quezon City', 'Respected private medical centre — MD with a strong USMLE-match track record', ['Medicine', 'Nursing'], 'https://uerm.edu.ph/'],
+    ['cebu-doctors', "Cebu Doctors' University", 'Cebu', 'Health-sciences university popular with international MD and nursing students', ['Medicine', 'Nursing', 'Pharmacy'], 'https://www.cebudoctorsuniversity.edu/'],
+    ['perpetual-help', 'University of Perpetual Help System DALTA', 'Las Piñas', 'Large private university with a big international BS-MD cohort', ['Medicine', 'Nursing'], 'https://perpetualdalta.edu.ph/'],
+    ['davao-medical', 'Davao Medical School Foundation (DMSF)', 'Davao', 'Established medical school with a large international MD intake', ['Medicine'], 'https://www.dmsf.edu.ph/'],
+    ['ama-medicine', 'AMA School of Medicine', 'Makati', 'Private MD programme marketed heavily to international (esp. Indian) students', ['Medicine'], 'https://www.amaes.edu.ph/'],
+    ['feu', 'Far Eastern University (FEU)', 'Manila', 'Large private university — a major name in nursing and (via FEU-NRMF) medicine', ['Nursing', 'Medicine', 'Business'], 'https://www.feu.edu.ph/'],
+  ].map(([id, name, city, ranking, knownFor, sourceUrl]) => ({
+    id,
+    name,
+    country: 'Philippines',
+    flag: '🇵🇭',
+    city,
+    level: 'Both',
+    ranking,
+    knownFor,
+    language: 'English — an official language; the MD and BSN are taught entirely in English (no IELTS typically). Confirm per programme.',
+    entryGrades: 'Accessible — MD entry needs qualifying school science marks + NMAT (Philippine medical aptitude test); NEET required for Indian nationals to practise home. Confirm on the official site.',
+    tests: 'NMAT for MD entry; usually NO IELTS (English is official). Confirm per programme.',
+    acceptance: 'Accessible — varies by programme',
+    tuitionIntl: 'Agent-quoted, NOT individually verified — MD ~$3,000–$6,500/yr (confirm directly). Structure: ~6 yrs = 2-yr BS pre-med + 4-yr MD (internationals often take an integrated BS-MD, ~5–5.5 yrs); US-modelled, so USMLE-friendly. ⚠ Verify the CURRENT recognition list for your country AND the school\'s FMGE/NExT (or USMLE-match) record before enrolling. Not sanctioned — payments work normally.',
+    living: 'Moderate: ~$300–$450/month.',
+    deadline: 'Rolling — confirm intake dates on the official site.',
+    scholarshipsHere: '⚠ Golden rules: (1) verify your council recognises the school, (2) check its FMGE/NExT (or USMLE-match) record, (3) apply directly — heavy agent market. Few meaningful scholarships for the MD — plan as degree-only.',
+    scholarships: [],
+    sourceName: 'Official site',
+    sourceUrl,
+    verified: false,
+  })),
 ]
 
 export function getUniversitiesByCountry(countryName) {
